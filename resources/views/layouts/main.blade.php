@@ -8,29 +8,41 @@
     <title>Document</title>
 
 </head>
-<body class="text-color-9">
+<body class="text-color-1">
 
     <header class="sticky top-0 z-[999]">
-        <div class="flex flex-row h-20 py-[15px] px-[50px] bg-color-5 shadow-custom-1">
+        <div class="flex flex-row h-20 py-[15px] px-[50px] bg-color-8  border-b border-color-4 ">
             <a href="" class="flex flex-row">
-                <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo.png') }} " alt="">
+                <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
-            <a class="btn ms-auto w-[150px] text-white bg-color-7 border-gray-500 text-2xl">
-                <span class="">Masuk</span>
+            <a class="btn ms-auto w-[150px] h-[50px] text-white bg-color-3 border-0 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
+                <span>Masuk</span>
             </a>
         </div>
     </header>
 
-    <div class="min-h-[calc(100vh-80px)] flex w-full bg-color-4">
-        @yield('main')
+    <div class="min-h-[calc(100vh-80px)] flex w-full bg-color-8">
+
+        <aside class="w-2/5">
+            <!-- Konten aside -->
+            @yield('aside')
+        </aside>
+
+        <main class="w-3/5 bg-color-8 border-l border-color-4">
+            <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full">
+                <!-- Konten main -->
+                @yield('main')
+            </div>
+        </main>
+
     </div>
 
-    <footer class="text-color-1">
-        <div class="grid grid-cols-4 bg-color-8 h-[250px] px-[150px] pt-[50px]">
-            <ul class="">
-                <li class="text-xl font-semibold mb-[10px]">Tentang Aplikasi</li>
-                <table>
+    <footer class="text-color-8">
+        <div class="grid grid-cols-4 bg-color-1 h-[250px] px-[150px] pt-[50px]">
+            <nav class="pr-5">
+                <p class="text-xl font-semibold mb-[10px]">Tentang Aplikasi</p>
+                <table class="p">
                     <tr class="align-top">
                         <td>Email</td>
                         <td>:</td>
@@ -39,37 +51,25 @@
                     <tr class="align-top">
                         <td>Alamat</td>
                         <td>:</td>
-                        <td>Jl. Ahmad Yani Batam Kota. Kota Batam. kepulauan Riau. Indonesia</td>
+                        <td class="text-justify">Jl. Ahmad Yani Batam Kota. Kota Batam. kepulauan Riau. Indonesia</td>
                     </tr>
                 </table>
-            </ul>
-            <ul class="col-start-2">
-                <li class="text-xl font-semibold mb-[10px]">Pintasan Aplikasi</li>
-                <li class="grid grid-cols-2">
-                    <ul class="col-start-1">
-                        <li>
-                            <a class="font-reguler text-base link link-hover">Chatbot</a>
-                        </li>
-                        <li>
-                            <a class="font-reguler text-base link link-hover">Jurnal harian</a>
-                        </li>
-                        <li>
-                            <a class="font-reguler text-base link link-hover">Konten Edukasi</a>
-                        </li>
-                    </ul>
-                    <ul class="col-start-2">
-                        <li>
-                            <a class="font-reguler text-base link link-hover">Daftar aktivitas</a>
-                        </li>
-                        <li>
-                            <a class="font-reguler text-base link link-hover">Forum diskusi</a>
-                        </li>
-                        <li>
-                            <a class="font-reguler text-base link link-hover">Konsultasi</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            </nav>
+            <nav class="col-start-2">
+                <p class="text-xl font-semibold mb-[10px]">Pintasan Aplikasi</p>
+                <div class="grid grid-cols-2">
+                    <nav class="flex flex-col">
+                        <a href="" class="link link-hover">Chatbot</a>
+                        <a href="" class="link link-hover">Jurnal harian</a>
+                        <a href="" class="link link-hover">Konten Edukasi</a>
+                    </nav>
+                    <nav class="flex flex-col">
+                        <a href="" class="link link-hover">Daftar aktivitas</a>
+                        <a href="" class="link link-hover">Forum diskusi</a>
+                        <a href="" class="link link-hover">Konsultasi</a>
+                    </nav>
+                </div>
+            </nav>
             <ul class="col-start-4">
                 <li >
                     <p class="text-xl font-semibold mb-1">Sosial Media</p>
@@ -90,8 +90,8 @@
                 </li>
                 <li class="flex flex-col">
                     <p class="text-base font-semibold mb-1">Anda seorang tenaga ahli kejiwaan?</p>
-                    <a href="" class="btn btn-xs flex h-[30px] w-[100px] bg-color-4 text-color-9 hover:text-color-1">
-                        <img src=" {{ asset('icons/stethoscope.png') }} " alt="" class="h-4 w-4">
+                    <a href="" class="btn btn-xs flex h-[30px] w-[100px] bg-color-8 text-color-9 text-color-1 hover:bg-color-6 border-color-4">
+                        <img src=" {{ asset('icons/doctor-department.png') }} " alt="" class="h-4 w-4">
                         Daftar
                     </a>
                 </li>

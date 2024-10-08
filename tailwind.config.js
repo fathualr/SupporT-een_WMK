@@ -10,18 +10,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        "color-1": "#F8F9FA",
-        "color-2": "#E9ECEF",
-        "color-3": "#DEE2E6",
-        "color-4": "#CED4DA",
-        "color-5": "#ADB5BD",
-        "color-6": "#6C757D",
-        "color-7": "#495057",
-        "color-8": "#343A40",
-        "color-9": "#212529",
+        "color-1": "#063248",
+        "color-2": "#4C606E",
+        "color-3": "#298EA6",
+        "color-4": "#9CA3AF",
+        "color-5": "#C3E7FA",
+        "color-6": "#E3F1F4",
+        "color-7": "#EFEFED",
+        "color-8": "#F8F8F7",
       },
       backgroundImage: {
-        "brain-pattern": "url('/public/images/brain-pattern.png')",
+        "brain-pattern": "url('/public/images/brain-pattern.png')", // Background gambar
       },
       boxShadow: {
         'custom-1': '0 0 4px rgba(0, 0, 0, 0.25)',  // Bayangan ringan
@@ -30,9 +29,9 @@ export default {
   },
   plugins: [
     require(
-      'daisyui',
-      'flowbite/plugin',
-      'preline/plugin'),
+      'daisyui', // Menggunakan daisyUI//
+      'flowbite/plugin', // Menggunakan flowbite//
+      'preline/plugin'), // Menggunakan preline//
   ],
 }
 
