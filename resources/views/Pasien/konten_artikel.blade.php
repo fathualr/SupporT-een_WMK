@@ -2,7 +2,7 @@
 
 @section('aside')
 
-    <div class="flex flex-col mx-auto items-center w-full h-full pt-9 px-[50px] gap-9">
+    <div class="flex flex-col mx-auto items-center w-full h-full pt-9 px-[50px] gap-6">
         <label class="input flex items-center gap-2 w-full bg-color-5 rounded-2xl">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
