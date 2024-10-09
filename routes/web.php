@@ -13,3 +13,7 @@ Route::get('/login', function () {
 Route::get('/registrasi', function () {
     return view('registrasi');
 });
+
+Route::get('/konten-edukatif', function () {
+    return view('Pasien/konten_edukatif');
+});
