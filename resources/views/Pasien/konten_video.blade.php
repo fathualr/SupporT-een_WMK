@@ -2,7 +2,7 @@
 
 @section('aside')
 
-    <div class="flex flex-col mx-auto items-center w-full h-full pt-9 px-[50px] gap-9">
+    <div class="flex flex-col mx-auto items-center w-full h-full mt-9 px-[50px] gap-6">
         <label class="input flex items-center gap-2 w-full bg-color-5 rounded-2xl">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@
                         alt="Album" />
                 </div>
                 <div class="flex-1">
-                    <span class="text-color-2">Artikel</span>
+                    <span class="text-color-2">Video</span>
                     <h1 class="text-xl font-bold">New Study Reveals Daily Weeks Can Significantly Improve Mental Health</h1>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center">
@@ -101,7 +101,7 @@
 
 @section('main')
 
-<div class="flex flex-col w-full h-full bg-color-8 px-3 py-5 border-[1px] border-color-4 rounded-2xl">
+<div class="flex flex-col w-full h-full bg-base-100 p-8 border-[1px] border-color-4 rounded-2xl">
     <div class="flex items-center">
         <img
             class="w-16 h-16 rounded-full mr-4"
@@ -116,7 +116,7 @@
 <div class="flex flex-col gap-4 pl-20">
     <h1 class="text-3xl font-bold text-color-1">New Study Reveals Daily Weeks Can Significantly Improve Mental Health</h1>
     <span class="text-color-2 text-center">23 September 2024</span>
-    <img class="aspect-video rounded-2xl" src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="ilustrasi artikel">
+    <iframe class="w-full aspect-video rounded-lg shadow-lg" src="https://www.youtube.com/embed/jwIWJIdpNFs?si=qeLaZN2hVmo1Pmey" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <p class="text-color-1 text-base">Baru-baru ini, sebuah studi baru mengungkapkan bahwa aktivitas sederhana seperti berjalan kaki setiap hari memiliki dampak yang
         signifikan terhadap kesehatan mental seseorang. Di tengah meningkatnya perhatian global terhadap kesehatan mental, terutama setelah
         pandemi COVID-19, temuan ini menegaskan pentingnya aktivitas fisik dalam menjaga kesejahteraan emosional dan psikologis.</p>

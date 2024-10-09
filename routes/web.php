@@ -14,6 +14,10 @@ Route::get('/registrasi', function () {
     return view('registrasi');
 });
 
-Route::get('/konten-edukatif', function () {
-    return view('Pasien/konten_edukatif');
+Route::get('/konten-artikel', function () {
+    return view('Pasien/konten_artikel');
+});
+
+Route::get('/konten-video', function () {
+    return view('Pasien/konten_video');
 });
