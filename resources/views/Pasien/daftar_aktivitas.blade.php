@@ -40,9 +40,9 @@
 <div class="grid grid-cols-4 gap-4 w-full h-full"> 
 
 
-    <div class="card bg-color-6 w-60 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-56 h-30"
+          <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -58,9 +58,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-60 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-56 h-30"
+          <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -76,9 +76,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-60 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-56 h-30"
+          <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -94,9 +94,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-60 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-56 h-30"
+          <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -112,9 +112,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-60 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-56 h-30"
+          <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -130,9 +130,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-60 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-56 h-30"
+          <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -148,9 +148,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-60 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-56 h-30"
+          <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -166,9 +166,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-60 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-56 h-30"
+          <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
