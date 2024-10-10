@@ -37,7 +37,7 @@
 @endsection
 
 @section('main')
-<div class="grid grid-cols-4 gap-6 "> 
+<div class="grid grid-cols-4 gap-4 w-full h-full"> 
 
 
     <div class="card bg-color-6 w-60 shadow-xl outline outline-color-5/80">
