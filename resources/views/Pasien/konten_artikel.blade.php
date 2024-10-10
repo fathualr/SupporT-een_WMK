@@ -3,7 +3,7 @@
 @section('aside')
 
     <div class="flex flex-col mx-auto items-center w-full h-full pt-9 px-[50px] gap-6">
-        <label class="input flex items-center gap-2 w-full bg-color-5 rounded-2xl">
+        <label class="input flex items-center gap-2 w-full bg-color-6 rounded-2xl">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -21,7 +21,7 @@
         
         <div class="flex flex-col w-full h-full gap-4">
             <!-- card 1 -->
-            <div class="flex bg-base-100 border-[1px] border-color-4 rounded-2xl p-2 gap-2">
+            <div class="flex border-[1px] border-color-4 rounded-2xl p-2 gap-2">
                 <div class="flex-none w-[100px] h-[100px]">
                     <img
                         class="w-full h-full rounded-xl"
@@ -45,7 +45,7 @@
             </div>
             <!-- card 1 -->
             <!-- card 2 -->
-            <div class="flex bg-base-100 border-[1px] border-color-4 rounded-2xl p-2 gap-2">
+            <div class="flex border-[1px] border-color-4 rounded-2xl p-2 gap-2">
                 <div class="flex-none w-[100px] h-[100px]">
                     <img
                         class="w-full h-full rounded-xl"
@@ -70,7 +70,7 @@
             <!-- card 2 -->
 
             <!-- card 3 -->
-            <div class="flex bg-base-100 border-[1px] border-color-4 rounded-2xl p-2 gap-2">
+            <div class="flex border-[1px] border-color-4 rounded-2xl p-2 gap-2">
                 <div class="flex-none w-[100px] h-[100px]">
                     <img
                         class="w-full h-full rounded-xl"
@@ -101,7 +101,7 @@
 
 @section('main')
 
-<div class="flex flex-col w-full h-full bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
+<div class="flex flex-col w-full h-full bg-base-100 p-8 border-[1px] border-color-4 rounded-2xl">
     <div class="flex items-center">
         <img
             class="w-16 h-16 rounded-full mr-4"

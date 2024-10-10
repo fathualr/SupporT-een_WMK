@@ -21,3 +21,7 @@ Route::get('/konten-artikel', function () {
 Route::get('/konten-video', function () {
     return view('Pasien/konten_video');
 });
+
+Route::get('/konsultasi', function () {
+    return view('Pasien/konsultasi');
+});
