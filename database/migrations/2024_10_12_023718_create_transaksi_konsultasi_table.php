@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaksi', function (Blueprint $table) {
+        Schema::create('transaksi_konsultasi', function (Blueprint $table) {
             $table->id(); // Primary key, ID unik untuk setiap transaksi
             $table->unsignedBigInteger('id_konsultasi'); // Foreign key untuk merujuk pada konsultasi terkait
             $table->enum('status', ['berhasil', 'gagal']); // Status transaksi

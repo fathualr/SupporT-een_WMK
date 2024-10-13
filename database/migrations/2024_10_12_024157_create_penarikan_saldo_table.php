@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('penarikan_saldo', function (Blueprint $table) {
             $table->id(); // Primary key, ID unik untuk setiap penarikan saldo
-            $table->unsignedBigInteger('id_user'); // Foreign key untuk merujuk pada pengguna
+            $table->unsignedBigInteger('id_user')->nullable(); // Foreign key untuk merujuk pada pengguna
             $table->enum('status', ['berhasil', 'gagal']); // Status penarikan
             $table->decimal('jumlah', 10, 2); // Jumlah saldo yang ditarik
             $table->string('tujuan_penarikan', 100); // Tujuan atau alasan penarikan saldo
             $table->timestamps(); // Menambahkan kolom created_at dan updated_at
 
             // Menambahkan foreign key constraint untuk id_user
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
         });
     }
 

@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('balasan', function (Blueprint $table) {
             $table->id(); // Primary key, ID unik untuk setiap balasan
-            $table->unsignedBigInteger('id_pasien'); // Foreign key merujuk pada pasien yang memberikan balasan
+            $table->unsignedBigInteger('id_pasien')->nullable(); // Foreign key merujuk pada pasien yang memberikan balasan
             $table->unsignedBigInteger('id_diskusi'); // Foreign key merujuk pada diskusi terkait
             $table->string('isi', 255); // Isi balasan yang diberikan oleh pasien
             $table->timestamps(); // Menambahkan kolom created_at dan updated_at
 
             // Definisi foreign key
-            $table->foreign('id_pasien')->references('id')->on('pasien')->onDelete('cascade');
+            $table->foreign('id_pasien')->references('id')->on('pasien')->onDelete('set null');
             $table->foreign('id_diskusi')->references('id')->on('diskusi')->onDelete('cascade');
         });
     }
