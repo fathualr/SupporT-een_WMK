@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id(); // Primary key, ID unik untuk setiap aktivitas positif
             $table->string('nama', 255); // Nama aktivitas positif
             $table->string('gambar', 255); // Gambar dari aktivitas positif
-            $table->timestamps(); // Menambahkan kolom created_at dan updated_at
         });
     }
 
