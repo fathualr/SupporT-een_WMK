@@ -29,3 +29,8 @@ Route::get('/konsultasi', function () {
 Route::get('/percakapan-konsultasi', function () {
     return view('Pasien/percakapan_konsultasi');
 });
+
+// VIEW LAYOUT TEMPLATE ADMIN
+Route::get('/admin', function () {
+    return view('layouts/main_admin');
+});
