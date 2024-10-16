@@ -11,7 +11,7 @@
 <body class="text-color-1">
 
     <header class="sticky top-0 z-[999]">
-        <div class="flex flex-row h-20 py-[15px] px-[50px] bg-color-8  border-b border-color-4 ">
+        <div class="flex flex-row h-20 py-[15px] px-[50px] bg-color-8 border-b border-color-4 ">
             <a href="" class="flex flex-row">
                 <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
@@ -64,7 +64,7 @@
         <main class="w-4/5 bg-color-8 border-l border-color-4">
             <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full relative">
                 <!-- Konten main -->
-                <div class="bg-base-100 border-[1px] border-color-4 w-full h-full rounded-2xl">
+                <div class="bg-base-100 border-[1px] border-color-4 w-full h-full p-5 rounded-2xl">
                     @yield('main')
                 </div>
             </div>
