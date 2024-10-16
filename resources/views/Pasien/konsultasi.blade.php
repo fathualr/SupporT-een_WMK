@@ -76,7 +76,7 @@
 <div class="w-full h-full">
     <div class="grid grid-cols-2 gap-4">
         <!-- card 1 -->
-        <div class="card card-side card-compact bg-color-6 pl-5">
+        <div class="card card-side card-compact bg-color-6">
             <figure class="flex-none">
                 <img
                 class="w-[150px] h-[150px] rounded-2xl"
