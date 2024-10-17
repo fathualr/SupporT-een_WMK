@@ -34,3 +34,7 @@ Route::get('/percakapan-konsultasi', function () {
 Route::get('/admin', function () {
     return view('layouts/main_admin');
 });
+
+Route::get('/forum-diskusi', function () {
+    return view('Pasien/forum_diskusi');
+});
