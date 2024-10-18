@@ -38,3 +38,7 @@ Route::get('/admin', function () {
 Route::get('/forum-diskusi', function () {
     return view('Pasien/forum_diskusi');
 });
+
+Route::get('/penarikan-pendapatan', function () {
+    return view('TenagaAhli/penarikan_pendapatan');
+});
