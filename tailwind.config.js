@@ -7,6 +7,7 @@ export default {
     "./node_modules/flowbite/**/*.js",
     "node_modules/preline/dist/*.js"
   ],
+  important: true,
   theme: {
     extend: {
       colors: {

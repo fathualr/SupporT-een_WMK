@@ -42,3 +42,11 @@ Route::get('/forum-diskusi', function () {
 Route::get('/penarikan-pendapatan', function () {
     return view('TenagaAhli/penarikan_pendapatan');
 });
+
+Route::get('/dashboard-admin', function () {
+    return view('Admin/dashboard');
+});
+
+Route::get('/data-pasien', function () {
+    return view('Admin/data_pasien');
+});
