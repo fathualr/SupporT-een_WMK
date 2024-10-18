@@ -10,7 +10,7 @@
         Tambah Data
     </button>
 
-    <div class="bg-color-8 border-[1px] border-color-4 w-full p-5 rounded-2xl">
+    <div class="w-full p-5 rounded-2xl">
         <div class="overflow-x-auto h-[calc(100vh-400px)]">
         <table class="table table-xs">
             <thead>
