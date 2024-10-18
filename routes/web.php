@@ -54,3 +54,11 @@ Route::get('/data-administrator', function () {
 Route::get('/data-pasien', function () {
     return view('Admin/data_pasien');
 });
+
+Route::get('/data-tenaga-ahli', function () {
+    return view('Admin/data_tenaga_ahli');
+});
+
+Route::get('/data-transaksi-konsultasi', function () {
+    return view('Admin/data_transaksi_konsultasi');
+});
