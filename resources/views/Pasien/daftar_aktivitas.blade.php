@@ -2,11 +2,10 @@
 
 @section('aside')
 <div class="flex flex-col w-full h-full pt-9 px-[50px] gap-6">
-<a href="">
-  <div class="flex flex-cols2 gap-2 hover:bg-color-6 transition duration-300 ">
+<button class="btn justify-start bg-color-6  hover:bg-color-5 hover:border-color-3 ">
     <img src="{{ asset('images/custom-activity.svg') }}">
     <p class="text-2xl font-semibold">Kustomisasi aktivitas</p>
-  </div>
+</button>
 </a>
   <h1 class="text-4xl font-bold text-color-1 ">Riwayat aktivitas</h1>
   <div class="flex flex-col w-full h-full gap-4">
@@ -37,10 +36,11 @@
 @endsection
 
 @section('main')
-<div class="grid grid-cols-4 gap-4 w-full h-full"> 
+<div class="w-full h-full items-center ">
+<div class="grid grid-cols-4 gap-4 "> 
 
 
-    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
           <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
@@ -58,7 +58,7 @@
     </div>
 
 
-    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
           <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
@@ -76,9 +76,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-44 h-28"
+          <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -94,9 +94,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-44 h-28"
+          <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -112,9 +112,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-44 h-28"
+          <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -130,9 +130,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-44 h-28"
+          <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -148,9 +148,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-44 h-28"
+          <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -166,9 +166,9 @@
     </div>
 
 
-    <div class="card bg-color-6 w-52 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
       <figure class="pt-5 px-10">
-          <img class="w-44 h-28"
+          <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
             alt="Aktivitas"
             class="rounded-xl" />
@@ -183,6 +183,7 @@
       </div>
     </div>
 
+    </div>
 
 </div> 
 @endsection
