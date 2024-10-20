@@ -41,3 +41,8 @@ Route::get('/tambahdataadministrator', function () {
     return view('admin/tambah_data_administrator');
 
 });
+
+Route::get('/editdataadministrator', function () {
+    return view('admin/edit_data_administrator');
+
+});
