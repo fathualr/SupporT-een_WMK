@@ -34,6 +34,9 @@ Route::get('/percakapan-konsultasi', function () {
 Route::get('/admin', function () {
     return view('layouts/main_admin');
 });
+Route::get('/admin2', function () {
+    return view('layouts/main_admin2');
+});
 
 Route::get('/forum-diskusi', function () {
     return view('Pasien/forum_diskusi');
@@ -45,6 +48,10 @@ Route::get('/penarikan-pendapatan', function () {
 
 Route::get('/dashboard-admin', function () {
     return view('Admin/dashboard');
+});
+
+Route::get('/dashboard-admin2', function () {
+    return view('Admin/dashboard_2');
 });
 
 Route::get('/data-administrator', function () {
