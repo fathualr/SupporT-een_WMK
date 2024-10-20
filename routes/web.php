@@ -62,3 +62,7 @@ Route::get('/data-tenaga-ahli', function () {
 Route::get('/data-transaksi-konsultasi', function () {
     return view('Admin/data_transaksi_konsultasi');
 });
+
+Route::get('/pendapatan-admin', function () {
+    return view('Admin/pendapatan_admin');
+});
