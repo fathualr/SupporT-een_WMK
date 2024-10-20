@@ -3,7 +3,7 @@
 @section('main')
 
 <div class="flex flex-col gap-6">
-    <h1 class="text-[2rem] text-color-1 font-bold">Data Transaksi Konsultasi</h1>
+    <h1 class="text-[2rem] text-color-1 font-bold">Data Konten Edukatif</h1>
 
     <button class="btn bg-color-3 w-[200px] text-white text-xl">
         <img src="{{ asset('icons/Plus_white.svg') }}" alt="">
