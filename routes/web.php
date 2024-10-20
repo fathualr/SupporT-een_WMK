@@ -36,3 +36,8 @@ Route::get('/editdatatenagaahli', function () {
     return view('admin/edit_data_tenaga_ahli');
 
 });
+
+Route::get('/tambahdataadministrator', function () {
+    return view('admin/tambah_data_administrator');
+
+});
