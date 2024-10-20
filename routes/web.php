@@ -26,3 +26,8 @@ Route::get('/editdatapasien', function () {
     return view('admin/edit_data_pasien');
 
 });
+
+Route::get('/tambahdatatenagaahli', function () {
+    return view('admin/tambah_data_tenaga_ahli');
+
+});
