@@ -42,7 +42,7 @@
             </label>
             
             <label class="flex justify-center items-center">
-                <button class="btn bg-color-3 text-white w-48">Tambahl</button>
+                <button class="btn bg-color-3 text-white w-48">Tambah</button>
             </label>
    
         </form>
