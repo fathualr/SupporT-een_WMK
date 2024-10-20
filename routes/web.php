@@ -83,3 +83,7 @@ Route::get('/dashboard-admin2', function () {
 Route::get('/data-konten-edukatif', function () {
     return view('Admin/data_konten_edukatif');
 });
+
+Route::get('/data-forum-diskusi', function () {
+    return view('Admin/data_forum_diskusi');
+});

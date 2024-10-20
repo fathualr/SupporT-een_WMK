@@ -16,13 +16,10 @@
             <thead>
             <tr class="text-color-1">
                 <th>Id</th>
-                <th>Thumbnail</th>
+                <th>Gambar</th>
                 <th>Judul</th>
-                <th>Tipe</th>
-                <th>Isi Artikel</th>
-                <th>Link Youtube</th>
-                <th>Tanggal Lahir</th>
-                <th>Kata Kunci</th>
+                <th>Isi</th>
+                <th>Tanggal Pembuatan</th>
                 <th class="text-center">Action</th>
             </tr>
             </thead>
@@ -31,11 +28,8 @@
     <th>1</th>
     <td></td> <!-- Thumbnail -->
     <td>Pentingnya Nutrisi bagi Remaja</td>
-    <td>Artikel</td>
     <td>Nutrisi yang baik sangat penting untuk tumbuh kembang remaja...</td>
-    <td>youtube.com/watch?v=abc123</td>
     <td>2023-10-01</td>
-    <td>nutrisi, remaja, kesehatan</td>
     <td class="flex justify-center">
         <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost">
