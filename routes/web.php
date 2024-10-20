@@ -17,3 +17,12 @@ Route::get('/daftaraktivitas', function () {
 Route::get('/kustomisasiaktivitas', function () {
     return view('pasien/kustomisasi_aktivitas');
 });
+
+Route::get('/tambahdatapasien', function () {
+    return view('admin/tambah_data_pasien');
+
+});
+Route::get('/editdatapasien', function () {
+    return view('admin/edit_data_pasien');
+
+});
