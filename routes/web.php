@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+// PASIEN
 Route::get('/', function () {
     return view('pasien/homepage');
 });
@@ -30,28 +31,28 @@ Route::get('/percakapan-konsultasi', function () {
     return view('Pasien/percakapan_konsultasi');
 });
 
-// VIEW LAYOUT TEMPLATE ADMIN
-Route::get('/admin', function () {
-    return view('layouts/main_admin');
-});
-Route::get('/admin2', function () {
-    return view('layouts/main_admin2');
-});
-
 Route::get('/forum-diskusi', function () {
     return view('Pasien/forum_diskusi');
 });
 
+// TENAGA AHLI
 Route::get('/penarikan-pendapatan', function () {
     return view('TenagaAhli/penarikan_pendapatan');
 });
 
-Route::get('/dashboard-admin', function () {
-    return view('Admin/dashboard');
+// VIEW LAYOUT TEMPLATE SUPERADMIN
+Route::get('/admin', function () {
+    return view('layouts/main_admin');
 });
 
-Route::get('/dashboard-admin2', function () {
-    return view('Admin/dashboard_2');
+// VIEW LAYOUT TEMPLATE ADMIN
+Route::get('/admin2', function () {
+    return view('layouts/main_admin2');
+});
+
+// SUPER ADMIN 
+Route::get('/dashboard-admin', function () {
+    return view('Admin/dashboard');
 });
 
 Route::get('/data-administrator', function () {
@@ -72,4 +73,13 @@ Route::get('/data-transaksi-konsultasi', function () {
 
 Route::get('/pendapatan-admin', function () {
     return view('Admin/pendapatan_admin');
+});
+
+// ADMIN
+Route::get('/dashboard-admin2', function () {
+    return view('Admin/dashboard_2');
+});
+
+Route::get('/data-konten-edukatif', function () {
+    return view('Admin/data_konten_edukatif');
 });
