@@ -13,3 +13,7 @@ Route::get('/login', function () {
 Route::get('/daftaraktivitas', function () {
     return view('pasien/daftar_aktivitas');
 });
+
+Route::get('/kustomisasiaktivitas', function () {
+    return view('pasien/kustomisasi_aktivitas');
+});
