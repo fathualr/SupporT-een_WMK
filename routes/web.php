@@ -46,3 +46,8 @@ Route::get('/editdataadministrator', function () {
     return view('admin/edit_data_administrator');
 
 });
+
+Route::get('/tambahdatakontenedukatif', function () {
+    return view('admin/tambah_data_konten_edukatif');
+
+});
