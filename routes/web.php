@@ -71,3 +71,7 @@ Route::get('/tambahdatakonten', function () {
     return view('TenagaAhli/tambah_data_konten_edukasi');
 
 });
+Route::get('/editdatakonten', function () {
+    return view('TenagaAhli/edit_data_konten_edukatif');
+
+});
