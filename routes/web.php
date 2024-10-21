@@ -66,3 +66,8 @@ Route::get('/editdataforumdiskusi', function () {
     return view('admin/edit_data_forum_diskusi');
 
 });
+
+Route::get('/tambahdatakonten', function () {
+    return view('TenagaAhli/tambah_data_konten_edukasi');
+
+});
