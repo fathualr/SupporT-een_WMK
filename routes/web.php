@@ -10,7 +10,7 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/daftaraktivitas', function () {
+Route::get('/daftar-aktivitas', function () {
     return view('pasien/daftar_aktivitas');
 });
 
