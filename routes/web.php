@@ -14,7 +14,7 @@ Route::get('/daftar-aktivitas', function () {
     return view('pasien/daftar_aktivitas');
 });
 
-Route::get('/kustomisasiaktivitas', function () {
+Route::get('/kustomisasi-aktivitas', function () {
     return view('pasien/kustomisasi_aktivitas');
 });
 
