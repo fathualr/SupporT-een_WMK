@@ -51,3 +51,8 @@ Route::get('/tambahdatakontenedukatif', function () {
     return view('admin/tambah_data_konten_edukatif');
 
 });
+
+Route::get('/editdatakontenedukatif', function () {
+    return view('admin/edit_data_konten_edukatif');
+
+});
