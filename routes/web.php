@@ -27,51 +27,51 @@ Route::get('/edit-data-pasien', function () {
 
 });
 
-Route::get('/tambahdatatenagaahli', function () {
+Route::get('/tambah-data-tenaga-ahli', function () {
     return view('admin/tambah_data_tenaga_ahli');
 
 });
 
-Route::get('/editdatatenagaahli', function () {
+Route::get('/edit-data-tenaga-ahli', function () {
     return view('admin/edit_data_tenaga_ahli');
 
 });
 
-Route::get('/tambahdataadministrator', function () {
+Route::get('/tambah-data-administrator', function () {
     return view('admin/tambah_data_administrator');
 
 });
 
-Route::get('/editdataadministrator', function () {
+Route::get('/edit-data-administrator', function () {
     return view('admin/edit_data_administrator');
 
 });
 
-Route::get('/tambahdatakontenedukatif', function () {
+Route::get('/tambah-data-konten-edukatif', function () {
     return view('admin/tambah_data_konten_edukatif');
 
 });
 
-Route::get('/editdatakontenedukatif', function () {
+Route::get('/edit-data-konten-edukatif', function () {
     return view('admin/edit_data_konten_edukatif');
 
 });
 
-Route::get('/tambahdataforumdiskusi', function () {
+Route::get('/tambah-data-forum-diskusi', function () {
     return view('admin/tambah_data_forum_diskusi ');
 
 });
 
-Route::get('/editdataforumdiskusi', function () {
+Route::get('/edit-data-forum-diskusi', function () {
     return view('admin/edit_data_forum_diskusi');
 
 });
 
-Route::get('/tambahdatakonten', function () {
+Route::get('/tambah-data-konten', function () {
     return view('TenagaAhli/tambah_data_konten_edukasi');
 
 });
-Route::get('/editdatakonten', function () {
+Route::get('/edit-data-konten', function () {
     return view('TenagaAhli/edit_data_konten_edukatif');
 
 });
