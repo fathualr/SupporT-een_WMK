@@ -44,6 +44,10 @@ Route::get('/kelola-konten-edukatif', function () {
     return view('TenagaAhli/kelola_konten_edukatif');
 });
 
+Route::get('/percakapan-konsultasi-tenaga-ahli', function () {
+    return view('TenagaAhli/percakapan_konsultasi');
+});
+
 // VIEW LAYOUT TEMPLATE SUPERADMIN
 Route::get('/admin', function () {
     return view('layouts/main_admin');
