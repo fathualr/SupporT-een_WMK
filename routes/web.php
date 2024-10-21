@@ -61,3 +61,8 @@ Route::get('/tambahdataforumdiskusi', function () {
     return view('admin/tambah_data_forum_diskusi ');
 
 });
+
+Route::get('/editdataforumdiskusi', function () {
+    return view('admin/edit_data_forum_diskusi');
+
+});
