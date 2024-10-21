@@ -40,6 +40,10 @@ Route::get('/penarikan-pendapatan', function () {
     return view('TenagaAhli/penarikan_pendapatan');
 });
 
+Route::get('/kelola-konten-edukatif', function () {
+    return view('TenagaAhli/kelola_konten_edukatif');
+});
+
 // VIEW LAYOUT TEMPLATE SUPERADMIN
 Route::get('/admin', function () {
     return view('layouts/main_admin');
