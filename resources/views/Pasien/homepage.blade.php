@@ -21,8 +21,7 @@
             <img src="{{ asset('icons/chatbot.svg') }}" alt="">
             <p class="font-semibold">Teman Bot</p>
         </a>
-
-        <a href="" class="flex flex-col w-full h-full justify-center items-center bg-color-8 border border-color-4 rounded-xl flex-grow">
+        <a href="{{ route('journal.index') }}" class="flex flex-col w-full h-full justify-center items-center bg-color-8 border border-color-4 rounded-xl flex-grow">
             <img src=" {{ asset('icons/journal.svg') }} " alt="">
             <p class="font-semibold">Jurnal Harian</p>
         </a>
