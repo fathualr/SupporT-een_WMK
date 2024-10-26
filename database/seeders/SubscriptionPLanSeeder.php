@@ -16,13 +16,8 @@ class SubscriptionPLanSeeder extends Seeder
         DB::table('subscription_plan')->insert([
             [
                 'name' => 'Monthly',
-                'price' => 9999.00,
+                'price' => 50000.00,
                 'duration' => 30, // 30 hari
-            ],
-            [
-                'name' => 'Yearly',
-                'price' => 99999.00,
-                'duration' => 365, // 365 hari
             ],
         ]);
     }

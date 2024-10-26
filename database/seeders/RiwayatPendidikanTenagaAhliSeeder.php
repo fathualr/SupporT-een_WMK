@@ -16,11 +16,11 @@ class RiwayatPendidikanTenagaAhliSeeder extends Seeder
         DB::table('riwayat_pendidikan_tenaga_ahli')->insert([
             [
                 'id_tenaga_ahli' => 1, // Pastikan id_tenaga_ahli merujuk ke ID tenaga ahli yang valid di tabel tenaga_ahli
-                'nama' => 'Universitas Psikologi Indonesia',
+                'keterangan' => 'Universitas Psikologi Indonesia',
             ],
             [
                 'id_tenaga_ahli' => 1,
-                'nama' => 'Sekolah Tinggi Psikologi',
+                'keterangan' => 'Sekolah Tinggi Psikologi',
             ],
         ]);
     }
