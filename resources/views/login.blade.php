@@ -2,8 +2,8 @@
 
 @section('aside')
 
-    <div class="flex flex-col mx-auto w-full justify-center items-center mb-[50px] h-full">
-        <img src="{{ asset('images/main-picture.svg') }}" class="max-h-[500px] max-w-[500px]" alt="">
+    <div class="flex flex-col mx-auto w-full items-center mb-[50px] h-full">
+        <img src=" {{ asset('images/main-picture.svg') }} " class="max-h-[500px] max-w-[500px]" alt="">
         <div class="card max-w-[475px] max-h-[200px] bg-color-6 border border-color-5 text-color-9 mx-auto">
             <div class="card-body">
                 <p class="font-bold text-2xl">Berbagi, Mendukung, Berkembang.</p>
@@ -16,28 +16,26 @@
 
 @section('main')
 
-<!-- Membuat teks "Masuk" rata tengah di atas input email -->
-<h2 class="text-center text-3xl font-bold mb-4">Masuk</h2>
+<div class="flex flex-col justify-center items-center w-full h-full py-16">
+    <h1 class="font-bold text-4xl font-color-1 mb-3">Masuk</h1>
+    
+    <label class="form-control w-full max-w-sm">
+            <div class="label">
+                <span class="label-text text-base font-medium font-color-1">Email</span>
+            </div>
+        <input type="email" placeholder="Email" class="input input-bordered border-color-2 w-full max-w-sm font-base text-color-2" />
+    </label>
+    
+    <label class="form-control w-full max-w-sm">
+            <div class="label">
+                <span class="label-text text-base font-medium font-color-1">Tanggal Lahir</span>
+            </div>
+        <input type="text" placeholder="Tanggal Lahir" class="input input-bordered border-color-2 w-full max-w-sm font-base text-color-2" />
+    </label>
+    
+    <button class="btn w-full max-w-sm bg-color-3 text-base-100 mt-10">Daftar</button>
 
-<!-- Input Email -->
-<label class="form-control w-full max-w-xs mx-auto">
-  <div class="label">
-    <span class="label-text">Email</span>
-  </div>
-  <input type="text" placeholder="Masukkan email anda" class="input input-bordered" style="width: 450.47px; height: 60.12px;" />
-</label>
-
-<!-- Input Password -->
-<label class="form-control w-full max-w-xs mx-auto mt-4">
-  <div class="label">
-    <span class="label-text">Password</span>
-  </div>
-  <input type="text" placeholder="" class="input input-bordered" style="width: 450.47px; height: 60.12px;" />
-</label>
-<button class="btn btn-info">Masuk</button>
-<!-- Teks "Belum memiliki akun? Daftar sekarang!" di bawah input dengan jarak lebih ke bawah -->
-<p class="text-center mt-10">
-  Belum memiliki akun? <a href="#" class="text-blue-500">Daftar sekarang!</a>
-</p>
+    <p class="text-color-2 mt-10">Sudah memiliki akun? <a class="text-color-3 hover:font-underline" href="">Masuk Sekarang!</a></p>
+</div>
 
 @endsection
