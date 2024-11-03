@@ -30,7 +30,7 @@
         </aside>
 
         <main class="w-3/5 bg-color-8 border-l border-color-4">
-            <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full">
+            <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full relative">
                 <!-- Konten main -->
                 @yield('main')
             </div>
