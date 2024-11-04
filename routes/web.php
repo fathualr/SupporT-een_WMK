@@ -35,6 +35,23 @@ Route::get('/forum-diskusi', function () {
     return view('Pasien/forum_diskusi');
 });
 
+// TENAGA AHLI
+Route::get('/penarikan-pendapatan', function () {
+    return view('TenagaAhli/penarikan_pendapatan');
+});
+
+Route::get('/kelola-konten-edukatif', function () {
+    return view('TenagaAhli/kelola_konten_edukatif');
+});
+
+Route::get('/percakapan-konsultasi-tenaga-ahli', function () {
+    return view('TenagaAhli/percakapan_konsultasi');
+});
+
+Route::get('/forum-diskusi', function () {
+    return view('Pasien/forum_diskusi');
+});
+
 Route::get('/daftar-aktivitas', function () {
     return view('pasien/daftar_aktivitas');
 });
@@ -74,7 +91,7 @@ Route::get('/percakapan-konsultasi-tenaga-ahli', function () {
 });
 
 
-// SUPER ADMIN 
+// SUPER SUPERADMIN 
 Route::get('/dashboard-admin', function () {
     return view('Admin/dashboard');
 });
@@ -161,4 +178,47 @@ Route::get('/tambah-data-forum-diskusi', function () {
 Route::get('/edit-data-forum-diskusi', function () {
     return view('admin/edit_data_forum_diskusi');
 
+});
+
+// VIEW LAYOUT TEMPLATE ADMIN
+Route::get('/admin2', function () {
+    return view('layouts/main_admin2');
+});
+
+// SUPER ADMIN 
+Route::get('/dashboard-admin', function () {
+    return view('Admin/dashboard');
+});
+
+Route::get('/data-administrator', function () {
+    return view('Admin/data_administrator');
+});
+
+Route::get('/data-pasien', function () {
+    return view('Admin/data_pasien');
+});
+
+Route::get('/data-tenaga-ahli', function () {
+    return view('Admin/data_tenaga_ahli');
+});
+
+Route::get('/data-transaksi-konsultasi', function () {
+    return view('Admin/data_transaksi_konsultasi');
+});
+
+Route::get('/pendapatan-admin', function () {
+    return view('Admin/pendapatan_admin');
+});
+
+// ADMIN
+Route::get('/dashboard-admin2', function () {
+    return view('Admin/dashboard_2');
+});
+
+Route::get('/data-konten-edukatif', function () {
+    return view('Admin/data_konten_edukatif');
+});
+
+Route::get('/data-forum-diskusi', function () {
+    return view('Admin/data_forum_diskusi');
 });
