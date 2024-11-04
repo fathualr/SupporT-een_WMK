@@ -48,7 +48,7 @@ Route::get('/teman-bot', function () {
 });
 
 Route::get('/jurnal-harian', function () {
-    return view('pasien/journal');
+    return view('pasien/jurnal');
 });
 
 
