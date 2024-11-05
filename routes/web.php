@@ -83,6 +83,10 @@ Route::get('/pendapatan-admin', function () {
     return view('Admin/pendapatan_admin');
 });
 
+Route::get('/data-daftar-aktivitas-positif', function () {
+    return view('Admin/data_daftar_aktivitas_positif');
+});
+
 // ADMIN
 Route::get('/dashboard-admin2', function () {
     return view('Admin/dashboard_2');
