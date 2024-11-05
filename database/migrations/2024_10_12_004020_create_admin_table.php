@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id(); // Primary key, ID unik untuk setiap admin
             $table->unsignedBigInteger('id_user'); // Foreign key merujuk pada ID pengguna di tabel Users
             $table->enum('admin_role', ['superadmin', 'content admin']); // Peran atau tanggung jawab admin
-            $table->timestamps(); // Kolom created_at dan updated_at
 
             // Definisi foreign key
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
         });
     }
 

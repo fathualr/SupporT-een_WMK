@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->id(); // Primary key dengan auto-increment
-            $table->enum('role', ['admin', 'pasien', 'tenaga ahli'])->default('pasien'); // Peran pengguna
+            $table->enum('role', ['admin', 'pasien', 'tenaga ahli']); // Peran pengguna
             $table->string('email', 50)->unique(); // Email pengguna, unik
             $table->string('password', 255); // Password, sebaiknya terenkripsi
             $table->string('nama', 50); // Nama lengkap pengguna

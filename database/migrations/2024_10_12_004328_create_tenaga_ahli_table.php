@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('tabungan', 10, 2)->default(0.00); // Saldo hasil konsultasi yang diterima
 
             // Definisi foreign key
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
         });
     }
 
