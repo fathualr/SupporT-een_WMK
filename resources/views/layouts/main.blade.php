@@ -27,9 +27,9 @@
         </div>
     </header>
 
-    <div class="h-[calc(100vh-80px)] flex w-full bg-color-8">
+    <div class="{{ $title === 'SupporT-een' ? 'min-h-[calc(100vh-80px)]' : 'h-[calc(100vh-80px)]' }} flex w-full bg-color-8">
 
-        <aside class="w-2/5 overflow-y-auto">
+        <aside class="w-2/5 {{ $title !== 'SupporT-een' ? 'overflow-y-auto' : '' }}">
             <!-- Konten aside -->
             @yield('aside')
         </aside>

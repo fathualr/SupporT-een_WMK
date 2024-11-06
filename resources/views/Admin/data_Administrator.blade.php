@@ -66,9 +66,10 @@
 
                 </tbody>
             </table>
+
         </div>
     </div>
-    <div class="flex justify-between border-t-[1px] border-color-4 pt-4">
+    <div class="flex justify-between border-t-[1px] bg-color-8 border-color-4 pt-4">
         <span class="text-sm text-color-2">Showing 1 to 10 of 50 entries</span>
         <div class="join">
             <button class="join-item btn">«</button>

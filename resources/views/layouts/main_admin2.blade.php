@@ -13,7 +13,7 @@
 
     <header class="sticky top-0 z-[999]">
         <div class="flex flex-row h-20 py-[15px] px-[50px] bg-color-8 border-b border-color-4 ">
-            <a href="#" class="flex flex-row">
+            <a href="/content-admin" class="flex flex-row">
                 <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>

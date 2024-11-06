@@ -29,10 +29,11 @@ class KontenEdukatifController extends Controller
         ]);
     }
 
-    public function tenagaAhliKontenEdukatif()
+    public function tenagaAhliKontenEdukatif($tipe = null)
     {
         return view('tenagaAhli/kelola_konten_edukatif', [
-            "title" => "Kelola Konten Edukatif"
+            "title" => "Kelola Konten Edukatif",
+            'tipe' => null
         ]);
     }
         
@@ -53,10 +54,11 @@ class KontenEdukatifController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($tipe = null)
     {
         return view('admin/data_konten_edukatif', [
-            "title" => "Kelola Konten Edukatif"
+            "title" => "Kelola Konten Edukatif",
+            "tipe" => null
         ]);
     }
 

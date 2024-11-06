@@ -13,7 +13,7 @@
 
     <header class="sticky top-0 z-[999]">
         <div class="flex flex-row h-20 py-[15px] px-[50px] bg-color-8 border-b border-color-4 ">
-            <a href="#" class="flex flex-row">
+            <a href="/super-admin" class="flex flex-row">
                 <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
@@ -40,6 +40,7 @@
                         <span class="text-color-3">Online</span>
                     </div>
                 </div>
+                <!-- profile -->
 
                 <div class="flex bg-color-putih border-[1px] border-color-4 py-2 rounded-2xl gap-2 h-full">
                     <ul class="menu w-full text-base text-color-1">

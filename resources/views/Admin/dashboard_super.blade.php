@@ -2,7 +2,7 @@
 
 @section('main')
 
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-4 ">
     <h1 class="text-[2rem] text-color-1 fonts-bold">Dashboard</h1>
 
     <div class="grid grid-cols-4 gap-6">
