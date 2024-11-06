@@ -2,7 +2,20 @@
 
 @section('aside')
 
-    @include('Pasien.Components.card_list')
+<div class="flex flex-col mx-auto items-center w-full h-full pt-9 px-[50px] gap-6">
+    <a href="/tenaga-ahli/kelola-konten-edukatif/tambah-konten" class="btn w-full flex justify-start bg-color-6 hover:bg-color-5 hover:border-color-3 text-base">
+        <img src="{{ asset('icons/Plus.svg') }}" alt="">
+        Buat Konten
+    </a>
+
+    <h1 class="text-4xl font-bold text-color-1">Kelola Konten Edukatif</h1>
+    
+    <div class="flex flex-col w-full h-full gap-4">
+        
+        @include('TenagaAhli.Components.card_list')
+
+    </div>
+</div>
 
 @endsection
 

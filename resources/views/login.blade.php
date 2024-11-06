@@ -23,19 +23,24 @@
             <div class="label">
                 <span class="label-text text-base font-medium font-color-1">Email</span>
             </div>
-        <input type="email" placeholder="Email" class="input input-bordered border-color-2 w-full max-w-sm font-base text-color-2" />
+        <input type="email" placeholder="Email" class="input input-bordered bg-color-6  border-color-2 w-full max-w-sm font-base text-color-2" />
     </label>
     
     <label class="form-control w-full max-w-sm">
             <div class="label">
                 <span class="label-text text-base font-medium font-color-1">Tanggal Lahir</span>
             </div>
-        <input type="text" placeholder="Tanggal Lahir" class="input input-bordered border-color-2 w-full max-w-sm font-base text-color-2" />
+        <input type="text" placeholder="Tanggal Lahir" class="input input-bordered bg-color-6  border-color-2 w-full max-w-sm font-base text-color-2" />
     </label>
     
     <button class="btn w-full max-w-sm bg-color-3 text-base-100 mt-10">Daftar</button>
 
-    <p class="text-color-2 mt-10">Sudah memiliki akun? <a class="text-color-3 hover:font-underline" href="">Masuk Sekarang!</a></p>
+    <p class="text-color-2 mt-10">
+        Belum memiliki akun? 
+        <a href="/registrasi" class="text-color-3 hover:font-underline">
+            Daftar Sekarang!
+        </a>
+    </p>
 </div>
 
 @endsection

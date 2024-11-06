@@ -311,7 +311,7 @@
           <!-- Tooltip -->
           <template x-if="tooltipOpen == true">
             <div x-ref="tooltipContainer" class="p-0 m-0 z-10 shadow-lg rounded-lg absolute h-auto block"
-                 :style="`"
+                 :style=""
                  >
               <div class="shadow-xs rounded-lg bg-white p-2">
                 <div class="flex items-center justify-between text-sm">
@@ -342,7 +342,7 @@
           </div>
 
           <!-- Labels -->
-          <div class="border-t border-gray-400 mx-auto" :style="`height: 1px; "></div>
+          <div class="border-t border-gray-400 mx-auto" :style="height: 1px; "></div>
           <div class="flex -mx-2 items-end">
             <template x-for="data in labels">
               <div class="px-2 w-1/6">

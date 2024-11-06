@@ -4,7 +4,7 @@
 
 <div class="flex flex-col mx-auto w-full h-full pt-9 px-[50px] gap-6">
 
-    <h1 class="text-4xl font-bold text-color-1 text-start">Tabungan</h1>
+    <h1 class="text-4xl font-bold text-color-1 text-start">Pendapatan</h1>
     <button class="btn flex justify-start bg-color-6 hover:bg-color-5 hover:border-color-3 text-base">
         <img src="{{ asset('icons/Request_Money.svg') }}" alt="">
         Penarikan
@@ -74,7 +74,7 @@
         <p class="text-color-1 text-[64px] font-bold">Rp. 5.170.000.000.000</p>
     </div>
     <div class="bg-color-8 border-[1px] border-color-4 w-full p-5 rounded-2xl">
-        <div class="overflow-x-auto h-[calc(100vh-460px)]">
+        <div class="overflow-y-auto h-[calc(100vh-460px)]">
         <table class="table table-xs">
             <thead>
             <tr>

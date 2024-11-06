@@ -5,32 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <title>Document</title>
+    <title>{{ $title }}</title>
+    <link rel="icon" type="image/svg+xml" href=" {{ asset('images/logo-icon.svg') }} ">
 
 </head>
 <body class="text-color-1">
 
     <header class="sticky top-0 z-[999]">
         <div class="flex flex-row h-20 py-[15px] px-[50px] bg-color-8  border-b border-color-4 ">
-            <a href="" class="flex flex-row">
-                <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark.svg') }} " alt="SupporT-een Logo">
+            <a href="/" class="flex flex-row">
+                <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
-            <a class="btn ms-auto w-[150px] h-[50px] text-white bg-color-3 border-0 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
-                <span>Masuk</span>
-            </a>
+
+            @if($title != "Login" && $title != "Registrasi")
+                <a href="/login" class="btn ms-auto w-[150px] h-[50px] text-white bg-color-3 border-0 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
+                    <span>Masuk</span>
+                </a>
+            @endif
+
         </div>
     </header>
 
-    <div class="min-h-[calc(100vh-80px)] flex w-full bg-color-8">
+    <div class="h-[calc(100vh-80px)] flex w-full bg-color-8">
 
-        <aside class="w-2/5">
+        <aside class="w-2/5 overflow-y-auto">
             <!-- Konten aside -->
             @yield('aside')
         </aside>
 
         <main class="w-3/5 bg-color-8 border-l border-color-4">
-            <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full relative">
+            <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full relative overflow-auto">
                 <!-- Konten main -->
                 @yield('main')
             </div>

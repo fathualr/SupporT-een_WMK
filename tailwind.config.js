@@ -19,6 +19,7 @@ export default {
         "color-6": "#E3F1F4",
         "color-7": "#EFEFED",
         "color-8": "#F8F8F7",
+        "color-putih": "#FFFFFF",
       },
       backgroundImage: {
         "brain-pattern": "url('/public/images/brain-pattern.png')", // Background gambar
