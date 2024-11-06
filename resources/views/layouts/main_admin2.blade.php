@@ -27,8 +27,8 @@
         <aside class="w-1/5 p-5">
             <!-- Konten aside -->
             <div class="flex flex-col gap-5 w-full h-full">
-
-                <div class="flex items-center bg-base-100 border-[1px] border-color-4 px-4 py-2 rounded-2xl gap-2">
+                <!-- profile -->
+                <div class="flex items-center bg-color-8 border-[1px] border-color-4 px-4 py-2 rounded-2xl gap-2">
                     <div class="avatar">
                         <div class="w-12 rounded-full">
                             <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
@@ -39,13 +39,14 @@
                         <span class="text-color-3">Online</span>
                     </div>
                 </div>
+                <!-- profile -->
 
-                <div class="flex bg-base-100 border-[1px] border-color-4 py-2 rounded-2xl gap-2 h-full">
-                <ul class="menu w-full text-base text-color-1">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Data Konten Edukatif</a></li>
-                    <li><a href="#">Data Forum Diskusi</a></li>
-                    <li><a href="#">Data Aktivitas Positif</a></li>
+                <div class="flex bg-color-8 border-[1px] border-color-4 py-2 rounded-2xl gap-2 h-full">
+                    <ul class="menu w-full text-base text-color-1">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Data Konten Edukatif</a></li>
+                        <li><a href="#">Data Forum Diskusi</a></li>
+                        <li><a href="#">Data Aktivitas Positif</a></li>
                     </ul>
                 </div>
             
@@ -55,7 +56,7 @@
         <main class="w-4/5 bg-color-8 border-l border-color-4">
             <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full relative">
                 <!-- Konten main -->
-                <div class="bg-base-100 border-[1px] border-color-4 w-full h-full p-5 rounded-2xl">
+                <div class="bg-color-8 border-[1px] border-color-4 w-full h-full p-5 rounded-2xl">
                     @yield('main')
                 </div>
             </div>

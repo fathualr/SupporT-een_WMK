@@ -90,6 +90,10 @@ Route::get('/percakapan-konsultasi-tenaga-ahli', function () {
     return view('TenagaAhli/percakapan_konsultasi');
 });
 
+Route::get('/dashboard-tenaga-ahli', function () {
+    return view('TenagaAhli/dashboard');
+});
+
 
 // SUPER SUPERADMIN 
 Route::get('/dashboard-admin', function () {
