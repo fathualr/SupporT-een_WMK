@@ -15,6 +15,7 @@ use App\Http\Controllers\{
     KonsultasiController,
     TransaksiController,
     PendapatanController,
+    AktivitasPositifController,
 };
 
 // Pasien
@@ -56,3 +57,4 @@ Route::get('/super-admin/pendapatan', [PendapatanController::class, 'adminPendap
 Route::get('/content-admin', [AdminController::class, 'contentAdmin']);
 Route::resource('/content-admin/konten-edukatif', KontenEdukatifController::class);
 Route::resource('/content-admin/forum-diskusi',DiskusiController::class);
+Route::resource('/content-admin/aktivitas-positif',AktivitasPositifController::class);

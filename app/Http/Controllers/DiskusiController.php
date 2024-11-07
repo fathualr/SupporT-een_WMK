@@ -22,7 +22,7 @@ class DiskusiController extends Controller
     public function create()
     {
         return view('admin/form/tambah_data_diskusi', [
-            "title" => "Tamabah Data Diskusi"
+            "title" => "Tambah Data Diskusi"
         ]);
     }
 

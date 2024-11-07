@@ -11,7 +11,9 @@ class AktivitasPositifController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin/data_daftar_aktivitas_positif', [
+            "title" => "Data Aktivitas Positif"
+        ]);
     }
 
     /**
@@ -19,7 +21,9 @@ class AktivitasPositifController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/form/tambah_data_aktivitas_positif', [
+            "title" => "Tambah Data Aktivitas Positif"
+        ]);
     }
 
     /**
