@@ -2,7 +2,7 @@
 
 @section('aside')
 
-    <div class="flex flex-col mx-auto w-full items-center mb-[50px] h-full">
+    <div class="flex flex-col mx-auto w-full items-center mb-[50px]">
         <img src=" {{ asset('images/main-picture.svg') }} " class="max-h-[500px] max-w-[500px]" alt="">
         <div class="card max-w-[475px] max-h-[200px] bg-color-6 border border-color-5 text-color-9 mx-auto">
             <div class="card-body">
@@ -16,7 +16,7 @@
 
 @section('main')
 
-<div class="flex flex-col justify-center items-center w-full h-full py-16">
+<div class="flex flex-col justify-center items-center w-full py-16">
     <h1 class="font-bold text-6xl font-color-1 mb-3">Registrasi Akun</h1>
     
     <label class="form-control w-full max-w-sm">

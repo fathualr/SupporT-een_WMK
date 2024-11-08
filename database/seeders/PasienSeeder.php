@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pasien;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -11,13 +12,8 @@ class PasienSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        DB::table('pasien')->insert([
-            [
-                'id_user' => 4, // Pasien
-                'deskripsi_diri' => 'Saya adalah seorang pasien yang sedang mencari bantuan.',
-            ],
-        ]);
+        Pasien::factory()->count(55)->create(); // Menggunakan factory untuk Pasien
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     AdminController,
     PasienController,
     TenagaAhliController,
+    RiwayatPendidikanTenagaAhliController,
     KontenEdukatifController,
     DiskusiController,
     ChatbotController,
@@ -16,6 +17,7 @@ use App\Http\Controllers\{
     TransaksiController,
     PendapatanController,
 };
+use App\Models\RiwayatPendidikanTenagaAhli;
 
 // Pasien
 Route::get('/', function () {
@@ -50,6 +52,7 @@ Route::get('/super-admin', [AdminController::class, 'superAdmin']);
 Route::resource('/super-admin/user-admin', AdminController::class);
 Route::resource('/super-admin/user-pasien', PasienController::class);
 Route::resource('/super-admin/user-tenaga-ahli', TenagaAhliController::class);
+Route::resource('/super-admin/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikanTenagaAhliController::class);
 Route::resource('/super-admin/transaksi', TransaksiController::class);
 Route::get('/super-admin/pendapatan', [PendapatanController::class, 'adminPendapatan']);
 

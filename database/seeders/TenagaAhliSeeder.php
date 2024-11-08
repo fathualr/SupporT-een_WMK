@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\TenagaAhli;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -11,18 +12,8 @@ class TenagaAhliSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        DB::table('tenaga_ahli')->insert([
-            [
-                'id_user' => 3, // Tenaga Ahli
-                'nomor_str' => 'STR123456',
-                'spesialisasi' => 'Psikolog',
-                'jadwal_aktif' => 'Senin-Jumat, 09:00-17:00',
-                'lokasi_praktik' => 'Klinik Kesehatan Mental',
-                'biaya_konsultasi' => 150000.00,
-                'tabungan' => 0.00,
-            ],
-        ]);
+        TenagaAhli::factory()->count(55)->create(); // Menggunakan factory untuk Tenaga Ahli
     }
 }

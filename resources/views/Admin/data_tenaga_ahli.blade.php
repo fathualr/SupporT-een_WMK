@@ -11,7 +11,7 @@
     </a>
 
     <div class="w-full p-5 rounded-2xl">
-        <div class="overflow-x-auto h-[calc(100vh-400px)]">
+        <div class="overflow-x-auto min-h-[calc(100vh-400px)]">
             <table class="table table-xs">
                 <thead>
                     <tr class="text-color-1">
@@ -25,55 +25,98 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>1</th>
-                        <th>
-                            <div class="avatar">
-                                <div class="w-9 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+
+                    @foreach ($tenagaAhlis as $key => $tenagaAhli)
+                        <tr>
+                            <th>{{ ($tenagaAhlis->currentPage() - 1) * $tenagaAhlis->perPage() + $key + 1 }}</th>
+                            <th>
+                                <div class="avatar">
+                                    <div class="w-9 rounded-full">
+                                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    </div>
                                 </div>
-                            </div>
-                        </th>
-                        <td>Cy Ganderton</td>
-                        <td>cygandert@gmail.com</td>
-                        <td>Pria</td>
-                        <td>9 September 2024</td>
-                        <td class="flex justify-center">
-                        <div class="dropdown">
-                            <div tabindex="0" role="button" class="btn btn-ghost">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    class="inline-block h-5 w-5 stroke-current">
-                                    <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
-                                </svg>
-                            </div>
-                                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                                    <li><a>Item 1</a></li>
-                                    <li><a>Item 2</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
+                            </th>
+                            <td>{{ $tenagaAhli->user->nama }}</td>
+                            <td>{{ $tenagaAhli->user->email }}</td>
+                            <td>{{ $tenagaAhli->user->jenis_kelamin }}</td>
+                            <td>{{ $tenagaAhli->user->tanggal_lahir }}</td>
+                            <td class="flex justify-center gap-2">
+                                <a href="{{ route('user-tenaga-ahli.show', $tenagaAhli->id) }}" class="btn bg-blue-100 text-blue-500 border-blue-500" href="#">
+                                    <img class="w-6 h-6" src="{{ asset("icons/Info.svg")}}" alt="">
+                                </a>
+                                <a href="{{ route('user-tenaga-ahli.edit', $tenagaAhli->id) }}" class="btn bg-green-100 text-green-500 border-green-500" href="#">
+                                    <img class="w-6 h-6" src="{{ asset("icons/Edit.svg")}}" alt="">
+                                </a>
+                                <button class="btn bg-red-100 text-red-500 border-red-500" onclick="confirmDeletion({{ $tenagaAhli->user->id }})">
+                                    <img class="w-6 h-6" src="{{ asset("icons/Waste.svg")}}" alt="">
+                                </button>
+                            </td>
+                        </tr>
+
+                        <form id="delete-form-{{ $tenagaAhli->user->id }}" action="{{ route('user-tenaga-ahli.destroy', $tenagaAhli->user->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="flex justify-between border-t-[1px] border-color-4 pt-4">
-        <span class="text-sm text-color-2">Showing 1 to 10 of 50 entries</span>
-        <div class="join">
-            <button class="join-item btn">«</button>
-            <button class="join-item btn">1</button>
-            <button class="join-item btn">2</button>
-            <button class="join-item btn bg-color-3 text-white">3</button>
-            <button class="join-item btn">»</button>
+
+<!-- Pagination -->
+<div class="flex justify-between border-t-[1px] bg-color-8 border-color-4 p-3">
+    <span class="text-sm text-color-2 content-center">
+        Menampilkan {{ $tenagaAhlis->firstItem() }} ke {{ $tenagaAhlis->lastItem() }} dari {{ $tenagaAhlis->total() }} data
+    </span>
+
+    <nav class="flex items-center gap-x-1" aria-label="Pagination">
+        <!-- Tombol Previous -->
+        <button type="button" 
+            class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border border-transparent text-color-1 hover:bg-color-5 focus:outline-none focus:bg-color-3 disabled:opacity-50 disabled:pointer-events-none"
+            aria-label="Previous" {{ $tenagaAhlis->onFirstPage() ? 'disabled' : '' }}
+            onclick="window.location='{{ $tenagaAhlis->previousPageUrl() }}'">
+            <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6"></path>
+            </svg>
+            <span class="sr-only">Previous</span>
+        </button>
+
+        <div class="flex items-center gap-x-1">
+            <!-- Tombol Halaman Terendah -->
+            <button type="button" 
+                class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-color-4 text-color-1 hover:bg-color-5 py-2 px-3 text-sm rounded-lg 
+                {{ $tenagaAhlis->currentPage() == 1 ? 'bg-color-3 text-color-5' : 'focus:outline-none focus:bg-color-3' }}" 
+                onclick="window.location='{{ $tenagaAhlis->url(1) }}'">1</button>
+        
+            <!-- Tombol Halaman Sekarang -->
+                <button type="button" 
+                    class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-color-4  bg-color-3 text-color-5 py-2 px-3 text-sm rounded-lg" 
+                    disabled>Halaman {{ $tenagaAhlis->currentPage() }}</button>
+        
+            <!-- Tombol Halaman Tertinggi -->
+            @if ($tenagaAhlis->lastPage() > 1)
+                <button type="button" 
+                    class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-color-4 text-color-1 hover:bg-color-5 py-2 px-3 text-sm rounded-lg 
+                    {{ $tenagaAhlis->currentPage() == $tenagaAhlis->lastPage() ? 'bg-color-3 text-color-5' : 'focus:outline-none focus:bg-color-3' }}" 
+                    onclick="window.location='{{ $tenagaAhlis->url($tenagaAhlis->lastPage()) }}'">{{ $tenagaAhlis->lastPage() }}</button>
+            @endif
         </div>
-    </div>
+
+        <!-- Tombol Next -->
+        <button type="button" 
+            class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border border-transparent text-color-1 hover:bg-color-5 focus:outline-none focus:bg-color-3 disabled:opacity-50 disabled:pointer-events-none"
+            aria-label="Next" {{ $tenagaAhlis->hasMorePages() ? '' : 'disabled' }}
+            onclick="window.location='{{ $tenagaAhlis->nextPageUrl() }}'">
+            <span class="sr-only">Next</span>
+            <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
+        </button>
+    </nav>
+</div>
+<!-- END Pagination -->
+
 </div>
 
 @endsection
