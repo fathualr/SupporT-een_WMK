@@ -16,11 +16,11 @@
 @endsection
 
 @section('main')
-<div class="w-full h-full items-center ">
-<div class="grid grid-cols-4 gap-4 "> 
+<div class="w-full h-full">
+<div class="grid grid-cols-4 gap-4"> 
 
 
-    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
       <figure class="pt-5 px-10">
           <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
@@ -38,7 +38,7 @@
     </div>
 
 
-    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
       <figure class="pt-5 px-10">
           <img class="w-44 h-28"
             src="{{ asset('images/jogging.png') }}"
@@ -56,7 +56,7 @@
     </div>
 
 
-    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
       <figure class="pt-5 px-10">
           <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
@@ -74,7 +74,7 @@
     </div>
 
 
-    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
       <figure class="pt-5 px-10">
           <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
@@ -92,7 +92,7 @@
     </div>
 
 
-    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
       <figure class="pt-5 px-10">
           <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
@@ -110,7 +110,7 @@
     </div>
 
 
-    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
       <figure class="pt-5 px-10">
           <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
@@ -128,7 +128,7 @@
     </div>
 
 
-    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
       <figure class="pt-5 px-10">
           <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"
@@ -146,7 +146,79 @@
     </div>
 
 
-    <div class="card bg-color-6 w-44 shadow-xl outline outline-color-5/80">
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
+      <figure class="pt-5 px-10">
+          <img class="w-36 h-28"
+            src="{{ asset('images/jogging.png') }}"
+            alt="Aktivitas"
+            class="rounded-xl" />
+      </figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title font-semibold text-2xl">Jogging</h2>
+        <div class="card-actions">
+          <label class="label cursor-pointer">
+            <input type="checkbox" checked="checked" class="checkbox checkbox-lg border-white [--chkbg:theme(colors.color-3)] [--chkfg:white] checked:border-color-3"/>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
+      <figure class="pt-5 px-10">
+          <img class="w-36 h-28"
+            src="{{ asset('images/jogging.png') }}"
+            alt="Aktivitas"
+            class="rounded-xl" />
+      </figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title font-semibold text-2xl">Jogging</h2>
+        <div class="card-actions">
+          <label class="label cursor-pointer">
+            <input type="checkbox" checked="checked" class="checkbox checkbox-lg border-white [--chkbg:theme(colors.color-3)] [--chkfg:white] checked:border-color-3"/>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
+      <figure class="pt-5 px-10">
+          <img class="w-36 h-28"
+            src="{{ asset('images/jogging.png') }}"
+            alt="Aktivitas"
+            class="rounded-xl" />
+      </figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title font-semibold text-2xl">Jogging</h2>
+        <div class="card-actions">
+          <label class="label cursor-pointer">
+            <input type="checkbox" checked="checked" class="checkbox checkbox-lg border-white [--chkbg:theme(colors.color-3)] [--chkfg:white] checked:border-color-3"/>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
+      <figure class="pt-5 px-10">
+          <img class="w-36 h-28"
+            src="{{ asset('images/jogging.png') }}"
+            alt="Aktivitas"
+            class="rounded-xl" />
+      </figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title font-semibold text-2xl">Jogging</h2>
+        <div class="card-actions">
+          <label class="label cursor-pointer">
+            <input type="checkbox" checked="checked" class="checkbox checkbox-lg border-white [--chkbg:theme(colors.color-3)] [--chkfg:white] checked:border-color-3"/>
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card bg-color-6 w-full shadow-xl outline outline-color-5/80 rounded-xl">
       <figure class="pt-5 px-10">
           <img class="w-36 h-28"
             src="{{ asset('images/jogging.png') }}"

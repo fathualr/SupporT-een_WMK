@@ -27,6 +27,9 @@ export default {
       boxShadow: {
         'custom-1': '0 0 4px rgba(0, 0, 0, 0.25)',  // Bayangan ringan
       },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [

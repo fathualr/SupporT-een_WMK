@@ -3,20 +3,20 @@
 
 @section('main')
 
-<!-- halaman tambah data diskusi -->
+<!-- halaman tambah data aktivitas positif -->
 <div class="w-full p-5 rounded-2xl">
-    <h1 class="font-bold text-3xl text-center">Tambah Data Forum Diskusi</h1>
+    <h1 class="font-bold text-3xl text-center">Tambah Data Aktivitas Positif</h1>
 
-    <!-- form tambah diskusi -->
+    <!-- form tambah aktivitas -->
         <form action="">
             <div class="flex flex-col gap-y-5 pt-10 p-10">
 
-                <!-- judul -->
+                <!-- nama -->
                 <label class="form-control w-full">
-                    <span class="label-text font-medium text-base pb-1">Judul</span>
-                    <input type="text" placeholder="Masukkan judul anda" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
+                    <span class="label-text font-medium text-base pb-1">Nama</span>
+                    <input type="text" placeholder="Masukkan nama aktivitas" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
                 </label>
-                <!-- judul -->
+                <!-- nama -->
 
                 <!-- gambar -->
                 <label class="form-control w-full">

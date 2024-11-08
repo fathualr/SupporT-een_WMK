@@ -2,10 +2,12 @@
 
 @section('main')
 
+<!-- halaman dashboard admin konten -->
 <div class="flex flex-col gap-4">
-    <h1 class="text-[2rem] text-color-1 fonts-bold">Dashboard</h1>
+    <h1 class="text-[2rem] text-color-1 font-bold">Dashboard</h1>
     <div class="grid grid-cols-4 gap-6">
-        <!-- card 1 -->
+
+        <!-- card 1: Total artikel -->
         <div class="card card-compact bg-color-6 border-[1px] border-color-5">
             <div class="card-body">
                 <img class="w-10 h-10" src="{{ asset('icons/Page.svg') }}" alt="">
@@ -18,9 +20,9 @@
                 </div>
             </div>
         </div>
-        <!-- card 1 -->
+        <!-- card 1: Total artikel -->
 
-        <!-- card 2 -->
+        <!-- card 2: Total video -->
         <div class="card card-compact bg-color-6 border-[1px] border-color-5">
             <div class="card-body">
                 <img class="w-10 h-10" src="{{ asset('icons/video_gallery.svg') }}" alt="">
@@ -33,9 +35,9 @@
                 </div>
             </div>
         </div>
-        <!-- card 2 -->
+        <!-- card 2: Total video -->
 
-        <!-- card 3 -->
+        <!-- card 3: Total diskusi -->
         <div class="card card-compact bg-color-6 border-[1px] border-color-5">
             <div class="card-body">
                 <img class="w-10 h-10" src="{{ asset('icons/chat_room.svg') }}" alt="">
@@ -48,9 +50,9 @@
                 </div>
             </div>
         </div>
-        <!-- card 3 -->
+        <!-- card 3: Total diskusi -->
 
-        <!-- card 4 -->
+        <!-- card 4: Total aktivitas positif -->
         <div class="card card-compact bg-color-6 border-[1px] border-color-5">
             <div class="card-body">
                 <img class="w-10 h-10" src="{{ asset('icons/List_view.svg') }}" alt="">
@@ -63,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <!-- card 4 -->
+        <!-- card 4: Total aktivitas positif -->
 
     </div>
 </div>

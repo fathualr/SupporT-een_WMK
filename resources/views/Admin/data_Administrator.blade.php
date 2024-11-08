@@ -2,16 +2,20 @@
 
 @section('main')
 
+<!-- halaman data admin -->
 <div class="flex flex-col gap-4">
     <h1 class="text-[2rem] text-color-1 font-bold">Data Administrator</h1>
-
-    <a href="{{ route('user-admin.create') }}" class="btn bg-color-3 w-[200px] text-white text-xl">
+    
+    <!-- tombol tambah admin -->
+    <a href="{{ route('user-admin.create') }}" class="btn flex w-fit bg-color-3 text-white text-xl font-normal">
         <img src="{{ asset('icons/Plus_white.svg') }}" alt="">
         Tambah Data
     </a>
+    <!-- tombol tambah admin -->
 
+    <!-- tabel data -->
     <div class="w-full p-5 rounded-2xl">
-        <div class="overflow-x-auto min-h-[calc(100vh-400px)]">
+        <div class="overflow-y-auto min-h-[calc(100vh-400px)]">
             <table class="table table-xs">
                 <thead>
                     <tr class="text-color-1">
@@ -24,6 +28,7 @@
                         <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
+
                 <tbody>
 
                     @foreach ($admins as $key => $admin)

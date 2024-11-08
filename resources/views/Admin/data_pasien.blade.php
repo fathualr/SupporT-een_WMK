@@ -2,17 +2,22 @@
 
 @section('main')
 
+<!-- halaman data pasien -->
 <div class="flex flex-col gap-4">
     <h1 class="text-[2rem] text-color-1 font-bold">Data Pasien</h1>
 
-    <a href="{{ route('user-pasien.create') }}" class="btn bg-color-3 w-[200px] text-white text-xl">
+    <!-- tombol tambah pasien -->
+    <a href="{{ route('user-pasien.create') }}" class="btn flex w-fit bg-color-3 text-white text-xl font-normal">
         <img src="{{ asset('icons/Plus_white.svg') }}" alt="">
         Tambah Data
     </a>
+    <!-- tombol tambah pasien -->
 
+    <!-- tabel data -->
     <div class="w-full p-5 rounded-2xl">
-        <div class="overflow-x-auto min-h-[calc(100vh-400px)]">
+        <div class="overflow-y-scroll min-h-[calc(100vh-400px)]">
             <table class="table table-xs">
+
                 <thead>
                     <tr class="text-color-1">
                         <th>Id</th>
@@ -24,6 +29,7 @@
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
+
                 <tbody>
 
                     @foreach ($pasiens as $key => $pasien)
@@ -61,6 +67,7 @@
 
                 </tbody>
             </table>
+
         </div>
     </div>
     
