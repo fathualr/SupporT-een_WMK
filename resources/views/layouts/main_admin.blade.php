@@ -19,9 +19,19 @@
                 <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
-            <a class="btn ms-auto w-fit text-white bg-color-3 border-0 font-semibold px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
-                <span>Logout</span>
-            </a>
+
+            <!-- Logout -->
+            <form class="ms-auto" action="{{ route('logout') }}" method="POST">
+                @csrf
+                @method('POST')
+                
+                <button class="btn w-fit text-white bg-color-3 border-0 font-semibold px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
+                    <span>Logout</span>
+                </button>
+
+            </form>
+            <!-- END Logout -->
+
         </div>
     </header>
 

@@ -14,6 +14,13 @@ class PasienSeeder extends Seeder
      */
     public function run()
     {
+        // Menambahkan pasien langsung dengan ID yang sudah ditentukan
+        Pasien::create([
+            'id' => 1, // ID untuk pasien pertama
+            'id_user' => 3, // ID pengguna pasien pertama
+            'deskripsi_diri' => 'Saya adalah pasien dengan keluhan kecemasan tinggi.',
+        ]);
+        
         Pasien::factory()->count(55)->create(); // Menggunakan factory untuk Pasien
     }
 }

@@ -21,7 +21,7 @@
 
                 <thead>
                     <tr class="text-color-1">
-                        <th>Id</th>
+                        <th>No</th>
                         <th>Gambar</th>
                         <th>Nama</th>
                         <th>Email</th>
