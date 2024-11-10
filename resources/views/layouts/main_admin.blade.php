@@ -19,9 +19,19 @@
                 <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
-            <a class="btn ms-auto w-fit text-white bg-color-3 border-0 font-semibold px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
-                <span>Logout</span>
-            </a>
+
+            <!-- Logout -->
+            <form class="ms-auto" action="{{ route('logout') }}" method="POST">
+                @csrf
+                @method('POST')
+                
+                <button class="btn w-fit text-white bg-color-3 border-0 font-semibold px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
+                    <span>Logout</span>
+                </button>
+
+            </form>
+            <!-- END Logout -->
+
         </div>
     </header>
 
@@ -81,5 +91,47 @@
             <span class="text-xs text-color-8">&copy; <?php echo date("Y"); ?> SupporT-een</span>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        @endif
+    
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'OK'
+            });
+        @endif
+    </script>
+    
+    <script>
+        function confirmDeletion(adminId) {
+            Swal.fire({
+                title: "Apakah Anda yakin ingin menghapus data ini?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`delete-form-${adminId}`).submit();
+                }
+            });
+        }
+    </script>
 </body>
 </html>

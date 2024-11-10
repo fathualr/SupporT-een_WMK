@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <title>{{ $title }}</title>
     <link rel="icon" type="image/svg+xml" href=" {{ asset('images/logo-icon.svg') }} ">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,17 +22,49 @@
             </a>
 
             @if($title != "Login" && $title != "Registrasi")
-                <a href="/login" class="btn ms-auto w-fit text-white bg-color-3 border-0 px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
-                    <span>Masuk</span>
-                </a>
+                @guest
+                    <a href="/login" class="btn ms-auto w-fit text-white bg-color-3 border-0 px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
+                        <span>Masuk</span>
+                    </a>
+                @else
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" xmlns="http://www.w3.org/2000/svg" 
+                    class="btn flex flex-col justify-center place-content-start justify ms-auto w-[250px] px-[10px] text-color-1 bg-color-6 border border-color-6 hover:bg-color-6  hover:border hover:border-color-5">
+                        <div class="avatar self-center">
+                            <div class="w-[30px] rounded-full">
+                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-around me-auto h-full grow text-left">
+                            <p class="truncate text-ellipsis overflow-hidden whitespace-nowrap w-[190px]">
+                                {{ Auth::user()->nama }}
+                            </p>
+                            <span class="text-color-3">Online</span>
+                        </div>
+                    </button>
+                    
+                    <!-- Dropdown menu -->
+                    <div id="dropdown" class="z-10 hidden bg-color-6 divide-y divide-gray-100 border border-color-6 rounded-lg shadow w-[250px]">
+                        <ul class="text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <form class="" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block px-4 py-2  hover:bg-gray-100 hover:rounded-lg w-full text-center">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+    
+                @endguest
             @endif
 
         </div>
     </header>
 
-    <div class="{{ $title === 'SupporT-een' ? 'min-h-[calc(100vh-80px)]' : 'h-[calc(100vh-80px)]' }} flex w-full bg-color-8">
+    <div class="{{ in_array($title, ['SupporT-een', 'Login', 'Registrasi']) ? 'min-h-[calc(100vh-80px)]' : 'h-[calc(100vh-80px)]' }} flex w-full bg-color-8">
 
-        <aside class="w-2/5 {{ $title !== 'SupporT-een' ? 'overflow-y-auto' : '' }}">
+        <aside class="w-2/5 {{ in_array($title, ['SupporT-een', 'Login', 'Registrasi']) ? '' : 'overflow-y-auto' }}">
             <!-- Konten aside -->
             @yield('aside')
         </aside>
@@ -108,5 +141,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 </body>
 </html>

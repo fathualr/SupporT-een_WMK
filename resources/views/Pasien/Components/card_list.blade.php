@@ -10,7 +10,7 @@
     </label>
     <!-- search -->
 
-    <h1 class="text-4xl font-bold text-color-1">Konten Edukasi Kesehatan</h1>
+    <h1 class="text-4xl font-bold text-color-1">Konten Edukatif</h1>
 
     <!-- list konten -->
     <div class="flex flex-col w-full h-full gap-4">

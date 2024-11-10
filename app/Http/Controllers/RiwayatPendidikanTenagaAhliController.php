@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RiwayatPendidikanTenagaAhli;
 use Illuminate\Http\Request;
 
 class RiwayatPendidikanTenagaAhliController extends Controller
@@ -27,7 +28,21 @@ class RiwayatPendidikanTenagaAhliController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id_tenaga_ahli' => 'required|exists:tenaga_ahli,id',
+            'keterangan' => 'required|string|max:255',
+        ]);
+
+        $riwayatPendidikan = RiwayatPendidikanTenagaAhli::create([
+            'id_tenaga_ahli' => $validatedData['id_tenaga_ahli'],
+            'keterangan' => $validatedData['keterangan'],
+        ]);
+
+        if ($riwayatPendidikan) {
+            return redirect()->back()->with('success', 'Data riwayat pendidikan tenaga ahli berhasil ditambahkan!');
+        } else {
+            return redirect()->back()->with('error', 'Data riwayat pendidikan tenaga ahli gagal ditambahkan!');
+        }
     }
 
     /**
@@ -59,6 +74,14 @@ class RiwayatPendidikanTenagaAhliController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $riwayatPendidikan = RiwayatPendidikanTenagaAhli::findOrFail($id);
+
+        $riwayatPendidikanDeleted = $riwayatPendidikan->delete();
+
+        if ($riwayatPendidikanDeleted) {
+            return redirect()->back()->with('success', 'Data riwayat pendidikan tenaga ahli berhasil dihapus!');
+        } else {
+            return redirect()->back()->with('error', 'Data riwayat pendidikan tenaga ahli gagal dihapus!');
+        }
     }
 }

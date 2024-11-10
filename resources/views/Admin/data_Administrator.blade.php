@@ -15,73 +15,112 @@
 
     <!-- tabel data -->
     <div class="w-full p-5 rounded-2xl">
-        <div class="overflow-y-scroll h-[calc(100vh-400px)]">
+        <div class="overflow-y-auto min-h-[calc(100vh-400px)]">
             <table class="table table-xs">
-
                 <thead>
                     <tr class="text-color-1">
-                        <th>Id</th>
+                        <th>No</th>
                         <th>Gambar</th>
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Jenis Kelamin</th>
                         <th>Tanggal Lahir</th>
-                        <th class="text-center">Action</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
-                    <tr class="hover">
-                        <th>1</th>
-                        <th>
-                            <div class="avatar">
-                                <div class="w-9 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    @foreach ($admins as $key => $admin)
+                        <tr>
+                            <th>{{ ($admins->currentPage() - 1) * $admins->perPage() + $key + 1 }}</th>
+                            <th>
+                                <div class="avatar">
+                                    <div class="w-9 rounded-full">
+                                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    </div>
                                 </div>
-                            </div>
-                        </th>
-                        <td>Cy Ganderton</td>
-                        <td>cygandert@gmail.com</td>
-                        <td>Pria</td>
-                        <td>9 September 2024</td>
-                        <td>
-                            <div class="flex justify-center gap-2">
-                                <!-- tombol info -->
-                                <a class="btn bg-blue-100 text-blue-500 border-blue-500 hover:bg-blue-300" href="#">
+                            </th>
+                            <td>{{ $admin->user->nama }}</td>
+                            <td>{{ $admin->user->email }}</td>
+                            <td>{{ $admin->user->jenis_kelamin }}</td>
+                            <td>{{ $admin->user->tanggal_lahir }}</td>
+                            <td class="flex justify-center gap-2">
+                                <a href="{{ route('user-admin.show', $admin->id) }}" class="btn bg-blue-100 text-blue-500 border-blue-500" href="#">
                                     <img class="w-6 h-6" src="{{ asset("icons/Info.svg")}}" alt="">
                                 </a>
-                                <!-- tombol edit -->
-                                <a class="btn bg-green-100 text-green-500 border-green-500 hover:bg-green-300" href="#">
+                                <a href="{{ route('user-admin.edit', $admin->id) }}" class="btn bg-green-100 text-green-500 border-green-500" href="#">
                                     <img class="w-6 h-6" src="{{ asset("icons/Edit.svg")}}" alt="">
                                 </a>
-                                <!-- tombol hapus -->
-                                <a class="btn bg-red-100 text-red-500 border-red-500 hover:bg-red-300" href="#">
+                                <button class="btn bg-red-100 text-red-500 border-red-500" onclick="confirmDeletion({{ $admin->user->id }})">
                                     <img class="w-6 h-6" src="{{ asset("icons/Waste.svg")}}" alt="">
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <form id="delete-form-{{ $admin->user->id }}" action="{{ route('user-admin.destroy', $admin->user->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    @endforeach
 
                 </tbody>
             </table>
-
         </div>
     </div>
-    <!-- tabel data -->
 
-    <!-- pagination controls -->
-    <div class="flex justify-between border-t-[1px] bg-color-8 border-color-4 pt-4">
-        <span class="text-sm text-color-2">Showing 1 to 10 of 50 entries</span>
-        <div class="join">
-            <button class="join-item btn">«</button>
-            <button class="join-item btn">1</button>
-            <button class="join-item btn">2</button>
-            <button class="join-item btn bg-color-3 text-white">3</button>
-            <button class="join-item btn">»</button>
-        </div>
+<!-- Pagination -->
+    <div class="flex justify-between border-t-[1px] bg-color-8 border-color-4 p-3">
+        <span class="text-sm text-color-2 content-center">
+            Menampilkan {{ $admins->firstItem() }} ke {{ $admins->lastItem() }} dari {{ $admins->total() }} data
+        </span>
+
+        <nav class="flex items-center gap-x-1" aria-label="Pagination">
+            <!-- Tombol Previous -->
+            <button type="button" 
+                class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border border-transparent text-color-1 hover:bg-color-5 focus:outline-none focus:bg-color-3 disabled:opacity-50 disabled:pointer-events-none"
+                aria-label="Previous" {{ $admins->onFirstPage() ? 'disabled' : '' }}
+                onclick="window.location='{{ $admins->previousPageUrl() }}'">
+                <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m15 18-6-6 6-6"></path>
+                </svg>
+                <span class="sr-only">Previous</span>
+            </button>
+
+            <div class="flex items-center gap-x-1">
+                <!-- Tombol Halaman Terendah -->
+                <button type="button" 
+                    class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-color-4 text-color-1 hover:bg-color-5 py-2 px-3 text-sm rounded-lg 
+                    {{ $admins->currentPage() == 1 ? 'bg-color-3 text-color-5' : 'focus:outline-none focus:bg-color-3' }}" 
+                    onclick="window.location='{{ $admins->url(1) }}'">1</button>
+            
+                <!-- Tombol Halaman Sekarang -->
+                    <button type="button" 
+                        class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-color-4  bg-color-3 text-color-5 py-2 px-3 text-sm rounded-lg" 
+                        disabled>Halaman {{ $admins->currentPage() }}</button>
+            
+                <!-- Tombol Halaman Tertinggi -->
+                @if ($admins->lastPage() > 1)
+                    <button type="button" 
+                        class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-color-4 text-color-1 hover:bg-color-5 py-2 px-3 text-sm rounded-lg 
+                        {{ $admins->currentPage() == $admins->lastPage() ? 'bg-color-3 text-color-5' : 'focus:outline-none focus:bg-color-3' }}" 
+                        onclick="window.location='{{ $admins->url($admins->lastPage()) }}'">{{ $admins->lastPage() }}</button>
+                @endif
+            </div>
+
+            <!-- Tombol Next -->
+            <button type="button" 
+                class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border border-transparent text-color-1 hover:bg-color-5 focus:outline-none focus:bg-color-3 disabled:opacity-50 disabled:pointer-events-none"
+                aria-label="Next" {{ $admins->hasMorePages() ? '' : 'disabled' }}
+                onclick="window.location='{{ $admins->nextPageUrl() }}'">
+                <span class="sr-only">Next</span>
+                <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m9 18 6-6-6-6"></path>
+                </svg>
+            </button>
+        </nav>
     </div>
-    <!-- pagination controls -->
+<!-- END Pagination -->
 
 </div>
 

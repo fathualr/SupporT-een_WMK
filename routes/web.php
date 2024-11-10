@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     AdminController,
     PasienController,
     TenagaAhliController,
+    RiwayatPendidikanTenagaAhliController,
     KontenEdukatifController,
     DiskusiController,
     ChatbotController,
@@ -17,14 +18,19 @@ use App\Http\Controllers\{
     PendapatanController,
     AktivitasPositifController,
 };
+use App\Models\RiwayatPendidikanTenagaAhli;
 
-// Pasien
+
 Route::get('/', function () {
     return view('pasien/homepage', ['title' => 'SupporT-een']);
 });
 Route::get('/login', [AuthController::class, 'login']);
 Route::get('/registrasi', [AuthController::class, 'registrasi']);
+Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
+Route::post('registration', [AuthController::class, 'registration'])->name('registration');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+// Pasien
 Route::get('/chatbot', [ChatbotController::class, 'chatbot']);
 Route::get('/jurnal-harian', [JurnalHarianController::class, 'jurnalHarian']);
 Route::get('/konten-edukatif', [KontenEdukatifController::class, 'kontenEdukatif']);
@@ -51,6 +57,7 @@ Route::get('/super-admin', [AdminController::class, 'superAdmin']);
 Route::resource('/super-admin/user-admin', AdminController::class);
 Route::resource('/super-admin/user-pasien', PasienController::class);
 Route::resource('/super-admin/user-tenaga-ahli', TenagaAhliController::class);
+Route::resource('/super-admin/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikanTenagaAhliController::class);
 Route::resource('/super-admin/transaksi', TransaksiController::class);
 Route::get('/super-admin/pendapatan', [PendapatanController::class, 'adminPendapatan']);
 

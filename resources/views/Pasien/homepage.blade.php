@@ -2,6 +2,7 @@
 
 @section('aside')
 
+
     <div class="flex flex-col mx-auto w-full justify-center items-center mb-[50px] h-full">
         <img src=" {{ asset('images/main-picture.svg') }} " class="max-h-[500px] max-w-[500px]" alt="">
         <div class="card max-w-[475px] max-h-[200px] bg-color-6 border border-color-5 text-color-9 mx-auto">

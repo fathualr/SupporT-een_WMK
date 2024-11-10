@@ -2,7 +2,7 @@
 
 @section('aside')
 
-    <div class="flex flex-col mx-auto w-full items-center mb-[50px]">
+    <div class="flex flex-col mx-auto w-full justify-center items-center mb-[50px] h-full">
         <img src=" {{ asset('images/main-picture.svg') }} " class="max-h-[500px] max-w-[500px]" alt="">
         <div class="card max-w-[475px] max-h-[200px] bg-color-6 border border-color-5 text-color-9 mx-auto">
             <div class="card-body">
@@ -16,24 +16,36 @@
 
 @section('main')
 
-<div class="flex flex-col justify-center items-center w-full h-full py-16">
+<div class="flex flex-col justify-center items-center w-full ">
     <h1 class="font-bold text-4xl font-color-1 mb-3">Masuk</h1>
     
-    <label class="form-control w-full max-w-sm">
+    <form class="flex flex-col justify-center items-center w-full" action="{{ route('authenticate') }}" method="post">
+        @csrf
+
+        <label class="form-control w-full max-w-sm">
             <div class="label">
                 <span class="label-text text-base font-medium font-color-1">Email</span>
             </div>
-        <input type="email" placeholder="Email" class="input input-bordered bg-color-6  border-color-2 w-full max-w-sm font-base text-color-2" />
-    </label>
-    
-    <label class="form-control w-full max-w-sm">
+            <input type="email" name="email" placeholder="Masukkan email" class="input input-bordered bg-color-6  border-color-2 w-full max-w-sm font-base text-color-2" />
+            @error('email')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
+        </label>
+        
+        <label class="form-control w-full max-w-sm">
             <div class="label">
-                <span class="label-text text-base font-medium font-color-1">Tanggal Lahir</span>
+                <span class="label-text text-base font-medium font-color-1">Password</span>
             </div>
-        <input type="text" placeholder="Tanggal Lahir" class="input input-bordered bg-color-6  border-color-2 w-full max-w-sm font-base text-color-2" />
-    </label>
-    
-    <button class="btn w-full max-w-sm bg-color-3 text-base-100 mt-10">Daftar</button>
+            <input type="password" name="password" placeholder="Masukkan password" class="input input-bordered bg-color-6  border-color-2 w-full max-w-sm font-base text-color-2" />
+            @error('password')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
+        </label>
+        
+        <button type="submit" class="btn w-full max-w-sm bg-color-3 text-base-100 mt-10">
+            Login
+        </button>
+    </form>
 
     <p class="text-color-2 mt-10">
         Belum memiliki akun? 
@@ -41,6 +53,7 @@
             Daftar Sekarang!
         </a>
     </p>
+
 </div>
 
 @endsection
