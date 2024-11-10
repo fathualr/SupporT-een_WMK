@@ -1,77 +1,67 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    Auth\AuthController,
+    AdminController,
+    PasienController,
+    TenagaAhliController,
+    RiwayatPendidikanTenagaAhliController,
+    KontenEdukatifController,
+    DiskusiController,
+    ChatbotController,
+    JurnalHarianController,
+    DaftarAktivitasController,
+    ForumController,
+    KonsultasiController,
+    TransaksiController,
+    PendapatanController,
+    AktivitasPositifController,
+};
+use App\Models\RiwayatPendidikanTenagaAhli;
+
 
 Route::get('/', function () {
-    return view('pasien/homepage');
+    return view('pasien/homepage', ['title' => 'SupporT-een']);
 });
+Route::get('/login', [AuthController::class, 'login']);
+Route::get('/registrasi', [AuthController::class, 'registrasi']);
+Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
+Route::post('registration', [AuthController::class, 'registration'])->name('registration');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/login', function () {
-    return view('login');
+// Pasien
+Route::get('/chatbot', [ChatbotController::class, 'chatbot']);
+Route::get('/jurnal-harian', [JurnalHarianController::class, 'jurnalHarian']);
+Route::get('/konten-edukatif', [KontenEdukatifController::class, 'kontenEdukatif']);
+Route::get('/konten-edukatif/artikel', [KontenEdukatifController::class, 'kontenArtikel']);
+Route::get('/konten-edukatif/video', [KontenEdukatifController::class, 'kontenVideo']);
+Route::get('/daftar-aktivitas-pribadi', [DaftarAktivitasController::class, 'daftarAktivitasPribadi']);
+Route::get('/daftar-aktivitas-pribadi/kustomisasi', [DaftarAktivitasController::class, 'kustomisasiAktivitasPribadi']);
+Route::get('/forum', [ForumController::class, 'forum']);
+Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
+
+// Tenaga Ahli
+Route::get('/tenaga-ahli', function () {
+    return view('tenagaAhli/homepage', ['title' => 'SupporT-een']);
 });
+Route::get('/tenaga-ahli/kelola-konten-edukatif', [KontenEdukatifController::class, 'tenagaAhliKontenEdukatif']);
+Route::get('/tenaga-ahli/kelola-konten-edukatif/artikel', [KontenEdukatifController::class, 'tenagaAhliKontenArtikel']);
+Route::get('/tenaga-ahli/kelola-konten-edukatif/video', [KontenEdukatifController::class, 'tenagaAhliKontenVideo']);
+Route::get('/tenaga-ahli/kelola-konten-edukatif/tambah-konten', [KontenEdukatifController::class, 'tenagaAhliCreate']);
+Route::get('/tenaga-ahli/percakapan-konsultasi', [KonsultasiController::class, 'tenagaAhliKonsultasi']);
+Route::get('/tenaga-ahli/pendapatan', [PendapatanController::class, 'tenagaAhliPendapatan']);
 
-Route::get('/daftar-aktivitas', function () {
-    return view('pasien/daftar_aktivitas');
-});
+// Admin
+Route::get('/super-admin', [AdminController::class, 'superAdmin']);
+Route::resource('/super-admin/user-admin', AdminController::class);
+Route::resource('/super-admin/user-pasien', PasienController::class);
+Route::resource('/super-admin/user-tenaga-ahli', TenagaAhliController::class);
+Route::resource('/super-admin/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikanTenagaAhliController::class);
+Route::resource('/super-admin/transaksi', TransaksiController::class);
+Route::get('/super-admin/pendapatan', [PendapatanController::class, 'adminPendapatan']);
 
-Route::get('/kustomisasi-aktivitas', function () {
-    return view('pasien/kustomisasi_aktivitas');
-});
-
-Route::get('/tambah-data-pasien', function () {
-    return view('admin/tambah_data_pasien');
-
-});
-Route::get('/edit-data-pasien', function () {
-    return view('admin/edit_data_pasien');
-
-});
-
-Route::get('/tambah-data-tenaga-ahli', function () {
-    return view('admin/tambah_data_tenaga_ahli');
-
-});
-
-Route::get('/edit-data-tenaga-ahli', function () {
-    return view('admin/edit_data_tenaga_ahli');
-
-});
-
-Route::get('/tambah-data-administrator', function () {
-    return view('admin/tambah_data_administrator');
-
-});
-
-Route::get('/edit-data-administrator', function () {
-    return view('admin/edit_data_administrator');
-
-});
-
-Route::get('/tambah-data-konten-edukatif', function () {
-    return view('admin/tambah_data_konten_edukatif');
-
-});
-
-Route::get('/edit-data-konten-edukatif', function () {
-    return view('admin/edit_data_konten_edukatif');
-
-});
-
-Route::get('/tambah-data-forum-diskusi', function () {
-    return view('admin/tambah_data_forum_diskusi ');
-
-});
-
-Route::get('/edit-data-forum-diskusi', function () {
-    return view('admin/edit_data_forum_diskusi');
-
-});
-
-Route::get('/tambah-data-konten', function () {
-    return view('TenagaAhli/tambah_data_konten_edukasi');
-
-});
-Route::get('/edit-data-konten', function () {
-    return view('TenagaAhli/edit_data_konten_edukatif');
-
-});
+Route::get('/content-admin', [AdminController::class, 'contentAdmin']);
+Route::resource('/content-admin/konten-edukatif', KontenEdukatifController::class);
+Route::resource('/content-admin/forum-diskusi',DiskusiController::class);
+Route::resource('/content-admin/aktivitas-positif',AktivitasPositifController::class);

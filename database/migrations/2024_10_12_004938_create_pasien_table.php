@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('deskripsi_diri')->nullable(); // Deskripsi diri pasien
 
             // Definisi foreign key
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
         });
     }
 

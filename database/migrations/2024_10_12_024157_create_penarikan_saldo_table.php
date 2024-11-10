@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps(); // Menambahkan kolom created_at dan updated_at
 
             // Menambahkan foreign key constraint untuk id_user
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('id_user')->references('id')->on('user')->onDelete('set null');
         });
     }
 
