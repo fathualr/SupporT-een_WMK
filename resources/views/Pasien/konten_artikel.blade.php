@@ -8,9 +8,12 @@
 
 @section('main')
 
-<div class="flex flex-col w-full h-full">
+<div class="flex flex-col items-center w-full h-full">
+    <div class="max-w-5xl pb-8">
 
-    <div class=" bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
+    <div class="bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
+
+        <!-- profile -->
         <div class="flex items-center justify-between">
             <div class="flex items-center">
                 <img class="w-16 h-16 rounded-full mr-4" src=" {{ asset('images/jogging.png') }} " alt="Album" />
@@ -41,7 +44,9 @@
             </details>
             </div>
         </div>
-    
+        <!-- profile -->
+
+        <!-- konten isi artikel -->
         <div class="flex flex-col gap-4 pl-20">
             <h1 class="text-3xl font-bold text-color-1">New Study Reveals Daily Weeks Can Significantly Improve Mental Health</h1>
             <span class="text-color-2 text-center">23 September 2024</span>
@@ -73,7 +78,9 @@
             </p>
         </div>
     </div>
+<!-- konten isi artikel -->
 
+    </div>
 </div>
 
 @endsection
