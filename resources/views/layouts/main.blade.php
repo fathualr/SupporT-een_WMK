@@ -5,32 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <title>Document</title>
-
+    @vite('resources/js/app.js')
+    <title>{{ $title }}</title>
+    <link rel="icon" type="image/svg+xml" href=" {{ asset('images/logo-icon.svg') }} ">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
-<body class="text-color-1">
+<body class="font-poppins text-color-1">
 
     <header class="sticky top-0 z-[999]">
         <div class="flex flex-row h-20 py-[15px] px-[50px] bg-color-8  border-b border-color-4 ">
-            <a href="" class="flex flex-row">
-                <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark.svg') }} " alt="SupporT-een Logo">
+            <a href="/" class="flex flex-row">
+                <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
-            <a class="btn ms-auto w-[150px] h-[50px] text-white bg-color-3 border-0 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
-                <span>Masuk</span>
-            </a>
+
+            @if($title != "Login" && $title != "Registrasi")
+                @guest
+                    <a href="/login" class="btn ms-auto w-fit text-white bg-color-3 border-0 px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
+                        <span>Masuk</span>
+                    </a>
+                @else
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" xmlns="http://www.w3.org/2000/svg" 
+                    class="btn flex flex-col justify-center place-content-start justify ms-auto w-[250px] px-[10px] text-color-1 bg-color-6 border border-color-6 hover:bg-color-6  hover:border hover:border-color-5">
+                        <div class="avatar self-center">
+                            <div class="w-[30px] rounded-full">
+                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-around me-auto h-full grow text-left">
+                            <p class="truncate text-ellipsis overflow-hidden whitespace-nowrap w-[190px]">
+                                {{ Auth::user()->nama }}
+                            </p>
+                            <span class="text-color-3">Online</span>
+                        </div>
+                    </button>
+                    
+                    <!-- Dropdown menu -->
+                    <div id="dropdown" class="z-10 hidden bg-color-6 divide-y divide-gray-100 border border-color-6 rounded-lg shadow w-[250px]">
+                        <ul class="text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <form class="" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block px-4 py-2  hover:bg-gray-100 hover:rounded-lg w-full text-center">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+    
+                @endguest
+            @endif
+
         </div>
     </header>
 
-    <div class="min-h-[calc(100vh-80px)] flex w-full bg-color-8">
+    <div class="{{ in_array($title, ['SupporT-een', 'Login', 'Registrasi']) ? 'min-h-[calc(100vh-80px)]' : 'h-[calc(100vh-80px)]' }} flex w-full bg-color-8">
 
-        <aside class="w-2/5">
+        <aside class="w-2/5 {{ in_array($title, ['SupporT-een', 'Login', 'Registrasi']) ? '' : 'overflow-y-auto' }}">
             <!-- Konten aside -->
             @yield('aside')
         </aside>
 
         <main class="w-3/5 bg-color-8 border-l border-color-4">
-            <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full">
+            <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full relative overflow-auto">
                 <!-- Konten main -->
                 @yield('main')
             </div>
@@ -101,5 +141,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 </body>
 </html>

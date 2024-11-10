@@ -7,6 +7,7 @@ export default {
     "./node_modules/flowbite/**/*.js",
     "node_modules/preline/dist/*.js"
   ],
+  important: true,
   theme: {
     extend: {
       colors: {
@@ -18,12 +19,16 @@ export default {
         "color-6": "#E3F1F4",
         "color-7": "#EFEFED",
         "color-8": "#F8F8F7",
+        "color-putih": "#FFFFFF",
       },
       backgroundImage: {
         "brain-pattern": "url('/public/images/brain-pattern.png')", // Background gambar
       },
       boxShadow: {
         'custom-1': '0 0 4px rgba(0, 0, 0, 0.25)',  // Bayangan ringan
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
       },
     },
   },
