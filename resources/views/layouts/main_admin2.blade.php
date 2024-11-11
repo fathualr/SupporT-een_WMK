@@ -79,5 +79,45 @@
                 <span class="text-xs text-color-8">&copy; <?php echo date("Y"); ?> SupporT-een</span>
             </div>
     </footer>
+
+    <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        @endif
+    
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'OK'
+            });
+        @endif
+    </script>
+    
+    <script>
+        function confirmDeletion(kontenId) {
+            Swal.fire({
+                title: "Apakah Anda yakin ingin menghapus data ini?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`delete-form-${kontenId}`).submit();
+                }
+            });
+        }
+    </script>
 </body>
 </html>

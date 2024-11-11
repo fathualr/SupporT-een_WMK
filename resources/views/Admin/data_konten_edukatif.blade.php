@@ -26,41 +26,51 @@
                     <th>Tipe</th>
                     <th>Isi Artikel</th>
                     <th>Link Youtube</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Kata Kunci</th>
+                    <th>Sumber</th>
+                    <th>Tanggal Dibuat</th>
+                    <th>Terahkir Update</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
 
             <tbody>
-
+            @foreach ( $kontenEdukasi as $konten)
+            
                 <tr class="hover">
                     <th>1</th>
-                    <td></td> <!-- Thumbnail -->
-                    <td>Pentingnya Nutrisi bagi Remaja</td>
-                    <td>Artikel</td>
-                    <td>Nutrisi yang baik sangat penting untuk tumbuh kembang remaja...</td>
-                    <td>youtube.com/watch?v=abc123</td>
-                    <td>2023-10-01</td>
-                    <td>nutrisi, remaja, kesehatan</td>
+                    <td>{{ $konten->thumbnail }}</td> <!-- Thumbnail -->
+                    <td>{{ $konten->judul }}</td>
+                    <td>{{ $konten->tipe }}</td>
+                    <td>{{ $konten->isi_artikel }}</td>
+                    <td>{{ $konten->link_youtube }}</td>
+                    <td>{{ $konten->sumber }}</td>
+                    <td>{{ $konten->created_at }}</td>
+                    <td>{{ $konten->updated_at }}</td>
                     <td>
                         <div class="flex justify-center gap-2">
                             <!-- tombol info -->
-                            <a class="btn bg-blue-100 text-blue-500 border-blue-500 hover:bg-blue-300" href="#">
+                            <a href="{{ route('konten-edukatif.show', $konten->id) }}" class="btn bg-blue-100 text-blue-500 border-blue-500 hover:bg-blue-300">
                                 <img class="w-6 h-6" src="{{ asset("icons/Info.svg")}}" alt="">
                             </a>
                             <!-- tombol edit -->
-                            <a class="btn bg-green-100 text-green-500 border-green-500 hover:bg-green-300" href="#">
+                            <a href="#" class="btn bg-green-100 text-green-500 border-green-500 hover:bg-green-300">
                                 <img class="w-6 h-6" src="{{ asset("icons/Edit.svg")}}" alt="">
                             </a>
                             <!-- tombol hapus -->
-                            <a class="btn bg-red-100 text-red-500 border-red-500 hover:bg-red-300" href="#">
-                                <img class="w-6 h-6" src="{{ asset("icons/Waste.svg")}}" alt="">
-                            </a>
+                            <div>
+                                <form id="delete-form-{{ $konten->id }}" action="{{ route('konten-edukatif.destroy', $konten->id) }}" method="POST" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn bg-red-100 text-red-500 border-red-500 hover:bg-red-300">
+                                        <img class="w-6 h-6" src="{{ asset('icons/Waste.svg') }}" alt="">
+                                <button>
+                                </form>
+                            </div>
                         </div>
                     </td>
-                </tr>
-
+                </tr>                
+                @endforeach
+</script>
             </tbody>
         </table>
         </div>
