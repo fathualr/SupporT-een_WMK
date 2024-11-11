@@ -53,7 +53,7 @@
                                 <img class="w-6 h-6" src="{{ asset("icons/Info.svg")}}" alt="">
                             </a>
                             <!-- tombol edit -->
-                            <a href="#" class="btn bg-green-100 text-green-500 border-green-500 hover:bg-green-300">
+                            <a href="{{ route('konten-edukatif.edit', $konten->id) }}" class="btn bg-green-100 text-green-500 border-green-500 hover:bg-green-300">
                                 <img class="w-6 h-6" src="{{ asset("icons/Edit.svg")}}" alt="">
                             </a>
                             <!-- tombol hapus -->

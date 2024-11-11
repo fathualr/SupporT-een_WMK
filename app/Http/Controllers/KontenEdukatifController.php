@@ -150,7 +150,43 @@ class KontenEdukatifController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        DB::beginTransaction();
+
+    $auth = Auth::user()->id;
+
+    try {
+        $kontenEdukasi = Konten::findOrFail($id);
+
+        // if ($request->hasFile('thumbnail')) {
+        //     // Hapus thumbnail lama jika ada
+        //     if ($kontenEdukasi->thumbnail) {
+        //         Storage::disk('public')->delete($kontenEdukasi->thumbnail);
+        //     }
+
+        //     // Simpan thumbnail baru
+        //     $thumbnail = $request->file('thumbnail')->store('image/foto_profil', 'public');
+        //     $kontenEdukasi->thumbnail = $thumbnail;
+        // }
+
+        // Update konten edukatif
+        $kontenEdukasi->update([
+            'id_user' => $auth,
+            'judul' => $request->judul,
+            'tipe' => $request->tipe,
+            'sumber' => $request->sumber,
+            'isi_artikel' => $request->isi_artikel,
+            'link_youtube' => $request->link_youtube,
+        ]);
+
+        DB::commit();
+
+        return redirect()->route('konten-edukatif.index')
+                        ->with('success', 'Data konten berhasil diperbarui!');
+
+    } catch (\Exception $e) {
+        DB::rollback();
+        return redirect()->back()->with('error', 'Data konten gagal diperbarui! Pesan error: ' . $e->getMessage());
+    }
     }
 
     /**
