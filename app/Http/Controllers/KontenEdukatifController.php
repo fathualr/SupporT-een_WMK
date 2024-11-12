@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KontenEdukatifRequest;
+use App\Models\KataKunciKonten;
 use Illuminate\Http\Request;
-use App\Models\Konten;
-use illuminate\Support\Facades\Auth;
+use App\Models\KontenEdukatif;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class KontenEdukatifController extends Controller
@@ -56,16 +57,17 @@ class KontenEdukatifController extends Controller
         ]);
     }
 
+
+
     /**
      * Display a listing of the resource.
      */
-    public function index($tipe = null)
+    public function index()
     {
-        $kontenEdukasi = Konten::with('User')->paginate(10);
+        $kontenEdukatif = KontenEdukatif::with('user')->paginate(10);
         return view('admin/data_konten_edukatif', [
             "title" => "Kelola Konten Edukatif",
-            "tipe" => null,
-            "kontenEdukasi" => $kontenEdukasi,
+            "kontenEdukatif" => $kontenEdukatif,
         ]);
     }
 
@@ -89,38 +91,58 @@ class KontenEdukatifController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(KontenEdukatifRequest $request)
     {
         DB::beginTransaction();
 
-        $auth = Auth::user()->id;
-
         try {
-            // if ($request->hasFile('foto_profil')) {
-            //     $foto_profil = $request->file('foto_profil')->store('image/foto_profil', 'public');
-            // }
-
-            Konten::create([
-                'id_user'=> $request->$auth,
+            $kontenData = [
                 'judul' => $request->judul,
                 'tipe' => $request->tipe,
-                'thumbnail' => $request->thumbnail,
                 'sumber' => $request->sumber,
-                'isi_artikel' => $request->isi_artikel,
-                'link_youtube' => $request->link_youtube,
-            ]);
+                'id_user' => Auth::user()->id,
+            ];
+
+            $thumbnailPath = $request->file('thumbnail')->store('image/thumbnail-konten', 'public');
+            $kontenData['thumbnail'] = $thumbnailPath;
+
+            $kontenEdukatif = KontenEdukatif::create($kontenData);
+
+            if ($kontenEdukatif->tipe == 'video' && $request->has('link_youtube')) {
+                $kontenEdukatif->update(['link_youtube' => $request->input('link_youtube')]);
+            } elseif ($kontenEdukatif->tipe == 'artikel' && $request->has('isi_artikel')) {
+                $kontenEdukatif->update(['isi_artikel' => $request->input('isi_artikel')]);
+            }
+
+            if ($request->has('kata_kunci') && !empty($request->input('kata_kunci'))) {
+                $kataKunci = explode(',', $request->input('kata_kunci'));
+
+                $kataKunci = array_filter($kataKunci, function ($kata) {
+                    return !empty(trim($kata));
+                });
+
+                if (!empty($kataKunci)) {
+                    $kataKunciData = [];
+                    foreach ($kataKunci as $kata) {
+                        $kataKunciData[] = ['id_konten' => $kontenEdukatif->id, 'nama' => trim($kata)];
+                    }
+                    KataKunciKonten::insert($kataKunciData);
+                }
+            }
 
             DB::commit();
-            $totalKonten = Konten::count();
+            $totalKontens = KontenEdukatif::count();
             $perPage = 10;
-            $lastPage = ceil($totalKonten / $perPage);
+            $lastPage = ceil($totalKontens / $perPage);
 
             return redirect()->route('konten-edukatif.index', ['page' => $lastPage])
-                            ->with('success', 'Data konten berhasil ditambahkan!');
-
+                            ->with('success', 'Konten edukatif berhasil ditambahkan!');
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->back()->with('error', 'Data konten gagal ditambahkan! Pesan error: ' . $e->getMessage());
+
+            return redirect()->back()
+                            ->with('error', 'Gagal menyimpan konten edukatif. Pesan error: ' . $e->getMessage())
+                            ->withInput();
         }
     }
 
@@ -129,11 +151,10 @@ class KontenEdukatifController extends Controller
      */
     public function show(string $id)
     {
-        $kontenEdukasi = Konten::with('User')->findOrFail($id);
+        $kontenEdukatif = KontenEdukatif::with('user')->findOrFail($id);
         return view('admin/template/data_konten_edukatif', [
             "title" => "Kelola Konten Edukatif",
-            "tipe" => null,
-            "kontenEdukasi" => $kontenEdukasi,
+            "kontenEdukatif" => $kontenEdukatif,
         ]);
     }
 
@@ -142,70 +163,74 @@ class KontenEdukatifController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kontenEdukatif = KontenEdukatif::with('user')->findOrFail($id);
+        return view('admin/form/edit_data_konten_edukatif', [
+            "title" => "Kelola Konten Edukatif",
+            "kontenEdukatif" => $kontenEdukatif,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(KontenEdukatifRequest $request, $id)
     {
-        DB::beginTransaction();
+        try {
+            $kontenEdukatif = KontenEdukatif::findOrFail($id);
 
-    $auth = Auth::user()->id;
+            $kontenData = [
+                'judul' => $request->judul,
+                'tipe' => $request->tipe,
+                'sumber' => $request->sumber
+            ];
 
-    try {
-        $kontenEdukasi = Konten::findOrFail($id);
+            if ($request->hasFile('thumbnail')) {
+                if ($kontenEdukatif->thumbnail) {
+                    Storage::disk('public')->delete($kontenEdukatif->thumbnail);
+                }
 
-        // if ($request->hasFile('thumbnail')) {
-        //     // Hapus thumbnail lama jika ada
-        //     if ($kontenEdukasi->thumbnail) {
-        //         Storage::disk('public')->delete($kontenEdukasi->thumbnail);
-        //     }
+                $thumbnail = $request->file('thumbnail')->store('image/thumbnail-konten', 'public');
+                $kontenData['thumbnail'] = $thumbnail;
+            }
 
-        //     // Simpan thumbnail baru
-        //     $thumbnail = $request->file('thumbnail')->store('image/foto_profil', 'public');
-        //     $kontenEdukasi->thumbnail = $thumbnail;
-        // }
+            if ($request->tipe == 'video') {
+                $kontenData['link_youtube'] = $request->link_youtube;
+            } elseif ($request->tipe == 'artikel') {
+                $kontenData['isi_artikel'] = $request->isi_artikel;
+            }
 
-        // Update konten edukatif
-        $kontenEdukasi->update([
-            'id_user' => $auth,
-            'judul' => $request->judul,
-            'tipe' => $request->tipe,
-            'sumber' => $request->sumber,
-            'isi_artikel' => $request->isi_artikel,
-            'link_youtube' => $request->link_youtube,
-        ]);
+            $kontenEdukatif->update($kontenData);
 
-        DB::commit();
-
-        return redirect()->route('konten-edukatif.index')
-                        ->with('success', 'Data konten berhasil diperbarui!');
-
-    } catch (\Exception $e) {
-        DB::rollback();
-        return redirect()->back()->with('error', 'Data konten gagal diperbarui! Pesan error: ' . $e->getMessage());
-    }
+            $position = KontenEdukatif::orderBy('id')->pluck('id')->search($kontenEdukatif->id) + 1;
+            $perPage = 10;
+            $page = ceil($position / $perPage);
+            
+            return redirect()->route('konten-edukatif.index', ['page' => $page])
+                            ->with('success', 'Data admin berhasil diubah!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Data konten edukatif gagal diubah! Pesan error: ' . $e->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-{
-    $konten = Konten::findOrFail($id);
+    public function destroy($id)
+    {
+        try {
+            $kontenEdukatif = KontenEdukatif::findOrFail($id);
 
-    if ($konten->thumbnail) {
-        Storage::disk('public')->delete($konten->thumbnail);
+            if ($kontenEdukatif->thumbnail) {
+                Storage::disk('public')->delete($kontenEdukatif->thumbnail);
+            }
+
+            $kontenEdukatif->delete();
+
+            return redirect()->route('konten-edukatif.index')
+                            ->with('success', 'Konten edukatif berhasil dihapus!');
+        } catch (\Exception $e) {
+            return redirect()->route('konten-edukatif.index')
+                            ->with('error', 'Konten edukatif gagal dihapus! Pesan error: ' . $e->getMessage());
+        }
     }
-
-    $kontenDeleted = $konten->delete();
-
-    if ($kontenDeleted) {
-        return redirect()->back()->with('success', 'Data konten berhasil dihapus!');
-    } else {
-        return redirect()->back()->with('error', 'Data konten gagal dihapus!');
-    }
-}
 }

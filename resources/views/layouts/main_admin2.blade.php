@@ -80,6 +80,8 @@
             </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         @if(session('success'))
             Swal.fire({
@@ -103,7 +105,7 @@
     </script>
     
     <script>
-        function confirmDeletion(kontenId) {
+        function confirmDeletion(adminId) {
             Swal.fire({
                 title: "Apakah Anda yakin ingin menghapus data ini?",
                 icon: "warning",
@@ -114,7 +116,7 @@
                 cancelButtonText: "Batal"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById(`delete-form-${kontenId}`).submit();
+                    document.getElementById(`delete-form-${adminId}`).submit();
                 }
             });
         }

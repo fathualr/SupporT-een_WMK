@@ -17,8 +17,8 @@ use App\Http\Controllers\{
     TransaksiController,
     PendapatanController,
     AktivitasPositifController,
+    KataKunciKontenController,
 };
-use App\Models\RiwayatPendidikanTenagaAhli;
 
 
 Route::get('/', function () {
@@ -63,5 +63,6 @@ Route::get('/super-admin/pendapatan', [PendapatanController::class, 'adminPendap
 
 Route::get('/content-admin', [AdminController::class, 'contentAdmin']);
 Route::resource('/content-admin/konten-edukatif', KontenEdukatifController::class);
+Route::resource('/content-admin/kata-kunci-konten', KataKunciKontenController::class);
 Route::resource('/content-admin/forum-diskusi',DiskusiController::class);
 Route::resource('/content-admin/aktivitas-positif',AktivitasPositifController::class);
