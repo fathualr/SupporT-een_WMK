@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AktivitasPositifRequest;
+use App\Models\AktivitasPositif;
+use App\Models\KataKunciAktivitasPositif;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AktivitasPositifController extends Controller
 {
@@ -11,8 +16,10 @@ class AktivitasPositifController extends Controller
      */
     public function index()
     {
+        $aktivitasPositif = AktivitasPositif::with('kataKunci')->paginate(10);
         return view('admin/data_daftar_aktivitas_positif', [
-            "title" => "Data Aktivitas Positif"
+            "title" => "Data Aktivitas Positif",
+            "aktivitasPositif" => $aktivitasPositif
         ]);
     }
 
@@ -29,9 +36,56 @@ class AktivitasPositifController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AktivitasPositifRequest $request)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $aktivitasData = [
+                'nama' => $request->nama,
+            ];
+
+            if ($request->hasFile('gambar')) {
+                $gambarPath = $request->file('gambar')->store('image/aktivitas-positif', 'public');
+                $aktivitasData['gambar'] = $gambarPath;
+            }
+
+            $aktivitasPositif = AktivitasPositif::create($aktivitasData);
+
+            if ($request->has('kata_kunci') && !empty($request->input('kata_kunci'))) {
+                $kataKunci = explode(',', $request->input('kata_kunci'));
+
+                $kataKunci = array_filter($kataKunci, function ($kata) {
+                    return !empty(trim($kata));
+                });
+
+                if (!empty($kataKunci)) {
+                    $kataKunciData = [];
+                    foreach ($kataKunci as $kata) {
+                        $kataKunciData[] = ['id_aktivitas' => $aktivitasPositif->id, 'nama' => trim($kata)];
+                    }
+                    KataKunciAktivitasPositif::insert($kataKunciData);
+                }
+            }
+
+            DB::commit();
+            $totalAktivitas = AktivitasPositif::count();
+            $perPage = 10;
+            $lastPage = ceil($totalAktivitas / $perPage);
+
+            return redirect()->route('aktivitas-positif.index', ['page' => $lastPage])
+                            ->with('success', 'Data Aktivitas Positif berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            if (isset($gambarPath)) {
+                Storage::disk('public')->delete($gambarPath);
+            }
+
+            return redirect()->back()
+                            ->with('error', 'Gagal menyimpan data aktivitas positif. Pesan error: ' . $e->getMessage())
+                            ->withInput();
+        }
     }
 
     /**
@@ -39,7 +93,11 @@ class AktivitasPositifController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $aktivitasPositif = AktivitasPositif::with('kataKunci')->findOrFail($id);
+        return view('admin/template/data_daftar_aktivitas_positif', [
+            "title" => "Data Aktivitas Positif",
+            "aktivitasPositif" => $aktivitasPositif
+        ]);
     }
 
     /**
@@ -47,15 +105,45 @@ class AktivitasPositifController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $aktivitasPositif = AktivitasPositif::with('kataKunci')->findOrFail($id);
+        return view('admin/form/edit_data_aktivitas', [
+            "title" => "Data Aktivitas Positif",
+            "aktivitasPositif" => $aktivitasPositif
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AktivitasPositifRequest $request, $id)
     {
-        //
+        try {
+            $aktivitasPositif = AktivitasPositif::findOrFail($id);
+
+            $aktivitasData = [
+                'nama' => $request->nama,
+            ];
+
+            if ($request->hasFile('gambar')) {
+                if ($aktivitasPositif->gambar) {
+                    Storage::disk('public')->delete($aktivitasPositif->gambar);
+                }
+
+                $gambarPath = $request->file('gambar')->store('image/aktivitas-positif', 'public');
+                $aktivitasData['gambar'] = $gambarPath;
+            }
+
+            $aktivitasPositif->update($aktivitasData);
+
+            $position = AktivitasPositif::orderBy('id')->pluck('id')->search($aktivitasPositif->id) + 1;
+            $perPage = 10;
+            $page = ceil($position / $perPage);
+
+            return redirect()->route('aktivitas-positif.index', ['page' => $page])
+                            ->with('success', 'Aktivitas positif berhasil diubah!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Aktivitas positif gagal diubah! Pesan error: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -63,6 +151,17 @@ class AktivitasPositifController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $konten = AktivitasPositif::findOrFail($id);
+
+        if ($konten->gambar) {
+            Storage::disk('public')->delete($konten->gambar);
+        }
+        $kontenDeleted = $konten->delete();
+
+        if ($kontenDeleted) {
+            return redirect()->back()->with('success', 'Data aktivitas positif berhasil dihapus!');
+        } else {
+            return redirect()->back()->with('error', 'Data aktivitas positif gagal dihapus!');
+        }
     }
 }

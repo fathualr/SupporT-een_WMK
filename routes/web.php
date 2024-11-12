@@ -17,6 +17,7 @@ use App\Http\Controllers\{
     TransaksiController,
     PendapatanController,
     AktivitasPositifController,
+    KataKunciAktivitasController,
     KataKunciKontenController,
 };
 
@@ -66,3 +67,4 @@ Route::resource('/content-admin/konten-edukatif', KontenEdukatifController::clas
 Route::resource('/content-admin/kata-kunci-konten', KataKunciKontenController::class);
 Route::resource('/content-admin/forum-diskusi',DiskusiController::class);
 Route::resource('/content-admin/aktivitas-positif',AktivitasPositifController::class);
+Route::resource('/content-admin/kata-kunci-aktivitas',KataKunciAktivitasController::class);
