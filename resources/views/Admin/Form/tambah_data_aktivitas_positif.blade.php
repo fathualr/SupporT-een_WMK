@@ -1,6 +1,5 @@
 @extends('layouts.main_admin2')
 
-
 @section('main')
 
 <!-- halaman tambah data aktivitas positif -->
@@ -8,52 +7,51 @@
     <h1 class="font-bold text-3xl text-center">Tambah Data Aktivitas Positif</h1>
 
     <!-- form tambah aktivitas -->
-        <form action="">
-            <div class="flex flex-col gap-y-5 pt-10 p-10">
+    <form action="{{ route('aktivitas-positif.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('POST')
 
-                <!-- nama -->
-                <label class="form-control w-full">
-                    <span class="label-text font-medium text-base pb-1">Nama</span>
-                    <input type="text" placeholder="Masukkan nama aktivitas" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
-                </label>
-                <!-- nama -->
+        <div class="flex flex-col gap-y-5 pt-10 p-10">
 
-                <!-- gambar -->
-                <label class="form-control w-full">
-                    <span class="label-text font-medium text-base pb-1">Gambar</span>
-                    <input type="file" class="file:bg-color-3 file:text-white file:text-sm file:border-none file:h-[3rem] file:mr-4 file:px-4 file:rounded-l-lg file:font-semibold file:uppercase border border-color-5 rounded-lg w-full bg-color-6">
-                </label>
-                <!-- gambar -->
+            <!-- nama -->
+            <label class="form-control w-full">
+                <span class="label-text font-medium text-base pb-1">Nama</span>
+                <input type="text" name="nama" placeholder="Masukkan nama aktivitas" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
+            </label>
+            @error('nama')
+                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+            @enderror
+            <!-- nama -->
 
-                <!-- isi diskusi -->
-                <label class="form-control w-full">
-                    <span class="label-text font-medium text-base pb-1">Isi Diskusi</span>
-                    <textarea class="textarea textarea-bordered h-40 outline outline-1 outline-color-5 bg-color-6 rounded-lg" placeholder="Deskripsi"></textarea>
-                </label>
-                <!-- isi diskusi -->
-                
-                <!-- tombol tambah -->
-                <label class="flex justify-center items-center pt-5">
-                    <button class="btn bg-color-3 text-white w-48">Tambah</button>
-                </label>
-                <!-- tombol tambah -->
-        
-            </div>
-        </form>
+            <!-- gambar -->
+            <label class="form-control w-full">
+                <span class="label-text font-medium text-base pb-1">Gambar</span>
+                <input type="file" name="gambar" class="file:bg-color-3 file:text-white file:text-sm file:border-none file:h-[3rem] file:mr-4 file:px-4 file:rounded-l-lg file:font-semibold file:uppercase border border-color-5 rounded-lg w-full bg-color-6" />
+            </label>
+            @error('gambar')
+                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+            @enderror
+            <!-- gambar -->
+
+            <!-- kata kunci -->
+            <label class="form-control w-full">
+                <span class="label-text font-medium text-base pb-1">Kata Kunci</span>
+                <input type="text" name="kata_kunci" placeholder="Kata kunci" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
+            </label>
+            @error('kata_kunci')
+                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+            @enderror
+            <!-- kata kunci -->
+
+            <!-- tombol tambah -->
+            <label class="flex justify-center items-center pt-5">
+                <button type="submit" class="btn bg-color-3 text-white w-48">Tambah</button>
+            </label>
+            <!-- tombol tambah -->
+    
+        </div>
+    </form>
 
 </div>
-
-<script>
-    const fileInput = document.getElementById('fileInput');
-    const fileName = document.getElementById('fileName');
-
-    fileInput.addEventListener('change', function() {
-        if (fileInput.files.length > 0) {
-        fileName.textContent = fileInput.files[0].name;
-        } else {
-        fileName.textContent = "No file chosen";
-    }
-    });
-</script>
 
 @endsection
