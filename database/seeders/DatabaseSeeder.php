@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
             SubscriptionPLanSeeder::class,
             AktivitasPositifSeeder::class,
             KataKunciAktivitasPositifSeeder::class,
+            DiskusiSeeder::class,
+            GambarDiskusiSeeder::class,
+            BalasanSeeder::class,
         ]);
     }
 }

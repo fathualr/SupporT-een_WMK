@@ -56,7 +56,7 @@
                     <ul class="menu w-full text-base text-color-1">
                         <li><a href="/content-admin">Dashboard</a></li>
                         <li><a href="/content-admin/konten-edukatif">Data Konten Edukatif</a></li>
-                        <li><a href="/content-admin/forum-diskusi">Data Forum Diskusi</a></li>
+                        <li><a href="/content-admin/diskusi">Data Forum Diskusi</a></li>
                         <li><a href="/content-admin/aktivitas-positif">Data Aktivitas Positif</a></li>
                     </ul>
                 </div>
