@@ -15,70 +15,112 @@
 
     <!-- tabel data-->
     <div class="w-full px-5 rounded-2xl">
-        <div class="overflow-y-scroll h-[calc(100vh-300px)]">
-        <table class="table table-xs">
+        <div class="overflow-y-scroll min-h-[calc(100vh-300px)]">
+            <table class="table table-xs">
 
-            <thead>
-                <tr class="text-color-1">
-                    <th>Id</th>
-                    <th>Thumbnail</th>
-                    <th>Judul</th>
-                    <th>Tipe</th>
-                    <th>Isi Artikel</th>
-                    <th>Link Youtube</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Kata Kunci</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr class="text-color-1">
+                        <th>No</th>
+                        <th>Thumbnail</th>
+                        <th>Perilis</th>
+                        <th>Judul</th>
+                        <th>Tipe</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
 
-            <tbody>
+                <tbody>
 
-                <tr class="hover">
-                    <th>1</th>
-                    <td></td> <!-- Thumbnail -->
-                    <td>Pentingnya Nutrisi bagi Remaja</td>
-                    <td>Artikel</td>
-                    <td>Nutrisi yang baik sangat penting untuk tumbuh kembang remaja...</td>
-                    <td>youtube.com/watch?v=abc123</td>
-                    <td>2023-10-01</td>
-                    <td>nutrisi, remaja, kesehatan</td>
-                    <td>
-                        <div class="flex justify-center gap-2">
-                            <!-- tombol info -->
-                            <a class="btn bg-blue-100 text-blue-500 border-blue-500 hover:bg-blue-300" href="#">
-                                <img class="w-6 h-6" src="{{ asset("icons/Info.svg")}}" alt="">
-                            </a>
-                            <!-- tombol edit -->
-                            <a class="btn bg-green-100 text-green-500 border-green-500 hover:bg-green-300" href="#">
-                                <img class="w-6 h-6" src="{{ asset("icons/Edit.svg")}}" alt="">
-                            </a>
-                            <!-- tombol hapus -->
-                            <a class="btn bg-red-100 text-red-500 border-red-500 hover:bg-red-300" href="#">
-                                <img class="w-6 h-6" src="{{ asset("icons/Waste.svg")}}" alt="">
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+                    @foreach ($kontenEdukatif as $key => $konten)
+                        <tr>
+                            <th>{{ ($kontenEdukatif->currentPage() - 1) * $kontenEdukatif->perPage() + $key + 1 }}</th>
+                            <th>
+                                <div class="avatar">
+                                    <div class="w-9 rounded-full">
+                                        <img src="{{ asset('storage/' . $konten->thumbnail) }}" />
+                                    </div>
+                                </div>
+                            </th>
+                            <td>{{ $konten->user->nama }}</td>
+                            <td>{{ $konten->judul }}</td>
+                            <td>{{ $konten->tipe }}</td>
+                            <td class="flex justify-center gap-2">
+                                <a href="{{ route('konten-edukatif.show', $konten->id) }}" class="btn bg-blue-100 text-blue-500 border-blue-500" href="#">
+                                    <img class="w-6 h-6" src="{{ asset("icons/Info.svg")}}" alt="">
+                                </a>
+                                <a href="{{ route('konten-edukatif.edit', $konten->id) }}" class="btn bg-green-100 text-green-500 border-green-500" href="#">
+                                    <img class="w-6 h-6" src="{{ asset("icons/Edit.svg")}}" alt="">
+                                </a>
+                                <button class="btn bg-red-100 text-red-500 border-red-500" onclick="confirmDeletion({{ $konten->id }})">
+                                    <img class="w-6 h-6" src="{{ asset("icons/Waste.svg")}}" alt="">
+                                </button>
+                            </td>
+                        </tr>
 
-            </tbody>
-        </table>
+                        <form id="delete-form-{{ $konten->id }}" action="{{ route('konten-edukatif.destroy', $konten->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    @endforeach
+
+                </tbody>
+            </table>
         </div>
     </div>
     <!-- tabel data-->
 
-    <!-- pagination controls-->
-    <div class="flex justify-between border-t-[1px] border-color-4 pt-4">
-        <span class="text-sm text-color-2">Showing 1 to 10 of 50 entries</span>
-        <div class="join">
-            <button class="join-item btn">«</button>
-            <button class="join-item btn">1</button>
-            <button class="join-item btn">2</button>
-            <button class="join-item btn bg-color-3 text-white">3</button>
-            <button class="join-item btn">»</button>
+<!-- Pagination -->
+<div class="flex justify-between border-t-[1px] bg-color-8 border-color-4 p-3">
+    <span class="text-sm text-color-2 content-center">
+        Menampilkan {{ $kontenEdukatif->firstItem() }} ke {{ $kontenEdukatif->lastItem() }} dari {{ $kontenEdukatif->total() }} data
+    </span>
+
+    <nav class="flex items-center gap-x-1" aria-label="Pagination">
+        <!-- Tombol Previous -->
+        <button type="button" 
+            class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border border-transparent text-color-1 hover:bg-color-5 focus:outline-none focus:bg-color-3 disabled:opacity-50 disabled:pointer-events-none"
+            aria-label="Previous" {{ $kontenEdukatif->onFirstPage() ? 'disabled' : '' }}
+            onclick="window.location='{{ $kontenEdukatif->previousPageUrl() }}'">
+            <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6"></path>
+            </svg>
+            <span class="sr-only">Previous</span>
+        </button>
+
+        <div class="flex items-center gap-x-1">
+            <!-- Tombol Halaman Terendah -->
+            <button type="button" 
+                class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-color-4 text-color-1 hover:bg-color-5 py-2 px-3 text-sm rounded-lg 
+                {{ $kontenEdukatif->currentPage() == 1 ? 'bg-color-3 text-color-5' : 'focus:outline-none focus:bg-color-3' }}" 
+                onclick="window.location='{{ $kontenEdukatif->url(1) }}'">1</button>
+        
+            <!-- Tombol Halaman Sekarang -->
+                <button type="button" 
+                    class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-color-4  bg-color-3 text-color-5 py-2 px-3 text-sm rounded-lg" 
+                    disabled>Halaman {{ $kontenEdukatif->currentPage() }}</button>
+        
+            <!-- Tombol Halaman Tertinggi -->
+            @if ($kontenEdukatif->lastPage() > 1)
+                <button type="button" 
+                    class="min-h-[38px] min-w-[38px] flex justify-center items-center border border-color-4 text-color-1 hover:bg-color-5 py-2 px-3 text-sm rounded-lg 
+                    {{ $kontenEdukatif->currentPage() == $kontenEdukatif->lastPage() ? 'bg-color-3 text-color-5' : 'focus:outline-none focus:bg-color-3' }}" 
+                    onclick="window.location='{{ $kontenEdukatif->url($kontenEdukatif->lastPage()) }}'">{{ $kontenEdukatif->lastPage() }}</button>
+            @endif
         </div>
-    </div>
-    <!-- pagination controls-->
+
+        <!-- Tombol Next -->
+        <button type="button" 
+            class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border border-transparent text-color-1 hover:bg-color-5 focus:outline-none focus:bg-color-3 disabled:opacity-50 disabled:pointer-events-none"
+            aria-label="Next" {{ $kontenEdukatif->hasMorePages() ? '' : 'disabled' }}
+            onclick="window.location='{{ $kontenEdukatif->nextPageUrl() }}'">
+            <span class="sr-only">Next</span>
+            <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
+        </button>
+    </nav>
+</div>
+<!-- END Pagination -->
 
 </div>
 

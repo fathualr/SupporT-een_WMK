@@ -1,7 +1,9 @@
+<!-- halaman konsultasi tenaga ahli -->
 @extends('layouts.main')
 
 @section('aside')
 
+<!-- konten sidebar -->
 <div class="flex flex-col mx-auto w-full h-full pt-9 px-[50px] gap-6">
     <h1 class="text-4xl font-bold text-color-1 text-start">Riwayat Konsultasi</h1>
 
@@ -68,15 +70,18 @@
     </div>
 
 </div>
+<!-- konten sidebar -->
 
 @endsection
 
 @section('main')
 
+<!-- daftar konsultasi tenaga ahli -->
 <div class="w-full h-full">
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-2 gap-4 pb-8">
+
         <!-- card 1 -->
-        <div class="card card-side card-compact bg-color-6">
+        <div class="card card-side card-compact bg-color-6 pl-5">
             <figure class="flex-none">
                 <img
                 class="w-[150px] h-[150px] rounded-2xl"
@@ -93,6 +98,7 @@
             </div>
         </div>
         <!-- card 1 -->
+
         <!-- card 2 -->
         <div class="card card-side card-compact bg-color-6 pl-5">
             <figure class="flex-none">
@@ -111,6 +117,7 @@
             </div>
         </div>
         <!-- card 2 -->
+
         <!-- card 3 -->
         <div class="card card-side card-compact bg-color-6 pl-5">
             <figure class="flex-none">
@@ -129,6 +136,7 @@
             </div>
         </div>
         <!-- card 3 -->
+
         <!-- card 4 -->
         <div class="card card-side card-compact bg-color-6 pl-5">
             <figure class="flex-none">
@@ -147,6 +155,7 @@
             </div>
         </div>
         <!-- card 4 -->
+
         <!-- card 5 -->
         <div class="card card-side card-compact bg-color-6 pl-5">
             <figure class="flex-none">
@@ -165,6 +174,7 @@
             </div>
         </div>
         <!-- card 5 -->
+
         <!-- card 6 -->
         <div class="card card-side card-compact bg-color-6 pl-5">
             <figure class="flex-none">
@@ -183,8 +193,9 @@
             </div>
         </div>
         <!-- card 6 -->
-        
+
     </div>
 </div>
+<!-- daftar konsultasi tenaga ahli -->
 
 @endsection

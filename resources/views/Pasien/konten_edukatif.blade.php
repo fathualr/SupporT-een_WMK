@@ -8,12 +8,15 @@
 
 @section('main')
 
+<!-- halaman konten edukatif -->
     @if ($tipe === 'article')
         <!-- Bagian Artikel -->
         <div class="flex flex-col w-full h-full">
-            <div class=" bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
+            <div class="bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
 
                 <div class="flex items-center justify-between">
+
+                    <!-- profile user -->
                     <div class="flex items-center">
                         <img class="w-16 h-16 rounded-full mr-4" src=" {{ asset('images/jogging.png') }} " alt="Album" />
                         <div class="flex flex-col">
@@ -21,28 +24,35 @@
                             <span class="text-color-2 font-semibold">Author</span>
                         </div>
                     </div>
+                    <!-- profile user -->
+
+                    <!-- action -->
                     <div class="justify-self-end">
-                    <details class="dropdown dropdown-bottom dropdown-left">
-                        <summary class="btn btn-ghost">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            class="inline-block h-5 w-5 stroke-current">
-                            <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
-                        </svg>
-                        </summary>
-                        <ul class="menu dropdown-content bg-color-8 rounded-box z-[1] w-52 p-2 shadow">
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 2</a></li>
-                        </ul>
-                    </details>
+                        <details class="dropdown dropdown-bottom dropdown-left">
+                            <summary class="btn btn-ghost">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                class="inline-block h-5 w-5 stroke-current">
+                                <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                            </svg>
+                            </summary>
+                            <ul class="menu dropdown-content bg-color-8 rounded-box z-[1] w-52 p-2 shadow">
+                                <li><a>Item 1</a></li>
+                                <li><a>Item 2</a></li>
+                            </ul>
+                        </details>
                     </div>
+                    <!-- action -->
+
                 </div>
+
+                <!-- konten artikel -->
                 <div class="flex flex-col gap-4 pl-20">
                     <h1 class="text-3xl font-bold text-color-1">New Study Reveals Daily Weeks Can Significantly Improve Mental Health</h1>
                     <span class="text-color-2 text-center">23 September 2024</span>
@@ -73,7 +83,7 @@
                         bagi pikiran.
                     </p>
                 </div>
-
+                <!-- konten artikel -->
             </div>
         </div>
     
@@ -82,6 +92,7 @@
         <div class="flex flex-col w-full h-full">
             <div class=" bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">\
 
+                <!-- profile user -->
                 <div class="flex items-center">
                     <img
                         class="w-16 h-16 rounded-full mr-4"
@@ -92,14 +103,18 @@
                         <span class="text-color-2 font-semibold">Author</span>
                     </div>
                 </div>
+                <!-- profile user -->
+
+                <!-- konten video -->
                 <div class="flex flex-col gap-4 pl-20">
                     <h1 class="text-3xl font-bold text-color-1">
-                        New Study Reveals Daily Weeks Can Significantly Improve Mental Health</h1>
+                    New Study Reveals Daily Weeks Can Significantly Improve Mental Health</h1>
                     <span class="text-color-2 text-center">
                         23 September 2024
                     </span>
                     <iframe class="w-full aspect-video rounded-lg shadow-lg" src="https://www.youtube.com/embed/jwIWJIdpNFs?si=qeLaZN2hVmo1Pmey" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
+                    <!-- konten video -->
 
             </div>
         </div>

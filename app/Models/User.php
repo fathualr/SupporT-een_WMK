@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Pasien::class, 'id_user');
     }
+
+    public function konten()
+    {
+        return $this->hasMany(Konten::class, 'id_user');
+    }
 }
