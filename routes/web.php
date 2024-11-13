@@ -18,8 +18,8 @@ use App\Http\Controllers\{
     PendapatanController,
     AktivitasPositifController,
     KataKunciAktivitasController,
+    BalasanController,
 };
-
 
 Route::get('/', function () {
     return view('pasien/homepage', ['title' => 'SupporT-een']);
@@ -63,6 +63,8 @@ Route::get('/super-admin/pendapatan', [PendapatanController::class, 'adminPendap
 
 Route::get('/content-admin', [AdminController::class, 'contentAdmin']);
 Route::resource('/content-admin/konten-edukatif', KontenEdukatifController::class);
-Route::resource('/content-admin/forum-diskusi',DiskusiController::class);
+Route::resource('/content-admin/diskusi',DiskusiController::class);
+Route::get('/content-admin/diskusi/{id}/balasan', [DiskusiController::class, 'showBalasan'])->name('diskusi.showBalasan');
+Route::resource('/content-admin/balasan',BalasanController::class);
 Route::resource('/content-admin/aktivitas-positif',AktivitasPositifController::class);
 Route::resource('/content-admin/kata-kunci-aktivitas',KataKunciAktivitasController::class);
