@@ -14,20 +14,6 @@ use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
-    public function superAdmin()
-    {
-        return view('admin/dashboard_super', [
-            "title" => "Dashboard Super Admin"
-        ]);
-    }
-
-    public function contentAdmin()
-    {
-        return view('admin/dashboard_content', [
-            "title" => "Dashboard Content Admin"
-        ]);
-    }
-
     /**
      * Display a listing of the resource.
      */

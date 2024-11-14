@@ -17,7 +17,7 @@ class AktivitasPositifController extends Controller
     public function index()
     {
         $aktivitasPositif = AktivitasPositif::with('kataKunci')->paginate(10);
-        return view('admin/data_daftar_aktivitas_positif', [
+        return view('admin/data_aktivitas_positif', [
             "title" => "Data Aktivitas Positif",
             "aktivitasPositif" => $aktivitasPositif
         ]);

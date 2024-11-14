@@ -1,7 +1,14 @@
 @extends('layouts.main_admin2')
 
 @section('main')
+
 <div class="w-full p-5 rounded-2xl">
+
+    <a href="/content-admin/diskusi" class="btn btn-sm bg-color-3 text-color-putih hover:bg-opacity-75 border-0">
+        <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
+        Kembali
+    </a>
+
     <h1 class="font-bold text-3xl text-center">Detail Data Diskusi</h1>
 
     <div class="p-10">

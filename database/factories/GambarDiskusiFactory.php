@@ -22,7 +22,7 @@ class GambarDiskusiFactory extends Factory
     {
         return [
             'id_diskusi' => Diskusi::inRandomOrder()->first()->id, // Ambil ID diskusi secara acak
-            'gambar' => $this->faker->imageUrl(640, 480, 'discussion', true, 'Faker'), // URL gambar acak
+            'gambar' => 'image/dummy.png', // URL gambar acak
         ];
     }
 }

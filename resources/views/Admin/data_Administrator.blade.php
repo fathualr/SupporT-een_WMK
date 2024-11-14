@@ -37,7 +37,7 @@
                             <th>
                                 <div class="avatar">
                                     <div class="w-9 rounded-full">
-                                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                        <img src="{{ asset('storage/' . $admin->user->foto_profil) }}" />
                                     </div>
                                 </div>
                             </th>

@@ -14,16 +14,16 @@ class AktivitasPositifSeeder extends Seeder
     public function run(): void
     {
         DB::table('aktivitas_positif')->insert([
-            ['nama' => 'Meditasi', 'gambar' => 'storage/images/aktivitas-positif/meditation.svg'],
-            ['nama' => 'Olahraga', 'gambar' => 'storage/images/aktivitas-positif/sports.svg'],
-            ['nama' => 'Membaca Buku', 'gambar' => 'storage/images/aktivitas-positif/reading.svg'],
-            ['nama' => 'Berjalan Kaki', 'gambar' => 'storage/images/aktivitas-positif/walking.svg'],
-            ['nama' => 'Menulis Jurnal', 'gambar' => 'storage/images/aktivitas-positif/writing.svg'],
-            ['nama' => 'Berkebun', 'gambar' => 'storage/images/aktivitas-positif/planting.svg'],
-            ['nama' => 'Menggambar', 'gambar' => 'storage/images/aktivitas-positif/drawing.svg'],
-            ['nama' => 'Mendengarkan Musik', 'gambar' => 'storage/images/aktivitas-positif/listen-music.svg'],
-            ['nama' => 'Jogging', 'gambar' => 'storage/images/aktivitas-positif/jogging.svg'],
-            ['nama' => 'Bersepeda', 'gambar' => 'storage/images/aktivitas-positif/cycling.svg'],
+            ['nama' => 'Meditasi', 'gambar' => 'image/aktivitas-positif/meditation.svg'],
+            ['nama' => 'Olahraga', 'gambar' => 'image/aktivitas-positif/sports.svg'],
+            ['nama' => 'Membaca Buku', 'gambar' => 'image/aktivitas-positif/reading.svg'],
+            ['nama' => 'Berjalan Kaki', 'gambar' => 'image/aktivitas-positif/walking.svg'],
+            ['nama' => 'Menulis Jurnal', 'gambar' => 'image/aktivitas-positif/writing.svg'],
+            ['nama' => 'Berkebun', 'gambar' => 'image/aktivitas-positif/planting.svg'],
+            ['nama' => 'Menggambar', 'gambar' => 'image/aktivitas-positif/drawing.svg'],
+            ['nama' => 'Mendengarkan Musik', 'gambar' => 'image/aktivitas-positif/listen-music.svg'],
+            ['nama' => 'Jogging', 'gambar' => 'image/aktivitas-positif/jogging.svg'],
+            ['nama' => 'Bersepeda', 'gambar' => 'image/aktivitas-positif/cycling.svg'],
         ]);
     }
 }

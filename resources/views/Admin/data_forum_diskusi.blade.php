@@ -35,7 +35,7 @@
                                     <img class="w-6 h-6" src="{{ asset("icons/Info.svg")}}" alt="">
                                 </a>
                                 <a href="{{ route('diskusi.showBalasan', $diskusi->id) }}" class="btn bg-gray-100 text-gray-500 border-gray-500" href="#">
-                                    <img class="w-6 h-6" src="{{ asset("icons/xxx.svg")}}" alt="">
+                                    <img class="w-6 h-6" src="{{ asset("icons/response.svg")}}" alt="">
                                 </a>
                                 <button class="btn bg-red-100 text-red-500 border-red-500" onclick="confirmDeletion({{ $diskusi->id }})">
                                     <img class="w-6 h-6" src="{{ asset("icons/Waste.svg")}}" alt="">

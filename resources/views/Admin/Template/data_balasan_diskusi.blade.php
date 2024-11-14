@@ -3,6 +3,14 @@
 @section('main')
 
 <div class="flex flex-col gap-4">
+
+    <div>
+        <a href="/content-admin/diskusi" class="btn btn-sm bg-color-3 text-color-putih hover:bg-opacity-75 border-0">
+            <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
+            Kembali
+        </a>
+    </div>
+
     <h1 class="text-[2rem] text-color-1 font-bold">Data Balasan Diskusi - {{ $diskusi->id }}</h1>
 
     <!-- tabel data balasan -->

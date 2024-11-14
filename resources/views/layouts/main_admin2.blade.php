@@ -25,8 +25,8 @@
                 @csrf
                 @method('POST')
                 
-                <button class="btn w-fit text-white bg-color-3 border-0 font-semibold px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
-                    <span>Logout</span>
+                <button class="btn w-[150px] text-white bg-color-3 border-0 font-semibold px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-xl">
+                    <span class="font-medium">Logout</span>
                 </button>
 
             </form>

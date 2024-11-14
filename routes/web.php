@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     Auth\AuthController,
+    MainController,
     AdminController,
     PasienController,
     TenagaAhliController,
@@ -54,7 +55,7 @@ Route::get('/tenaga-ahli/percakapan-konsultasi', [KonsultasiController::class, '
 Route::get('/tenaga-ahli/pendapatan', [PendapatanController::class, 'tenagaAhliPendapatan']);
 
 // Admin
-Route::get('/super-admin', [AdminController::class, 'superAdmin']);
+Route::get('/super-admin', [MainController::class, 'superAdmin']);
 Route::resource('/super-admin/user-admin', AdminController::class);
 Route::resource('/super-admin/user-pasien', PasienController::class);
 Route::resource('/super-admin/user-tenaga-ahli', TenagaAhliController::class);
@@ -62,7 +63,7 @@ Route::resource('/super-admin/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikan
 Route::resource('/super-admin/transaksi', TransaksiController::class);
 Route::get('/super-admin/pendapatan', [PendapatanController::class, 'adminPendapatan']);
 
-Route::get('/content-admin', [AdminController::class, 'contentAdmin']);
+Route::get('/content-admin', [MainController::class, 'contentAdmin']);
 Route::resource('/content-admin/konten-edukatif', KontenEdukatifController::class);
 Route::resource('/content-admin/kata-kunci-konten', KataKunciKontenController::class);
 Route::resource('/content-admin/diskusi',DiskusiController::class);

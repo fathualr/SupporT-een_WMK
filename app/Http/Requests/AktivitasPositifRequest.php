@@ -24,8 +24,8 @@ class AktivitasPositifRequest extends FormRequest
         return [
             'nama' => 'required|string|max:255',
             'gambar' => $this->isMethod('post') 
-                ? 'required|image|mimes:jpeg,png,jpg|max:2048' // Required saat store
-                : 'nullable|image|mimes:jpeg,png,jpg|max:2048',  // Nullable saat update
+                ? 'required|image|mimes:jpeg,png,jpg,svg|max:2048' // Required saat store
+                : 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',  // Nullable saat update
         ];
     }
 

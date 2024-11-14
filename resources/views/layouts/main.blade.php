@@ -23,8 +23,8 @@
 
             @if($title != "Login" && $title != "Registrasi")
                 @guest
-                    <a href="/login" class="btn ms-auto w-fit text-white bg-color-3 border-0 px-8 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-2xl">
-                        <span>Masuk</span>
+                    <a href="/login" class="btn ms-auto w-[150px] text-white bg-color-3 border-0 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-xl">
+                        <span class="font-medium">Masuk</span>
                     </a>
                 @else
                     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" xmlns="http://www.w3.org/2000/svg" 

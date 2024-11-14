@@ -14,7 +14,7 @@
                 <img class="w-10 h-10" src="{{ asset('icons/People.svg') }}" alt="">
                 <span class="text-base text-color-1">Total Pasien</span>
                 <div class="card-actions items-center justify-between">
-                    <span class="text-[2.5rem] text-color-1 font-bold">12.000</span>
+                    <span class="text-[2.5rem] text-color-1 font-bold">{{ $totalPasien }}</span>
                     <button class="btn btn-ghost">
                         <img class="w-[30xp] h-[30px]" src="{{ asset('icons/arrow.svg') }}" alt="">
                     </button>
@@ -29,7 +29,7 @@
                 <img class="w-10 h-10" src="{{ asset('icons/Medical_Doctor.svg') }}" alt="">
                 <span class="text-base text-color-1">Total Tenaga Ahli</span>
                 <div class="card-actions items-center justify-between">
-                    <span class="text-[2.5rem] text-color-1 font-bold">12.000</span>
+                    <span class="text-[2.5rem] text-color-1 font-bold">{{ $totalTenagaAhli }}</span>
                     <button class="btn btn-ghost">
                         <img class="w-[30xp] h-[30px]" src="{{ asset('icons/arrow.svg') }}" alt="">
                     </button>
@@ -44,7 +44,7 @@
                 <img class="w-10 h-10" src="{{ asset('icons/Manager.svg') }}" alt="">
                 <span class="text-base text-color-1">Total Admin</span>
                 <div class="card-actions items-center justify-between">
-                    <span class="text-[2.5rem] text-color-1 font-bold">12.000</span>
+                    <span class="text-[2.5rem] text-color-1 font-bold">{{ $totalAdmin }}</span>
                     <button class="btn btn-ghost">
                         <img class="w-[30xp] h-[30px]" src="{{ asset('icons/arrow.svg') }}" alt="">
                     </button>
@@ -59,7 +59,9 @@
                 <img class="w-10 h-10" src="{{ asset('icons/Purchase_Order.svg') }}" alt="">
                 <span class="text-base text-color-1">Total Transaksi</span>
                 <div class="card-actions items-center justify-between">
-                    <span class="text-[2.5rem] text-color-1 font-bold">12.000</span>
+                    <span class="text-[2.5rem] text-color-1 font-bold">
+                        {{-- {{ $totalTransaksi }} --}}
+                    </span>
                     <button class="btn btn-ghost">
                         <img class="w-[30xp] h-[30px]" src="{{ asset('icons/arrow.svg') }}" alt="">
                     </button>
