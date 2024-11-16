@@ -44,4 +44,21 @@ class KontenEdukatif extends Model
     {
         return $this->tipe === 'video';
     }
+    public function convertToEmbedLink($link)
+    {
+        // Cek apakah link adalah YouTube shortened URL (youtu.be)
+        if (preg_match('/youtu\.be\/([a-zA-Z0-9\-_]+)/', $link, $matches)) {
+            // Jika ya, ambil video ID dan buat link embed
+            return 'https://www.youtube.com/embed/' . $matches[1];
+        }
+
+        // Cek apakah link adalah URL YouTube standar (youtube.com/watch?v=...)
+        if (preg_match('/youtube\.com\/(?:watch\?v=|embed\/|v\/)([a-zA-Z0-9\-_]+)/', $link, $matches)) {
+            // Jika ya, buat link embed
+            return 'https://www.youtube.com/embed/' . $matches[1];
+        }
+
+        // Jika tidak sesuai, kembalikan link aslinya
+        return $link;
+    }
 }

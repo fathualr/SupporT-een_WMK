@@ -13,28 +13,38 @@ use Illuminate\Support\Facades\Storage;
 class KontenEdukatifController extends Controller
 {
 
-    public function kontenEdukatif($tipe = null)
+    public function kontenEdukatif(Request $request, $id = null)
     {
-        return view('pasien/konten_edukatif', [
-            "title" => "Konten Edukatif",
-            "tipe" => null
-        ]);
-    }
-    
-    public function kontenArtikel()
-    {
-        return view('pasien/konten_artikel', [
-            "title" => "Konten Artikel"
-        ]);
-    }
-    
-    public function kontenVideo()
-    {
-        return view('pasien/konten_video', [
-            "title" => "Konten Video"
-        ]);
-    }
+        $search = $request->input('search');
 
+        $kontenList = KontenEdukatif::with(['user', 'kataKunci'])
+            ->orderBy('created_at', 'desc');
+
+        if ($search) {
+            $kontenList->where(function ($query) use ($search) {
+                $query->where('judul', 'like', '%' . $search . '%')
+                    ->orWhere('tipe', 'like', '%' . $search . '%')
+                    ->orWhereHas('user', function ($userQuery) use ($search) {
+                        $userQuery->where('nama', 'like', '%' . $search . '%');
+                    })
+                    ->orWhereHas('kataKunci', function ($kataKunciQuery) use ($search) {
+                        $kataKunciQuery->where('nama', 'like', '%' . $search . '%');
+                    });
+            });
+        }
+
+        $kontenList = $kontenList->paginate(10);
+
+        $selectedKonten = $id ? KontenEdukatif::with('user')->find($id) : null;
+
+        return view('pasien/konten_edukatif', [
+            'title' => 'Konten Edukatif',
+            'kontenList' => $kontenList,
+            'selectedKonten' => $selectedKonten,
+            'search' => $search
+        ]);
+    }
+    
     public function tenagaAhliKontenEdukatif($tipe = null)
     {
         return view('tenagaAhli/kelola_konten_edukatif', [
@@ -108,10 +118,14 @@ class KontenEdukatifController extends Controller
 
             $kontenEdukatif = KontenEdukatif::create($kontenData);
 
-            if ($kontenEdukatif->tipe == 'video' && $request->has('link_youtube')) {
-                $kontenEdukatif->update(['link_youtube' => $request->input('link_youtube')]);
-            } elseif ($kontenEdukatif->tipe == 'artikel' && $request->has('isi_artikel')) {
-                $kontenEdukatif->update(['isi_artikel' => $request->input('isi_artikel')]);
+            if ($request->tipe == 'video' && $request->has('link_youtube')) {
+                // Konversi link YouTube
+                $kontenData['link_youtube'] = $kontenEdukatif->convertToEmbedLink($request->link_youtube);
+            }
+        
+            // Jika tipe adalah 'artikel', proses artikel
+            if ($request->tipe == 'artikel' && $request->has('isi_artikel')) {
+                $kontenData['isi_artikel'] = $request->input('isi_artikel');
             }
 
             if ($request->has('kata_kunci') && !empty($request->input('kata_kunci'))) {
@@ -193,10 +207,14 @@ class KontenEdukatifController extends Controller
                 $kontenData['thumbnail'] = $thumbnail;
             }
 
-            if ($request->tipe == 'video') {
-                $kontenData['link_youtube'] = $request->link_youtube;
-            } elseif ($request->tipe == 'artikel') {
-                $kontenData['isi_artikel'] = $request->isi_artikel;
+            if ($request->tipe == 'video' && $request->has('link_youtube')) {
+                // Konversi link YouTube
+                $kontenData['link_youtube'] = $kontenEdukatif->convertToEmbedLink($request->link_youtube);
+            }
+        
+            // Jika tipe adalah 'artikel', proses artikel
+            if ($request->tipe == 'artikel' && $request->has('isi_artikel')) {
+                $kontenData['isi_artikel'] = $request->input('isi_artikel');
             }
 
             $kontenEdukatif->update($kontenData);

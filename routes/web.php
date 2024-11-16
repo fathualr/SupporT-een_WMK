@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     Auth\AuthController,
+    MainController,
     AdminController,
     PasienController,
     TenagaAhliController,
@@ -32,11 +33,11 @@ Route::post('registration', [AuthController::class, 'registration'])->name('regi
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Pasien
-Route::get('/chatbot', [ChatbotController::class, 'chatbot']);
+Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
+Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
+
 Route::get('/jurnal-harian', [JurnalHarianController::class, 'jurnalHarian']);
-Route::get('/konten-edukatif', [KontenEdukatifController::class, 'kontenEdukatif']);
-Route::get('/konten-edukatif/artikel', [KontenEdukatifController::class, 'kontenArtikel']);
-Route::get('/konten-edukatif/video', [KontenEdukatifController::class, 'kontenVideo']);
+Route::get('/konten-edukatif/{id?}', [KontenEdukatifController::class, 'kontenEdukatif'])->name('kontenEdukatif');
 Route::get('/daftar-aktivitas-pribadi', [DaftarAktivitasController::class, 'daftarAktivitasPribadi']);
 Route::get('/daftar-aktivitas-pribadi/kustomisasi', [DaftarAktivitasController::class, 'kustomisasiAktivitasPribadi']);
 Route::get('/forum', [ForumController::class, 'forum']);
@@ -53,11 +54,8 @@ Route::get('/tenaga-ahli/kelola-konten-edukatif/tambah-konten', [KontenEdukatifC
 Route::get('/tenaga-ahli/percakapan-konsultasi', [KonsultasiController::class, 'tenagaAhliKonsultasi']);
 Route::get('/tenaga-ahli/pendapatan', [PendapatanController::class, 'tenagaAhliPendapatan']);
 
-Route::get('/chatbot', [ChatbotController::class, 'index'])->name('chatbot.index');
-Route::get('/jurnal-harian', [JournalController::class, 'index'])->name('journal.index');
-
 // Admin
-Route::get('/super-admin', [AdminController::class, 'superAdmin']);
+Route::get('/super-admin', [MainController::class, 'superAdmin']);
 Route::resource('/super-admin/user-admin', AdminController::class);
 Route::resource('/super-admin/user-pasien', PasienController::class);
 Route::resource('/super-admin/user-tenaga-ahli', TenagaAhliController::class);
@@ -65,7 +63,7 @@ Route::resource('/super-admin/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikan
 Route::resource('/super-admin/transaksi', TransaksiController::class);
 Route::get('/super-admin/pendapatan', [PendapatanController::class, 'adminPendapatan']);
 
-Route::get('/content-admin', [AdminController::class, 'contentAdmin']);
+Route::get('/content-admin', [MainController::class, 'contentAdmin']);
 Route::resource('/content-admin/konten-edukatif', KontenEdukatifController::class);
 Route::resource('/content-admin/kata-kunci-konten', KataKunciKontenController::class);
 Route::resource('/content-admin/diskusi',DiskusiController::class);
