@@ -28,8 +28,11 @@
 
             <label class="form-control w-full mt-5">
                 <span class="label-text font-medium text-base pb-1">Password</span>
-                <input type="password" name="password" placeholder="Isi jika ingin diubah" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
+                <input type="password" name="password" id="passwordInput" placeholder="Isi jika ingin diubah" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg hidden" />
             </label>
+            <button type="button" id="toggleButton" class="btn outline outline-1 outline-color-5 bg-color-6 rounded-lg mt-2 w-full">
+                Tampilkan Input
+            </button>
             @error('password')
                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
             @enderror
@@ -92,5 +95,22 @@
     </div>
 
 </div>
+
+<script>
+    // Tangkap elemen tombol dan input
+    const toggleButton = document.getElementById('toggleButton');
+    const passwordInput = document.getElementById('passwordInput');
+
+    // Tambahkan event listener ke tombol
+    toggleButton.addEventListener('click', () => {
+        if (passwordInput.classList.contains('hidden')) {
+            passwordInput.classList.remove('hidden'); // Tampilkan input
+            toggleButton.textContent = 'Sembunyikan Input'; // Ubah teks tombol
+        } else {
+            passwordInput.classList.add('hidden'); // Sembunyikan input
+            toggleButton.textContent = 'Tampilkan Input'; // Kembalikan teks tombol
+        }
+    });
+</script>
 
 @endsection

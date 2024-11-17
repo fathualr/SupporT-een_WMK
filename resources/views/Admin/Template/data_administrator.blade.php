@@ -51,6 +51,16 @@
             <input readonly value="{{ $admin->admin_role }}" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
         </label>
 
+        <label class="form-control w-full pt-5">
+            <span class="label-text font-medium text-base pb-1">Tanggal Dibuat</span>
+            <input readonly value="{{ $admin->user->created_at->format('d M Y, H:i') }}" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
+        </label>
+
+        <label class="form-control w-full pt-5">
+            <span class="label-text font-medium text-base pb-1">Terakhir Update</span>
+            <input readonly value="{{ $admin->user->updated_at->format('d M Y, H:i') }}" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
+        </label>
+
     </div>
 
 </div>

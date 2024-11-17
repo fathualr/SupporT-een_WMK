@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class User extends Authenticatable
@@ -49,6 +51,17 @@ class User extends Authenticatable
         ];
     }
 
+    public function isPremium()
+    {
+        // Cek langganan aktif
+        $activeSubscription = DB::table('subscriptions')
+            ->where('id_user', $this->id) // ID pengguna ini
+            ->where('ends_at', '>=', Carbon::now()) // Masih dalam masa berlaku
+            ->exists();
+
+        return $activeSubscription;
+    }
+    
     public function admin()
     {
         return $this->hasOne(Admin::class, 'id_user');
@@ -66,6 +79,6 @@ class User extends Authenticatable
 
     public function konten()
     {
-        return $this->hasMany(Konten::class, 'id_user');
+        return $this->hasMany(KontenEdukatif::class, 'id_user');
     }
 }

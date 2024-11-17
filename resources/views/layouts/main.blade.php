@@ -15,23 +15,60 @@
 <body class="font-poppins text-color-1">
 
     <header class="sticky top-0 z-[999]">
-        <div class="flex flex-row h-20 py-[15px] px-[50px] bg-color-8  border-b border-color-4 ">
+        <div class="flex flex-row justify-between h-20 py-[15px] px-[50px] bg-color-8  border-b border-color-4 ">
             <a href="/" class="flex flex-row">
                 <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
 
+            @guest
+            @else
+                @if(Auth::user()->role === 'pasien')
+                <div class="flex items-center justify-center select-none">
+                    <div id="card" class="absolute -top-[310px] left-1/2 transform -translate-x-1/2 -translate-y-1 bg-color-1 shadow-lg rounded-lg p-3 max-w-[500px] text-center transition-all duration-300 text-color-putih hover:translate-y-80">
+                        <!-- Konten Card -->
+                        <!-- Badge atau Tagline -->
+                        <div class="flex justify-center mb-4">
+                            <span class="px-3 py-1 text-xs font-bold uppercase bg-color-3 text-color-putih rounded-full shadow-sm">
+                                Spesial Premium
+                            </span>
+                        </div>
+                        <p class="mb-4">
+                            Nikmati fitur eksklusif kami dengan berlangganan. Dapatkan akses premium hari ini dan tingkatkan pengalaman Anda!
+                        </p>
+                        <div class="flex justify-center mb-6">
+                            <svg class="flex-shrink-0 w-20 h-20 text-color-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                            </svg>
+                        </div>
+                        <label for="membership" class="btn w-full py-2 px-4 text-2xl font-bold text-color-1 rounded-lg bg-color-6 hover:bg-color-5 transition duration-300">
+                            Berlangganan Sekarang!
+                        </label>
+                        <div class="divider mb-0"></div>
+                        <div class="flex absolute bg-color-1 -bottom-10 left-1/2 transform -translate-x-1/2 px-3 pt-0 pb-1 rounded-lg shadow-lg">
+                            <p class="flex font-medium text-3xl items-center">PREM</p>
+                            <img class="h-[50px] w-[50px]" src="{{ asset('icons/Guarantee.svg') }}">
+                            <p class="flex font-medium text-3xl items-center">UM</p>
+                        </div>
+                    </div>
+                </div>
+
+                @include('Components.subscription')
+                
+                @endif
+            @endguest
+
             @if($title != "Login" && $title != "Registrasi")
                 @guest
-                    <a href="/login" class="btn ms-auto w-[150px] text-white bg-color-3 border-0 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-xl">
+                    <a href="/login" class="btn w-[150px] text-white bg-color-3 border-0 hover:bg-color-6 hover:text-color-1 hover:border hover:border-color-4 text-xl">
                         <span class="font-medium">Masuk</span>
                     </a>
                 @else
                     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" xmlns="http://www.w3.org/2000/svg" 
-                    class="btn flex flex-col justify-center place-content-start justify ms-auto w-[250px] px-[10px] text-color-1 bg-color-6 border border-color-6 hover:bg-color-6  hover:border hover:border-color-5">
+                    class="btn flex flex-col justify-center place-content-start justify w-[250px] px-[10px] text-color-1 bg-color-6 border border-color-6 hover:bg-color-6  hover:border hover:border-color-5">
                         <div class="avatar self-center">
                             <div class="w-[30px] rounded-full">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                <img src="{{ asset('storage/' . Auth::user()->foto_profil) }}" />
                             </div>
                         </div>
                         <div class="flex flex-col justify-around me-auto h-full grow text-left">
@@ -77,6 +114,8 @@
         </main>
 
     </div>
+
+
 
     <footer class="text-color-8">
         <div class="grid grid-cols-4 bg-color-1 h-[250px] px-[150px] pt-[50px]">
