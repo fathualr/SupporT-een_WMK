@@ -33,11 +33,11 @@ Route::post('registration', [AuthController::class, 'registration'])->name('regi
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Pasien
-Route::get('/chatbot', [ChatbotController::class, 'chatbot']);
+Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
+Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
+
 Route::get('/jurnal-harian', [JurnalHarianController::class, 'jurnalHarian']);
-Route::get('/konten-edukatif', [KontenEdukatifController::class, 'kontenEdukatif']);
-Route::get('/konten-edukatif/artikel', [KontenEdukatifController::class, 'kontenArtikel']);
-Route::get('/konten-edukatif/video', [KontenEdukatifController::class, 'kontenVideo']);
+Route::get('/konten-edukatif/{id?}', [KontenEdukatifController::class, 'kontenEdukatif'])->name('kontenEdukatif');
 Route::get('/daftar-aktivitas-pribadi', [DaftarAktivitasController::class, 'daftarAktivitasPribadi']);
 Route::get('/daftar-aktivitas-pribadi/kustomisasi', [DaftarAktivitasController::class, 'kustomisasiAktivitasPribadi']);
 Route::get('/forum', [ForumController::class, 'forum']);
