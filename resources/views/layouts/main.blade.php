@@ -16,14 +16,15 @@
 
     <header class="sticky top-0 z-[999]">
         <div class="flex flex-row justify-between h-20 py-[15px] px-[50px] bg-color-8  border-b border-color-4 ">
-            <a href="/" class="flex flex-row">
+            <a href="{{ Auth::check() && Auth::user()->role === 'tenaga ahli' ? '/tenaga-ahli' : '/' }}" class="flex flex-row">
                 <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
 
+            <div class="flex items-center justify-center select-none">
+                @include('Components.flash-message')
             @auth
                 @if(Auth::user()->role === 'pasien')
-                <div class="flex items-center justify-center select-none">
                     <div id="card" class="absolute -top-[310px] left-1/2 transform -translate-x-1/2 -translate-y-1 bg-color-1 shadow-lg rounded-lg p-3 max-w-[500px] text-center transition-all duration-300 text-color-putih hover:translate-y-80">
                         <!-- Konten Card -->
                         <!-- Badge atau Tagline -->
@@ -50,12 +51,12 @@
                             <p class="flex font-medium text-3xl items-center">UM</p>
                         </div>
                     </div>
-                </div>
-
-                @include('Components.subscription')
-                
+                    
+                    @include('Components.subscription')
+                    
                 @endif
             @endauth
+            </div>
 
             @if($title != "Login" && $title != "Registrasi")
                 @guest
@@ -93,6 +94,9 @@
                     </div>
     
                 @endguest
+            @else
+                <!-- Div Placeholder -->
+                <div class="w-[250px]"></div>
             @endif
 
         </div>

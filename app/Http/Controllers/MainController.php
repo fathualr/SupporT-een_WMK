@@ -12,6 +12,20 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+    public function index()
+    {
+        return view('pasien/homepage', [
+            "title" => "SupporT-een"
+        ]);
+    }
+
+    public function tenagaAhli()
+    {
+        return view('tenagaAhli/homepage', [
+            "title" => "SupporT-een"
+        ]);
+    }
+
     public function superAdmin()
     {
         $totalPasien = Pasien::count();
@@ -26,7 +40,6 @@ class MainController extends Controller
             "totalTenagaAhli" => $totalTenagaAhli,
             // "totalTransaksi" => $totalTransaksi,
         ]);
-
     }
     
 
