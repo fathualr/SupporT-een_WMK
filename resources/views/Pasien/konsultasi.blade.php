@@ -73,118 +73,27 @@
 
 @section('main')
 
+@section('main')
 <div class="w-full h-full">
     <div class="grid grid-cols-2 gap-4">
-        <!-- card 1 -->
+        @foreach ($tenagaAhli as $ahli)
         <div class="card card-side card-compact bg-color-6">
             <figure class="flex-none">
                 <img
                 class="w-[150px] h-[150px] rounded-2xl"
                 src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                alt="Movie" />
+                alt="Profile Image" />
             </figure>
             <div class="flex-1 card-body">
-                <h2 class="card-title text-color-1 font-bold">Dr. Mirza Rumah Sakit (Earth-1610)</h2>
-                <p class="text-color-2">Spesialisasi</p>
+                <h2 class="card-title text-color-1 font-bold">{{ $ahli->user->nama}}</h2>
+                <p class="text-color-2">{{ $ahli->spesialisasi }}</p>
                 <div class="card-actions justify-start">
-                    <p class="font-semibold text-color-1">Rp.79.000</p>
+                    <p class="font-semibold text-color-1">Rp.{{ number_format($ahli->biaya_konsultasi, 0, ',', '.') }}</p>
                     <button class="btn bg-color-3 border-[1px] border-color-5 text-white w-full">Chat</button>
                 </div>
             </div>
         </div>
-        <!-- card 1 -->
-        <!-- card 2 -->
-        <div class="card card-side card-compact bg-color-6 pl-5">
-            <figure class="flex-none">
-                <img
-                class="w-[150px] h-[150px] rounded-2xl"
-                src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                alt="Movie" />
-            </figure>
-            <div class="flex-1 card-body">
-                <h2 class="card-title text-color-1 font-bold">Dr. Mirza Rumah Sakit (Earth-1610)</h2>
-                <p class="text-color-2">Spesialisasi</p>
-                <div class="card-actions justify-start">
-                    <p class="font-semibold text-color-1">Rp.79.000</p>
-                    <button class="btn bg-color-3 border-[1px] border-color-5 text-white w-full">Chat</button>
-                </div>
-            </div>
-        </div>
-        <!-- card 2 -->
-        <!-- card 3 -->
-        <div class="card card-side card-compact bg-color-6 pl-5">
-            <figure class="flex-none">
-                <img
-                class="w-[150px] h-[150px] rounded-2xl"
-                src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                alt="Movie" />
-            </figure>
-            <div class="flex-1 card-body">
-                <h2 class="card-title text-color-1 font-bold">Dr. Mirza Rumah Sakit (Earth-1610)</h2>
-                <p class="text-color-2">Spesialisasi</p>
-                <div class="card-actions justify-start">
-                    <p class="font-semibold text-color-1">Rp.79.000</p>
-                    <button class="btn bg-color-3 border-[1px] border-color-5 text-white w-full">Chat</button>
-                </div>
-            </div>
-        </div>
-        <!-- card 3 -->
-        <!-- card 4 -->
-        <div class="card card-side card-compact bg-color-6 pl-5">
-            <figure class="flex-none">
-                <img
-                class="w-[150px] h-[150px] rounded-2xl"
-                src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                alt="Movie" />
-            </figure>
-            <div class="flex-1 card-body">
-                <h2 class="card-title text-color-1 font-bold">Dr. Mirza Rumah Sakit (Earth-1610)</h2>
-                <p class="text-color-2">Spesialisasi</p>
-                <div class="card-actions justify-start">
-                    <p class="font-semibold text-color-1">Rp.79.000</p>
-                    <button class="btn bg-color-3 border-[1px] border-color-5 text-white w-full">Chat</button>
-                </div>
-            </div>
-        </div>
-        <!-- card 4 -->
-        <!-- card 5 -->
-        <div class="card card-side card-compact bg-color-6 pl-5">
-            <figure class="flex-none">
-                <img
-                class="w-[150px] h-[150px] rounded-2xl"
-                src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                alt="Movie" />
-            </figure>
-            <div class="flex-1 card-body">
-                <h2 class="card-title text-color-1 font-bold">Dr. Mirza Rumah Sakit (Earth-1610)</h2>
-                <p class="text-color-2">Spesialisasi</p>
-                <div class="card-actions justify-start">
-                    <p class="font-semibold text-color-1">Rp.79.000</p>
-                    <button class="btn bg-color-3 border-[1px] border-color-5 text-white w-full">Chat</button>
-                </div>
-            </div>
-        </div>
-        <!-- card 5 -->
-        <!-- card 6 -->
-        <div class="card card-side card-compact bg-color-6 pl-5">
-            <figure class="flex-none">
-                <img
-                class="w-[150px] h-[150px] rounded-2xl"
-                src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-                alt="Movie" />
-            </figure>
-            <div class="flex-1 card-body">
-                <h2 class="card-title text-color-1 font-bold">Dr. Mirza Rumah Sakit (Earth-1610)</h2>
-                <p class="text-color-2">Spesialisasi</p>
-                <div class="card-actions justify-start">
-                    <p class="font-semibold text-color-1">Rp.79.000</p>
-                    <button class="btn bg-color-3 border-[1px] border-color-5 text-white w-full">Chat</button>
-                </div>
-            </div>
-        </div>
-        <!-- card 6 -->
-        
+        @endforeach
     </div>
 </div>
-
 @endsection
