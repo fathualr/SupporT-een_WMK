@@ -21,8 +21,7 @@
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
 
-            @guest
-            @else
+            @auth
                 @if(Auth::user()->role === 'pasien')
                 <div class="flex items-center justify-center select-none">
                     <div id="card" class="absolute -top-[310px] left-1/2 transform -translate-x-1/2 -translate-y-1 bg-color-1 shadow-lg rounded-lg p-3 max-w-[500px] text-center transition-all duration-300 text-color-putih hover:translate-y-80">
@@ -56,7 +55,7 @@
                 @include('Components.subscription')
                 
                 @endif
-            @endguest
+            @endauth
 
             @if($title != "Login" && $title != "Registrasi")
                 @guest
@@ -99,9 +98,9 @@
         </div>
     </header>
 
-    <div class="{{ in_array($title, ['SupporT-een', 'Login', 'Registrasi']) ? 'min-h-[calc(100vh-80px)]' : 'h-[calc(100vh-80px)]' }} flex w-full bg-color-8">
+    <div class="{{ in_array($title, ['SupporT-een', 'Login', 'Registrasi', 'Mitra']) ? 'min-h-[calc(100vh-80px)]' : 'h-[calc(100vh-80px)]' }} flex w-full bg-color-8">
 
-        <aside class="w-2/5 {{ in_array($title, ['SupporT-een', 'Login', 'Registrasi']) ? '' : 'overflow-y-auto' }}">
+        <aside class="w-2/5 {{ in_array($title, ['SupporT-een', 'Login', 'Registrasi', 'Mitra']) ? '' : 'overflow-y-auto' }}">
             <!-- Konten aside -->
             @yield('aside')
         </aside>
@@ -115,10 +114,8 @@
 
     </div>
 
-
-
     <footer class="text-color-8">
-        <div class="grid grid-cols-4 bg-color-1 h-[250px] px-[150px] pt-[50px]">
+        <div class="grid grid-cols-4 bg-color-1 min-h-[250px] h-fit px-[150px] pt-[50px]">
             <nav class="pr-5">
                 <p class="text-xl font-semibold mb-[10px]">Tentang Aplikasi</p>
                 <table class="p">
@@ -138,14 +135,14 @@
                 <p class="text-xl font-semibold mb-[10px]">Pintasan Aplikasi</p>
                 <div class="grid grid-cols-2">
                     <nav class="flex flex-col">
-                        <a href="" class="link link-hover">Chatbot</a>
-                        <a href="" class="link link-hover">Jurnal harian</a>
-                        <a href="" class="link link-hover">Konten Edukasi</a>
+                        <a href="/chatbot" class="link link-hover">Chatbot</a>
+                        <a href="/jurnal-harian" class="link link-hover">Jurnal harian</a>
+                        <a href="/konten-edukatif" class="link link-hover">Konten Edukatif</a>
                     </nav>
                     <nav class="flex flex-col">
-                        <a href="" class="link link-hover">Daftar aktivitas</a>
-                        <a href="" class="link link-hover">Forum diskusi</a>
-                        <a href="" class="link link-hover">Konsultasi</a>
+                        <a href="/daftar-aktivitas-pribadi" class="link link-hover">Daftar aktivitas</a>
+                        <a href="/forum" class="link link-hover">Forum diskusi</a>
+                        <a href="/konsultasi" class="link link-hover">Konsultasi</a>
                     </nav>
                 </div>
             </nav>
@@ -169,7 +166,7 @@
                 </li>
                 <li class="flex flex-col">
                     <p class="text-base font-semibold mb-1">Anda seorang tenaga ahli kejiwaan?</p>
-                    <a href="" class="btn btn-xs flex h-[30px] w-[100px] bg-color-8 text-color-9 text-color-1 hover:bg-color-6 border-color-4">
+                    <a href="/mitra" class="btn btn-xs flex h-[30px] w-[100px] bg-color-8 text-color-9 text-color-1 hover:bg-color-6 border-color-4">
                         <img src=" {{ asset('icons/doctor-department.png') }} " alt="" class="h-4 w-4">
                         Daftar
                     </a>

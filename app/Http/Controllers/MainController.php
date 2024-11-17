@@ -45,4 +45,11 @@ class MainController extends Controller
             "totalAktivitasPositif" => $totalAktivitasPositif,
         ]);
     }
+
+    public function mitra()
+    {
+        return view('kemitraan', [
+            "title" => "Mitra"
+        ]);
+    }
 }

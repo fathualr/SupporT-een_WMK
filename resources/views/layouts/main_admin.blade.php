@@ -41,6 +41,7 @@
             <!-- Konten aside -->
             <div class="flex flex-col gap-5 w-full h-full">
 
+                @auth
                 <div class="flex items-center bg-color-putih border-[1px] border-color-4 px-4 py-2 rounded-2xl gap-2">
                     <div class="avatar">
                         <div class="w-[30px] rounded-full">
@@ -55,6 +56,7 @@
                     </div>
                 </div>
                 <!-- profile -->
+                @endauth
 
                 <div class="flex bg-color-putih border-[1px] border-color-4 py-2 rounded-2xl gap-2 h-full">
                     <ul class="menu w-full text-base text-color-1">
