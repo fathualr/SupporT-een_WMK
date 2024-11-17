@@ -7,393 +7,491 @@
 
 @extends('layouts.main')
 
+
 @section('aside')
-<div class="flex flex-col items-center justify-start w-full h-auto p-4">
-<div class="flex items-center justify-center py-8 px-4">
-
-    <div class="max-w-sm w-full shadow-lg">
-    <div class="md:p-8 p-5 dark:bg-gray-800 bg-white rounded-t">
-        <div class="px-4 flex items-center justify-between">
-            <span  tabindex="0" class="focus:outline-none  text-base font-bold dark:text-gray-100 text-gray-800">October 2024</span>
-            <div class="flex items-center">
-                <button aria-label="calendar backward" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <polyline points="15 6 9 12 15 18" />
-                </svg>
-            </button>
-            <button aria-label="calendar forward" class="focus:text-gray-400 hover:text-gray-400 ml-3 text-gray-800 dark:text-gray-100"> 
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler  icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <polyline points="9 6 15 12 9 18" />
-                </svg>
-            </button>
-
-            </div>
-        </div>
-        <div class="flex items-center justify-between pt-12 overflow-x-auto">
-            <table class="w-full">
-                <thead>
-                    <tr>
-                        <th>
-                            <div class="w-full flex justify-center">
-                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">Mo</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="w-full flex justify-center">
-                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">Tu</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="w-full flex justify-center">
-                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">We</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="w-full flex justify-center">
-                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">Th</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="w-full flex justify-center">
-                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">Fr</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="w-full flex justify-center">
-                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">Sa</p>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="w-full flex justify-center">
-                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">Su</p>
-                            </div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="pt-6">
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center"></div>
-                        </td>
-                        <td class="pt-6">
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center"></div>
-                        </td>
-                        <td class="pt-6">
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">1</p>
-                            </div>
-                        </td>
-                        <td class="pt-6">
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">2</p>
-                            </div>
-                        </td>
-                        <td class="pt-6">
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">3</p>
-                            </div>
-                        </td>
-                        <td class="pt-6">
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100">4</p>
-                            </div>
-                        </td>
-                        <td class="pt-6">
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100">6</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">6</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">7</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">8</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">9</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">10</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100">11</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100">12</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">13</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">14</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">15</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">16</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">17</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100">18</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100">19</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="w-full h-full">
-                                <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                    <a  role="link" tabindex="0" class="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:bg-indigo-500 hover:bg-indigo-500 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-indigo-700 rounded-full">20</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">21</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">22</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">23</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">24</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100">25</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100">26</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">27</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">28</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">28</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">30</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                                <p class="text-base text-gray-500 dark:text-gray-100 font-medium">31</p>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    </div>
-</div>
-
-    <div class="mt-8 bg-white shadow-md rounded-lg p-4 w-full max-w-md">
-<div class="antialiased sans-serif bg-gray-200 w-lg min-h-screen ">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-  <style>
-    body {
-      font-family: 'IBM Plex Mono', sans-serif;
-    }
-    [x-cloak] {
-      display: none;
-    }
-
-    .line {
-      background: repeating-linear-gradient(
-        to bottom,
-        #eee,
-        #eee 1px,
-        #fff 1px,
-        #fff 8%
-      );
-    }
-    .tick {
-      background: repeating-linear-gradient(
-        to right,
-        #eee,
-        #eee 1px,
-        #fff 1px,
-        #fff 5%
-      );
-    }
-  </style>
-
-
-
-  <div x-data="app()" x-cloak class="px-4">
-    <div class="max-w-lg mx-auto py-10">
-      <div class="shadow p-6 rounded-lg bg-white">
-        <div class="md:flex md:justify-between md:items-center">
-          <div>
-            <h2 class="text-xl text-gray-800 font-bold leading-tight"></h2>
-            <p class="mb-2 text-gray-600 text-sm"></p>
+<div class="flex flex-col items-center justify-start w-full h-auto gap-4 py-8">
+  
+  <div class="max-w-lg w-full flex flex-col bg-white border shadow-lg rounded-2xl dark:bg-neutral-900 dark:border-neutral-700">
+      <!-- Calendar -->
+      <div class="p-3 space-y-0.5">
+      <!-- Months -->
+      <div class="grid grid-cols-2 mx-1.5 pb-3">
+        
+        <!-- Option Month / Year -->
+        <div class="col-span-1 flex justify-start items-center gap-x-1">
+          <div class="relative">
+            <select data-hs-select='{
+              "placeholder": "Select month",
+              "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+              "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative flex text-nowrap w-full cursor-pointer text-start font-bold text-xl text-gray-800 hover:text-color-3 focus:outline-none focus:text-color-3 before:absolute before:inset-0 before:z-[1] dark:text-neutral-200 dark:hover:text-blue-500 dark:focus:text-blue-500",
+              "dropdownClasses": "mt-2 z-50 w-32 max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+              "optionClasses": "p-2 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+              "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-gray-800 dark:text-neutral-200\" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>"
+              }' class="hidden">
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6" selected>July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
           </div>
 
-          <!-- Legends -->
-          <div class="mb-4">
-            <div class="flex items-center">
-              <div class="w-2 h-2 bg-blue-600 mr-2 rounded-full"></div>
-              <div class="text-sm text-gray-700">data</div>
-            </div>
+          <span class="text-xl text-gray-800 dark:text-neutral-200">/</span>
+
+          <div class="relative">
+            <select data-hs-select='{
+                "placeholder": "Select year",
+                "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative flex text-nowrap w-full cursor-pointer text-xl text-start font-bold text-gray-800 hover:text-color-3 focus:outline-none focus:text-color-3 before:absolute before:inset-0 before:z-[1] dark:text-neutral-200 dark:hover:text-blue-500 dark:focus:text-blue-500",
+                "dropdownClasses": "mt-2 z-50 w-20 max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+                "optionClasses": "p-2 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-gray-800 dark:text-neutral-200\" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>"
+              }' class="hidden">
+              <option selected>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+              <option>2026</option>
+              <option>2027</option>
+            </select>
           </div>
         </div>
+        <!-- End Opion Month / Year -->
 
+        <!-- action -->
+        <div class="col-span-1 flex justify-end gap-2">
 
-        <div class="line my-8 relative">
-          <!-- Tooltip -->
-          <template x-if="tooltipOpen == true">
-            <div x-ref="tooltipContainer" class="p-0 m-0 z-10 shadow-lg rounded-lg absolute h-auto block"
-                 :style=""
-                 >
-              <div class="shadow-xs rounded-lg bg-white p-2">
-                <div class="flex items-center justify-between text-sm">
-                  <div>Sales:</div>
-                  <div class="font-bold ml-2">
-                    <span x-html="tooltipContent"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </template>
+          <!-- Prev Button -->
+          <button type="button" class="size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-label="Previous">
+            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <!-- End Prev Button -->
 
-          <!-- Bar Chart -->
-          <div class="flex -mx-2 items-end mb-2">
-            <template x-for="data in chartData">
+          <!-- Next Button -->
+          <button type="button" class=" size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-label="Next">
+            <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <!-- End Next Button -->
 
-              <div class="px-2 w-1/6">
-                <div :style="" 
-                     class="transition ease-in duration-200 bg-blue-600 hover:bg-blue-400 relative"
-                     @mouseenter="showTooltip($event); tooltipOpen = true" 
-                     @mouseleave="hideTooltip($event)"
-                     >
-                  <div x-text="data" class="text-center absolute top-0 left-0 right-0 -mt-6 text-gray-800 text-sm"></div>
-                </div>
-              </div>
+        </div>
+        <!-- End action -->
 
-            </template>
-          </div>
+      </div>
+      <!-- Months -->
 
-          <!-- Labels -->
-          <div class="border-t border-gray-400 mx-auto" :style="height: 1px; "></div>
-          <div class="flex -mx-2 items-end">
-            <template x-for="data in labels">
-              <div class="px-2 w-1/6">
-                <div class="bg-red-600 relative">
-                  <div class="text-center absolute top-0 left-0 right-0 h-2 -mt-px bg-gray-400 mx-auto" style="width: 1px"></div>
-                  <div x-text="data" class="text-center absolute top-0 left-0 right-0 mt-3 text-gray-700 text-sm"></div>
-                </div>
-              </div>
-            </template>	
-          </div>
+      <!-- Weeks -->
+      <div class="flex pb-1.5">
+        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+          Mo
+        </span>
+        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+          Tu
+        </span>
+        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+          We
+        </span>
+        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+          Th
+        </span>
+        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+          Fr
+        </span>
+        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+          Sa
+        </span>
+        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+          Su
+        </span>
+      </div>
+      <!-- Weeks -->
 
+      <!-- Days -->
+      <div class="grid grid-cols-7">
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+            26
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+            27
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+            28
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+            29
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+            30
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            1
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            2
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            3
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            4
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            5
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            6
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            7
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            8
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            9
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            10
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            11
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            12
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            13
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            14
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            15
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            16
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            17
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            18
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            19
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center bg-color-3 border border-transparent text-sm font-medium text-white hover:border-color-3 rounded-full dark:bg-blue-500 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:hover:border-neutral-700">
+            20
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            21
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            22
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            23
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            24
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            25
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            26
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            27
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            28
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            29
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            30
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+            31
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+            1
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+            2
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+            3
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+            4
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+            5
+          </button>
+        </div>
+        <div>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+            6
+          </button>
         </div>
       </div>
+      <!-- Days -->
+
     </div>
-  </div>
+    </div>
+    
+  <!-- data diagram -->
+    <div class="max-w-lg w-full relative flex flex-col rounded-2xl bg-white bg-clip-border text-gray-700 shadow-lg">
+      <div class="w-full">
+        <div id="bar-chart"></div>
+    </div>
+  <!-- data diagram -->
 
-  <script>
-    function app() {
-      return {
-        chartData: [200, 300, 400, 300, 200, ],
-        labels: ['18', '', '', '', '23', ],
+<!-- chart js -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+  const chartConfig = {
+  series: [
+    {
+      name: "Sales",
+      data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+    },
+  ],
+  chart: {
+    type: "bar",
+    height: 240,
+    toolbar: {
+      show: false,
+    },
+  },
+  title: {
+    show: "",
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  colors: ["#298EA6"],
+  plotOptions: {
+    bar: {
+      columnWidth: "40%",
+      borderRadius: 2,
+    },
+  },
+  xaxis: {
+    axisTicks: {
+      show: false,
+    },
+    axisBorder: {
+      show: false,
+    },
+    labels: {
+      style: {
+        colors: "#616161",
+        fontSize: "12px",
+        fontFamily: "inherit",
+        fontWeight: 400,
+      },
+    },
+    categories: [
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: "#616161",
+        fontSize: "12px",
+        fontFamily: "inherit",
+        fontWeight: 400,
+      },
+    },
+  },
+  grid: {
+    show: true,
+    borderColor: "#dddddd",
+    strokeDashArray: 5,
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    padding: {
+      top: 5,
+      right: 20,
+    },
+  },
+  fill: {
+    opacity: 0.8,
+  },
+  tooltip: {
+    theme: "dark",
+  },
+};
+ 
+const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);
+ 
+chart.render();
+</script>
+<!-- chart js -->
 
-        tooltipContent: '',
-        tooltipOpen: false,
-        tooltipX: 0,
-        tooltipY: 0,
-        showTooltip(e) {
-          console.log(e);
-          this.tooltipContent = e.target.textContent
-          this.tooltipX = e.target.offsetLeft - e.target.clientWidth;
-          this.tooltipY = e.target.clientHeight + e.target.clientWidth;
-        },
-        hideTooltip(e) {
-          this.tooltipContent = '';
-          this.tooltipOpen = false;
-          this.tooltipX = 0;
-          this.tooltipY = 0;
-        }
-      }
-    }
-  </script>
 </div>
 @endsection
 
 @section('main')
-<div class="flex flex-col items-center justify-start w-full h-full bg-white font-inter p-6">
-    <input type="text" class="font-semibold text-[32px] mb-2 p-2 bg-transparent border-none text-center w-full max-w-lg placeholder:text-center" placeholder="Judul Jurnal..." />
 
-    <h2 class="font-semibold text-[20px] mb-2 text-center">Dear Journal,</h2>
+<div class="bg-white max-w-7xl w-full h-full px-4 py-8 flex flex-col shadow-lg rounded-2xl">
 
-    <textarea class="font-normal text-[16px] w-full h-[400px] p-4 bg-transparent border-none" placeholder="Tulis isi jurnalmu di sini..."></textarea>
+    <!-- Judul -->
+    <div 
+        id="judul-editor"
+        class="text-input text-input-judul w-full min-h-[30px] text-3xl font-semibold leading-9 border-none rounded-md overflow-hidden outline-none resize-none" 
+        contenteditable="true" 
+        placeholder="Ketikkan teks di sini..."
+        oninput="syncInput(this, 'judul')"
+    ></div>
+    <!-- Judul -->
+
+    <form id="text-form" action="#" method="POST" class="w-full h-full pb-4">
+        @csrf
+    <hr class="border-slate-200 my-4">
+
+    <!-- Isi -->
+    <textarea id="hs-textarea-ex-1" 
+    class="h-full w-full py-4 pb-12 border-gray-200 rounded-lg text-sm focus:outline-none resize-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" 
+    placeholder="Tulis sesuatu disini..."></textarea>
+    <!-- Isi -->
+
+    <!-- Hidden input untuk judul -->
+    <input type="hidden" name="judul_hidden" id="hidden-input-judul">
+    
+    </form>
+</div>
 
 </div>
+
+<script type="module">
+    import { Editor } from 'https://esm.sh/@tiptap/core';
+    import StarterKit from 'https://esm.sh/@tiptap/starter-kit';
+    import Placeholder from 'https://esm.sh/@tiptap/extension-placeholder';
+
+    // Fungsi untuk sinkronisasi konten editor ke input hidden
+    function syncEditorContent(editor, hiddenInputId) {
+        const hiddenInput = document.getElementById(hiddenInputId);
+        if (hiddenInput) {
+            hiddenInput.value = editor.getHTML();
+        }
+    }
+
+    // Inisialisasi editor untuk Judul
+    const judulEditor = new Editor({
+        element: document.querySelector('#judul-editor'),
+        extensions: [
+            StarterKit,
+            Placeholder.configure({
+                placeholder: 'Masukkan Judul...',
+            }),
+        ],
+        onUpdate({ editor }) {
+            syncEditorContent(editor, 'hidden-input-judul');
+        },
+    });
+
+</script>
 @endsection

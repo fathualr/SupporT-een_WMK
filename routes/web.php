@@ -28,6 +28,7 @@ Route::get('/', function () {
 });
 Route::get('/login', [AuthController::class, 'login']);
 Route::get('/registrasi', [AuthController::class, 'registrasi']);
+Route::get('/registrasi-tenaga-ahli', [AuthController::class, 'registrasi_tenagaahli']);
 Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::post('registration', [AuthController::class, 'registration'])->name('registration');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
