@@ -31,5 +31,15 @@ class Pasien extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
     
+    public function aktivitasPribadi()
+    {
+        return $this->hasMany(AktivitasPribadi::class, 'id_pasien');
+    }
+
+    public function riwayatAktivitas()
+    {
+        return $this->hasMany(RiwayatAktivitas::class, 'id_pasien');
+    }
+    
     public $timestamps = false;
 }
