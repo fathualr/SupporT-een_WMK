@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\TenagaAhli;
 use Illuminate\Http\Request;
+
 
 class KonsultasiController extends Controller
 {
     
     public function konsultasi()
     {
+        $tenagaAhli = TenagaAhli::with('user')->get();
+
+
+
         return view('pasien/konsultasi', [
-            "title" => "Konsultasi Online"
+            "title" => "Konsultasi Online",
+            "tenagaAhli" => $tenagaAhli,
         ]);
+    
     }
     
     
@@ -27,7 +36,7 @@ class KonsultasiController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
