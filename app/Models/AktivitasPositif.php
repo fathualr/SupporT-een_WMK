@@ -19,6 +19,16 @@ class AktivitasPositif extends Model
     {
         return $this->hasMany(KataKunciAktivitasPositif::class, 'id_aktivitas');
     }
-        
+
+    public function aktivitasPribadi()
+    {
+        return $this->hasMany(AktivitasPribadi::class, 'id_aktivitas_positif');
+    }
+
+    public function riwayatAktivitas()
+    {
+        return $this->hasMany(RiwayatAktivitas::class, 'id_aktivitas_positif');
+    }
+    
     public $timestamps = false;
 }

@@ -4,13 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AktivitasPositifRequest;
 use App\Models\AktivitasPositif;
+use App\Models\AktivitasPribadi;
 use App\Models\KataKunciAktivitasPositif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AktivitasPositifController extends Controller
 {
+    public function kustomisasiAktivitasPribadi()
+    {
+        $pasienId = Auth::user()->pasien->id; // Ambil ID pasien
+    
+        // Ambil aktivitas positif beserta status apakah sudah dipilih
+        $aktivitasPositif = AktivitasPositif::all()->map(function ($aktivitas) use ($pasienId) {
+            $aktivitas->is_selected = AktivitasPribadi::where('id_pasien', $pasienId)
+                ->where('id_aktivitas_positif', $aktivitas->id)
+                ->exists();
+            return $aktivitas;
+        });
+    
+        return view('pasien/daftar_kustomisasi_aktivitas', [
+            "title" => "Kustomisasi Aktivitas",
+            "aktivitasPositif" => $aktivitasPositif
+        ]);
+    }
+    
+
     /**
      * Display a listing of the resource.
      */

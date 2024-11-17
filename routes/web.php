@@ -12,7 +12,7 @@ use App\Http\Controllers\{
     DiskusiController,
     ChatbotController,
     JurnalHarianController,
-    DaftarAktivitasController,
+    AktivitasPribadiController,
     ForumController,
     KonsultasiController,
     TransaksiController,
@@ -39,8 +39,9 @@ Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create'
 
 Route::get('/jurnal-harian', [JurnalHarianController::class, 'jurnalHarian']);
 Route::get('/konten-edukatif/{id?}', [KontenEdukatifController::class, 'kontenEdukatif'])->name('kontenEdukatif');
-Route::get('/daftar-aktivitas-pribadi', [DaftarAktivitasController::class, 'daftarAktivitasPribadi']);
-Route::get('/daftar-aktivitas-pribadi/kustomisasi', [DaftarAktivitasController::class, 'kustomisasiAktivitasPribadi']);
+Route::get('/daftar-aktivitas-pribadi', [AktivitasPribadiController::class, 'daftarAktivitasPribadi']);
+Route::get('/daftar-aktivitas-pribadi/kustomisasi', [AktivitasPositifController::class, 'kustomisasiAktivitasPribadi']);
+Route::post('/aktivitas-pribadi', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
 Route::get('/forum', [ForumController::class, 'forum']);
 Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
 
