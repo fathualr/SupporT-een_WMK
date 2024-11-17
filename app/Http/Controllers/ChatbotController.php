@@ -4,22 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\Models\PercakapanChatbot;
+use Illuminate\Support\Facades\Auth;
 
 class ChatbotController extends Controller
 {
     
     public function chatbot($id = null)
     {
-        // Ambil semua percakapan dari database, diurutkan berdasarkan last_activity
-        $percakapanList = PercakapanChatbot::with('pesanChatbot')
+        $idPasien = Auth::user()->pasien->id; // Ambil ID pasien
+
+        // Ambil semua percakapan untuk pasien yang sedang login
+        $percakapanList = PercakapanChatbot::with(relations: 'pesanChatbot')
+            ->where('id_pasien', $idPasien) // Tambahkan filter berdasarkan id_pasien
             ->orderBy('last_activity', 'desc')
             ->get();
-    
+
         // Jika $id tersedia, ambil percakapan yang dipilih, termasuk pesan terkait
         $selectedPercakapan = $id ? PercakapanChatbot::with(['pesanChatbot' => function ($query) {
             $query->orderBy('id', 'desc'); // Urutkan pesan berdasarkan waktu ascending
-        }])->find($id) : null;
-    
+        }])
+            ->where('id_pasien', $idPasien) // Tambahkan filter untuk memastikan percakapan milik pasien yang login
+            ->find($id) : null;
+
         return view('pasien/chatbot', [
             'title' => 'Chatbot',
             'percakapanList' => $percakapanList,

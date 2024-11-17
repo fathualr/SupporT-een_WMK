@@ -30,10 +30,10 @@
 
     <div class="grid grid-cols-3 gap-4 py-8">
         @foreach($aktivitasPribadi as $aktivitasItem)
-        <div class="flex flex-col bg-color-8 border border-color-4 rounded-3xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+        <div class="flex flex-col bg-color-8 border border-color-4 rounded-3xl">
             <div class="flex flex-col items-center p-2">
                 <img class="w-full h-auto aspect-square rounded-2xl" src="{{ asset('storage/' . $aktivitasItem->aktivitasPositif->gambar) }}" alt="Card Image">
-                <h3 class="text-lg font-bold text-color-1 dark:text-white">
+                <h3 class="text-lg font-bold text-color-1>
                     {{ $aktivitasItem->aktivitasPositif->nama }}
                 </h3>
                 <label class="label cursor-pointer">

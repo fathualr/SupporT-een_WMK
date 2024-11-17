@@ -36,11 +36,11 @@
                         <span class="text-color-2">{{ ucfirst($item->tipe) }}</span>
                         <h1 class="text-xl font-bold overflow-hidden text-ellipsis whitespace-normal max-h-14">{{ $item->judul }}</h1>
                         <div class="flex justify-between items-center mt-auto">
-                            <div class="flex items-center">
+                            <div class="flex items-center max-w-full">
                                 <img class="w-5 h-5 rounded-full" src="{{ asset('storage/' . $item->user->foto_profil) }}" alt="Album" />
-                                <span>{{ $item->user->nama }}</span>
+                                <span class="truncate ml-2 overflow-hidden text-ellipsis whitespace-nowrap">{{ $item->user->nama }}</span>
                             </div>
-                            <span>{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</span>
+                            <span class="whitespace-nowrap ml-4">{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</span>
                         </div>
                     </div>
                 </a>
@@ -118,7 +118,7 @@
 
         @elseif ($selectedKonten->tipe === 'video')
 
-            <div class="flex flex-col w-full h-fit">
+            <div class="flex flex-col w-full h-full">
                 <div class=" bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">

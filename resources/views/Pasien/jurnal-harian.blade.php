@@ -11,7 +11,7 @@
 @section('aside')
 <div class="flex flex-col items-center justify-start w-full h-auto gap-4 py-8">
   
-  <div class="max-w-lg w-full flex flex-col bg-white border shadow-lg rounded-2xl dark:bg-neutral-900 dark:border-neutral-700">
+  <div class="max-w-lg w-full flex flex-col bg-white border shadow-lg rounded-2xl">
       <!-- Calendar -->
       <div class="p-3 space-y-0.5">
       <!-- Months -->
@@ -43,7 +43,7 @@
             </select>
           </div>
 
-          <span class="text-xl text-gray-800 dark:text-neutral-200">/</span>
+          <span class="text-xl text-gray-800">/</span>
 
           <div class="relative">
             <select data-hs-select='{
@@ -68,13 +68,13 @@
         <div class="col-span-1 flex justify-end gap-2">
 
           <!-- Prev Button -->
-          <button type="button" class="size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-label="Previous">
+          <button type="button" class="size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100" aria-label="Previous">
             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </button>
           <!-- End Prev Button -->
 
           <!-- Next Button -->
-          <button type="button" class=" size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-label="Next">
+          <button type="button" class=" size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100" aria-label="Next">
             <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </button>
           <!-- End Next Button -->
@@ -87,25 +87,25 @@
 
       <!-- Weeks -->
       <div class="flex pb-1.5">
-        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+        <span class="m-px w-16 block text-center text-sm text-gray-500">
           Mo
         </span>
-        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+        <span class="m-px w-16 block text-center text-sm text-gray-500">
           Tu
         </span>
-        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+        <span class="m-px w-16 block text-center text-sm text-gray-500">
           We
         </span>
-        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+        <span class="m-px w-16 block text-center text-sm text-gray-500">
           Th
         </span>
-        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+        <span class="m-px w-16 block text-center text-sm text-gray-500">
           Fr
         </span>
-        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+        <span class="m-px w-16 block text-center text-sm text-gray-500">
           Sa
         </span>
-        <span class="m-px w-16 block text-center text-sm text-gray-500 dark:text-neutral-500">
+        <span class="m-px w-16 block text-center text-sm text-gray-500">
           Su
         </span>
       </div>
@@ -114,212 +114,212 @@
       <!-- Days -->
       <div class="grid grid-cols-7">
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3" disabled>
             26
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3" disabled>
             27
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3" disabled>
             28
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3" disabled>
             29
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3" disabled>
             30
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             1
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             2
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             3
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             4
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             5
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             6
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             7
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             8
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             9
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             10
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             11
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             12
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             13
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             14
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             15
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             16
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             17
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             18
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             19
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center bg-color-3 border border-transparent text-sm font-medium text-white hover:border-color-3 rounded-full dark:bg-blue-500 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:hover:border-neutral-700">
+          <button type="button" class="m-px size-16 flex justify-center items-center bg-color-3 border border-transparent text-sm font-medium text-white hover:border-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100">
             20
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             21
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             22
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             23
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             24
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             25
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             26
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             27
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             28
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             29
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             30
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3 dark:text-neutral-200">
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 rounded-full hover:border-color-3 hover:text-color-3 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:border-color-3 focus:text-color-3">
             31
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100" disabled>
             1
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100" disabled>
             2
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100" disabled>
             3
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100" disabled>
             4
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100" disabled>
             5
           </button>
         </div>
         <div>
-          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:border-neutral-500 dark:focus:bg-neutral-700" disabled>
+          <button type="button" class="m-px size-16 flex justify-center items-center border border-transparent text-sm text-gray-800 hover:border-color-3 hover:text-color-3 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100" disabled>
             6
           </button>
         </div>
@@ -343,7 +343,7 @@
   series: [
     {
       name: "Sales",
-      data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+      data: [0, 0.1, 1, 0.8, 0.4, 0.5, 1],
     },
   ],
   chart: {
@@ -382,15 +382,13 @@
       },
     },
     categories: [
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
+      "Marah",
+      "Jijik",
+      "Takut",
+      "Senang",
+      "Netral",
+      "Sedih",
+      "Terkejut",
     ],
   },
   yaxis: {
@@ -453,9 +451,7 @@ chart.render();
     <hr class="border-slate-200 my-4">
 
     <!-- Isi -->
-    <textarea id="hs-textarea-ex-1" 
-    class="h-full w-full py-4 pb-12 border-gray-200 rounded-lg text-sm focus:outline-none resize-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" 
-    placeholder="Tulis sesuatu disini..."></textarea>
+    <textarea id="hs-textarea-ex-1" class="bg-white h-full w-full py-4 pb-12 border-gray-200 rounded-lg text-sm focus:outline-none resize-none" placeholder="Tulis sesuatu disini..."></textarea>
     <!-- Isi -->
 
     <!-- Hidden input untuk judul -->

@@ -88,10 +88,4 @@ class AuthController extends Controller
         return redirect('/')->with('success', 'Registrasi berhasil, silakan login!');
     }
 
-    public function registrasi_tenagaahli()
-    {
-        return view('daftar_tenaga_ahli', [
-            "title" => "Registrasi Tenaga Ahli"
-        ]);
-    }
 }

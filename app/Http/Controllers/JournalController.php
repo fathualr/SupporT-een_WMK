@@ -10,9 +10,6 @@ class JournalController extends Controller
     {
         return view('Pasien.journal');
     }
-    
-
-    
 
     public function update(Request $request, $id)
     {
