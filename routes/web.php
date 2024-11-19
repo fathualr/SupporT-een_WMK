@@ -24,11 +24,9 @@ use App\Http\Controllers\{
     KataKunciKontenController,
     BalasanController,
     SubscriptionController,
+    TransaksiLanggananController,
 };
 
-Route::middleware([GuestOrPasienMiddleware::class])->group(function () {
-    Route::get('/', [MainController::class, 'index']);
-});
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::get('/registrasi', [AuthController::class, 'registrasi']);
@@ -39,8 +37,11 @@ Route::post('authenticate', [AuthController::class, 'authenticate'])->name('auth
 Route::post('registration', [AuthController::class, 'registration'])->name('registration');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::middleware([GuestOrPasienMiddleware::class])->group(function () {
+    Route::get('/', [MainController::class, 'index']);
+    Route::get('/konten-edukatif/{id?}', [KontenEdukatifController::class, 'kontenEdukatif'])->name('kontenEdukatif');
+});
 // Pasien
-Route::get('/konten-edukatif/{id?}', [KontenEdukatifController::class, 'kontenEdukatif'])->name('kontenEdukatif');
 Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function () {
         // Midtrans route ->
     Route::post('/generate-snaptoken', [SubscriptionController::class, 'generateSnapToken'])->name('generate.snaptoken');
@@ -53,7 +54,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
     Route::get('/daftar-aktivitas-pribadi', [AktivitasPribadiController::class, 'daftarAktivitasPribadi']);
     Route::get('/daftar-aktivitas-pribadi/kustomisasi', [AktivitasPositifController::class, 'kustomisasiAktivitasPribadi']);
     Route::post('/aktivitas-pribadi', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
-Route::get('/forum', [ForumController::class, 'forum']);
+    Route::get('/forum', [ForumController::class, 'forum']);
     Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
 });
 
@@ -75,6 +76,7 @@ Route::prefix('super-admin')->middleware(['auth', RoleMiddleware::class . ':supe
     Route::resource('/user-pasien', PasienController::class);
     Route::resource('/user-tenaga-ahli', TenagaAhliController::class);
     Route::resource('/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikanTenagaAhliController::class);
+    Route::resource('/transaksi-langganan', TransaksiLanggananController::class);
     Route::resource('/transaksi', TransaksiController::class);
     Route::get('/pendapatan', [PendapatanController::class, 'adminPendapatan']);
 });

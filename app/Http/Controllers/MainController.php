@@ -8,6 +8,8 @@ use App\Models\Diskusi;
 use App\Models\KontenEdukatif;
 use App\Models\TenagaAhli;
 use App\Models\Pasien;
+use App\Models\TransaksiKonsultasi;
+use App\Models\TransaksiLangganan;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -31,14 +33,14 @@ class MainController extends Controller
         $totalPasien = Pasien::count();
         $totalAdmin = Admin::count();
         $totalTenagaAhli = TenagaAhli::count();
-        // $totalTransaksi = Transaksi::count();
+        $totalTransaksi = TransaksiLangganan::count() + TransaksiKonsultasi::count();
 
         return view('admin/dashboard_super', [
             "title" => "Dashboard Super Admin",
             "totalPasien" => $totalPasien,
             "totalAdmin" => $totalAdmin,
             "totalTenagaAhli" => $totalTenagaAhli,
-            // "totalTransaksi" => $totalTransaksi,
+            "totalTransaksi" => $totalTransaksi,
         ]);
     }
     

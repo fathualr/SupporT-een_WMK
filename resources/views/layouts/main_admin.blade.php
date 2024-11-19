@@ -62,16 +62,24 @@
                     <ul class="menu w-full text-base text-color-1">
                         <li><a href="/super-admin">Dashboard</a></li>
                         <li>
-                            <details open>
-                            <summary>Data Pengguna</summary>
-                            <ul>
-                                <li><a href="/super-admin/user-admin">Data Administrator</a></li>
-                                <li><a href="/super-admin/user-pasien">Data Pasien</a></li>
-                                <li><a href="/super-admin/user-tenaga-ahli">Data Tenaga Ahli</a></li>
-                            </ul>
+                            <details id="dataPengguna">
+                                <summary>Data Pengguna</summary>
+                                <ul>
+                                    <li><a href="/super-admin/user-admin">Data Administrator</a></li>
+                                    <li><a href="/super-admin/user-pasien">Data Pasien</a></li>
+                                    <li><a href="/super-admin/user-tenaga-ahli">Data Tenaga Ahli</a></li>
+                                </ul>
                             </details>
                         </li>
-                        <li><a href="/super-admin/transaksi">Data Transaksi</a></li>
+                        <li>
+                            <details id="dataTransaksi">
+                                <summary>Data Transaksi</summary>
+                                <ul>
+                                    <li><a href="/super-admin/transaksi-langganan">Data Langganan</a></li>
+                                    <li><a href="/super-admin/transaksi">Data Konsultasi</a></li>
+                                </ul>
+                            </details>
+                        </li>
                         <li><a href="/super-admin/pendapatan">Pendapatan</a></li>
                     </ul>
                 </div>
@@ -136,6 +144,32 @@
                 }
             });
         }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fungsi untuk memulihkan status elemen <details>
+            function restoreDetailsStatus(detailsId) {
+                const detailsElement = document.getElementById(detailsId);
+                if (detailsElement) {
+                    const isOpen = localStorage.getItem(`${detailsId}Open`);
+                    if (isOpen === 'true') {
+                        detailsElement.setAttribute('open', 'true');
+                    }
+
+                    // Tambahkan event listener untuk menyimpan status saat toggle
+                    detailsElement.addEventListener('toggle', function () {
+                        localStorage.setItem(`${detailsId}Open`, detailsElement.open);
+                    });
+                }
+            }
+
+            // Daftar elemen <details> yang ingin dikelola
+            const detailsIds = ['dataPengguna', 'dataTransaksi'];
+
+            // Pulihkan status masing-masing elemen
+            detailsIds.forEach(restoreDetailsStatus);
+        });
     </script>
 </body>
 </html>

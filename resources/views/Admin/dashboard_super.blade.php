@@ -60,7 +60,7 @@
                 <span class="text-base text-color-1">Total Transaksi</span>
                 <div class="card-actions items-center justify-between">
                     <span class="text-[2.5rem] text-color-1 font-bold">
-                        {{-- {{ $totalTransaksi }} --}}
+                        {{ $totalTransaksi }}
                     </span>
                     <button class="btn btn-ghost">
                         <img class="w-[30xp] h-[30px]" src="{{ asset('icons/arrow.svg') }}" alt="">

@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('transaksi_konsultasi', function (Blueprint $table) {
             $table->id(); // Primary key, ID unik untuk setiap transaksi
             $table->unsignedBigInteger('id_konsultasi'); // Foreign key untuk merujuk pada konsultasi terkait
-            $table->enum('status', ['berhasil', 'gagal']); // Status transaksi
-            $table->decimal('total_biaya', 10, 2); // Total biaya transaksi
-            $table->string('metode_pembayaran', 50); // Metode pembayaran yang digunakan
+            $table->string('snap_token')->unique(); // ID transaksi unik dari Midtrans
+            $table->decimal('amount', 10, 2); // Jumlah pembayaran
+            $table->string('payment_method')->nullable(); // Metode pembayaran (bisa kosong jika masih pending)
+            $table->enum('status', ['pending', 'canceled', 'expired', 'paid'])->default('pending'); // Default status saat transaksi dibuat
+            $table->timestamp('expired_at')->nullable();
+            $table->timestamps(); // Menambahkan kolom created_at dan updated_at
 
             // Menambahkan foreign key constraint untuk id_konsultasi
             $table->foreign('id_konsultasi')->references('id')->on('konsultasi')->onDelete('cascade');
