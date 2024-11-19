@@ -61,6 +61,27 @@ class User extends Authenticatable
 
         return $activeSubscription;
     }
+
+    public function premiumEndingSoon()
+    {
+        // Ambil langganan aktif
+        $activeSubscription = DB::table('subscriptions')
+            ->where('id_user', $this->id)
+            ->where('ends_at', '>=', Carbon::now()) // Masih berlaku
+            ->select('ends_at')
+            ->first();
+
+        if ($activeSubscription) {
+            // Hitung sisa hari dari langganan
+            $endsAt = Carbon::parse($activeSubscription->ends_at);
+            $remainingDays = $endsAt->diffInDays(Carbon::now());
+
+            // Jika kurang dari atau sama dengan 5 hari, kembalikan true
+            return $remainingDays <= 5;
+        }
+
+        return false; // Tidak ada langganan aktif
+    }
     
     public function admin()
     {

@@ -59,7 +59,7 @@
         </ul>
 
         <!-- Tombol Berlangganan -->
-        <button type="button" class="btn text-white bg-color-2 hover:bg-color-1  font-medium rounded-lg text-lg px-5 py-3 inline-flex justify-center w-full transition duration-300">
+        <button type="button" id="subscribe" class="btn text-white bg-color-2 hover:bg-color-1  font-medium rounded-lg text-lg px-5 py-3 inline-flex justify-center w-full transition duration-300">
             Berlangganan
         </button>
     </div>

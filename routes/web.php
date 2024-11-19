@@ -23,6 +23,7 @@ use App\Http\Controllers\{
     KataKunciAktivitasController,
     KataKunciKontenController,
     BalasanController,
+    SubscriptionController,
 };
 
 Route::middleware([GuestOrPasienMiddleware::class])->group(function () {
@@ -40,8 +41,12 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Pasien
 Route::get('/konten-edukatif/{id?}', [KontenEdukatifController::class, 'kontenEdukatif'])->name('kontenEdukatif');
-
 Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function () {
+        // Midtrans route ->
+    Route::post('/generate-snaptoken', [SubscriptionController::class, 'generateSnapToken'])->name('generate.snaptoken');
+    Route::post('/process-payment/{transaction}', [SubscriptionController::class, 'processPayment'])->name('process.payment');
+    Route::post('/cancel-transaction/{transaction}', [SubscriptionController::class, 'cancelTransaction'])->name('cancel.transaction');
+        // <-
     Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
     Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
     Route::get('/jurnal-harian', [JurnalHarianController::class, 'jurnalHarian']);
