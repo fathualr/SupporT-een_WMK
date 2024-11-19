@@ -94,4 +94,11 @@ class AuthController extends Controller
             "title" => "Registrasi Tenaga Ahli"
         ]);
     }
+
+    public function profile()
+    {
+        return view('profile', [
+            "title" => "Profile"
+        ]);
+    }
 }

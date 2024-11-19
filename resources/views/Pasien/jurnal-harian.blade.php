@@ -11,79 +11,79 @@
 @section('aside')
 <div class="flex flex-col items-center justify-start w-full h-auto gap-4 py-8">
   
+  <!-- Calendar -->
   <div class="max-w-lg w-full flex flex-col bg-white border shadow-lg rounded-2xl dark:bg-neutral-900 dark:border-neutral-700">
-      <!-- Calendar -->
       <div class="p-3 space-y-0.5">
-      <!-- Months -->
-      <div class="grid grid-cols-2 mx-1.5 pb-3">
-        
-        <!-- Option Month / Year -->
-        <div class="col-span-1 flex justify-start items-center gap-x-1">
-          <div class="relative">
-            <select data-hs-select='{
-              "placeholder": "Select month",
-              "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-              "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative flex text-nowrap w-full cursor-pointer text-start font-bold text-xl text-gray-800 hover:text-color-3 focus:outline-none focus:text-color-3 before:absolute before:inset-0 before:z-[1] dark:text-neutral-200 dark:hover:text-blue-500 dark:focus:text-blue-500",
-              "dropdownClasses": "mt-2 z-50 w-32 max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
-              "optionClasses": "p-2 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
-              "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-gray-800 dark:text-neutral-200\" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>"
-              }' class="hidden">
-              <option value="0">January</option>
-              <option value="1">February</option>
-              <option value="2">March</option>
-              <option value="3">April</option>
-              <option value="4">May</option>
-              <option value="5">June</option>
-              <option value="6" selected>July</option>
-              <option value="7">August</option>
-              <option value="8">September</option>
-              <option value="9">October</option>
-              <option value="10">November</option>
-              <option value="11">December</option>
-            </select>
-          </div>
-
-          <span class="text-xl text-gray-800 dark:text-neutral-200">/</span>
-
-          <div class="relative">
-            <select data-hs-select='{
-                "placeholder": "Select year",
+        <!-- Months -->
+        <div class="grid grid-cols-2 mx-1.5 pb-3">
+          
+          <!-- Option Month / Year -->
+          <div class="col-span-1 flex justify-start items-center gap-x-1">
+            <div class="relative">
+              <select data-hs-select='{
+                "placeholder": "Select month",
                 "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative flex text-nowrap w-full cursor-pointer text-xl text-start font-bold text-gray-800 hover:text-color-3 focus:outline-none focus:text-color-3 before:absolute before:inset-0 before:z-[1] dark:text-neutral-200 dark:hover:text-blue-500 dark:focus:text-blue-500",
-                "dropdownClasses": "mt-2 z-50 w-20 max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative flex text-nowrap w-full cursor-pointer text-start font-bold text-xl text-gray-800 hover:text-color-3 focus:outline-none focus:text-color-3 before:absolute before:inset-0 before:z-[1] dark:text-neutral-200 dark:hover:text-blue-500 dark:focus:text-blue-500",
+                "dropdownClasses": "mt-2 z-50 w-32 max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
                 "optionClasses": "p-2 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-gray-800 dark:text-neutral-200\" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>"
-              }' class="hidden">
-              <option selected>2023</option>
-              <option>2024</option>
-              <option>2025</option>
-              <option>2026</option>
-              <option>2027</option>
-            </select>
+                }' class="hidden">
+                <option value="0">January</option>
+                <option value="1">February</option>
+                <option value="2">March</option>
+                <option value="3">April</option>
+                <option value="4">May</option>
+                <option value="5">June</option>
+                <option value="6" selected>July</option>
+                <option value="7">August</option>
+                <option value="8">September</option>
+                <option value="9">October</option>
+                <option value="10">November</option>
+                <option value="11">December</option>
+              </select>
+            </div>
+
+            <span class="text-xl text-gray-800 dark:text-neutral-200">/</span>
+
+            <div class="relative">
+              <select data-hs-select='{
+                  "placeholder": "Select year",
+                  "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative flex text-nowrap w-full cursor-pointer text-xl text-start font-bold text-gray-800 hover:text-color-3 focus:outline-none focus:text-color-3 before:absolute before:inset-0 before:z-[1] dark:text-neutral-200 dark:hover:text-blue-500 dark:focus:text-blue-500",
+                  "dropdownClasses": "mt-2 z-50 w-20 max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+                  "optionClasses": "p-2 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                  "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-gray-800 dark:text-neutral-200\" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>"
+                }' class="hidden">
+                <option selected>2023</option>
+                <option>2024</option>
+                <option>2025</option>
+                <option>2026</option>
+                <option>2027</option>
+              </select>
+            </div>
           </div>
+          <!-- End Opion Month / Year -->
+
+          <!-- Prev  -->
+          <div class="col-span-1 flex justify-end gap-2">
+
+            <!-- Prev Button -->
+            <button type="button" class="size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-label="Previous">
+              <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <!-- End Prev Button -->
+
+            <!-- Next Button -->
+            <button type="button" class=" size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-label="Next">
+              <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            <!-- End Next Button -->
+
+          </div>
+          <!-- End action -->
+
         </div>
-        <!-- End Opion Month / Year -->
-
-        <!-- action -->
-        <div class="col-span-1 flex justify-end gap-2">
-
-          <!-- Prev Button -->
-          <button type="button" class="size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-label="Previous">
-            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-          </button>
-          <!-- End Prev Button -->
-
-          <!-- Next Button -->
-          <button type="button" class=" size-10 flex justify-center items-center text-gray-800 hover:bg-gray-100 rounded-full disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" aria-label="Next">
-            <svg class="shrink-0 size-4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-          </button>
-          <!-- End Next Button -->
-
-        </div>
-        <!-- End action -->
-
-      </div>
-      <!-- Months -->
+        <!-- End Months -->
 
       <!-- Weeks -->
       <div class="flex pb-1.5">
@@ -324,10 +324,11 @@
           </button>
         </div>
       </div>
-      <!-- Days -->
+      <!-- End Days -->
 
     </div>
-    </div>
+  </div>
+    <!-- End Calendar -->
     
   <!-- data diagram -->
     <div class="max-w-lg w-full relative flex flex-col rounded-2xl bg-white bg-clip-border text-gray-700 shadow-lg">
@@ -424,9 +425,9 @@
     theme: "dark",
   },
 };
- 
+
 const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);
- 
+
 chart.render();
 </script>
 <!-- chart js -->
@@ -436,62 +437,28 @@ chart.render();
 
 @section('main')
 
-<div class="bg-white max-w-7xl w-full h-full px-4 py-8 flex flex-col shadow-lg rounded-2xl">
-
-    <!-- Judul -->
-    <div 
-        id="judul-editor"
-        class="text-input text-input-judul w-full min-h-[30px] text-3xl font-semibold leading-9 border-none rounded-md overflow-hidden outline-none resize-none" 
-        contenteditable="true" 
-        placeholder="Ketikkan teks di sini..."
-        oninput="syncInput(this, 'judul')"
-    ></div>
-    <!-- Judul -->
-
+  <!-- jurnal -->
+  <div class="bg-white max-w-7xl w-full h-full px-4 py-8 flex flex-col shadow-lg rounded-2xl">
     <form id="text-form" action="#" method="POST" class="w-full h-full pb-4">
-        @csrf
-    <hr class="border-slate-200 my-4">
 
-    <!-- Isi -->
-    <textarea id="hs-textarea-ex-1" 
-    class="h-full w-full py-4 pb-12 border-gray-200 rounded-lg text-sm focus:outline-none resize-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" 
-    placeholder="Tulis sesuatu disini..."></textarea>
-    <!-- Isi -->
+        <!-- Judul -->
+        <input type="text" class="py-3 bg-transparent block w-full rounded-lg text-sm focus:border-none focus:outline-none disabled:opacity-50 disabled:pointer-events-none" placeholder="Tulis subjek disini...">
 
-    <!-- Hidden input untuk judul -->
-    <input type="hidden" name="judul_hidden" id="hidden-input-judul">
-    
-    </form>
+        <hr class="border-slate-200 my-4">
+        <!-- Isi -->
+        <textarea class="py-4 bg-transparent w-full h-4/5 rounded-lg text-sm focus:outline-none resize-none " placeholder="Tulis sesuatu disini..."></textarea>
+
+        <!-- tombol simpan -->
+        <div class="flex justify-center">
+          <button type="button" class="btn bg-color-3 text-white font-normal">
+            Simpan
+          </button>
+        </div>
+        
+      </form>
+  </div>
+  <!-- End jurnal -->
+
 </div>
 
-</div>
-
-<script type="module">
-    import { Editor } from 'https://esm.sh/@tiptap/core';
-    import StarterKit from 'https://esm.sh/@tiptap/starter-kit';
-    import Placeholder from 'https://esm.sh/@tiptap/extension-placeholder';
-
-    // Fungsi untuk sinkronisasi konten editor ke input hidden
-    function syncEditorContent(editor, hiddenInputId) {
-        const hiddenInput = document.getElementById(hiddenInputId);
-        if (hiddenInput) {
-            hiddenInput.value = editor.getHTML();
-        }
-    }
-
-    // Inisialisasi editor untuk Judul
-    const judulEditor = new Editor({
-        element: document.querySelector('#judul-editor'),
-        extensions: [
-            StarterKit,
-            Placeholder.configure({
-                placeholder: 'Masukkan Judul...',
-            }),
-        ],
-        onUpdate({ editor }) {
-            syncEditorContent(editor, 'hidden-input-judul');
-        },
-    });
-
-</script>
 @endsection

@@ -33,6 +33,9 @@ Route::post('authenticate', [AuthController::class, 'authenticate'])->name('auth
 Route::post('registration', [AuthController::class, 'registration'])->name('registration');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+// profile
+Route::get('/profile', [AuthController::class, 'profile']);
+
 // Pasien
 Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
 Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
