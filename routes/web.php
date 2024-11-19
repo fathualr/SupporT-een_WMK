@@ -76,6 +76,7 @@ Route::prefix('super-admin')->middleware(['auth', RoleMiddleware::class . ':supe
     Route::resource('/user-pasien', PasienController::class);
     Route::resource('/user-tenaga-ahli', TenagaAhliController::class);
     Route::resource('/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikanTenagaAhliController::class);
+    Route::resource('/subscription', SubscriptionController::class);
     Route::resource('/transaksi-langganan', TransaksiLanggananController::class);
     Route::resource('/transaksi', TransaksiController::class);
     Route::get('/pendapatan', [PendapatanController::class, 'adminPendapatan']);

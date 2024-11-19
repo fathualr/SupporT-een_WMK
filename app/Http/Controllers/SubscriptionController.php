@@ -9,6 +9,7 @@ use App\Models\SubscriptionPlan;
 use Illuminate\Support\Facades\Auth;
 use Midtrans\Config;
 use Midtrans\Snap;
+use Carbon\Carbon;
 
 class SubscriptionController extends Controller
 {
@@ -151,7 +152,27 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        //
+        $subscriptions = Subscription::with('user')
+            ->where('ends_at', '>', now())
+            ->paginate(10);
+
+        // Tambahkan atribut `remaining_days` untuk setiap subscription
+        foreach ($subscriptions as $subscription) {
+            $endsAt = Carbon::parse($subscription->ends_at);
+            
+            // Validasi untuk memastikan ends_at > now()
+            if ($endsAt->greaterThan(Carbon::now())) {
+                $remainingDays = ceil($endsAt->diffInHours(Carbon::now()) / 24);
+                $subscription->remaining_days = $remainingDays;
+            } else {
+                $subscription->remaining_days = 0; // Atur ke 0 jika sudah kedaluwarsa
+            }
+        }
+
+        return view('admin/data_subscription', [
+            "title" => "Data Subscription Aktif",
+            "subscriptions" => $subscriptions,
+        ]);
     }
 
     /**

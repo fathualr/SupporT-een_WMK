@@ -71,6 +71,7 @@
                                 </ul>
                             </details>
                         </li>
+                        <li><a href="/super-admin/subscription">Data Subscription</a></li>
                         <li>
                             <details id="dataTransaksi">
                                 <summary>Data Transaksi</summary>
