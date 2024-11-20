@@ -155,20 +155,12 @@ class SubscriptionController extends Controller
         $subscriptions = Subscription::with('user')
             ->where('ends_at', '>', now())
             ->paginate(10);
-
-        // Tambahkan atribut `remaining_days` untuk setiap subscription
+    
+        // Tambahkan atribut `remaining_time` dengan memanggil fungsi model
         foreach ($subscriptions as $subscription) {
-            $endsAt = Carbon::parse($subscription->ends_at);
-            
-            // Validasi untuk memastikan ends_at > now()
-            if ($endsAt->greaterThan(Carbon::now())) {
-                $remainingDays = ceil($endsAt->diffInHours(Carbon::now()) / 24);
-                $subscription->remaining_days = $remainingDays;
-            } else {
-                $subscription->remaining_days = 0; // Atur ke 0 jika sudah kedaluwarsa
-            }
+            $subscription->remaining_time = $subscription->remainingPremiumTime();
         }
-
+    
         return view('admin/data_subscription', [
             "title" => "Data Subscription Aktif",
             "subscriptions" => $subscriptions,

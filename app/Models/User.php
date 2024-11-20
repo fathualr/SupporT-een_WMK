@@ -48,6 +48,7 @@ class User extends Authenticatable
     protected function casts(): array{
         return [
             'password' => 'hashed',
+            'tanggal_lahir' => 'datetime'
         ];
     }
 
@@ -62,6 +63,45 @@ class User extends Authenticatable
         return $activeSubscription;
     }
 
+    public function userRemainingPremiumTime()
+    {
+        // Ambil langganan aktif
+        $activeSubscription = DB::table('subscriptions')
+            ->where('id_user', $this->id)
+            ->select('ends_at')
+            ->first();
+    
+        if ($activeSubscription) {
+            $endsAt = Carbon::parse($activeSubscription->ends_at);
+    
+            // Hitung sisa waktu hanya jika endsAt di masa depan
+            if (Carbon::now()->lessThanOrEqualTo($endsAt)) {
+                $now = Carbon::now();
+                $totalSeconds = $now->diffInSeconds($endsAt);
+    
+                // Hitung sisa hari, jam, menit, detik
+                $days = floor($totalSeconds / 86400); // 1 hari = 86400 detik
+                $hours = floor(($totalSeconds % 86400) / 3600); // Sisa jam setelah hari
+                $minutes = floor(($totalSeconds % 3600) / 60); // Sisa menit setelah jam
+                $seconds = $totalSeconds % 60; // Sisa detik
+    
+                // Format hasil berdasarkan apa yang tersedia
+                if ($days > 0) {
+                    return "{$days} hari, {$hours} jam, {$minutes} menit, {$seconds} detik";
+                } elseif ($hours > 0) {
+                    return "{$hours} jam, {$minutes} menit, {$seconds} detik";
+                } elseif ($minutes > 0) {
+                    return "{$minutes} menit, {$seconds} detik";
+                } else {
+                    return "{$seconds} detik";
+                }
+            }
+        }
+    
+        // Jika tidak ada langganan aktif atau kadaluarsa
+        return '0 detik';
+    }
+    
     public function premiumEndingSoon()
     {
         // Ambil langganan aktif
@@ -70,18 +110,22 @@ class User extends Authenticatable
             ->where('ends_at', '>=', Carbon::now()) // Masih berlaku
             ->select('ends_at')
             ->first();
-
+    
         if ($activeSubscription) {
-            // Hitung sisa hari dari langganan
             $endsAt = Carbon::parse($activeSubscription->ends_at);
-            $remainingDays = $endsAt->diffInDays(Carbon::now());
-
-            // Jika kurang dari atau sama dengan 5 hari, kembalikan true
-            return $remainingDays <= 5;
+    
+            // Pastikan waktu sekarang lebih kecil dari endsAt
+            if (Carbon::now()->lessThanOrEqualTo($endsAt)) {
+                // Hitung selisih hari
+                $remainingDays = Carbon::now()->diffInDays($endsAt);
+    
+                // Jika kurang dari atau sama dengan 5 hari, kembalikan true
+                return $remainingDays <= 5;
+            }
         }
-
-        return false; // Tidak ada langganan aktif
-    }
+    
+        return false; // Tidak ada langganan aktif atau sudah kadaluarsa
+    }    
     
     public function admin()
     {

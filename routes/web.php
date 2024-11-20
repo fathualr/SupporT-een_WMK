@@ -50,7 +50,8 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
     Route::post('/process-payment/{transaction}', [SubscriptionController::class, 'processPayment'])->name('process.payment');
     Route::post('/cancel-transaction/{transaction}', [SubscriptionController::class, 'cancelTransaction'])->name('cancel.transaction');
     // <-
-    Route::get('/profile', [AuthController::class, 'profile']);
+    Route::get('/profile', [MainController::class, 'profile']);
+    Route::put('/profile-update', [PasienController::class, 'updateProfile'])->name('profile.update');
     Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
     Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
     Route::get('/jurnal-harian', [JurnalHarianController::class, 'jurnalHarian']);

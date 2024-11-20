@@ -10,7 +10,9 @@ use App\Models\TenagaAhli;
 use App\Models\Pasien;
 use App\Models\TransaksiKonsultasi;
 use App\Models\TransaksiLangganan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
@@ -18,6 +20,18 @@ class MainController extends Controller
     {
         return view('pasien/homepage', [
             "title" => "SupporT-een"
+        ]);
+    }
+
+    public function profile()
+    {
+        $userId = Auth::id(); // Ambil ID pengguna yang sedang login
+        $user = User::find($userId); // Ambil data pengguna menggunakan model User
+    
+        return view('pasien/profile', [
+            "title" => "Profile",
+            "user" => $user,
+            "remainingTime" => $user->userRemainingPremiumTime(), // Panggil fungsi langsung dari model
         ]);
     }
 

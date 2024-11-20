@@ -16,7 +16,7 @@
                         <th>Email</th>
                         <th>Dimulai Pada</th>
                         <th>Berakhir Pada</th>
-                        <th>Sisa Hari</th>
+                        <th>Sisa Waktu</th>
                     </tr>
                 </thead>
 
@@ -25,9 +25,9 @@
                         <tr>
                             <th>{{ ($subscriptions->currentPage() - 1) * $subscriptions->perPage() + $key + 1 }}</th>
                             <td>{{ $subscription->user->email ?? 'Tidak Diketahui' }}</td>
-                            <td>{{ $subscription->started_at->format('d-m-Y') }}</td>
-                            <td>{{ $subscription->ends_at->format('d-m-Y') }}</td>
-                            <td>{{ $subscription->remaining_days }} hari</td>
+                            <td>{{ $subscription->started_at->format('d-m-Y H:i:s') }}</td>
+                            <td>{{ $subscription->ends_at->format('d-m-Y H:i:s') }}</td>
+                            <td>{{ $subscription->remaining_time }}</td>
                         </tr>
                     @endforeach
                 </tbody>

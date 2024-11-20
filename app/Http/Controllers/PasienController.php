@@ -11,9 +11,47 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class PasienController extends Controller
 {
+    public function updateProfile(UpdateUserRequest $request)
+    {
+        $pasien = Pasien::with('user')->where('id_user', Auth::user()->id)->firstOrFail();
+        $user = $pasien->user;
+    
+        DB::beginTransaction();
+    
+        try {
+            $user->update([
+                'role' => $request->role,
+                'nama' => $request->nama,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'tanggal_lahir' => $request->tanggal_lahir,
+            ]);
+    
+            if ($request->hasFile('foto_profil')) {
+                if ($user->foto_profil) {
+                    Storage::disk('public')->delete($user->foto_profil);
+                }
+    
+                $path = $request->file('foto_profil')->store('image/foto_profil', 'public');
+                $user->update(['foto_profil' => $path]);
+            }
+    
+            $pasien->update([
+                'deskripsi_diri' => $request->deskripsi_diri,
+            ]);
+    
+            DB::commit();
+    
+            return redirect()->back()->with('success', 'Profil berhasil diperbarui.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui profil.');
+        }
+    }
+    
     /**
      * Display a listing of the resource.
      */

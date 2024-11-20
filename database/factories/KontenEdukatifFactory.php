@@ -23,7 +23,7 @@ class KontenEdukatifFactory extends Factory
         $tipe = $this->faker->randomElement(['artikel', 'video']);
 
         return [
-            'id_user' => User::factory(), // Menghubungkan dengan user yang ada
+            'id_user' => User::inRandomOrder()->first()->id, // Menghubungkan dengan user yang ada
             'judul' => $this->faker->sentence,
             'tipe' => $tipe,
             'thumbnail' => 'image/dummy.png',

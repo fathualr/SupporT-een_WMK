@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <title>{{ $title }}</title>
     <link rel="icon" type="image/svg+xml" href=" {{ asset('images/logo-icon.svg') }} ">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,21 +108,182 @@
         </div>
     </header>
 
-    <div class="{{ in_array($title, ['SupporT-een', 'Login', 'Registrasi', 'Mitra']) ? 'min-h-[calc(100vh-80px)]' : 'h-[calc(100vh-80px)]' }} flex w-full bg-color-8">
+    <main>
+        <div class="flex items-center justify-center w-full min-h-[calc(100vh-80px)] bg-color-8 text-color-1 py-10">
+            <!-- profil -->
+            <div class="max-w-5xl py-8 px-10 w-full bg-white border border-gray-200 rounded-3xl">
 
-        <aside class="w-2/5 {{ in_array($title, ['SupporT-een', 'Login', 'Registrasi', 'Mitra']) ? '' : 'overflow-y-auto' }}">
-            <!-- Konten aside -->
-            @yield('aside')
-        </aside>
 
-        <main class="w-3/5 bg-color-8 border-l border-color-4">
-            <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full relative overflow-auto">
-                <!-- Konten main -->
-                @yield('main')
-            </div>
-        </main>
+                <h2 class="text-2xl py-3 font-medium">Detail Akun</h2>
+                <hr class="border-gray-200">
 
-    </div>
+                <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <input type="hidden" name="role" value="pasien">
+
+                    <div class="flex justify-between my-4">
+                        <div class="flex items-center gap-8">
+                            <div class="flex flex-col items-center justify-center">
+                                <div class="avatar pb-3">
+                                    <div class="w-24 rounded-full">
+                                        <img id="previewImage" src="{{ asset('storage/' . $user->foto_profil) }}" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label class="btn btn-sm cursor-pointer hover:opacity-80 inline-flex items-center my-2 bg-color-6 text-color-3 border border-transparent
+                                rounded-md font-semibold text-xs capitalize hover:bg-color-5 active:bg-sky-300 focus: focus:outline-none
+                            focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" for="restaurantImage">
+                                ubah foto
+                                <!-- input gambar -->
+                                <input name="foto_profil" id="restaurantImage" class="text-sm cursor-pointer w-36 hidden" type="file">
+                            </label>
+                            @error('foto_profil')
+                                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    </div>
+                    <!-- End foto Profil -->
+
+                    <!-- detail -->
+                    <div class="grid grid-cols-2 my-4 gap-x-4">
+                        
+                        <label class="form-control w-full">
+                            <div class="label">
+                                <span>Nama</span>
+                            </div>
+                            <input type="text" name="nama" value="{{ $user->nama }}" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
+                            @error('nama')
+                                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                            @enderror
+                        </label>
+
+                        <label class="form-control w-full">
+                            <div class="label">
+                                <span>Email</span>
+                            </div>
+                            <input type="text" readonly value="{{ $user->email }}" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg cursor-not-allowed" />
+                            @error('email')
+                                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                            @enderror
+                        </label>
+
+                        <label class="form-control w-full">
+                            <div class="label">
+                                <span>Jenis Kelamin</span>
+                            </div>
+                            <select name="jenis_kelamin" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" required>
+                                <option value="laki laki" {{ $user->jenis_kelamin === 'laki laki' ? 'selected' : '' }}>Laki-laki</option>
+                                <option value="perempuan" {{ $user->jenis_kelamin === 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            </select>
+                            @error('jenis_kelamin')
+                                <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                            @enderror
+                        </label>
+
+                        <label class="form-control w-full">
+                            <div class="label">
+                                <span>Tanggal Lahir</span>
+                            </div>
+                            <input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir', $user->tanggal_lahir->format('Y-m-d')) }}" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
+                            @error('tanggal_lahir')
+                            <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                        @enderror
+                        </label>
+                        
+                        <label class="form-control col-span-2 w-full">
+                            <div class="label">
+                                <span>Deskripsi Diri</span>
+                            </div>
+                            <textarea name="deskripsi_diri" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg">{{ old('deskripsi_diri', $user->pasien->deskripsi_diri ?? '') }}</textarea>
+                            @error('deskripsi_diri')
+                            <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                        @enderror
+                        </label>
+
+                        <div class="flex justify-center items-center col-span-2 mt-4">
+                            <button type="submit" class="btn btn-primary bg-color-6 text-color-3 border border-transparent rounded-md font-semibold text-sm hover:bg-color-5 transition ease-in-out duration-150">
+                                Simpan Perubahan
+                            </button>
+                        </div>                    
+                    </div>
+
+                </form>
+
+                <h2 class="text-2xl py-3 font-medium">Status</h2>
+                <hr class="border-gray-200">
+                
+                <div class="flex justify-center">
+                    @if(Auth::user()->role === 'pasien' && Auth::user()->isPremium())
+                        <div class="bg-white max-w-sm w-full py-4 px-8 my-4 border border-gray-200 rounded-lg shadow-lg relative">
+                            
+                            <!-- status langganan -->
+                            <div class="mb-2 flex items-center justify-between">
+                                <h5 class="text-lg font-bold text-gray-800">Paket Langganan Premium</h5>
+                                <span class="py-1 px-2 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
+                                    <svg class="shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                                    <path d="m9 12 2 2 4-4"></path>
+                                    </svg>
+                                    Aktif
+                                </span>
+                            </div>
+
+                            <!-- Fitur-Fitur -->
+                            <ul role="list" class="space-y-4 my-4">
+                                <li class="flex items-center">
+                                    <svg class="flex-shrink-0 w-5 h-5 text-color-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                    </svg>
+                                    <span class="text-sm font-normal text-gray-600 ml-3">
+                                        Chatbot dengan akses berkali lipat.
+                                    </span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="flex-shrink-0 w-5 h-5 text-color-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                    </svg>
+                                    <span class="text-sm font-normal text-gray-600 ml-3">
+                                        Analisis emosi harian dari jurnal.
+                                    </span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="flex-shrink-0 w-5 h-5 text-color-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                    </svg>
+                                    <span class="text-sm font-normal text-gray-600 ml-3">
+                                        Forum diskusi online eksklusif.
+                                    </span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="flex-shrink-0 w-5 h-5 text-color-3" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                    </svg>
+                                    <span class="text-sm font-normal text-gray-600 ml-3">
+                                        Dukungan teknis prioritas.
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <div class="flex justify-center">
+                                <p class="text-xs text-gray-800">Durasi langganan tersisa 
+                                    <span class="text-color-3 font-bold">{{ $remainingTime }}</span>
+                                </p>
+                            </div>
+
+                        </div>
+                        <!-- End berlangganan -->
+                    @else
+                    <span class="p-3">Anda tidak memiliki langganan premium aktif.</span>
+                    @endif
+                </div>
+        </div>
+        <!-- End profil -->
+
+    </main>
 
     <footer class="text-color-8">
         <div class="grid grid-cols-4 bg-color-1 min-h-[250px] h-fit px-[150px] pt-[50px]">
@@ -187,6 +349,7 @@
         </div>
     </footer>
 
+    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @auth
@@ -302,5 +465,14 @@
             </script>
         @endif
     @endauth
+
+    <script>
+        document.getElementById('restaurantImage').addEventListener('change', function (event) {
+            const [file] = event.target.files;
+            if (file) {
+                document.getElementById('previewImage').src = URL.createObjectURL(file);
+            }
+        });
+    </script>
 </body>
 </html>
