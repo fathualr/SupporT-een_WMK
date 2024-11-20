@@ -23,6 +23,7 @@ export default {
       },
       backgroundImage: {
         "brain-pattern": "url('/public/images/brain-pattern.png')", // Background gambar
+        "paper-texture": "url('/public/images/painted-relief-texture.jpg')",
       },
       boxShadow: {
         'custom-1': '0 0 4px rgba(0, 0, 0, 0.25)',  // Bayangan ringan

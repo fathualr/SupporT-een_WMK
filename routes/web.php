@@ -37,17 +37,20 @@ Route::post('authenticate', [AuthController::class, 'authenticate'])->name('auth
 Route::post('registration', [AuthController::class, 'registration'])->name('registration');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
+// profile
+
 Route::middleware([GuestOrPasienMiddleware::class])->group(function () {
     Route::get('/', [MainController::class, 'index']);
     Route::get('/konten-edukatif/{id?}', [KontenEdukatifController::class, 'kontenEdukatif'])->name('kontenEdukatif');
 });
 // Pasien
 Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function () {
-        // Midtrans route ->
+    // Midtrans route ->
     Route::post('/generate-snaptoken', [SubscriptionController::class, 'generateSnapToken'])->name('generate.snaptoken');
     Route::post('/process-payment/{transaction}', [SubscriptionController::class, 'processPayment'])->name('process.payment');
     Route::post('/cancel-transaction/{transaction}', [SubscriptionController::class, 'cancelTransaction'])->name('cancel.transaction');
-        // <-
+    // <-
+    Route::get('/profile', [AuthController::class, 'profile']);
     Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
     Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
     Route::get('/jurnal-harian', [JurnalHarianController::class, 'jurnalHarian']);
