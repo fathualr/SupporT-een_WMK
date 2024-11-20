@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pesan_chatbot', function (Blueprint $table) {
             $table->id(); // Primary key, ID unik untuk setiap pesan chatbot
-            $table->unsignedBigInteger('id_percakapan_chatbot'); // Foreign key merujuk pada tabel percakapan_chatbot
+            $table->uuid('id_percakapan_chatbot'); // Foreign key merujuk pada tabel percakapan_chatbot
             $table->string('teks', 255); // Isi teks dari pesan
             $table->enum('pengirim', ['bot', 'pengguna']); // Pengirim pesan (bot atau pengguna)
             $table->timestamps(); // Kolom created_at dan updated_at

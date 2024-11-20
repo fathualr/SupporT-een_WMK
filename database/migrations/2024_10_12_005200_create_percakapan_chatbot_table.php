@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('percakapan_chatbot', function (Blueprint $table) {
-            $table->id(); // Primary key, ID unik untuk setiap percakapan chatbot
+            $table->uuid('id')->primary(); // UUID sebagai primary key
             $table->unsignedBigInteger('id_pasien'); // Foreign key merujuk pada tabel Pasien
             $table->string('label', 255); // Label percakapan
             $table->dateTime('last_activity'); // Tanggal dan waktu aktivitas terakhir

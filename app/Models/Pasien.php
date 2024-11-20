@@ -40,6 +40,11 @@ class Pasien extends Model
     {
         return $this->hasMany(RiwayatAktivitas::class, 'id_pasien');
     }
+
+    public function percakapanChatbots()
+    {
+        return $this->hasMany(PercakapanChatbot::class, 'id_pasien');
+    }
     
     public $timestamps = false;
 }

@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             TenagaAhliSeeder::class,
             RiwayatPendidikanTenagaAhliSeeder::class,
             PasienSeeder::class,
-            ChatbotSeeder::class,
+            // ChatbotSeeder::class,
             SubscriptionPLanSeeder::class,
             AktivitasPositifSeeder::class,
             KataKunciAktivitasPositifSeeder::class,

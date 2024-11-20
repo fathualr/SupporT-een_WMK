@@ -99,11 +99,11 @@
     <div class="flex flex-col max-w-5xl h-full relative w-full">
 
         <!-- Pembungkus dengan overflow -->
-        <div id="chat-container" class="flex flex-col-reverse w-full h-full overflow-y-auto justify-items-end">
+        <div id="chat-container" class="flex flex-col-reverse w-full h-full overflow-y-auto justify-items-end select-text">
             <!-- Percakapan dimulai dari sini -->
 
-                <!-- Looping pesan -->
             @if ($selectedPercakapan)
+                <!-- Looping pesan -->
                 @foreach ($selectedPercakapan->pesanChatbot as $pesan)
                     <div class="flex items-end gap-3 pb-4">
                         <!-- Konten pesan -->
@@ -128,15 +128,26 @@
                         @endif
                     </div>
                 @endforeach
+            @else
+                <div class="flex justify-center items-center h-full w-full">
+                    <span class="font-bold text-3xl text-color-1">
+                        Ceritakan pengalaman atau cerita anda...
+                    </span>
+                </div>
             @endif
         </div>
 
-        <div class="relative">
-            <input type="text" name="hs-validation-name-error" class="py-4 px-4 block w-full rounded-full text-sm bg-color-6 outline-color-5" placeholder="Masukkan pesan anda disini" aria-describedby="hs-validation-name-error-helper">
-            <button class="btn btn-ghost absolute inset-y-0 right-0 rounded-full">
-                <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
-            </button>
-        </div>
+        <form method="POST" action="{{ route('chatbot.store') }}">
+            @csrf
+            <input type="hidden" name="id_percakapan" value="{{ $selectedPercakapan->id ?? '' }}">
+            <div class="relative">
+                <input type="text" name="pesan" class="py-4 px-4 block w-full rounded-full text-sm bg-color-6 outline-color-5" 
+                        placeholder="Masukkan pesan anda disini" aria-describedby="hs-validation-name-error-helper" autocomplete="off">
+                <button type="submit" class="btn btn-ghost absolute inset-y-0 right-0 rounded-full">
+                    <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
+                </button>
+            </div>
+        </form>
 
     </div>
     <!-- section percakapan -->

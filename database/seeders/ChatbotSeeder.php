@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use Illuminate\Support\Str;
+use App\Models\PercakapanChatbot;
+use App\Models\PesanChatbot;
 
 class ChatbotSeeder extends Seeder
 {
@@ -13,72 +15,57 @@ class ChatbotSeeder extends Seeder
      */
     public function run(): void
     {
-        $now = Carbon::now();
-
-        // Percakapan 1: 10 chat (2 arah)
-        $percakapan1 = DB::table('percakapan_chatbot')->insertGetId([
+        // Membuat data percakapan
+        $percakapan1 = PercakapanChatbot::create([
             'id_pasien' => 1,
-            'label' => 'Percakapan dengan 10 chat',
-            'last_activity' => $now->copy()->addMinutes(20),
+            'label' => 'Percakapan dengan Chatbot untuk konsultasi kesehatan',
+            'last_activity' => now(),
             'status' => 'aktif',
-            'created_at' => $now,
-            'updated_at' => $now,
         ]);
 
-        for ($i = 0; $i < 10; $i++) {
-            DB::table('pesan_chatbot')->insert([
-                [
-                    'id_percakapan_chatbot' => $percakapan1,
-                    'teks' => "Pesan dari bot ke-$i",
-                    'pengirim' => 'bot',
-                    'created_at' => $now->copy()->addMinutes($i * 2),
-                    'updated_at' => $now->copy()->addMinutes($i * 2),
-                ],
-                [
-                    'id_percakapan_chatbot' => $percakapan1,
-                    'teks' => "Pesan dari pengguna ke-$i",
-                    'pengirim' => 'pengguna',
-                    'created_at' => $now->copy()->addMinutes($i * 2 + 1),
-                    'updated_at' => $now->copy()->addMinutes($i * 2 + 1),
-                ],
-            ]);
-        }
-
-        // Percakapan 2: 1 chat (2 arah)
-        $percakapan2 = DB::table('percakapan_chatbot')->insertGetId([
+        $percakapan2 = PercakapanChatbot::create([
             'id_pasien' => 1,
-            'label' => 'Percakapan dengan 1 chat',
-            'last_activity' => $now->copy()->addMinutes(1),
+            'label' => 'Percakapan dengan Chatbot untuk jadwal kontrol',
+            'last_activity' => now(),
             'status' => 'selesai',
-            'created_at' => $now,
-            'updated_at' => $now,
         ]);
 
-        DB::table('pesan_chatbot')->insert([
-            [
-                'id_percakapan_chatbot' => $percakapan2,
-                'teks' => 'Halo, ini percakapan pendek dari bot.',
-                'pengirim' => 'bot',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'id_percakapan_chatbot' => $percakapan2,
-                'teks' => 'Halo, ini balasan dari pengguna.',
-                'pengirim' => 'pengguna',
-                'created_at' => $now->copy()->addMinute(),
-                'updated_at' => $now->copy()->addMinute(),
-            ],
+        // Membuat data pesan untuk percakapan 1
+        PesanChatbot::create([
+            'id_percakapan_chatbot' => $percakapan1->id,
+            'teks' => 'Halo, ada yang bisa saya bantu?',
+            'pengirim' => 'bot',
         ]);
 
-        // Percakapan 3: Tanpa percakapan
-        $percakapan3 = DB::table('percakapan_chatbot')->insertGetId([
-            'id_pasien' => 1,
-            'label' => 'Percakapan tanpa pesan',
-            'last_activity' => Carbon::now(), // Berikan nilai default
-            'status' => 'aktif',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+        PesanChatbot::create([
+            'id_percakapan_chatbot' => $percakapan1->id,
+            'teks' => 'Ya, saya ingin konsultasi mengenai gejala demam.',
+            'pengirim' => 'pengguna',
+        ]);
+
+        PesanChatbot::create([
+            'id_percakapan_chatbot' => $percakapan1->id,
+            'teks' => 'Baik, bisa jelaskan lebih detail tentang gejala yang dirasakan?',
+            'pengirim' => 'bot',
+        ]);
+
+        // Membuat data pesan untuk percakapan 2
+        PesanChatbot::create([
+            'id_percakapan_chatbot' => $percakapan2->id,
+            'teks' => 'Selamat pagi, ada yang bisa saya bantu?',
+            'pengirim' => 'bot',
+        ]);
+
+        PesanChatbot::create([
+            'id_percakapan_chatbot' => $percakapan2->id,
+            'teks' => 'Saya ingin memastikan jadwal kontrol saya minggu depan.',
+            'pengirim' => 'pengguna',
+        ]);
+
+        PesanChatbot::create([
+            'id_percakapan_chatbot' => $percakapan2->id,
+            'teks' => 'Baik, jadwal kontrol Anda adalah Senin, 20 November 2024 pukul 10:00 WIB.',
+            'pengirim' => 'bot',
         ]);
     }
 }

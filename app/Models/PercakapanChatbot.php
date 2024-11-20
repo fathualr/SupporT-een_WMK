@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class PercakapanChatbot extends Model
 {
@@ -11,11 +12,9 @@ class PercakapanChatbot extends Model
 
     protected $table = 'percakapan_chatbot';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    public $incrementing = false; // Karena menggunakan UUID
+    protected $keyType = 'string'; // Tipe data primary key adalah string
+
     protected $fillable = [
         'id_pasien',
         'label',
@@ -23,16 +22,26 @@ class PercakapanChatbot extends Model
         'status',
     ];
 
-    /**
-     * Relationship: One PercakapanChatbot has many PesanChatbot.
-     */
-    public function pesanChatbot()
+    // Event untuk membuat UUID secara otomatis saat model dibuat
+    protected static function boot()
     {
-        return $this->hasMany(PesanChatbot::class, 'id_percakapan_chatbot');
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = (string) Str::uuid();
+        });
     }
 
     /**
-     * Relationship: PercakapanChatbot belongs to Pasien.
+     * Relasi ke model PesanChatbot (One-to-Many)
+     */
+    public function pesanChatbot()
+    {
+        return $this->hasMany(PesanChatbot::class, 'id_percakapan_chatbot')->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Relasi ke model Pasien (Many-to-One)
      */
     public function pasien()
     {

@@ -22,6 +22,11 @@ class PesanChatbot extends Model
         'pengirim',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     /**
      * Relationship: PesanChatbot belongs to PercakapanChatbot.
      */
