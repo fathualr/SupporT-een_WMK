@@ -20,7 +20,7 @@
                 <span class="my-auto text-[2rem]">SupporT-een</span>
             </a>
 
-            <div class="flex items-center justify-center select-none">
+            <div class="flex items-center justify-center select-none" id="flash-message-place">
                 @include('Components.flash-message')
                 @auth
                     @if(Auth::user()->role === 'pasien' && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->premiumEndingSoon())

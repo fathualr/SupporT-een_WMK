@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Diskusi extends Model
 {
@@ -11,12 +12,24 @@ class Diskusi extends Model
 
     protected $table = 'diskusi';
 
-    // Kolom yang dapat diisi
+    public $incrementing = false; // Karena menggunakan UUID
+    protected $keyType = 'string'; // Tipe data primary key adalah string
+
     protected $fillable = [
         'id_pasien',
         'judul',
         'isi',
     ];
+
+    // Event untuk membuat UUID secara otomatis saat model dibuat
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = (string) Str::uuid();
+        });
+    }
 
     /**
      * Relasi ke model Pasien (one-to-many, diskusi milik seorang pasien).

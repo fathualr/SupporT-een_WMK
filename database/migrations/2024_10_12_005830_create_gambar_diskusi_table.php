@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('gambar_diskusi', function (Blueprint $table) {
             $table->id(); // Primary key, ID unik untuk setiap gambar diskusi
-            $table->unsignedBigInteger('id_diskusi'); // Foreign key merujuk pada tabel diskusi
+            $table->uuid('id_diskusi'); // Foreign key merujuk pada tabel diskusi
             $table->string('gambar', 255); // Nama file gambar yang diunggah dalam diskusi
 
             // Definisi foreign key

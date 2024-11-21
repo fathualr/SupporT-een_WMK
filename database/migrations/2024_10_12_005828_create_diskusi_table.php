@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('diskusi', function (Blueprint $table) {
-            $table->id(); // Primary key, ID unik untuk setiap diskusi
+            $table->uuid('id')->primary(); // Primary key, ID unik untuk setiap diskusi
             $table->unsignedBigInteger('id_pasien')->nullable(); // Foreign key merujuk pada tabel pasien
             $table->string('judul', 50); // Judul diskusi
             $table->longText('isi'); // Isi dari diskusi

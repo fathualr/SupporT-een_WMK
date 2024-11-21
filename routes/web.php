@@ -12,10 +12,11 @@ use App\Http\Controllers\{
     RiwayatPendidikanTenagaAhliController,
     KontenEdukatifController,
     DiskusiController,
+    GambarDiskusiController,
+    ForumController,
     ChatbotController,
     JurnalHarianController,
     AktivitasPribadiController,
-    ForumController,
     KonsultasiController,
     TransaksiController,
     PendapatanController,
@@ -58,7 +59,10 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
     Route::get('/daftar-aktivitas-pribadi', [AktivitasPribadiController::class, 'daftarAktivitasPribadi']);
     Route::get('/daftar-aktivitas-pribadi/kustomisasi', [AktivitasPositifController::class, 'kustomisasiAktivitasPribadi']);
     Route::post('/aktivitas-pribadi', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
-    Route::get('/forum', [ForumController::class, 'forum']);
+    Route::get('/forum/{id?}', [ForumController::class, 'forum'])->name('forum.index');
+    Route::resource('/forum-diskusi', ForumController::class)->except('index');
+    Route::resource('/balasan',BalasanController::class)->only(['store', 'destroy'])->names(['destroy' => 'pasien.balasan.destroy',]);;
+    Route::resource('/gambar-diskusi', GambarDiskusiController::class)->only('destroy');
     Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
 });
 
@@ -92,7 +96,7 @@ Route::prefix('content-admin')->middleware(['auth', RoleMiddleware::class . ':co
     Route::resource('/kata-kunci-konten', KataKunciKontenController::class);
     Route::resource('/diskusi',DiskusiController::class);
     Route::get('/diskusi/{id}/balasan', [DiskusiController::class, 'showBalasan'])->name('diskusi.showBalasan');
-    Route::resource('/balasan',BalasanController::class);
+    Route::resource('/balasan',BalasanController::class)->only('destroy');
     Route::resource('/aktivitas-positif',AktivitasPositifController::class);
     Route::resource('/kata-kunci-aktivitas',KataKunciAktivitasController::class);
 });
