@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jurnal_harian', function (Blueprint $table) {
-            $table->id(); // Primary key, ID unik untuk setiap jurnal harian
+            $table->uuid('id')->primary(); // Primary key, ID unik untuk setiap jurnal harian
             $table->unsignedBigInteger('id_pasien'); // Foreign key merujuk pada tabel Pasien
-            $table->string('judul', 50); // Judul jurnal harian
-            $table->decimal('nilai_emosi', 10, 2); // Nilai atau skor emosi yang dirasakan pasien
-            $table->longText('isi'); // Isi dari jurnal harian
+            $table->string('judul', 50)->nullable(); // Judul jurnal harian
+            $table->longText('isi')->nullable(); // Isi dari jurnal harian
+            $table->string('nilai_emosi')->nullable(); // Nilai atau skor emosi yang dirasakan pasien
             $table->timestamps(); // Kolom created_at dan updated_at
 
             // Definisi foreign key
