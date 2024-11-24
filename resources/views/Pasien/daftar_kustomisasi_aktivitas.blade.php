@@ -26,7 +26,17 @@
 
     <form action="{{ route('aktivitas-pribadi.update') }}" method="POST">
         @csrf
-        <button type="submit" class="px-4 py-2 bg-color-3 text-white rounded-md mt-3">Simpan Perubahan</button>
+        <div class="flex gap-4 items-center">
+            <button type="submit" class="px-4 py-2 bg-color-3 text-white rounded-md mt-3">
+                Simpan Perubahan
+            </button>
+            <button 
+                type="button" 
+                id="select-all-btn" 
+                class="px-4 py-2 border border-color-1 bg-color-putih text-color-1 rounded-md mt-3 hover:bg-color-8">
+                Pilih Semua
+            </button>
+        </div>
 
         <div class="grid grid-cols-3 gap-4 py-8">
             @foreach($aktivitasPositif as $aktivitas)
@@ -52,4 +62,17 @@
 
     </form>
 </div>
+
+<script>
+    // JavaScript untuk mencentang/menghilangkan centang semua checkbox
+    document.getElementById('select-all-btn').addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="aktivitas[]"]');
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked); // Cek apakah semua sudah dicentang
+
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = !allChecked; // Toggle status checkbox
+        });
+    });
+</script>
+
 @endsection
