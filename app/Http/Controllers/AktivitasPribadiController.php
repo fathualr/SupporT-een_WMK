@@ -44,4 +44,20 @@ class AktivitasPribadiController extends Controller
         return redirect()->back()->with('success', 'Aktivitas pribadi berhasil diperbarui!');
     }
 
+    public function storeAktivitasPribadi(Request $request)
+    {
+        $pasienId = Auth::user()->pasien->id;
+        $selectedActivities = $request->input('aktivitas', []); // Daftar ID aktivitas yang dipilih (checkbox tercentang)
+    
+        // Ambil semua aktivitas pribadi pengguna
+        $allActivities = AktivitasPribadi::where('id_pasien', $pasienId)->get();
+    
+        // Iterasi semua aktivitas untuk memperbarui status is_completed
+        foreach ($allActivities as $activity) {
+            $activity->is_completed = in_array($activity->id, $selectedActivities); // Centang = true, Tidak centang = false
+            $activity->save();
+        }
+    
+        return redirect()->back()->with('success', 'Aktivitas pribadi berhasil diselesaikan!');
+    }
 }
