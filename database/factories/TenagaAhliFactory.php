@@ -18,8 +18,8 @@ class TenagaAhliFactory extends Factory
             'spesialisasi' => 'Psikologi',
             'jadwal_aktif' => $this->faker->randomElement(['Senin-Jumat, 09:00-17:00', 'Senin-Kamis, 10:00-16:00']),
             'lokasi_praktik' => $this->faker->city(),
-            'biaya_konsultasi' => $this->faker->randomFloat(2, 100000, 500000),
-            'tabungan' => $this->faker->randomFloat(2, 0, 100000),
+            'biaya_konsultasi' => $this->faker->numberBetween(2, 100000),
+            'tabungan' => $this->faker->numberBetween(2, 100000),
         ];
     }
 }

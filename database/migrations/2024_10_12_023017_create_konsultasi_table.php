@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id(); // Primary key, ID unik untuk setiap konsultasi
             $table->unsignedBigInteger('id_tenaga_ahli')->nullable(); // Foreign key untuk merujuk pada tenaga ahli
             $table->unsignedBigInteger('id_pasien')->nullable(); // Foreign key untuk merujuk pada pasien
-            $table->string('pesan_tenaga_ahli', 255); // Pesan terakhir dari tenaga ahli
-            $table->enum('status', ['selesai', 'berlangsung', 'dibatalkan']); // Status konsultasi
+            $table->string('pesan_tenaga_ahli', 255)->nullable(); // Pesan terakhir dari tenaga ahli
+            $table->enum('status', ['done', 'on going'])->nullable(); // Status konsultasi
+            $table->timestamp('started_at')->nullable(); // Waktu mulai konsultasi
+            $table->timestamp('ends_at')->nullable(); // Waktu berakhir konsultasi (hasil dari perhitungan)
             $table->timestamps(); // Menambahkan kolom created_at dan updated_at
 
             // Menambahkan foreign key constraint untuk id_tenaga_ahli

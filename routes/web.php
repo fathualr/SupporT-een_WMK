@@ -63,7 +63,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
     Route::resource('/forum-diskusi', ForumController::class)->except('index');
     Route::resource('/balasan',BalasanController::class)->only(['store', 'destroy'])->names(['destroy' => 'pasien.balasan.destroy',]);;
     Route::resource('/gambar-diskusi', GambarDiskusiController::class)->only('destroy');
-    Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
+    Route::get('/konsultasi/{id?}', [KonsultasiController::class, 'konsultasi'])->name('konsultasi.index');
 });
 
 // Tenaga Ahli

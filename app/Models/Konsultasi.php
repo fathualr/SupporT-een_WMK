@@ -18,6 +18,13 @@ class Konsultasi extends Model
         'id_pasien',
         'pesan_tenaga_ahli',
         'status',
+        'started_at',
+        'ends_at',
+    ];
+
+    protected $casts = [
+        'started_at' => 'datetime',
+        'ends_at' => 'datetime',
     ];
 
     // Relasi dengan model TenagaAhli
@@ -30,5 +37,11 @@ class Konsultasi extends Model
     public function pasien()
     {
         return $this->belongsTo(Pasien::class, 'id_pasien');
+    }
+
+    // Relasi ke model TransaksiKonsultasi
+    public function transaksiKonsultasi()
+    {
+        return $this->hasOne(TransaksiKonsultasi::class, 'id_konsultasi');
     }
 }

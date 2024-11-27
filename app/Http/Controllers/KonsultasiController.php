@@ -2,27 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Konsultasi;
+use App\Models\TransaksiKonsultasi;
 use App\Models\TenagaAhli;
+use Illuminate\Support\Facades\Auth;
+use Midtrans\Config;
+use Midtrans\Snap;
+use Midtrans\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str; // Untuk membuat order_id unik
 
 
 class KonsultasiController extends Controller
 {
     
-    public function konsultasi()
+    public function konsultasi($id = null)
     {
-        $tenagaAhli = TenagaAhli::with('user')->get();
+        $tenagaAhli = TenagaAhli::with('user')->orderBy('is_available','desc')->get();
+        $selectedTenagaAhli = null;
 
-
-
+        if ($id) {
+            $selectedTenagaAhli = TenagaAhli::with(['user', 'riwayatPendidikan'])
+                ->where('id', $id)
+                ->first();
+            if (!$selectedTenagaAhli) {
+                return redirect()->back()->with('error','Tenaga ahli tidak dapat ditemukan.');
+            }
+        }
         return view('pasien/konsultasi', [
             "title" => "Konsultasi Online",
             "tenagaAhli" => $tenagaAhli,
+            "selectedTenagaAhli" => $selectedTenagaAhli,
         ]);
-    
     }
-    
     
     public function tenagaAhliKonsultasi()
     {
@@ -30,7 +42,7 @@ class KonsultasiController extends Controller
             "title" => "Percakapan"
         ]);
     }
-    
+
     /**
      * Display a listing of the resource.
      */

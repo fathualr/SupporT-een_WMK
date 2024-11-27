@@ -12,9 +12,6 @@ class TransaksiKonsultasi extends Model
     // Nama tabel (opsional jika nama tabel sesuai dengan konvensi Laravel)
     protected $table = 'transaksi_konsultasi';
 
-    // Primary key (opsional jika nama primary key adalah 'id')
-    protected $primaryKey = 'id';
-
     // Kolom yang dapat diisi (fillable) secara mass-assignment
     protected $fillable = [
         'id_konsultasi',
@@ -36,5 +33,10 @@ class TransaksiKonsultasi extends Model
     public function konsultasi()
     {
         return $this->belongsTo(Konsultasi::class, 'id_konsultasi');
+    }
+
+    public function refund()
+    {
+        return $this->hasOne(RefundsKonsultasi::class, 'id_transaksi_konsultasi');
     }
 }

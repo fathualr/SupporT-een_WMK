@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('snap_token')->unique(); // ID transaksi unik dari Midtrans
             $table->decimal('amount', 10, 2); // Jumlah pembayaran
             $table->string('payment_method')->nullable(); // Metode pembayaran (bisa kosong jika masih pending)
-            $table->enum('status', ['pending', 'canceled', 'expired', 'paid'])->default('pending'); // Default status saat transaksi dibuat
+            $table->enum('status', ['pending', 'canceled', 'expired', 'paid', 'refunded'])->default('pending');
             $table->timestamp('expired_at')->nullable();
             $table->timestamps(); // Menambahkan kolom created_at dan updated_at
 

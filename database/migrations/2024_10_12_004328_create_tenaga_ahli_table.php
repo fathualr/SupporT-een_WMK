@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('lokasi_praktik', 255)->nullable(); // Lokasi praktik fisik (jika ada), bisa null
             $table->decimal('biaya_konsultasi', 10, 2); // Biaya konsultasi per sesi
             $table->decimal('tabungan', 10, 2)->default(0.00); // Saldo hasil konsultasi yang diterima
+            $table->boolean('is_available')->default(false);
 
             // Definisi foreign key
             $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
