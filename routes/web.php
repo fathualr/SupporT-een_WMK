@@ -55,7 +55,8 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
     Route::put('/profile-update', [PasienController::class, 'updateProfile'])->name('profile.update');
     Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
     Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
-    Route::get('/jurnal-harian', [JurnalHarianController::class, 'jurnalHarian']);
+    Route::get('/jurnal-harian/{id?}', [JurnalHarianController::class, 'jurnalHarian'])->name('jurnalHarian.index');
+    Route::resource('/jurnal-harian', JurnalHarianController::class)->except(['index', 'create', 'edit']);
     Route::get('/daftar-aktivitas-pribadi', [AktivitasPribadiController::class, 'daftarAktivitasPribadi']);
     Route::get('/daftar-aktivitas-pribadi/kustomisasi', [AktivitasPositifController::class, 'kustomisasiAktivitasPribadi']);
     Route::post('/aktivitas-pribadi', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
@@ -63,7 +64,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
     Route::resource('/forum-diskusi', ForumController::class)->except('index');
     Route::resource('/balasan',BalasanController::class)->only(['store', 'destroy'])->names(['destroy' => 'pasien.balasan.destroy',]);;
     Route::resource('/gambar-diskusi', GambarDiskusiController::class)->only('destroy');
-    Route::get('/konsultasi/{id?}', [KonsultasiController::class, 'konsultasi'])->name('konsultasi.index');
+    Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
 });
 
 // Tenaga Ahli
