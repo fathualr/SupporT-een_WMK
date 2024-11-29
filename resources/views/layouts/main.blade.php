@@ -131,7 +131,7 @@
                     <tr class="align-top">
                         <td>Email</td>
                         <td>:</td>
-                        <td class="select-all">support-een@gmail.com</td>
+                        <td class="select-all">pblif19@gmail.com</td>
                     </tr>
                     <tr class="align-top">
                         <td>Alamat</td>
@@ -151,7 +151,7 @@
                     <nav class="flex flex-col">
                         <a href="/daftar-aktivitas-pribadi" class="link link-hover">Daftar aktivitas</a>
                         <a href="/forum" class="link link-hover">Forum diskusi</a>
-                        <a href="/konsultasi" class="link link-hover">Konsultasi</a>
+                        {{-- <a href="/konsultasi" class="link link-hover">Konsultasi</a> --}}
                     </nav>
                 </div>
             </nav>
@@ -173,13 +173,13 @@
                         </a>
                     </div>
                 </li>
-                <li class="flex flex-col">
+                {{-- <li class="flex flex-col">
                     <p class="text-base font-semibold mb-1">Anda seorang tenaga ahli kejiwaan?</p>
                     <a href="/mitra" class="btn btn-xs flex h-[30px] w-[100px] bg-color-8 text-color-9 text-color-1 hover:bg-color-6 border-color-4">
                         <img src=" {{ asset('icons/doctor-department.png') }} " alt="" class="h-4 w-4">
                         Daftar
                     </a>
-                </li>
+                </li> --}}
             </ul>
             <div class="col-span-4  w-full mx-auto text-center mt-auto">
                 <span class="text-xs">&copy; <?php echo date("Y"); ?> SupporT-een</span>

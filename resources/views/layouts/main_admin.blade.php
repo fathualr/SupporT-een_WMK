@@ -67,21 +67,23 @@
                                 <ul>
                                     <li><a href="/super-admin/user-admin">Data Administrator</a></li>
                                     <li><a href="/super-admin/user-pasien">Data Pasien</a></li>
-                                    <li><a href="/super-admin/user-tenaga-ahli">Data Tenaga Ahli</a></li>
+                                    {{-- <li><a href="/super-admin/user-tenaga-ahli">Data Tenaga Ahli</a></li> --}}
                                 </ul>
                             </details>
                         </li>
                         <li><a href="/super-admin/subscription">Data Subscription</a></li>
                         <li>
-                            <details id="dataTransaksi">
+                            {{-- <details id="dataTransaksi">
                                 <summary>Data Transaksi</summary>
                                 <ul>
-                                    <li><a href="/super-admin/transaksi-langganan">Data Langganan</a></li>
+                                    <li> --}}
+                                        <a href="/super-admin/transaksi-langganan">Data Langganan</a>
+                                    {{-- </li>
                                     <li><a href="/super-admin/transaksi">Data Konsultasi</a></li>
                                 </ul>
-                            </details>
+                            </details> --}}
                         </li>
-                        <li><a href="/super-admin/pendapatan">Pendapatan</a></li>
+                        {{-- <li><a href="/super-admin/pendapatan">Pendapatan</a></li> --}}
                     </ul>
                 </div>
             

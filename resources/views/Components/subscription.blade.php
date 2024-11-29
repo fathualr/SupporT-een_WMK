@@ -6,7 +6,7 @@
 
         <!-- Header Modal -->
         <div class="text-center">
-            <h5 class="mb-2 text-2xl font-bold text-gray-800">Paket Langganan Premium</h5>
+            <h5 class="mb-2 text-2xl font-bold text-gray-800">{{ $subscriptionPlan->name }}</h5>
         </div>
 
         <!-- Harga -->

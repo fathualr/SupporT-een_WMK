@@ -4,7 +4,7 @@
 
 <!-- halaman pendapatan admin -->
 <div class="flex flex-col gap-6">
-    <h1 class="text-[2rem] text-color-1 font-bold">Data Transaksi Konsultasi</h1>
+    <h1 class="text-[2rem] text-color-1 font-bold">Data Pendapatan</h1>
 
     <!-- bagian total pendapatan -->
     <div class="flex flex-col items-center bg-color-6 border-[1px] border-color-5 w-full py-16 rounded-2xl gap-4">
@@ -19,7 +19,7 @@
     <!-- bagian total pendapatan -->
 
     <!-- riwayat penarikan -->
-    <div class="flex flex-col w-full border-[1px] border-color-4 rounded-2xl p-5 gap-6">
+    {{-- <div class="flex flex-col w-full border-[1px] border-color-4 rounded-2xl p-5 gap-6">
         <h1 class="text-2xl text-color-1 font-bold">Riwayat Penarikan</h1>
         <div class="overflow-y-scroll w-full h-80 flex flex-col gap-4">
             <div class="grid grid-rows-1 items-center gap-4">
@@ -79,11 +79,11 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- riwayat penarikan -->
 
     <!-- riwayat pemasukan-->
-    <div class="flex flex-col w-full border-[1px] border-color-4 rounded-2xl p-5 gap-6">
+    {{-- <div class="flex flex-col w-full border-[1px] border-color-4 rounded-2xl p-5 gap-6">
         <h1 class="text-2xl text-color-1 font-bold">Riwayat Pemasukan</h1>
 
         <div class="overflow-y-scroll w-full h-[50vh]">
@@ -131,7 +131,7 @@
         <!-- tabel data -->
         </div>
 
-    </div>
+    </div> --}}
     <!-- riwayat pemasukan-->
 
 </div>

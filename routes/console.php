@@ -12,8 +12,11 @@ Artisan::command('inspire', function () {
 app()->singleton(Schedule::class, function () {
     $schedule = new Schedule;
 
-    // Jalankan command setiap menit
+    // Jadwalkan command untuk transaksi yang expired
     $schedule->command('transactions:expire')->everyMinute();
+
+    // Jadwalkan command untuk mencatat aktivitas pribadi setiap malam pukul 23:59
+    $schedule->command('activities:record')->dailyAt('23:59');
 
     return $schedule;
 });

@@ -25,10 +25,12 @@
     <div class="flex flex-col gap-4 pb-8 w-full">
         
         @if ($selectedDiskusi)
-            <a href="/forum" class="btn btn-sm bg-color-3 text-color-putih hover:bg-opacity-75 border-0 w-fit">
-                <img class="w-6 h-6" src="{{ asset('icons/back.svg') }}" alt="">
+        
+            <a href="/forum" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
+                <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
                 Kembali
             </a>
+            
             <!-- Tampilan diskusi yang dipilih -->
             <div class="bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl w-full">
                 <div class="flex items-center justify-between">
@@ -59,43 +61,43 @@
                     <!-- Bubble komentar -->
                     <div class="flex flex-col gap-4 mt-4">
                         @foreach ($selectedDiskusi->balasan as $balasan)
-                        <div class="bg-gray-100 p-4 rounded-lg relative">
-                            <!-- Nama pengguna -->
-                            <span class="font-semibold">{{ $balasan->pasien ? $balasan->pasien->user->nama : '#DeletedUser' }}</span>
-                            <p>{{ $balasan->isi }}</p>
-                            <span class="text-sm text-gray-500">{{ $balasan->created_at->format('d F Y, H:i:s') }}</span>
-                    
-                            <!-- Tampilkan tombol hapus jika balasan milik user -->
-                            @if ($balasan->pasien && $balasan->pasien->user->id === Auth::id())
-                                <!-- Tombol hapus (ikon silang) -->
-                                <button class="absolute top-2 right-2 rounded-xl bg-color-putih text-red-600 hover:text-red-300" 
-                                        onclick="document.getElementById('delete-balasan-modal-{{ $balasan->id }}').showModal();">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                    
-                                <!-- Modal Konfirmasi Hapus -->
-                                <dialog id="delete-balasan-modal-{{ $balasan->id }}" class="modal">
-                                    <div class="modal-box bg-color-8">
-                                        <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
-                                        <p>Apakah Anda yakin ingin menghapus balasan ini?</p>
-                                        <div class="modal-action">
-                                            <!-- Tombol Batal -->
-                                            <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
-                                            
-                                            <form method="POST" action="{{ route('pasien.balasan.destroy', $balasan->id) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
-                                            </form>
-                                            
+                            <div class="bg-gray-100 p-4 rounded-lg relative">
+                                <!-- Nama pengguna -->
+                                <span class="font-semibold">{{ $balasan->pasien ? $balasan->pasien->user->nama : '#DeletedUser' }}</span>
+                                <p>{{ $balasan->isi }}</p>
+                                <span class="text-sm text-gray-500">{{ $balasan->created_at->format('d F Y, H:i:s') }}</span>
+                        
+                                <!-- Tampilkan tombol hapus jika balasan milik user -->
+                                @if ($balasan->pasien && $balasan->pasien->user->id === Auth::id())
+                                    <!-- Tombol hapus (ikon silang) -->
+                                    <button class="absolute top-2 right-2 rounded-xl bg-color-putih text-red-600 hover:text-red-300" 
+                                            onclick="document.getElementById('delete-balasan-modal-{{ $balasan->id }}').showModal();">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                        
+                                    <!-- Modal Konfirmasi Hapus -->
+                                    <dialog id="delete-balasan-modal-{{ $balasan->id }}" class="modal">
+                                        <div class="modal-box bg-color-8">
+                                            <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
+                                            <p>Apakah Anda yakin ingin menghapus balasan ini?</p>
+                                            <div class="modal-action">
+                                                <!-- Tombol Batal -->
+                                                <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
+                                                
+                                                <form method="POST" action="{{ route('pasien.balasan.destroy', $balasan->id) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
+                                                </form>
+                                                
+                                            </div>
                                         </div>
-                                    </div>
-                                </dialog>
-                            @endif
-                        </div>
-                    @endforeach
+                                    </dialog>
+                                @endif
+                            </div>
+                        @endforeach
                     
                     </div>
                     <!-- Form untuk menambah balasan -->
@@ -111,13 +113,15 @@
                 </div>
             </div>
         @else
-            <a href="/" class="btn btn-sm bg-color-3 text-color-putih hover:bg-opacity-75 border-0 w-fit">
-                <img class="w-6 h-6" src="{{ asset('icons/back.svg') }}" alt="">
+            
+            <a href="/" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
+                <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
                 Kembali
             </a>
-                <div class="flex flex-col w-full h-full gap-5">
-                    
-                    @foreach ($diskusis as $diskusi)
+            
+            <div class="flex flex-col w-full h-full gap-5">
+                
+                @foreach ($diskusis as $diskusi)
                     <div class="bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
@@ -199,9 +203,8 @@
                             </a>
                         </div>
                     </div>
-                    @endforeach            
+                @endforeach            
 
-                </div>
             </div>
     
             <div class="pb-3 flex justify-center">

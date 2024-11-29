@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Middleware\GuestOrPasienMiddleware;
 use App\Http\Controllers\{
@@ -59,24 +60,26 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
     Route::resource('/jurnal-harian', JurnalHarianController::class)->except(['index', 'create', 'edit']);
     Route::get('/daftar-aktivitas-pribadi', [AktivitasPribadiController::class, 'daftarAktivitasPribadi']);
     Route::get('/daftar-aktivitas-pribadi/kustomisasi', [AktivitasPositifController::class, 'kustomisasiAktivitasPribadi']);
+    Route::post('/aktivitas-pribadi/update', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
+    Route::post('/aktivitas-pribadi/store', [AktivitasPribadiController::class, 'storeAktivitasPribadi'])->name('aktivitas-pribadi.store');
     Route::post('/aktivitas-pribadi', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
     Route::get('/forum/{id?}', [ForumController::class, 'forum'])->name('forum.index');
     Route::resource('/forum-diskusi', ForumController::class)->except('index');
     Route::resource('/balasan',BalasanController::class)->only(['store', 'destroy'])->names(['destroy' => 'pasien.balasan.destroy',]);;
     Route::resource('/gambar-diskusi', GambarDiskusiController::class)->only('destroy');
-    Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
+    // Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
 });
 
 // Tenaga Ahli
-Route::prefix('tenaga-ahli')->middleware(['auth', RoleMiddleware::class . ':tenaga ahli'])->group(function () {
-    Route::get('/', [MainController::class, 'tenagaAhli']);
-    Route::get('/kelola-konten-edukatif', [KontenEdukatifController::class, 'tenagaAhliKontenEdukatif']);
-    Route::get('/kelola-konten-edukatif/artikel', [KontenEdukatifController::class, 'tenagaAhliKontenArtikel']);
-    Route::get('/kelola-konten-edukatif/video', [KontenEdukatifController::class, 'tenagaAhliKontenVideo']);
-    Route::get('/kelola-konten-edukatif/tambah-konten', [KontenEdukatifController::class, 'tenagaAhliCreate']);
-    Route::get('/percakapan-konsultasi', [KonsultasiController::class, 'tenagaAhliKonsultasi']);
-    Route::get('/pendapatan', [PendapatanController::class, 'tenagaAhliPendapatan']);
-});
+// Route::prefix('tenaga-ahli')->middleware(['auth', RoleMiddleware::class . ':tenaga ahli'])->group(function () {
+//     Route::get('/', [MainController::class, 'tenagaAhli']);
+//     Route::get('/kelola-konten-edukatif', [KontenEdukatifController::class, 'tenagaAhliKontenEdukatif']);
+//     Route::get('/kelola-konten-edukatif/artikel', [KontenEdukatifController::class, 'tenagaAhliKontenArtikel']);
+//     Route::get('/kelola-konten-edukatif/video', [KontenEdukatifController::class, 'tenagaAhliKontenVideo']);
+//     Route::get('/kelola-konten-edukatif/tambah-konten', [KontenEdukatifController::class, 'tenagaAhliCreate']);
+//     Route::get('/percakapan-konsultasi', [KonsultasiController::class, 'tenagaAhliKonsultasi']);
+//     Route::get('/pendapatan', [PendapatanController::class, 'tenagaAhliPendapatan']);
+// });
 
 // Admin
 Route::prefix('super-admin')->middleware(['auth', RoleMiddleware::class . ':superadmin'])->group(function () {
@@ -88,7 +91,7 @@ Route::prefix('super-admin')->middleware(['auth', RoleMiddleware::class . ':supe
     Route::resource('/subscription', SubscriptionController::class);
     Route::resource('/transaksi-langganan', TransaksiLanggananController::class);
     Route::resource('/transaksi', TransaksiController::class);
-    Route::get('/pendapatan', [PendapatanController::class, 'adminPendapatan']);
+    // Route::get('/pendapatan', [PendapatanController::class, 'adminPendapatan']);
 });
 
 Route::prefix('content-admin')->middleware(['auth', RoleMiddleware::class . ':content admin'])->group(function () {
@@ -100,4 +103,10 @@ Route::prefix('content-admin')->middleware(['auth', RoleMiddleware::class . ':co
     Route::resource('/balasan',BalasanController::class)->only('destroy');
     Route::resource('/aktivitas-positif',AktivitasPositifController::class);
     Route::resource('/kata-kunci-aktivitas',KataKunciAktivitasController::class);
+});
+
+Route::fallback(function () {
+    return response()->view('errors.404', [
+        'user' => Auth::check() ? Auth::user() : null,
+    ], 404);
 });

@@ -97,9 +97,14 @@
 
     <!-- section percakapan -->
     <div class="flex flex-col max-w-5xl h-full relative w-full">
-
+        
+        <a href="/" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
+            <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
+            Kembali
+        </a>
+        
         <!-- Pembungkus dengan overflow -->
-        <div id="chat-container" class="flex flex-col-reverse w-full h-full overflow-y-auto justify-items-end select-text">
+        <div id="chat-container" class="flex flex-col-reverse w-full h-full scrollbar overflow-y-auto justify-items-end select-text">
             <!-- Percakapan dimulai dari sini -->
 
             @if ($selectedPercakapan)
@@ -141,7 +146,7 @@
             @csrf
             <input type="hidden" name="id_percakapan" value="{{ $selectedPercakapan->id ?? '' }}">
             <div class="relative">
-                <input type="text" name="pesan" class="py-4 px-4 block w-full rounded-full text-sm bg-color-6 outline-color-5" 
+                <input type="text" autofocus name="pesan" class="py-4 px-4 block w-full rounded-full text-sm bg-color-6 outline-color-5" 
                         placeholder="Masukkan pesan anda disini" aria-describedby="hs-validation-name-error-helper" autocomplete="off">
                 <button type="submit" class="btn btn-ghost absolute inset-y-0 right-0 rounded-full">
                     <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">

@@ -91,10 +91,16 @@
 
 @section('main')
 
-    @if ($selectedKonten)
-        @if ($selectedKonten->tipe === 'artikel')
+    <div class="flex flex-col w-full h-full">
+        @if ($selectedKonten)
 
-            <div class="flex flex-col w-full h-full">
+            @if ($selectedKonten->tipe === 'artikel')
+            
+                <a href="/konten-edukatif" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
+                    <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
+                    Kembali
+                </a>
+                
                 <div class="bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
@@ -114,11 +120,14 @@
                         </p>
                     </div>
                 </div>
-            </div>
 
-        @elseif ($selectedKonten->tipe === 'video')
+            @elseif ($selectedKonten->tipe === 'video')
+            
+                <a href="/konten-edukatif" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
+                    <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
+                    Kembali
+                </a>
 
-            <div class="flex flex-col w-full h-full">
                 <div class=" bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
@@ -135,15 +144,21 @@
                         <iframe class="w-full aspect-video rounded-lg shadow-lg" src="{!! empty($selectedKonten->link_youtube) ? 'https://www.youtube.com/embed/' : $selectedKonten->link_youtube !!}"></iframe>
                     </div>
                 </div>
-            </div>
 
-        @endif
-    @else
-        <!-- Default Message When No Content Selected -->
-        <div class="flex flex-col w-full h-full bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
-            <div class="flex justify-center items-center w-full h-full">
-                Tidak ada konten yang dipilih.
+            @endif
+        @else
+        
+            <a href="/" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
+                <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
+                Kembali
+            </a>
+
+            <!-- Default Message When No Content Selected -->
+            <div class="bg-color-8 h-full p-8 border-[1px] border-color-4 rounded-2xl">
+                <div class="flex justify-center items-center w-full h-full">
+                    Tidak ada konten yang dipilih.
+                </div>
             </div>
-        </div>
-    @endif
+        @endif
+    </div>
 @endsection

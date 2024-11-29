@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AktivitasPribadi;
+use App\Models\RiwayatAktivitas;
 use Illuminate\Support\Facades\Auth;
 
 class AktivitasPribadiController extends Controller
@@ -12,18 +13,27 @@ class AktivitasPribadiController extends Controller
     public function daftarAktivitasPribadi()
     {
         $pasienId = Auth::user()->pasien->id; // Ambil ID pasien
-
+    
         // Ambil data aktivitas pribadi
         $aktivitasPribadi = AktivitasPribadi::with('aktivitasPositif')
             ->where('id_pasien', $pasienId)
             ->get();
     
+        // Ambil data riwayat aktivitas dan kelompokkan berdasarkan tanggal
+        $riwayatAktivitas = RiwayatAktivitas::with('aktivitasPositif')
+            ->where('id_pasien', $pasienId)
+            ->get()
+            ->groupBy(function ($item) {
+                return \Carbon\Carbon::parse($item->created_at)->format('Y-m-d');
+            });
+    
         return view('pasien/daftar_aktivitas_pribadi', [
             "title" => "Daftar Aktivitas Pribadi",
-            "aktivitasPribadi" => $aktivitasPribadi
+            "aktivitasPribadi" => $aktivitasPribadi,
+            "riwayatAktivitas" => $riwayatAktivitas
         ]);
     }
-
+    
     public function updateAktivitasPribadi(Request $request)
     {
         $pasienId = Auth::user()->pasien->id;

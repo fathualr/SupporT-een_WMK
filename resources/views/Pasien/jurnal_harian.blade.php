@@ -61,93 +61,100 @@
 
 @section('main')
     <!-- jurnal -->
-    <div class="bg-white max-w-7xl w-full h-full px-4 py-8 flex flex-col shadow-lg rounded-2xl">
+    <div class="w-full h-full">
 
-        @if($selectedJurnal)
-            <div class="flex justify-center">
-                <button class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih w-fit" onclick="document.getElementById('analisis-emosi').showModal()">
-                    Analisis Emosi
-                </button>
-            </div>
-            <form id="text-form h-full" action="{{ route('jurnal-harian.update', $selectedJurnal->id) }}" method="POST" class="w-full h-full pb-4">
-                @csrf
-                @method('PATCH')
+        <a href="/" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
+            <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
+            Kembali
+        </a>
 
-                <!-- Judul -->
-                <input type="text" autocomplete="off" name="judul" value="{{ old('judul', $selectedJurnal->judul) }}" 
-                    class="font-bold text-lg py-3 bg-transparent block w-full rounded-lg focus:border-none focus:outline-none disabled:opacity-50 disabled:pointer-events-none" 
-                    placeholder="Judul Jurnal">
-
-                <hr class="border-slate-200 my-4">
-                
-                <!-- Isi -->
-                <textarea name="isi" 
-                    style="
-                    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-                    background-size: 100% 25px;
-                    line-height: 25px;
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    "
-                    class="py-1 bg-transparent w-full h-4/5 rounded-lg focus:outline-none resize-none">{{ old('isi', $selectedJurnal->isi) }}</textarea>
-
+        <div class="bg-white max-w-7xl w-full h-full p-4 flex flex-col shadow-lg rounded-2xl">
+            @if($selectedJurnal)
                 <div class="flex justify-center">
-                    <button type="submit" class="btn border-0 bg-color-3 text-white font-normal">
-                        Simpan
+                    <button class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih w-fit" onclick="document.getElementById('analisis-emosi').showModal()">
+                        Analisis Emosi
                     </button>
                 </div>
+                <form id="text-form h-full" action="{{ route('jurnal-harian.update', $selectedJurnal->id) }}" method="POST" class="w-full h-full pb-4">
+                    @csrf
+                    @method('PATCH')
 
-            </form>
+                    <!-- Judul -->
+                    <input type="text" autocomplete="off" name="judul" value="{{ old('judul', $selectedJurnal->judul) }}" 
+                        class="font-bold text-lg py-3 bg-transparent block w-full rounded-lg focus:border-none focus:outline-none disabled:opacity-50 disabled:pointer-events-none" 
+                        placeholder="Judul Jurnal">
 
-            <dialog id="analisis-emosi" class="modal">
-                <div class="modal-box bg-color-8">
-                    <h3 class="text-lg font-bold">Analisis Emosi</h3>
+                    <hr class="border-slate-200 my-4">
                     
-                        @include('pasien.components.diagram_emotion')
+                    <!-- Isi -->
+                    <textarea name="isi" 
+                        style="
+                        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+                        background-size: 100% 25px;
+                        line-height: 25px;
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        "
+                        class="py-1 bg-transparent w-full h-4/5 rounded-lg focus:outline-none resize-none">{{ old('isi', $selectedJurnal->isi) }}</textarea>
 
                     <div class="flex justify-center">
-                        <button type="button" class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih" onclick="this.closest('dialog').close()">Kembali</button>
+                        <button type="submit" class="btn border-0 bg-color-3 text-white font-normal">
+                            Simpan
+                        </button>
                     </div>
-                </div>
-                <form method="dialog" class="modal-backdrop">
-                    <button>close</button>
+
                 </form>
-            </dialog>
-        @else
-            <form id="text-form" action="{{ route('jurnal-harian.store') }}" method="POST" class="w-full h-full pb-4">
-                @csrf
 
-                <input type="text" autocomplete="off" name="judul" class="font-bold text-lg py-3 bg-transparent block w-full rounded-lg focus:border-none focus:outline-none disabled:opacity-50 disabled:pointer-events-none" placeholder="Judul Jurnal">
-                @error('judul')
-                    <div class="text-red-500 text-sm">{{ $message }}</div>
-                @enderror
+                <dialog id="analisis-emosi" class="modal">
+                    <div class="modal-box bg-color-8">
+                        <h3 class="text-lg font-bold">Analisis Emosi</h3>
+                        
+                            @include('pasien.components.diagram_emotion')
 
-                <hr class="border-slate-200 my-4">
+                        <div class="flex justify-center">
+                            <button type="button" class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih" onclick="this.closest('dialog').close()">Kembali</button>
+                        </div>
+                    </div>
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
+            @else
+                <form id="text-form" action="{{ route('jurnal-harian.store') }}" method="POST" class="w-full h-full pb-4">
+                    @csrf
 
-                <textarea name="isi" 
-                    style="
-                    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-                    background-size: 100% 25px;
-                    line-height: 25px;
-                    padding: 10px;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    "
-                    class="py-1 bg-transparent w-full h-4/5 rounded-lg focus:outline-none resize-none"></textarea>
-                @error('isi')
-                    <div class="text-red-500 text-sm">{{ $message }}</div>
-                @enderror
+                    <input type="text" autocomplete="off" name="judul" class="font-bold text-lg py-3 bg-transparent block w-full rounded-lg focus:border-none focus:outline-none disabled:opacity-50 disabled:pointer-events-none" placeholder="Judul Jurnal">
+                    @error('judul')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
 
-                <div class="flex justify-center">
-                    <button type="submit" class="btn bg-color-3 text-white font-normal">
-                        Simpan
-                    </button>
-                </div>
+                    <hr class="border-slate-200 my-4">
 
-            </form>
-        @endif
+                    <textarea name="isi" 
+                        style="
+                        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+                        background-size: 100% 25px;
+                        line-height: 25px;
+                        padding: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        "
+                        class="py-1 bg-transparent w-full h-4/5 rounded-lg focus:outline-none resize-none"></textarea>
+                    @error('isi')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
 
-    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="btn bg-color-3 text-white font-normal">
+                            Simpan
+                        </button>
+                    </div>
+
+                </form>
+            @endif
+
+        </div>
+</div>
     <!-- End jurnal -->
 @endsection

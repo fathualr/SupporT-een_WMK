@@ -8,9 +8,11 @@ use App\Models\Diskusi;
 use App\Models\KontenEdukatif;
 use App\Models\TenagaAhli;
 use App\Models\Pasien;
+use App\Models\Subscription;
 use App\Models\TransaksiKonsultasi;
 use App\Models\TransaksiLangganan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,15 +48,21 @@ class MainController extends Controller
     {
         $totalPasien = Pasien::count();
         $totalAdmin = Admin::count();
-        $totalTenagaAhli = TenagaAhli::count();
-        $totalTransaksi = TransaksiLangganan::count() + TransaksiKonsultasi::count();
+        // $totalTenagaAhli = TenagaAhli::count();
+        $totalPelanggan = Subscription::where('ends_at', '>', Carbon::now())->count();
+        $totalTransaksi = TransaksiLangganan::count()
+        // + TransaksiKonsultasi::count()
+        ;
+        $totalAmountPaid = TransaksiLangganan::where('status', 'paid')->sum('amount');
 
         return view('admin/dashboard_super', [
             "title" => "Dashboard Super Admin",
             "totalPasien" => $totalPasien,
             "totalAdmin" => $totalAdmin,
-            "totalTenagaAhli" => $totalTenagaAhli,
+            // "totalTenagaAhli" => $totalTenagaAhli,
+            "totalPelanggan" => $totalPelanggan,
             "totalTransaksi" => $totalTransaksi,
+            "totalAmountPaid" => 'Rp. ' . number_format($totalAmountPaid, 0, ',', '.'),
         ]);
     }
     

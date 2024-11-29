@@ -17,31 +17,31 @@
 
 @section('main')
 
-    <div class="grid grid-cols-3 gap-3 w-full h-auto">
-        <a href="/chatbot" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
-            <img src="{{ asset('icons/chatbot.svg') }}" alt="">
-            <p class="font-semibold">Teman Bot</p>
-        </a>
-        <a href="/jurnal-harian" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
-            <img src=" {{ asset('icons/journal.svg') }} " alt="">
-            <p class="font-semibold">Jurnal Harian</p>
-        </a>
-        <a href="/konten-edukatif" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
-            <img src=" {{ asset('icons/content.svg') }} " alt="">
-            <p class="font-semibold">Konten Edukatif</p>
-        </a>
-        <a href="daftar-aktivitas-pribadi" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
-            <img src=" {{ asset('icons/activity.svg') }} " alt="">
-            <p class="font-semibold">Daftar Aktivitas</p>
-        </a>
-        <a href="forum" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
-            <img src=" {{ asset('icons/forum.svg') }} " alt="">
-            <p class="font-semibold">Forum Diskusi</p>
-        </a>
-        <a href="konsultasi" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
+<div class="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-3 w-full h-auto justify-content-center">
+    <a href="/chatbot" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
+        <img src="{{ asset('icons/chatbot.svg') }}" alt="">
+        <p class="font-semibold">Teman Bot</p>
+    </a>
+    <a href="/jurnal-harian" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
+        <img src=" {{ asset('icons/journal.svg') }} " alt="">
+        <p class="font-semibold">Jurnal Harian</p>
+    </a>
+    <a href="/konten-edukatif" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
+        <img src=" {{ asset('icons/content.svg') }} " alt="">
+        <p class="font-semibold">Konten Edukatif</p>
+    </a>
+    <a href="daftar-aktivitas-pribadi" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
+        <img src=" {{ asset('icons/activity.svg') }} " alt="">
+        <p class="font-semibold">Daftar Aktivitas</p>
+    </a>
+    <a href="forum" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
+        <img src=" {{ asset('icons/forum.svg') }} " alt="">
+        <p class="font-semibold">Forum Diskusi</p>
+    </a>
+        {{-- <a href="konsultasi" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
             <img src=" {{ asset('icons/consultation.svg') }} " alt="">
         <p class="font-semibold">Konsultasi</p>
-        </a>
+        </a> --}}
     </div>
 
 @endsection

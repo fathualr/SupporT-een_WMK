@@ -20,7 +20,7 @@
 @section('main')
 <div class="w-full h-full">
 
-    <a href="/" class="btn btn-sm bg-color-3 text-color-putih hover:bg-opacity-75 border-0">
+    <a href="/" class="btn btn-sm  bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
         <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
         Kembali
     </a>

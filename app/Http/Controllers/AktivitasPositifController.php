@@ -6,6 +6,7 @@ use App\Http\Requests\AktivitasPositifRequest;
 use App\Models\AktivitasPositif;
 use App\Models\AktivitasPribadi;
 use App\Models\KataKunciAktivitasPositif;
+use App\Models\RiwayatAktivitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -25,9 +26,18 @@ class AktivitasPositifController extends Controller
             return $aktivitas;
         });
     
+        // Ambil data riwayat aktivitas dan kelompokkan berdasarkan tanggal
+        $riwayatAktivitas = RiwayatAktivitas::with('aktivitasPositif')
+            ->where('id_pasien', $pasienId)
+            ->get()
+            ->groupBy(function ($item) {
+                return \Carbon\Carbon::parse($item->created_at)->format('Y-m-d');
+            });
+    
         return view('pasien/daftar_kustomisasi_aktivitas', [
             "title" => "Kustomisasi Aktivitas",
-            "aktivitasPositif" => $aktivitasPositif
+            "aktivitasPositif" => $aktivitasPositif,
+            "riwayatAktivitas" => $riwayatAktivitas
         ]);
     }
     
