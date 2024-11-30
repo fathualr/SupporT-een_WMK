@@ -113,7 +113,7 @@
                     </div>
                     <div class="flex flex-col gap-4 pl-20">
                         <h1 class="text-3xl font-bold text-color-1">{{ $selectedKonten->judul }}</h1>
-                        <span class="text-color-2 text-center">{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</span>
+                        <span class="text-color-2 text-center">{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y, H:i:s') }}</span>
                         <img class="aspect-video rounded-2xl object-cover" src="{{ asset('storage/' . $selectedKonten->thumbnail) }}" alt="ilustrasi artikel">
                         <p class="text-color-1 text-justify">
                             {{ $selectedKonten->isi_artikel }}
@@ -140,7 +140,7 @@
                     </div>
                     <div class="flex flex-col gap-4 pl-20">
                         <h1 class="text-3xl font-bold text-color-1">{{ $selectedKonten->judul }}</h1>
-                        <span class="text-color-2 text-center">{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</span>
+                        <span class="text-color-2 text-center">{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y, H:i:s') }}</span>
                         <iframe class="w-full aspect-video rounded-lg shadow-lg" src="{!! empty($selectedKonten->link_youtube) ? 'https://www.youtube.com/embed/' : $selectedKonten->link_youtube !!}"></iframe>
                     </div>
                 </div>

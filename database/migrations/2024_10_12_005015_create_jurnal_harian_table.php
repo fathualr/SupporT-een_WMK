@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pasien'); // Foreign key merujuk pada tabel Pasien
             $table->string('judul', 50)->nullable(); // Judul jurnal harian
             $table->longText('isi')->nullable(); // Isi dari jurnal harian
-            $table->string('nilai_emosi')->nullable(); // Nilai atau skor emosi yang dirasakan pasien
+            $table->longText('nilai_emosi')->nullable(); // Nilai atau skor emosi yang dirasakan pasien
             $table->timestamps(); // Kolom created_at dan updated_at
 
             // Definisi foreign key

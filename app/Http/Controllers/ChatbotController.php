@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 Use App\Models\PercakapanChatbot;
 use App\Models\PesanChatbot;
@@ -86,8 +87,8 @@ class ChatbotController extends Controller
                 'status' => 'aktif',
             ]);
         }
-
-        // Tambahkan pesan ke percakapan
+    
+        // Tambahkan pesan pengguna ke percakapan
         PesanChatbot::create([
             'id_percakapan_chatbot' => $percakapan->id,
             'teks' => $validated['pesan'],
@@ -96,25 +97,52 @@ class ChatbotController extends Controller
             'created_at' => Carbon::now()->subSecond(), // Waktu mundur 1 detik
             'updated_at' => Carbon::now()->subSecond(),
         ])->save();
-
+    
         // Perbarui last_activity pada percakapan
         $percakapan->update([
             'last_activity' => now(),
         ]);
-        
-        // Tambahkan pesan bot dengan waktu saat ini
-        PesanChatbot::create([
-            'id_percakapan_chatbot' => $percakapan->id,
-            'teks' => 'Halo tunggu ya...',
-            'pengirim' => 'bot',
-        ])->forceFill([
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ])->save();
     
+        // Panggil Flask API untuk mendapatkan respons chatbot
+        try {
+            $response = Http::post('http://127.0.0.1:9999/chatbot', [
+                'pesan_baru' => $validated['pesan'],
+            ]);
+    
+            // Pastikan respons dari API sukses
+            if ($response->successful()) {
+                $botResponse = $response->json('chatbot_response');
+    
+                // Simpan respons bot ke dalam percakapan
+                PesanChatbot::create([
+                    'id_percakapan_chatbot' => $percakapan->id,
+                    'teks' => $botResponse,
+                    'pengirim' => 'bot',
+                ])->forceFill([
+                    'created_at' => Carbon::now(), // Waktu saat ini untuk respons bot
+                    'updated_at' => Carbon::now(),
+                ])->save();
+            } else {
+                // Jika API gagal, gunakan respons default
+                PesanChatbot::create([
+                    'id_percakapan_chatbot' => $percakapan->id,
+                    'teks' => 'Maaf, terjadi masalah saat memproses permintaan Anda.',
+                    'pengirim' => 'bot',
+                ])->save();
+            }
+        } catch (\Exception $e) {
+            // Jika ada error, simpan pesan default
+            PesanChatbot::create([
+                'id_percakapan_chatbot' => $percakapan->id,
+                'teks' => 'Maaf, sistem sedang bermasalah. Silakan coba lagi nanti.',
+                'pengirim' => 'bot',
+            ])->save();
+        }
+    
+        // Redirect kembali ke halaman percakapan
         return redirect()->route('chatbot.index', ['id' => $percakapan->id]);
     }
-
+    
     /**
      * Display the specified resource.
      */

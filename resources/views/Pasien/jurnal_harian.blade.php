@@ -70,12 +70,12 @@
 
         <div class="bg-white max-w-7xl w-full h-full p-4 flex flex-col shadow-lg rounded-2xl">
             @if($selectedJurnal)
-                <div class="flex justify-center">
+                <div class="flex justify-center w-full">
                     <button class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih w-fit" onclick="document.getElementById('analisis-emosi').showModal()">
                         Analisis Emosi
                     </button>
                 </div>
-                <form id="text-form h-full" action="{{ route('jurnal-harian.update', $selectedJurnal->id) }}" method="POST" class="w-full h-full pb-4">
+                <form id="text-form" action="{{ route('jurnal-harian.update', $selectedJurnal->id) }}" method="POST" class="w-full h-full pb-4">
                     @csrf
                     @method('PATCH')
 
@@ -98,7 +98,7 @@
                         "
                         class="py-1 bg-transparent w-full h-4/5 rounded-lg focus:outline-none resize-none">{{ old('isi', $selectedJurnal->isi) }}</textarea>
 
-                    <div class="flex justify-center">
+                    <div class="flex justify-center w-full">
                         <button type="submit" class="btn border-0 bg-color-3 text-white font-normal">
                             Simpan
                         </button>
