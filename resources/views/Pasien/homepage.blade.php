@@ -30,14 +30,21 @@
         <img src=" {{ asset('icons/content.svg') }} " alt="">
         <p class="font-semibold">Konten Edukatif</p>
     </a>
-    <a href="daftar-aktivitas-pribadi" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
+    <a href="/daftar-aktivitas-pribadi" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
         <img src=" {{ asset('icons/activity.svg') }} " alt="">
         <p class="font-semibold">Daftar Aktivitas</p>
     </a>
-    <a href="forum" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
-        <img src=" {{ asset('icons/forum.svg') }} " alt="">
+    <button class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]"
+        onclick="
+            @if(Auth::user()->isPremium())
+                window.location.href = '/forum';
+            @else
+                document.getElementById('membership').checked = true;
+            @endif
+        ">
+        <img src="{{ asset('icons/forum.svg') }}" alt="">
         <p class="font-semibold">Forum Diskusi</p>
-    </a>
+    </button>
         {{-- <a href="konsultasi" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]">
             <img src=" {{ asset('icons/consultation.svg') }} " alt="">
         <p class="font-semibold">Konsultasi</p>

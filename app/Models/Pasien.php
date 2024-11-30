@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Pasien extends Model
 {
@@ -21,6 +22,21 @@ class Pasien extends Model
         'id_user',
         'deskripsi_diri',
     ];
+
+    public function getNonPremiumLimit()
+    {
+        // Periksa apakah pengguna memiliki status premium
+        if ($this->user->isPremium()) {
+            return null; // Tidak ada batasan untuk pengguna premium
+        }
+
+        // Hitung jumlah pesan dalam 5 jam terakhir
+        $fiveHoursAgo = Carbon::now()->subHours(5);
+
+        return $this->chatbotLogs()
+            ->where('sent_at', '>=', $fiveHoursAgo)
+            ->count();
+    }
 
     /**
      * Define relationship to the User model.
@@ -44,6 +60,11 @@ class Pasien extends Model
     public function percakapanChatbots()
     {
         return $this->hasMany(PercakapanChatbot::class, 'id_pasien');
+    }
+    
+    public function chatbotLogs()
+    {
+        return $this->hasMany(ChatbotLog::class, 'id_pasien');
     }
     
     public $timestamps = false;

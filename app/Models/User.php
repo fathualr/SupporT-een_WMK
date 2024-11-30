@@ -125,7 +125,7 @@ class User extends Authenticatable
         }
     
         return false; // Tidak ada langganan aktif atau sudah kadaluarsa
-    }    
+    }
     
     public function admin()
     {

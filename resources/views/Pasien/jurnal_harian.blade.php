@@ -71,7 +71,14 @@
         <div class="bg-white max-w-7xl w-full h-full p-4 flex flex-col shadow-lg rounded-2xl">
             @if($selectedJurnal)
                 <div class="flex justify-center w-full">
-                    <button class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih w-fit" onclick="document.getElementById('analisis-emosi').showModal()">
+                    <button class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih w-fit" 
+                    onclick="
+                    @if(Auth::user()->isPremium())
+                        document.getElementById('analisis-emosi').showModal();
+                    @else
+                        document.getElementById('membership').checked = true; // Tampilkan modal membership
+                    @endif
+                ">
                         Analisis Emosi
                     </button>
                 </div>
@@ -103,23 +110,24 @@
                             Simpan
                         </button>
                     </div>
-
                 </form>
 
-                <dialog id="analisis-emosi" class="modal">
-                    <div class="modal-box bg-color-8">
-                        <h3 class="text-lg font-bold">Analisis Emosi</h3>
-                        
-                            @include('pasien.components.diagram_emotion')
+                @if(Auth::user()->isPremium())
+                    <dialog id="analisis-emosi" class="modal">
+                        <div class="modal-box bg-color-8">
+                            <h3 class="text-lg font-bold">Analisis Emosi</h3>
+                            
+                                @include('pasien.components.diagram_emotion')
 
-                        <div class="flex justify-center">
-                            <button type="button" class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih" onclick="this.closest('dialog').close()">Kembali</button>
+                            <div class="flex justify-center">
+                                <button type="button" class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih" onclick="this.closest('dialog').close()">Kembali</button>
+                            </div>
                         </div>
-                    </div>
-                    <form method="dialog" class="modal-backdrop">
-                        <button>close</button>
-                    </form>
-                </dialog>
+                        <form method="dialog" class="modal-backdrop">
+                            <button>close</button>
+                        </form>
+                    </dialog>
+                @endif
             @else
                 <form id="text-form" action="{{ route('jurnal-harian.store') }}" method="POST" class="w-full h-full pb-4">
                     @csrf

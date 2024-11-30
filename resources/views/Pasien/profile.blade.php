@@ -112,17 +112,21 @@
         <div class="flex items-center justify-center w-full min-h-[calc(100vh-80px)] bg-color-8 text-color-1 py-10">
             <!-- profil -->
             <div class="max-w-5xl py-8 px-10 w-full bg-white border border-gray-200 rounded-3xl">
-
-
+    
+                <a href="/" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
+                    <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
+                    Kembali
+                </a>
+    
                 <h2 class="text-2xl py-3 font-medium">Detail Akun</h2>
                 <hr class="border-gray-200">
-
+    
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-
+    
                     <input type="hidden" name="role" value="pasien">
-
+    
                     <div class="flex justify-between my-4">
                         <div class="flex items-center gap-8">
                             <div class="flex flex-col items-center justify-center">
@@ -132,7 +136,7 @@
                                     </div>
                                 </div>
                             </div>
-
+    
                             <label class="btn btn-sm cursor-pointer hover:opacity-80 inline-flex items-center my-2 bg-color-6 text-color-3 border border-transparent
                                 rounded-md font-semibold text-xs capitalize hover:bg-color-5 active:bg-sky-300 focus: focus:outline-none
                             focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" for="restaurantImage">
@@ -144,10 +148,10 @@
                                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                             @enderror
                         </div>
-
+    
                     </div>
                     <!-- End foto Profil -->
-
+    
                     <!-- detail -->
                     <div class="grid grid-cols-2 my-4 gap-x-4">
                         
@@ -160,7 +164,7 @@
                                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                             @enderror
                         </label>
-
+    
                         <label class="form-control w-full">
                             <div class="label">
                                 <span>Email</span>
@@ -170,7 +174,7 @@
                                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                             @enderror
                         </label>
-
+    
                         <label class="form-control w-full">
                             <div class="label">
                                 <span>Jenis Kelamin</span>
@@ -183,7 +187,7 @@
                                 <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                             @enderror
                         </label>
-
+    
                         <label class="form-control w-full">
                             <div class="label">
                                 <span>Tanggal Lahir</span>
@@ -203,14 +207,14 @@
                             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                         @enderror
                         </label>
-
+    
                         <div class="flex justify-center items-center col-span-2 mt-4">
                             <button type="submit" class="btn btn-primary bg-color-6 text-color-3 border border-transparent rounded-md font-semibold text-sm hover:bg-color-5 transition ease-in-out duration-150">
                                 Simpan Perubahan
                             </button>
                         </div>                    
                     </div>
-
+    
                 </form>
 
                 <h2 class="text-2xl py-3 font-medium">Status</h2>

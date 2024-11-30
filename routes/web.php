@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Middleware\GuestOrPasienMiddleware;
+use App\Http\Middleware\PremiumMiddleware;
 use App\Http\Controllers\{
     Auth\AuthController,
     MainController,
@@ -63,10 +64,13 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
     Route::post('/aktivitas-pribadi/update', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
     Route::post('/aktivitas-pribadi/store', [AktivitasPribadiController::class, 'storeAktivitasPribadi'])->name('aktivitas-pribadi.store');
     Route::post('/aktivitas-pribadi', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
-    Route::get('/forum/{id?}', [ForumController::class, 'forum'])->name('forum.index');
-    Route::resource('/forum-diskusi', ForumController::class)->except('index');
-    Route::resource('/balasan',BalasanController::class)->only(['store', 'destroy'])->names(['destroy' => 'pasien.balasan.destroy',]);;
-    Route::resource('/gambar-diskusi', GambarDiskusiController::class)->only('destroy');
+    // Premium User
+    Route::middleware([PremiumMiddleware::class])->group(function () {
+        Route::get('/forum/{id?}', [ForumController::class, 'forum'])->name('forum.index');
+        Route::resource('/forum-diskusi', ForumController::class)->except('index');
+        Route::resource('/balasan',BalasanController::class)->only(['store', 'destroy'])->names(['destroy' => 'pasien.balasan.destroy',]);;
+        Route::resource('/gambar-diskusi', GambarDiskusiController::class)->only('destroy');
+    });
     // Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
 });
 
