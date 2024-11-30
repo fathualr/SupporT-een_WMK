@@ -127,7 +127,7 @@
                             </div>
                             <div class="avatar">
                                 <div class="w-12 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    <img src="{{ asset('storage/'. $pesan->percakapanChatbot->pasien->user->foto_profil) }}" />
                                 </div>
                             </div>
                         @endif
@@ -146,14 +146,79 @@
             @csrf
             <input type="hidden" name="id_percakapan" value="{{ $selectedPercakapan->id ?? '' }}">
             <div class="relative">
-                <input type="text" autofocus name="pesan" class="py-4 px-4 block w-full rounded-full text-sm bg-color-6 outline-color-5" 
-                        placeholder="Masukkan pesan anda disini" aria-describedby="hs-validation-name-error-helper" autocomplete="off">
-                <button type="submit" class="btn btn-ghost absolute inset-y-0 right-0 rounded-full">
+                <!-- Input teks -->
+                <input type="text" id="text-input" autofocus name="pesan" class="py-4 px-4 block w-full rounded-full text-sm bg-color-6 outline-color-5" 
+                    placeholder="Masukkan pesan anda disini" aria-describedby="hs-validation-name-error-helper" autocomplete="off">
+        
+                <!-- Tombol kirim -->
+                <button type="submit" class="btn btn-ghost absolute inset-y-0 right-0 rounded-r-full p-2">
                     <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
+                </button>
+        
+                <!-- Tombol mikrofon -->
+                <button type="button" id="voice-button" class="btn btn-ghost absolute inset-y-0 right-12 p-1">
+                    <img src="{{ asset('icons/Microphone.svg') }}" alt="Microphone">
                 </button>
             </div>
         </form>
+        
 
     </div>
     <!-- section percakapan -->
+
+    <script>
+        // Cek apakah browser mendukung Web Speech API
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    
+        if (SpeechRecognition) {
+            console.log("Web Speech API is supported in this browser.");
+    
+            // Inisialisasi Speech Recognition
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'id-ID'; // Bahasa Indonesia
+            recognition.interimResults = true; // Aktifkan hasil sementara
+            recognition.maxAlternatives = 1; // Ambil hasil terbaik
+    
+            // Elemen DOM
+            const textInput = document.getElementById("text-input");
+            const voiceButton = document.getElementById("voice-button");
+    
+            // Saat tombol mikrofon diklik
+            voiceButton.addEventListener("click", () => {
+                recognition.start(); // Mulai rekaman
+                console.log("Voice recognition started...");
+            });
+    
+            // Ketika suara dikenali (termasuk hasil sementara)
+            recognition.addEventListener("result", (event) => {
+                let interimTranscript = ""; // Teks sementara
+                let finalTranscript = ""; // Teks final
+    
+                for (let i = 0; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        finalTranscript += transcript; // Simpan teks final
+                    } else {
+                        interimTranscript += transcript; // Simpan teks sementara
+                    }
+                }
+    
+                // Tampilkan teks sementara atau final di input
+                textInput.value = finalTranscript || interimTranscript;
+            });
+    
+            // Tangani jika rekaman selesai
+            recognition.addEventListener("end", () => {
+                console.log("Voice recognition ended.");
+            });
+    
+            // Tangani error
+            recognition.addEventListener("error", (event) => {
+                console.error("Voice recognition error:", event.error);
+                alert("Terjadi masalah saat mengenali suara. Coba lagi.");
+            });
+        } else {
+            alert("Browser Anda tidak mendukung fitur pengenalan suara.");
+        }
+    </script>    
 @endsection
