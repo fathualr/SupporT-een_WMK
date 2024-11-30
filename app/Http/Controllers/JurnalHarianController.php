@@ -6,6 +6,7 @@ use App\Http\Requests\JurnalHarianRequest;
 use App\Models\JurnalHarian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class JurnalHarianController extends Controller
 {
@@ -15,35 +16,41 @@ class JurnalHarianController extends Controller
         // Mendapatkan user yang sedang login
         $user = Auth::user();
         $idPasien = $user->pasien->id;
-    
+
         // Mengambil daftar jurnal harian berdasarkan id_pasien, diurutkan berdasarkan waktu terakhir dibuat
         $jurnalHarianList = JurnalHarian::where('id_pasien', $idPasien)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->get();
-    
+
         // Menyiapkan variabel untuk jurnal yang dipilih (jika ada)
         $selectedJurnal = null;
-    
+        $emotionData = null;
+
         // Jika ada ID jurnal yang diberikan, ambil jurnal yang sesuai
         if ($id) {
             $selectedJurnal = JurnalHarian::where('id', $id)
                 ->where('id_pasien', $idPasien)
                 ->first();
-    
+
             // Jika jurnal tidak ditemukan atau bukan milik pasien yang login, kembalikan error
             if (!$selectedJurnal) {
                 return redirect()->back()->with('error', 'Anda tidak memiliki akses ke jurnal ini.');
             }
+
+            // Decode nilai emosi jika tersedia
+            if ($selectedJurnal->nilai_emosi) {
+                $emotionData = json_decode($selectedJurnal->nilai_emosi, true);
+            }
         }
-    
-        // Kembalikan data ke view dengan daftar jurnal dan jurnal yang dipilih
-        return view('pasien/jurnal_harian', [
+
+        // Kembalikan data ke view dengan daftar jurnal, jurnal yang dipilih, dan data emosi
+        return view('pasien.jurnal_harian', [
             'title' => 'Jurnal Harian',
             'jurnalHarianList' => $jurnalHarianList,
             'selectedJurnal' => $selectedJurnal,
+            'emotionData' => $emotionData, // Data emosi untuk grafik
         ]);
     }
-    
 
     /**
      * Display a listing of the resource.
@@ -72,22 +79,64 @@ class JurnalHarianController extends Controller
 
         // Validasi tambahan: Pastikan salah satu diisi
         if (empty($request->judul) && empty($request->isi)) {
-            return redirect()->back()->with('error','Judul atau Isi jurnal harus diisi.',
-            )->withInput();
+            return redirect()->back()->with('error', 'Judul atau Isi jurnal harus diisi.')->withInput();
         }
 
-        $kontenData = [
-            'id_pasien' => $idPasien,
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-        ];
+        // Gabungkan judul dan isi sebagai input untuk analisis emosi
+        $content = $request->judul . ' ' . $request->isi;
 
-        // Menyimpan jurnal harian
-        $jurnal = JurnalHarian::create($kontenData);
+        try {
+            // Panggil API /emotion pada Flask
+            $response = Http::post('http://127.0.0.1:9999/emotion', [
+                'text' => $content,
+            ]);
 
-        // Redirect ke halaman daftar jurnal dengan ID jurnal baru
-        return redirect()->route('jurnalHarian.index', ['id' => $jurnal->id])
-            ->with('success', 'Jurnal berhasil disimpan.');
+            if ($response->successful()) {
+                $emotionResults = $response->json('emotion_results');
+
+                // Pastikan semua 7 emosi ada
+                $allEmotions = [
+                    "neutral" => 0,
+                    "joy" => 0,
+                    "sadness" => 0,
+                    "surprise" => 0,
+                    "disgust" => 0,
+                    "anger" => 0,
+                    "fear" => 0,
+                ];
+
+                foreach ($emotionResults as $emotion) {
+                    $allEmotions[$emotion['label']] = $emotion['score'];
+                }
+
+                // Konversi ke array format JSON
+                $emotionData = [];
+                foreach ($allEmotions as $label => $score) {
+                    $emotionData[] = [
+                        'label' => $label,
+                        'score' => $score,
+                    ];
+                }
+
+                // Simpan jurnal harian beserta nilai emosi
+                $kontenData = [
+                    'id_pasien' => $idPasien,
+                    'judul' => $request->judul,
+                    'isi' => $request->isi,
+                    'nilai_emosi' => json_encode($emotionData), // Simpan hasil emosi dalam format JSON
+                ];
+
+                $jurnal = JurnalHarian::create($kontenData);
+
+                // Redirect ke halaman daftar jurnal dengan ID jurnal baru
+                return redirect()->route('jurnalHarian.index', ['id' => $jurnal->id])
+                    ->with('success', 'Jurnal berhasil disimpan.');
+            } else {
+                return redirect()->back()->with('error', 'Gagal menganalisis emosi.')->withInput();
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat memproses permintaan: ' . $e->getMessage())->withInput();
+        }
     }
 
     /**
@@ -129,16 +178,59 @@ class JurnalHarianController extends Controller
                 ->with('error', 'Jurnal tidak ditemukan atau Anda tidak memiliki akses.');
         }
     
-        // Perbarui data jurnal
-        $jurnal->update([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-        ]);
+        // Gabungkan judul dan isi sebagai input untuk analisis emosi
+        $content = $request->judul . ' ' . $request->isi;
     
-        // Redirect ke halaman daftar jurnal dengan ID jurnal yang diperbarui
-        return redirect()->back()->with('success', 'Jurnal berhasil diperbarui.');
+        try {
+            // Panggil API /emotion pada Flask
+            $response = Http::post('http://127.0.0.1:9999/emotion', [
+                'text' => $content,
+            ]);
+    
+            if ($response->successful()) {
+                $emotionResults = $response->json('emotion_results');
+    
+                // Pastikan semua 7 emosi ada
+                $allEmotions = [
+                    "neutral" => 0,
+                    "joy" => 0,
+                    "sadness" => 0,
+                    "surprise" => 0,
+                    "disgust" => 0,
+                    "anger" => 0,
+                    "fear" => 0,
+                ];
+    
+                foreach ($emotionResults as $emotion) {
+                    $allEmotions[$emotion['label']] = $emotion['score'];
+                }
+    
+                // Konversi ke array format JSON
+                $emotionData = [];
+                foreach ($allEmotions as $label => $score) {
+                    $emotionData[] = [
+                        'label' => $label,
+                        'score' => $score,
+                    ];
+                }
+    
+                // Perbarui data jurnal beserta nilai emosi
+                $jurnal->update([
+                    'judul' => $request->judul,
+                    'isi' => $request->isi,
+                    'nilai_emosi' => json_encode($emotionData), // Perbarui hasil emosi dalam format JSON
+                ]);
+    
+                // Redirect ke halaman daftar jurnal dengan pesan sukses
+                return redirect()->route('jurnalHarian.index', ['id' => $jurnal->id])
+                    ->with('success', 'Jurnal berhasil diperbarui.');
+            } else {
+                return redirect()->back()->with('error', 'Gagal menganalisis emosi.')->withInput();
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat memproses permintaan: ' . $e->getMessage())->withInput();
+        }
     }
-    
 
     /**
      * Remove the specified resource from storage.
