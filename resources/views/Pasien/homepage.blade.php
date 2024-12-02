@@ -36,11 +36,15 @@
     </a>
     <button class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl min-h-[250px]"
         onclick="
-            @if(Auth::user()->isPremium())
-                window.location.href = '/forum';
+            @auth
+                @if(Auth::user()->isPremium())
+                    window.location.href = '/forum';
+                @else
+                    document.getElementById('membership').checked = true;
+                @endif
             @else
-                document.getElementById('membership').checked = true;
-            @endif
+                window.location.href = '/forum';
+            @endauth
         ">
         <img src="{{ asset('icons/forum.svg') }}" alt="">
         <p class="font-semibold">Forum Diskusi</p>

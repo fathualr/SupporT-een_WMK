@@ -128,7 +128,7 @@
                             </div>
                             <div class="avatar">
                                 <div class="w-12 rounded-full">
-                                    <img src="{{ asset('storage/'. $pesan->percakapanChatbot->pasien->user->foto_profil) }}" />
+                                    <img src="{{ Auth::user()->foto_profil ? asset('storage/' . Auth::user()->foto_profil) : asset('storage/image/dummy.png') }}" />
                                 </div>
                             </div>
                         </div>
@@ -353,7 +353,7 @@
                                 </div>
                                 <div class="avatar">
                                     <div class="w-12 rounded-full">
-                                        <img src="{{ asset('storage/'. Auth::user()->foto_profil) }}" alt="User Avatar" />
+                                        <img src="{{ Auth::user()->foto_profil ? asset('storage/' . Auth::user()->foto_profil) : asset('storage/image/dummy.png') }}" alt="User Avatar" />
                                     </div>
                                 </div>
                             `;

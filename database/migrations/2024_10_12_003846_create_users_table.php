@@ -20,6 +20,9 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['laki laki', 'perempuan']); // Jenis kelamin
             $table->date('tanggal_lahir'); // Tanggal lahir pengguna
             $table->string('foto_profil', 255)->nullable(); // URL atau path foto profil pengguna, opsional
+            $table->string('otp_code', 6)->nullable(); // OTP 6 digit
+            $table->timestamp('otp_expires_at')->nullable(); // Waktu kedaluwarsa OTP
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps(); // Tanggal akun dibuat
         });
     }

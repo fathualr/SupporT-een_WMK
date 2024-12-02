@@ -37,7 +37,7 @@
                         <h1 class="text-xl font-bold overflow-hidden text-ellipsis whitespace-normal max-h-14">{{ $item->judul }}</h1>
                         <div class="flex justify-between items-center mt-auto">
                             <div class="flex items-center max-w-full">
-                                <img class="w-5 h-5 rounded-full" src="{{ asset('storage/' . $item->user->foto_profil) }}" alt="Album" />
+                                <img class="w-5 h-5 rounded-full" src="{{ $item->user->foto_profil ? asset('storage/' . $item->user->foto_profil) : asset('storage/image/dummy.png') }} }}" alt="Album" />
                                 <span class="truncate ml-2 overflow-hidden text-ellipsis whitespace-nowrap">{{ $item->user->nama }}</span>
                             </div>
                             <span class="whitespace-nowrap ml-4">{{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}</span>
@@ -104,7 +104,7 @@
                 <div class="bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <img class="w-16 h-16 rounded-full mr-4" src="{{ asset('storage/' . $selectedKonten->user->foto_profil) }}" alt="Album" />
+                            <img class="w-16 h-16 rounded-full mr-4" src="{{ $selectedKonten->user->foto_profil ? asset('storage/' . $selectedKonten->user->foto_profil) : asset('storage/image/dummy.png') }} }}" alt="Album" />
                             <div class="flex flex-col">
                                 <span class="text-xl text-color-1 font-semibold">{{ $selectedKonten->user->nama }}</span>
                                 <span class="text-color-2 font-semibold text-xs">{{ $selectedKonten->user->role }}</span>
@@ -131,7 +131,7 @@
                 <div class=" bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <img class="w-16 h-16 rounded-full mr-4" src="{{ asset('storage/' . $selectedKonten->user->foto_profil) }}" alt="Album" />
+                            <img class="w-16 h-16 rounded-full mr-4" src="{{ $selectedKonten->user->foto_profil ? asset('storage/' . $selectedKonten->user->foto_profil) : asset('storage/image/dummy.png') }}}}" alt="Album" />
                             <div class="flex flex-col">
                                 <span class="text-xl text-color-1 font-semibold">{{ $selectedKonten->user->nama }}</span>
                                 <span class="text-color-2 font-semibold text-xs">{{ $selectedKonten->user->role }}</span>

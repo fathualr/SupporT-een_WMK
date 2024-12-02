@@ -16,23 +16,21 @@
 
 @section('main')
 
-<div class="flex flex-col justify-center items-center w-full">
-    <div class="flex flex-col bg-color-8 border shadow-sm rounded-xl p-4 md:p-5 text-center">
+    <div class="flex flex-col w-full h-full justify-center bg-color-8 border shadow-sm rounded-xl p-4 md:p-5 text-center">
         <h3 class="text-2xl font-bold text-color-1 mb-2">
             Bergabung Sebagai Tenaga Ahli
         </h3>
-        <p class="mt-2 text-gray-500">
+        <p class="mt-2 text-gray-500 text-justify">
             Daftarkan diri Anda sebagai tenaga ahli untuk mendukung kesehatan mental remaja. Isi informasi terkait keahlian, pengalaman, dan sertifikasi Anda. Proses pendaftarannya mudah dan cepat, dan Anda bisa langsung terhubung dengan mereka yang membutuhkan bantuan profesional Anda.
         </p>
         <div class="flex justify-center gap-4 my-5">
-        <a href="" type="button" class="btn bg-red-500 text-white w-[150px]">
+        <a href="https://gmail.com/" type="button" class="btn bg-red-500 text-white w-[150px]">
             <img class="w-7" src="{{ asset('icons/Email.svg') }}" alt="">Email
         </a>
-        <a href="" class="btn bg-green-500 text-white w-[150px]" href="">
+        <a href="https://web.whatsapp.com/" class="btn bg-green-500 text-white w-[150px]" href="">
             <img class="w-7" src="{{ asset('icons/WhatsApp.svg') }}" alt="">WhatsApp
         </a>
         </div>
     </div>
-</div>
 
 @endsection

@@ -77,7 +77,7 @@
                                 <summary>Data Transaksi</summary>
                                 <ul>
                                     <li> --}}
-                                        <a href="/super-admin/transaksi-langganan">Data Langganan</a>
+                                        <a href="/super-admin/transaksi-langganan">Data Transaksi Langganan</a>
                                     {{-- </li>
                                     <li><a href="/super-admin/transaksi">Data Konsultasi</a></li>
                                 </ul>

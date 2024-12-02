@@ -6,7 +6,7 @@
 
         <!-- Header Modal -->
         <div class="text-center">
-            <h5 class="mb-2 text-2xl font-bold text-gray-800">{{ $subscriptionPlan->name }}</h5>
+            <h5 class="mb-2 text-2xl font-bold text-gray-800">{{ $subscriptionPlan ? $subscriptionPlan->name : '' }}</h5>
         </div>
 
         <!-- Harga -->
@@ -15,10 +15,10 @@
                 Rp. 
             </span>
             <span class="text-5xl font-extrabold tracking-tight">
-                {{ number_format($subscriptionPlan->price, 0, ',', '.') }}
+                {{ $subscriptionPlan ? number_format($subscriptionPlan->price, 0, ',', '.') : '' }}
             </span>
             <span class="text-xl font-normal text-gray-500 ml-2">
-                /{{ $subscriptionPlan->duration }} hari
+                /{{ $subscriptionPlan ? $subscriptionPlan->duration : '' }} hari
             </span>
         </div>
 

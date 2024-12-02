@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Middleware\RoleMiddleware;
-use App\Http\Middleware\GuestOrPasienMiddleware;
-use App\Http\Middleware\PremiumMiddleware;
+use App\Http\Middleware\{
+    RoleMiddleware,
+    GuestOrPasienMiddleware,
+    PremiumMiddleware,
+    VerifiedPatientMiddleware
+};
 use App\Http\Controllers\{
     Auth\AuthController,
     MainController,
@@ -35,41 +38,46 @@ Route::middleware('guest')->group(function () {
     Route::get('/registrasi', [AuthController::class, 'registrasi']);
 });
 
-Route::get('/mitra', [MainController::class, 'mitra']);
+Route::get('/mitra', [MainController::class, 'mitra'])->middleware(VerifiedPatientMiddleware::class);
 Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::post('registration', [AuthController::class, 'registration'])->name('registration');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 // profile
-
-Route::middleware([GuestOrPasienMiddleware::class])->group(function () {
+Route::middleware([GuestOrPasienMiddleware::class, VerifiedPatientMiddleware::class])->group(function () {
     Route::get('/', [MainController::class, 'index']);
     Route::get('/konten-edukatif/{id?}', [KontenEdukatifController::class, 'kontenEdukatif'])->name('kontenEdukatif');
 });
 // Pasien
 Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function () {
-    // Midtrans route ->
-    Route::post('/generate-snaptoken', [SubscriptionController::class, 'generateSnapToken'])->name('generate.snaptoken');
-    Route::post('/process-payment/{transaction}', [SubscriptionController::class, 'processPayment'])->name('process.payment');
-    Route::post('/cancel-transaction/{transaction}', [SubscriptionController::class, 'cancelTransaction'])->name('cancel.transaction');
-    // <-
-    Route::get('/profile', [MainController::class, 'profile']);
-    Route::put('/profile-update', [PasienController::class, 'updateProfile'])->name('profile.update');
-    Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
-    Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
-    Route::get('/jurnal-harian/{id?}', [JurnalHarianController::class, 'jurnalHarian'])->name('jurnalHarian.index');
-    Route::resource('/jurnal-harian', JurnalHarianController::class)->except(['index', 'create', 'edit']);
-    Route::get('/daftar-aktivitas-pribadi', [AktivitasPribadiController::class, 'daftarAktivitasPribadi']);
-    Route::get('/daftar-aktivitas-pribadi/kustomisasi', [AktivitasPositifController::class, 'kustomisasiAktivitasPribadi']);
-    Route::post('/aktivitas-pribadi/update', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
-    Route::post('/aktivitas-pribadi/store', [AktivitasPribadiController::class, 'storeAktivitasPribadi'])->name('aktivitas-pribadi.store');
-    Route::post('/aktivitas-pribadi', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
-    // Premium User
-    Route::middleware([PremiumMiddleware::class])->group(function () {
-        Route::get('/forum/{id?}', [ForumController::class, 'forum'])->name('forum.index');
-        Route::resource('/forum-diskusi', ForumController::class)->except('index');
-        Route::resource('/balasan',BalasanController::class)->only(['store', 'destroy'])->names(['destroy' => 'pasien.balasan.destroy',]);;
-        Route::resource('/gambar-diskusi', GambarDiskusiController::class)->only('destroy');
+    Route::get('/verifikasi-email', [AuthController::class, 'showVerificationNotice'])->name('verification.notice');
+    Route::post('/verify-otp', [AuthController::class, 'verifyOtp'])->name('otp.verify');
+    Route::post('/resend-otp', [AuthController::class, 'resendOtp'])->name('otp.resend');
+    
+    Route::middleware([VerifiedPatientMiddleware::class])->group(function () {
+        // Midtrans route ->
+        Route::post('/generate-snaptoken', [SubscriptionController::class, 'generateSnapToken'])->name('generate.snaptoken');
+        Route::post('/process-payment/{transaction}', [SubscriptionController::class, 'processPayment'])->name('process.payment');
+        Route::post('/cancel-transaction/{transaction}', [SubscriptionController::class, 'cancelTransaction'])->name('cancel.transaction');
+        // <-
+        Route::get('/profile', [MainController::class, 'profile']);
+        Route::put('/profile-update', [PasienController::class, 'updateProfile'])->name('profile.update');
+        Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
+        Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
+        Route::get('/jurnal-harian/{id?}', [JurnalHarianController::class, 'jurnalHarian'])->name('jurnalHarian.index');
+        Route::resource('/jurnal-harian', JurnalHarianController::class)->except(['index', 'create', 'edit']);
+        Route::get('/daftar-aktivitas-pribadi', [AktivitasPribadiController::class, 'daftarAktivitasPribadi']);
+        Route::get('/daftar-aktivitas-pribadi/kustomisasi', [AktivitasPositifController::class, 'kustomisasiAktivitasPribadi']);
+        Route::post('/aktivitas-pribadi/update', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
+        Route::post('/aktivitas-pribadi/store', [AktivitasPribadiController::class, 'storeAktivitasPribadi'])->name('aktivitas-pribadi.store');
+        Route::post('/aktivitas-pribadi', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
+        // Premium User
+        Route::middleware([PremiumMiddleware::class])->group(function () {
+            Route::get('/forum/{id?}', [ForumController::class, 'forum'])->name('forum.index');
+            Route::resource('/forum-diskusi', ForumController::class)->except('index');
+            Route::resource('/balasan',BalasanController::class)->only(['store', 'destroy'])->names(['destroy' => 'pasien.balasan.destroy',]);;
+            Route::resource('/gambar-diskusi', GambarDiskusiController::class)->only('destroy');
+        });
     });
     // Route::get('/konsultasi', [KonsultasiController::class, 'konsultasi']);
 });

@@ -5,12 +5,13 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -29,6 +30,9 @@ class User extends Authenticatable
         'jenis_kelamin',
         'tanggal_lahir',
         'foto_profil',
+        'otp_code', 
+        'otp_expires_at',
+        'email_verified_at'
     ];
 
     /**
@@ -48,8 +52,17 @@ class User extends Authenticatable
     protected function casts(): array{
         return [
             'password' => 'hashed',
-            'tanggal_lahir' => 'datetime'
+            'tanggal_lahir' => 'datetime',
+            'otp_expires_at' => 'datetime',
+            'email_verified_at' => 'datetime',
         ];
+    }
+
+    public function generateOtp()
+    {
+        $this->otp_code = random_int(100000, 999999); // Kode OTP 6 digit
+        $this->otp_expires_at = Carbon::now()->addMinutes(1); // Berlaku 3 menit
+        $this->save();
     }
 
     public function isPremium()

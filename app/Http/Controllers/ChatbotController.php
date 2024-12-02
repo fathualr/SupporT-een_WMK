@@ -201,7 +201,7 @@ class ChatbotController extends Controller
         return response()->json([
             'success' => true,
             'user_message' => $validated['pesan'],
-            'bot_message' => $botResponse ?? 'Maaf, sistem tidak merespons dengan baik.',
+            'bot_message' => $botResponse ,
         ]);
     }
     

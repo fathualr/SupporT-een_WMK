@@ -23,35 +23,37 @@
             <div class="flex items-center justify-center select-none" id="flash-message-place">
                 @include('Components.flash-message')
                 @auth
-                    @if(Auth::user()->role === 'pasien' && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->premiumEndingSoon())
-                        <div id="card" class="absolute -top-[310px] left-1/2 transform -translate-x-1/2 -translate-y-1 bg-color-1 shadow-lg rounded-lg p-3 max-w-[500px] text-center transition-all duration-300 text-color-putih hover:translate-y-80">
-                            <!-- Konten Card -->
-                            <!-- Badge atau Tagline -->
-                            <div class="flex justify-center mb-4">
-                                <span class="px-3 py-1 text-xs font-bold uppercase bg-color-3 text-color-putih rounded-full shadow-sm">
-                                    Spesial Premium
-                                </span>
+                    @if (Auth::user()->hasVerifiedEmail())
+                        @if(Auth::user()->role === 'pasien' && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->premiumEndingSoon())
+                            <div id="card" class="absolute -top-[310px] left-1/2 transform -translate-x-1/2 -translate-y-1 bg-color-1 shadow-lg rounded-lg p-3 max-w-[500px] text-center transition-all duration-300 text-color-putih hover:translate-y-80">
+                                <!-- Konten Card -->
+                                <!-- Badge atau Tagline -->
+                                <div class="flex justify-center mb-4">
+                                    <span class="px-3 py-1 text-xs font-bold uppercase bg-color-3 text-color-putih rounded-full shadow-sm">
+                                        Spesial Premium
+                                    </span>
+                                </div>
+                                <p class="mb-4">
+                                    Nikmati fitur eksklusif kami dengan berlangganan. Dapatkan akses premium hari ini dan tingkatkan pengalaman Anda!
+                                </p>
+                                <div class="flex justify-center mb-6">
+                                    <svg class="flex-shrink-0 w-20 h-20 text-color-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                    </svg>
+                                </div>
+                                <label for="membership" class="btn w-full py-2 px-4 text-2xl font-bold text-color-1 rounded-lg bg-color-6 hover:bg-color-5 transition duration-300">
+                                    Berlangganan Sekarang!
+                                </label>
+                                <div class="divider mb-0"></div>
+                                <div class="flex absolute bg-color-1 -bottom-10 left-1/2 transform -translate-x-1/2 px-3 pt-0 pb-1 rounded-lg shadow-lg">
+                                    <p class="flex font-medium text-3xl items-center">PREM</p>
+                                    <img class="h-[50px] w-[50px]" src="{{ asset('icons/Guarantee.svg') }}">
+                                    <p class="flex font-medium text-3xl items-center">UM</p>
+                                </div>
                             </div>
-                            <p class="mb-4">
-                                Nikmati fitur eksklusif kami dengan berlangganan. Dapatkan akses premium hari ini dan tingkatkan pengalaman Anda!
-                            </p>
-                            <div class="flex justify-center mb-6">
-                                <svg class="flex-shrink-0 w-20 h-20 text-color-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                </svg>
-                            </div>
-                            <label for="membership" class="btn w-full py-2 px-4 text-2xl font-bold text-color-1 rounded-lg bg-color-6 hover:bg-color-5 transition duration-300">
-                                Berlangganan Sekarang!
-                            </label>
-                            <div class="divider mb-0"></div>
-                            <div class="flex absolute bg-color-1 -bottom-10 left-1/2 transform -translate-x-1/2 px-3 pt-0 pb-1 rounded-lg shadow-lg">
-                                <p class="flex font-medium text-3xl items-center">PREM</p>
-                                <img class="h-[50px] w-[50px]" src="{{ asset('icons/Guarantee.svg') }}">
-                                <p class="flex font-medium text-3xl items-center">UM</p>
-                            </div>
-                        </div>
-                        
-                        @include('Components.subscription')
+                            
+                            @include('Components.subscription')
+                        @endif
                     @endif
                 @endauth
             </div>
@@ -65,7 +67,7 @@
                     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" xmlns="http://www.w3.org/2000/svg" class="btn flex flex-col justify-center place-content-start justify w-[250px] px-[10px] text-color-1 bg-color-6 border border-color-6 hover:bg-color-6  hover:border hover:border-color-5">
                         <div class="avatar self-center">
                             <div class="w-[30px] rounded-full">
-                                <img src="{{ asset('storage/' . Auth::user()->foto_profil) }}" />
+                                <img src="{{ Auth::user()->foto_profil ? asset('storage/' . Auth::user()->foto_profil) : asset('storage/image/dummy.png') }}" />
                             </div>
                         </div>
                         <div class="flex flex-col justify-around me-auto h-full grow text-left">
@@ -107,9 +109,9 @@
         </div>
     </header>
 
-    <div class="{{ in_array($title, ['SupporT-een', 'Login', 'Registrasi', 'Mitra']) ? 'min-h-[calc(100vh-80px)]' : 'h-[calc(100vh-80px)]' }} flex w-full bg-color-8">
+    <div class="{{ in_array($title, ['SupporT-een', 'Login', 'Registrasi', 'Mitra', 'Verifikasi Email']) ? 'min-h-[calc(100vh-80px)]' : 'h-[calc(100vh-80px)]' }} flex w-full bg-color-8">
 
-        <aside class="w-2/5 {{ in_array($title, ['SupporT-een', 'Login', 'Registrasi', 'Mitra']) ? '' : 'overflow-y-auto' }}">
+        <aside class="w-2/5 {{ in_array($title, ['SupporT-een', 'Login', 'Registrasi', 'Mitra', 'Verifikasi Email']) ? '' : 'overflow-y-auto' }}">
             <!-- Konten aside -->
             @yield('aside')
         </aside>
@@ -190,116 +192,118 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @auth
-        @if(Auth::user()->role === 'pasien' && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->premiumEndingSoon())
-            <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
-            <script type="text/javascript">
-                document.getElementById('subscribe').onclick = function () {
-                    fetch('{{ route('generate.snaptoken') }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        },
-                    })
-                    .then((response) => {
-                        // Jika status bukan 200 OK, cek pesan kesalahan
-                        if (!response.ok) {
-                            return response.json().then((data) => {
-                                throw new Error(data.error || 'Gagal mendapatkan Snap Token');
-                            });
-                        }
-                        return response.json();
-                    })
-                    .then((data) => {
-                        if (data.snap_token) {
-                            snap.pay(data.snap_token, {
-                                onSuccess: function (result) {
-                                    fetch(`{{ url('/process-payment') }}/${data.transaction_id}`, {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                        },
-                                        body: JSON.stringify({ payment_result: result }),
-                                    })
-                                    .then((response) => response.json())
-                                    .then((response) => {
-                                        if (response.success) {
-                                            Swal.fire({
-                                                icon: 'success',
-                                                title: 'Berhasil',
-                                                text: 'Pembayaran berhasil, langganan Anda telah aktif.',
-                                                confirmButtonText: 'OK',
-                                            }).then(() => {
-                                                window.location.reload();
-                                            });
-                                        } else {
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Kesalahan',
-                                                text: response.message || 'Pembayaran gagal diproses.',
-                                                confirmButtonText: 'OK',
-                                            }).then(() => {
-                                                window.location.reload();
-                                            });
-                                        }
-                                    });
-                                },
-                                onPending: function (result) {
-                                    Swal.fire({
-                                        icon: 'warning',
-                                        title: 'Pending',
-                                        text: 'Pembayaran belum selesai. Anda dapat melanjutkannya nanti.',
-                                        confirmButtonText: 'OK',
-                                    }).then(() => {
-                                        window.location.reload();
-                                    });
-                                },
-                                onError: function (result) {
-                                    fetch(`{{ url('/cancel-transaction') }}/${data.transaction_id}`, {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                        },
-                                    })
-                                    .then((response) => response.json())
-                                    .then(() => {
+        @if (Auth::user()->hasVerifiedEmail())
+            @if(Auth::user()->role === 'pasien' && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->premiumEndingSoon())
+                <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+                <script type="text/javascript">
+                    document.getElementById('subscribe').onclick = function () {
+                        fetch('{{ route('generate.snaptoken') }}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            },
+                        })
+                        .then((response) => {
+                            // Jika status bukan 200 OK, cek pesan kesalahan
+                            if (!response.ok) {
+                                return response.json().then((data) => {
+                                    throw new Error(data.error || 'Gagal mendapatkan Snap Token');
+                                });
+                            }
+                            return response.json();
+                        })
+                        .then((data) => {
+                            if (data.snap_token) {
+                                snap.pay(data.snap_token, {
+                                    onSuccess: function (result) {
+                                        fetch(`{{ url('/process-payment') }}/${data.transaction_id}`, {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                            },
+                                            body: JSON.stringify({ payment_result: result }),
+                                        })
+                                        .then((response) => response.json())
+                                        .then((response) => {
+                                            if (response.success) {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Berhasil',
+                                                    text: 'Pembayaran berhasil, langganan Anda telah aktif.',
+                                                    confirmButtonText: 'OK',
+                                                }).then(() => {
+                                                    window.location.reload();
+                                                });
+                                            } else {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Kesalahan',
+                                                    text: response.message || 'Pembayaran gagal diproses.',
+                                                    confirmButtonText: 'OK',
+                                                }).then(() => {
+                                                    window.location.reload();
+                                                });
+                                            }
+                                        });
+                                    },
+                                    onPending: function (result) {
                                         Swal.fire({
-                                            icon: 'error',
-                                            title: 'Gagal',
-                                            text: 'Pembayaran gagal. Status transaksi diperbarui.',
+                                            icon: 'warning',
+                                            title: 'Pending',
+                                            text: 'Pembayaran belum selesai. Anda dapat melanjutkannya nanti.',
                                             confirmButtonText: 'OK',
                                         }).then(() => {
                                             window.location.reload();
                                         });
-                                    });
-                                },
-                                onClose: function () {
-                                    Swal.fire({
-                                        icon: 'info',
-                                        title: 'Dibatalkan',
-                                        text: 'Anda menutup pembayaran. Anda dapat melanjutkan pembayaran nanti.',
-                                        confirmButtonText: 'OK',
-                                    }).then(() => {
-                                        window.location.reload();
-                                    });
-                                },
+                                    },
+                                    onError: function (result) {
+                                        fetch(`{{ url('/cancel-transaction') }}/${data.transaction_id}`, {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                            },
+                                        })
+                                        .then((response) => response.json())
+                                        .then(() => {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Gagal',
+                                                text: 'Pembayaran gagal. Status transaksi diperbarui.',
+                                                confirmButtonText: 'OK',
+                                            }).then(() => {
+                                                window.location.reload();
+                                            });
+                                        });
+                                    },
+                                    onClose: function () {
+                                        Swal.fire({
+                                            icon: 'info',
+                                            title: 'Dibatalkan',
+                                            text: 'Anda menutup pembayaran. Anda dapat melanjutkan pembayaran nanti.',
+                                            confirmButtonText: 'OK',
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    },
+                                });
+                            }
+                        })
+                        .catch((error) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Kesalahan',
+                                text: error.message,
+                                confirmButtonText: 'OK',
+                            }).then(() => {
+                                window.location.reload();
                             });
-                        }
-                    })
-                    .catch((error) => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Kesalahan',
-                            text: error.message,
-                            confirmButtonText: 'OK',
-                        }).then(() => {
-                            window.location.reload();
                         });
-                    });
-                };
-            </script>
+                    };
+                </script>
+            @endif
         @endif
     @endauth
 </body>

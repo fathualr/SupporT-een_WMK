@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Mail\OtpMail;
 use App\Models\Pasien;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class AuthController extends Controller
 {
@@ -83,9 +88,71 @@ class AuthController extends Controller
             'id_user' => $user->id,
         ]);
 
-        Auth::login($user);
+        // Generate OTP
+        $user->generateOtp();
 
-        return redirect('/')->with('success', 'Registrasi berhasil, anda sudah login!');
+        // Kirim email OTP
+        try {
+            Mail::to($user->email)->send(new OtpMail($user->otp_code));
+
+            Auth::login($user);
+
+            return redirect()->route('verification.notice')->with('success', 'Kode OTP telah dikirimkan ke email anda.');
+        } catch (\Exception $e) {
+            return redirect()->route('verification.notice')->with('error', 'Gagal mengirim email OTP. Silakan coba lagi.');
+        }
     }
 
+    public function showVerificationNotice()
+    {
+        $user = Auth::user();
+        // Hitung waktu kedaluwarsa dalam timestamp (milidetik)
+        $otpExpiresAt = $user->otp_expires_at ? $user->otp_expires_at->timestamp : null;
+        return view('verifikasi_email',[
+            "title" => "Verifikasi Email",
+            "otpExpiresAt" => $otpExpiresAt
+        ]);
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'otp_code' => 'required|size:6',
+        ]);
+
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+
+        // Periksa apakah OTP cocok dan masih berlaku
+        if ($user->otp_code !== $request->otp_code) {
+            return back()->withErrors(['otp_code' => 'Kode OTP tidak sesuai.']);
+        }
+
+        if (Carbon::now()->greaterThan($user->otp_expires_at)) {
+            return back()->withErrors(['otp_code' => 'Kode OTP sudah expired, tekan tombol kirim ulang OTP.']);
+        }
+
+        // OTP valid, tandai email sebagai terverifikasi
+        $user->update([
+            $user->otp_code = null,
+            $user->otp_expires_at = null,
+            $user->email_verified_at = Carbon::now(),
+        ]);
+
+        return redirect('/profile')->with('success', 'Email berhasil diverifikasi!');
+    }
+
+    public function resendOtp()
+    {
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+
+        // Generate OTP baru
+        $user->generateOtp();
+
+        // Kirim email OTP baru
+        Mail::to($user->email)->send(new OtpMail($user->otp_code));
+
+        return back()->with('success', 'OTP baru telah dikirimkan ke email anda.');
+    }
 }
