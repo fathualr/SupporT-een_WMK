@@ -117,13 +117,13 @@
                                     <img src="{{ asset('images/logo-icon.svg') }}" />
                                 </div>
                             </div>
-                            <div class="chat-bubble bg-white text-color-1 border w-fit">
+                            <div class="chat-bubble bg-white text-color-1 border w-fit break-words" style="hyphens: auto;">
                                 {{ $pesan->teks }}
                             </div>
                         </div>
                     @else
                         <div class="flex items-end justify-end gap-3 pb-4">
-                            <div class="chat-bubble bg-color-3 text-white w-fit">
+                            <div class="chat-bubble bg-color-3 text-white w-fit break-words" style="hyphens: auto;">
                                 {{ $pesan->teks }}
                             </div>
                             <div class="avatar">
@@ -177,22 +177,22 @@
         
                 @if (Auth::user()->pasien->getNonPremiumLimit() < 10)
                     <!-- Tombol kirim -->
-                    <button type="submit" class="btn btn-ghost h-[50px] absolute inset-y-0 right-0 rounded-r-full px-2 border-x-0 outline-none">
+                    <button type="submit" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-0 rounded-r-full px-2 border-x-0 outline-none">
                         <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
                     </button>
                     
                     <!-- Tombol mikrofon -->
-                    <button type="button" id="voice-button" class="btn btn-ghost h-[50px] absolute inset-y-0 right-12 rounded-r-none px-1 border-x-0 outline-none">
+                    <button type="button" id="voice-button" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-11 rounded-r-none rounded-l-none px-1 border-x-0 outline-none">
                         <img src="{{ asset('icons/Microphone.svg') }}" alt="Microphone">
                     </button>
                 @else
                     <!-- Tombol kirim -->
-                    <button disabled type="submit" class="btn btn-ghost h-[50px] absolute inset-y-0 right-0 rounded-r-full px-2 opacity-50 cursor-not-allowed">
+                    <button disabled type="submit" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-0 rounded-r-full px-2 opacity-50 cursor-not-allowed">
                         <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
                     </button>
             
                     <!-- Tombol mikrofon -->
-                    <button disabled type="button" id="voice-button" class="btn btn-ghost h-[50px] absolute inset-y-0 right-12 rounded-r-none px-1 opacity-50 cursor-not-allowed">
+                    <button disabled type="button" id="voice-button" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-11 rounded-r-none rounded-l-none px-1 opacity-50 cursor-not-allowed">
                         <img src="{{ asset('icons/Microphone.svg') }}" alt="Microphone">
                     </button>
                 @endif
@@ -286,141 +286,6 @@
         }
     </script>    
 
-    @if ($selectedPercakapan)
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const chatForm = document.getElementById('chat-form');
-                const chatInput = document.getElementById('text-input');
-                const chatMessages = document.getElementById('chat-messages');
-                const percakapanId = document.getElementById('id-percakapan').value;
-                const flashMessagePlace = document.getElementById('flash-message-place'); // Lokasi untuk flash message
 
-                chatForm.addEventListener('submit', async (e) => {
-                    e.preventDefault(); // Mencegah reload halaman
-
-                    const pesan = chatInput.value.trim();
-                    if (!pesan) {
-                        // Tambahkan pesan flash jika input kosong
-                        flashMessagePlace.insertAdjacentHTML('beforeend', `
-                            <div class="absolute top-[100px] left-1/2 transform -translate-x-1/2 z-40">
-                                <div role="alert" id="toast" class="alert alert-error col-span-9 mb-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    <span>Pesan tidak boleh kosong!</span>
-                                    <button id="close-toast" class="ml-4 text-lg font-semibold text-black hover:text-gray-700 focus:outline-none">
-                                        ✕
-                                    </button>
-                                </div>
-                            </div>
-                        `);
-
-                        initializeToast(); // Inisialisasi toast
-                        return; // Hentikan pengiriman
-                    }
-
-                    try {
-                        const response = await fetch('{{ route('chatbot.store') }}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            },
-                            body: JSON.stringify({
-                                pesan,
-                                id_percakapan: percakapanId,
-                            }),
-                        });
-
-                        if (!response.ok) {
-                            const errorData = await response.json();
-                            if (response.status === 403) {
-                                window.location.reload();
-                            } else {
-                                alert('Terjadi kesalahan saat mengirim pesan.');
-                            }
-                            return;
-                        }
-
-                        const data = await response.json();
-                        if (response.ok) {
-                            // Tampilkan pesan pengguna
-                            const userMessage = document.createElement('div');
-                            userMessage.classList.add('flex', 'items-end', 'justify-end', 'gap-3', 'pb-4');
-                            userMessage.innerHTML = `
-                                <div class="chat-bubble bg-color-3 text-white w-fit">
-                                    ${data.user_message}
-                                </div>
-                                <div class="avatar">
-                                    <div class="w-12 rounded-full">
-                                        <img src="{{ Auth::user()->foto_profil ? asset('storage/' . Auth::user()->foto_profil) : asset('storage/image/dummy.png') }}" alt="User Avatar" />
-                                    </div>
-                                </div>
-                            `;
-                            chatMessages.prepend(userMessage); // Tambahkan di atas karena flex-col-reverse
-
-                            // Tampilkan pesan bot
-                            const botMessage = document.createElement('div');
-                            botMessage.classList.add('flex', 'items-end', 'gap-3', 'pb-4');
-                            botMessage.innerHTML = `
-                                <div class="avatar">
-                                    <div class="w-12 rounded-full">
-                                        <img src="{{ asset('images/logo-icon.svg') }}" />
-                                    </div>
-                                </div>
-                                <div class="chat-bubble bg-white text-color-1 border w-fit">
-                                    ${data.bot_message}
-                                </div>
-                            `;
-                            chatMessages.prepend(botMessage); // Tambahkan di atas karena flex-col-reverse
-
-                            // Kosongkan input
-                            chatInput.value = '';
-                        } else {
-                            alert('Terjadi kesalahan saat mengirim pesan.');
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        alert('Gagal terhubung ke server.');
-                    }
-                });
-
-                // Fungsi untuk menginisialisasi flash message (toast)
-                function initializeToast() {
-                    const toastElement = document.getElementById('toast');
-                    const closeButton = document.getElementById('close-toast');
-                    const toastDuration = 3000; // Durasi tampil dalam milidetik (3 detik)
-
-                    if (toastElement) {
-                        // Animasi fade-in
-                        toastElement.style.opacity = '0';
-                        toastElement.style.transition = 'opacity 0.5s ease';
-                        setTimeout(() => {
-                            toastElement.style.opacity = '1';
-                        }, 10); // Delay untuk memastikan elemen di-render
-
-                        // Timer untuk menghilangkan toast
-                        setTimeout(() => {
-                            // Animasi fade-out
-                            toastElement.style.opacity = '0';
-                            setTimeout(() => {
-                                toastElement.remove(); // Hapus elemen setelah animasi selesai
-                            }, 500); // Waktu animasi fade-out (0.5 detik)
-                        }, toastDuration);
-                    }
-
-                    if (closeButton) {
-                        // Tombol close
-                        closeButton.addEventListener('click', function () {
-                            toastElement.style.opacity = '0'; // Animasi fade-out
-                            setTimeout(() => {
-                                toastElement.remove(); // Hapus elemen setelah animasi selesai
-                            }, 500); // Waktu animasi fade-out
-                        });
-                    }
-                }
-            });
-        </script>
-    @endif
 
 @endsection

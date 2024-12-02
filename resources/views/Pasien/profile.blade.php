@@ -14,6 +14,8 @@
 </head>
 <body class="font-poppins text-color-1 select-none">
 
+    @include('Components.loader')
+
     <header class="sticky top-0 z-[999]">
         <div class="flex flex-row justify-between h-20 py-[15px] px-[50px] bg-color-8  border-b border-color-4 ">
             <a href="{{ Auth::check() && Auth::user()->role === 'tenaga ahli' ? '/tenaga-ahli' : '/' }}" class="flex flex-row">

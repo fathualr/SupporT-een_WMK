@@ -61,7 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function generateOtp()
     {
         $this->otp_code = random_int(100000, 999999); // Kode OTP 6 digit
-        $this->otp_expires_at = Carbon::now()->addMinutes(1); // Berlaku 3 menit
+        $this->otp_expires_at = Carbon::now()->addMinutes(2); // Berlaku 3 menit
         $this->save();
     }
 

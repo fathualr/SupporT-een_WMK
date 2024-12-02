@@ -177,10 +177,7 @@ class ChatbotController extends Controller
     
         // Periksa batas penggunaan untuk non-premium
         if (!$user->isPremium() && $user->pasien->getNonPremiumLimit() >= 10) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Batas pesan Anda telah tercapai. Silakan coba lagi setelah beberapa waktu atau upgrade ke premium untuk akses tak terbatas.'
-            ], 403);
+            return redirect()->back()->with('error', 'Batas pesan Anda telah tercapai. Silakan upgrade ke premium untuk akses tak terbatas.');
         }
     
         // Dapatkan atau buat percakapan
@@ -190,19 +187,9 @@ class ChatbotController extends Controller
         $this->storePesanDanLog($percakapan, $validated, $idPasien);
     
         // Dapatkan respons bot
-        $botResponse = $this->getBotResponse($validated['pesan'], $percakapan);
-    
-        // Jika percakapan baru, redirect ke halaman percakapan
-        if ($percakapan->wasRecentlyCreated) {
-            return redirect()->route('chatbot.index', ['id' => $percakapan->id]);
-        }
-    
-        // Kembalikan respons JSON
-        return response()->json([
-            'success' => true,
-            'user_message' => $validated['pesan'],
-            'bot_message' => $botResponse ,
-        ]);
+        $this->getBotResponse($validated['pesan'], $percakapan);
+
+        return redirect()->route('chatbot.index', ['id' => $percakapan->id]);
     }
     
     /**
