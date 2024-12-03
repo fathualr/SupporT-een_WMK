@@ -1,0 +1,6 @@
+Flask
+transformers
+deep-translator
+google-generativeai
+python-dotenv
+torch
