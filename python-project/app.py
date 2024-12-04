@@ -3,12 +3,14 @@ from dotenv import load_dotenv
 import os
 from models.emotion_model import detect_emotions
 from models.chatbot_model import get_response_from_gemini
+from models.chatbot_lite_model import train_and_save_model, chatbot_lite_response
 
 # Load environment variables
 load_dotenv()
 
 # Konfigurasi API
 app = Flask(__name__)
+DATASET_PATH = "datasets/dataset.csv"
 
 @app.route('/emotion', methods=['POST'])
 def emotion_analysis():
@@ -45,6 +47,33 @@ def chatbot_response():
         # Panggil model chatbot
         response = get_response_from_gemini(prompt)
 
+        return jsonify({"chatbot_response": response})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/train-chatbot-lite', methods=['POST'])
+def train_chatbot_lite():
+    try:
+        file = request.files.get('dataset')
+        if not file:
+            return jsonify({"error": "Dataset file diperlukan."}), 400
+
+        file.save(DATASET_PATH)
+        result = train_and_save_model(DATASET_PATH)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/chatbot-lite', methods=['POST'])
+def chatbot_lite():
+    try:
+        data = request.json
+        user_input = data.get("pesan_baru", "")
+
+        if not user_input:
+            return jsonify({"error": "Pesan baru diperlukan."}), 400
+
+        response = chatbot_lite_response(user_input, DATASET_PATH)
         return jsonify({"chatbot_response": response})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
