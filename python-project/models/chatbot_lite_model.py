@@ -77,8 +77,8 @@ def chatbot_lite_response(user_input, dataset_path="datasets/dataset.csv"):
     predicted_intent = svm_classifier.classes_[np.argmax(predicted_probs)]
     confidence = np.max(predicted_probs)
 
-    if confidence < 0.3:
-        return "Saya tidak yakin dengan maksud Anda."
+    if confidence < 0.5:
+        return "Maaf saya tidak memahami dengan maksud Anda."
 
     intent_responses = response_data[response_data["Response_Intent"] == predicted_intent]
     if intent_responses.empty:

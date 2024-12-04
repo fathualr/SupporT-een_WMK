@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
@@ -91,15 +92,24 @@ class AuthController extends Controller
         // Generate OTP
         $user->generateOtp();
 
-        // Kirim email OTP
+        // Coba kirim email OTP
+        $emailSent = true;
         try {
             Mail::to($user->email)->send(new OtpMail($user->otp_code));
-
-            Auth::login($user);
-
-            return redirect()->route('verification.notice')->with('success', 'Kode OTP telah dikirimkan ke email anda.');
         } catch (\Exception $e) {
-            return redirect()->route('verification.notice')->with('error', 'Gagal mengirim email OTP. Silakan coba lagi.');
+            $emailSent = false;
+        }
+
+        // Login pengguna
+        Auth::login($user);
+
+        // Redirect dengan pesan sesuai hasil pengiriman email OTP
+        if ($emailSent) {
+            return redirect()->route('verification.notice')
+                ->with('success', 'Kode OTP telah dikirimkan ke email anda.');
+        } else {
+            return redirect()->route('verification.notice')
+                ->with('error', 'Gagal mengirim email OTP, namun akun Anda telah berhasil dibuat dan Anda telah login.');
         }
     }
 
@@ -146,13 +156,26 @@ class AuthController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::findOrFail($id);
-
-        // Generate OTP baru
-        $user->generateOtp();
-
-        // Kirim email OTP baru
-        Mail::to($user->email)->send(new OtpMail($user->otp_code));
-
-        return back()->with('success', 'OTP baru telah dikirimkan ke email anda.');
+    
+        // Mulai transaksi database
+        DB::beginTransaction();
+    
+        try {
+            // Generate OTP baru
+            $user->generateOtp();
+    
+            // Coba kirim email OTP
+            Mail::to($user->email)->send(new OtpMail($user->otp_code));
+    
+            // Jika pengiriman berhasil, komit transaksi
+            DB::commit();
+    
+            return back()->with('success', 'OTP baru telah dikirimkan ke email anda.');
+        } catch (\Exception $e) {
+            // Jika terjadi kesalahan, rollback perubahan
+            DB::rollBack();
+    
+            return back()->with('error', 'Gagal mengirim email OTP. Silakan coba lagi.');
+        }
     }
 }

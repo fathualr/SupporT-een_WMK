@@ -146,11 +146,11 @@
         @if (Auth::user()->pasien->getNonPremiumLimit() >= 10)
             <div id="toast-undo" class="flex items-center w-full p-4 text-color-putih bg-color-1 rounded-lg shadow mb-3" role="alert">
                 <div class="flex flex-col w-full">
-                    <span class="mb-3 font-semibold">
-                        Kuota chatbot Anda sudah habis. Anda dapat menggunakan kembali pada 
-                        <strong>
+                    <span class="mb-3 font-normal">
+                        Kuota chatbot premium anda telah habis, dan kini <span class="font-semibold"> model chatbot lite </span>yang sedang digunakan. Anda dapat menggunakan kembali pada 
+                        <span class="font-semibold">
                             {{ $nextAvailableTime ? $nextAvailableTime->format('H:i') : '00:00' }}
-                        </strong>.
+                        </span>.
                     </span>
                     <label for="membership" class="btn w-fit py-2 px-4 text-2xl font-bold text-color-1 rounded-lg bg-color-6 hover:bg-color-5 transition duration-300">
                         Berlangganan Sekarang!
@@ -175,27 +175,15 @@
                 <input type="text" id="text-input" autofocus name="pesan" class="h-[50px] flex items-center py-4 px-4 w-full rounded-full text-sm bg-color-6 border border-color-1 focus-visible:outline focus-visible:outline-color-1" 
                     placeholder="Masukkan pesan anda disini" aria-describedby="hs-validation-name-error-helper" autocomplete="off">
         
-                @if (Auth::user()->pasien->getNonPremiumLimit() < 10)
-                    <!-- Tombol kirim -->
-                    <button type="submit" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-0 rounded-r-full px-2 border-x-0 outline-none">
-                        <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
-                    </button>
-                    
-                    <!-- Tombol mikrofon -->
-                    <button type="button" id="voice-button" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-11 rounded-r-none rounded-l-none px-1 border-x-0 outline-none">
-                        <img src="{{ asset('icons/Microphone.svg') }}" alt="Microphone">
-                    </button>
-                @else
-                    <!-- Tombol kirim -->
-                    <button disabled type="submit" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-0 rounded-r-full px-2 opacity-50 cursor-not-allowed">
-                        <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
-                    </button>
-            
-                    <!-- Tombol mikrofon -->
-                    <button disabled type="button" id="voice-button" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-11 rounded-r-none rounded-l-none px-1 opacity-50 cursor-not-allowed">
-                        <img src="{{ asset('icons/Microphone.svg') }}" alt="Microphone">
-                    </button>
-                @endif
+                <!-- Tombol kirim -->
+                <button type="submit" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-0 rounded-r-full px-2 border-x-0 outline-none">
+                    <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
+                </button>
+                
+                <!-- Tombol mikrofon -->
+                <button type="button" id="voice-button" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-11 rounded-r-none rounded-l-none px-1 border-x-0 outline-none">
+                    <img src="{{ asset('icons/Microphone.svg') }}" alt="Microphone">
+                </button>
         
             </div>
         </form>
@@ -285,7 +273,5 @@
             alert("Browser Anda tidak mendukung fitur pengenalan suara.");
         }
     </script>    
-
-
 
 @endsection

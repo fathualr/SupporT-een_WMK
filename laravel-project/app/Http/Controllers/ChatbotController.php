@@ -105,9 +105,21 @@ class ChatbotController extends Controller
     protected function getBotResponse($pesan, $percakapan)
     {
         try {
-            $response = Http::post('http://127.0.0.1:9999/chatbot', [
-                'pesan_baru' => $pesan,
-            ]);
+            $id = Auth::user()->id;
+            $user = User::findOrFail($id);
+            $isPremium = $user->isPremium();
+            $messageLimit = $user->pasien->getNonPremiumLimit();
+
+            // Jika pengguna non-premium dan telah mencapai batas
+            if (!$isPremium && $messageLimit >= 10) {
+                $response = Http::post('http://127.0.0.1:9999/chatbot-lite', [
+                    'pesan_baru' => $pesan,
+                ]);
+            } else {
+                $response = Http::post('http://127.0.0.1:9999/chatbot', [
+                    'pesan_baru' => $pesan,
+                ]);
+            }
     
             if ($response->successful()) {
                 $botResponse = $response->json('chatbot_response');
@@ -174,11 +186,6 @@ class ChatbotController extends Controller
         $id = Auth::user()->id;
         $user = User::findOrFail($id);
         $idPasien = $user->pasien->id;
-    
-        // Periksa batas penggunaan untuk non-premium
-        if (!$user->isPremium() && $user->pasien->getNonPremiumLimit() >= 10) {
-            return redirect()->back()->with('error', 'Batas pesan Anda telah tercapai. Silakan upgrade ke premium untuk akses tak terbatas.');
-        }
     
         // Dapatkan atau buat percakapan
         $percakapan = $this->getOrCreatePercakapan($request, $validated, $idPasien);
