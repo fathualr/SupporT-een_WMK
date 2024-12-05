@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ChatbotLog;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 Use App\Models\User;
 Use App\Models\PercakapanChatbot;
 use App\Models\PesanChatbot;
+use App\Models\ChatbotLog;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 
 class ChatbotController extends Controller
 {
-    
     public function chatbot(Request $request, $id = null)
     {
         $user = Auth::user();
@@ -56,6 +56,82 @@ class ChatbotController extends Controller
             'nextAvailableTime' => $nextAvailableTime ?? null, // Default null jika tidak ada log
         ]);
         
+    }
+
+    public function updateChatbotLiteDataset(Request $request)
+    {
+        // Validasi file
+        $request->validate([
+            'dataset' => 'required|file', // Validasi bahwa file adalah CSV
+        ]);
+
+        try {
+            // Ambil file dari request
+            $file = $request->file('dataset');
+
+            // Kirim file ke endpoint Flask
+            $response = Http::attach(
+                'dataset', // Nama field sesuai yang diharapkan di Flask
+                fopen($file->getRealPath(), 'r'),
+                $file->getClientOriginalName()
+            )->post('http://127.0.0.1:9999/train-chatbot-lite');
+
+            // Periksa status respon dari Flask
+            if ($response->successful()) {
+                return redirect()->back()->with('success', 'Model chatbot lite berhasil diperbarui!');
+            } else {
+                $errorMessage = $response->json('error') ?? 'Gagal memperbarui model.';
+                return redirect()->back()->with('error', $errorMessage);
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return view('admin/chatbot', [
+            'title' => 'Model Chatbot'
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage. // =============== //
+     */
+    public function store(Request $request)
+    {
+        // Validasi input pesan
+        $validated = $request->validate(['pesan' => 'max:255']);
+        if (empty($validated['pesan'])) {
+            return redirect()->back()->with('error', 'Pesan tidak boleh kosong!');
+        }
+    
+        // Dapatkan pengguna dan pasien
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+        $idPasien = $user->pasien->id;
+    
+        // Dapatkan atau buat percakapan
+        $percakapan = $this->getOrCreatePercakapan($request, $validated, $idPasien);
+    
+        // Tambahkan pesan pengguna
+        $this->storePesanDanLog($percakapan, $validated, $idPasien);
+    
+        // Dapatkan respons bot
+        $this->getBotResponse($validated['pesan'], $percakapan);
+
+        return redirect()->route('chatbot.index', ['id' => $percakapan->id]);
     }
 
     protected function getOrCreatePercakapan(Request $request, array $validated, $idPasien)
@@ -154,51 +230,8 @@ class ChatbotController extends Controller
             'pengirim' => 'bot',
         ])->save();
     }
+    // ============================================= //
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // Validasi input pesan
-        $validated = $request->validate(['pesan' => 'max:255']);
-        if (empty($validated['pesan'])) {
-            return redirect()->back()->with('error', 'Pesan tidak boleh kosong!');
-        }
-    
-        // Dapatkan pengguna dan pasien
-        $id = Auth::user()->id;
-        $user = User::findOrFail($id);
-        $idPasien = $user->pasien->id;
-    
-        // Dapatkan atau buat percakapan
-        $percakapan = $this->getOrCreatePercakapan($request, $validated, $idPasien);
-    
-        // Tambahkan pesan pengguna
-        $this->storePesanDanLog($percakapan, $validated, $idPasien);
-    
-        // Dapatkan respons bot
-        $this->getBotResponse($validated['pesan'], $percakapan);
-
-        return redirect()->route('chatbot.index', ['id' => $percakapan->id]);
-    }
-    
     /**
      * Display the specified resource.
      */

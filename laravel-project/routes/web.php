@@ -104,6 +104,8 @@ Route::prefix('super-admin')->middleware(['auth', RoleMiddleware::class . ':supe
     Route::resource('/transaksi-langganan', TransaksiLanggananController::class);
     Route::resource('/transaksi', TransaksiController::class);
     // Route::get('/pendapatan', [PendapatanController::class, 'adminPendapatan']);
+    Route::resource('/model-chatbot', ChatbotController::class)->only('index');
+    Route::post('/model-chatbot', [ChatbotController::class, 'updateChatbotLiteDataset'])->name('chatbotLite.updateDataset');
 });
 
 Route::prefix('content-admin')->middleware(['auth', RoleMiddleware::class . ':content admin'])->group(function () {

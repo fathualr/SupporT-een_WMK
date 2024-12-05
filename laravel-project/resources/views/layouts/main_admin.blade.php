@@ -84,6 +84,8 @@
                             </details> --}}
                         </li>
                         {{-- <li><a href="/super-admin/pendapatan">Pendapatan</a></li> --}}
+                        <div class="divider m-0"></div>
+                        <li><a href="/super-admin/model-chatbot">Model Chatbot</a></li>
                     </ul>
                 </div>
             
