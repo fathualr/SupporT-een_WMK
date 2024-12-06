@@ -71,18 +71,26 @@
                                 </ul>
                             </details>
                         </li>
-                        <li><a href="/super-admin/subscription">Data Subscription</a></li>
                         <li>
-                            {{-- <details id="dataTransaksi">
+                            <details id="dataSubscription">
+                                <summary>Data Langganan</summary>
+                                <ul>
+                                    <li><a href="/super-admin/subscription">Data Paket</a></li>
+                                    <li><a href="/super-admin/subscription-user">Data Pengguna</a></li>
+                                    <li><a href="/super-admin/subscription-transaction">Data Transaksi</a></li>
+                                </ul>
+                            </details>
+                        </li>
+                        {{-- <li>
+                            <details id="dataTransaksi">
                                 <summary>Data Transaksi</summary>
                                 <ul>
-                                    <li> --}}
-                                        <a href="/super-admin/transaksi-langganan">Data Transaksi Langganan</a>
-                                    {{-- </li>
+                                    <li>
+                                    </li>
                                     <li><a href="/super-admin/transaksi">Data Konsultasi</a></li>
                                 </ul>
-                            </details> --}}
-                        </li>
+                            </details>
+                        </li> --}}
                         {{-- <li><a href="/super-admin/pendapatan">Pendapatan</a></li> --}}
                         <div class="divider m-0"></div>
                         <li><a href="/super-admin/model-chatbot">Model Chatbot</a></li>
@@ -170,7 +178,7 @@
             }
 
             // Daftar elemen <details> yang ingin dikelola
-            const detailsIds = ['dataPengguna', 'dataTransaksi'];
+            const detailsIds = ['dataPengguna', 'dataTransaksi', 'dataSubscription'];
 
             // Pulihkan status masing-masing elemen
             detailsIds.forEach(restoreDetailsStatus);

@@ -30,6 +30,7 @@ use App\Http\Controllers\{
     KataKunciKontenController,
     BalasanController,
     SubscriptionController,
+    SubscriptionPlanController,
     TransaksiLanggananController,
 };
 
@@ -100,8 +101,9 @@ Route::prefix('super-admin')->middleware(['auth', RoleMiddleware::class . ':supe
     Route::resource('/user-pasien', PasienController::class);
     Route::resource('/user-tenaga-ahli', TenagaAhliController::class);
     Route::resource('/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikanTenagaAhliController::class);
-    Route::resource('/subscription', SubscriptionController::class);
-    Route::resource('/transaksi-langganan', TransaksiLanggananController::class);
+    Route::resource('/subscription', SubscriptionPlanController::class);
+    Route::resource('/subscription-user', SubscriptionController::class);
+    Route::resource('/subscription-transaction', TransaksiLanggananController::class);
     Route::resource('/transaksi', TransaksiController::class);
     // Route::get('/pendapatan', [PendapatanController::class, 'adminPendapatan']);
     Route::resource('/model-chatbot', ChatbotController::class)->only('index');
