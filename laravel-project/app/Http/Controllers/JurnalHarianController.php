@@ -87,7 +87,9 @@ class JurnalHarianController extends Controller
 
         try {
             // Panggil API /emotion pada Flask
-            $response = Http::post('http://127.0.0.1:9999/emotion', [
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . env('FLASK_API_KEY'),
+            ])->post(env('FLASK_SERVICE_URL') . '/emotion', [
                 'text' => $content,
             ]);
 

@@ -70,11 +70,13 @@ class ChatbotController extends Controller
             $file = $request->file('dataset');
 
             // Kirim file ke endpoint Flask
-            $response = Http::attach(
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . env('FLASK_API_KEY'), // Tambahkan header Authorization
+            ])->attach(
                 'dataset', // Nama field sesuai yang diharapkan di Flask
                 fopen($file->getRealPath(), 'r'),
                 $file->getClientOriginalName()
-            )->post('http://127.0.0.1:9999/train-chatbot-lite');
+            )->post(env('FLASK_SERVICE_URL') . '/train-chatbot-lite'); // Gunakan URL dari .env untuk fleksibilitas            
 
             // Periksa status respon dari Flask
             if ($response->successful()) {
@@ -188,11 +190,15 @@ class ChatbotController extends Controller
 
             // Jika pengguna non-premium dan telah mencapai batas
             if (!$isPremium && $messageLimit >= 10) {
-                $response = Http::post('http://127.0.0.1:9999/chatbot-lite', [
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . env('FLASK_API_KEY'),
+                ])->post(env('FLASK_SERVICE_URL') . '/chatbot-lite', [
                     'pesan_baru' => $pesan,
                 ]);
             } else {
-                $response = Http::post('http://127.0.0.1:9999/chatbot', [
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . env('FLASK_API_KEY'),
+                ])->post(env('FLASK_SERVICE_URL') . '/chatbot', [
                     'pesan_baru' => $pesan,
                 ]);
             }

@@ -12,6 +12,12 @@ load_dotenv()
 app = Flask(__name__)
 DATASET_PATH = "datasets/dataset.csv"
 
+@app.before_request
+def verify_api_key():
+    api_key = request.headers.get('Authorization')  # Ambil API key dari header Authorization
+    if api_key != f"Bearer {os.getenv('FLASK_API_KEY')}":
+        return jsonify({"error": "Unauthorized"}), 401
+
 @app.route('/emotion', methods=['POST'])
 def emotion_analysis():
     try:

@@ -71,16 +71,16 @@
         <div class="bg-white max-w-7xl w-full h-full p-4 flex flex-col shadow-lg rounded-2xl">
             @if($selectedJurnal)
                 <div class="flex justify-center w-full">
-                    <button class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih w-fit" 
+                    <label class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih w-fit" 
                     onclick="
-                    @if(Auth::user()->isPremium())
-                        document.getElementById('analisis-emosi').showModal();
-                    @else
-                        document.getElementById('membership').checked = true; // Tampilkan modal membership
-                    @endif
-                ">
+                        if({{ Auth::user()->isPremium() ? 'true' : 'false' }}) {
+                            document.getElementById('analisis-emosi').checked = true; // Tampilkan modal Analisis Emosi
+                        } else {
+                            document.getElementById('membership').checked = true; // Tampilkan modal Membership
+                        }
+                    ">
                         Analisis Emosi
-                    </button>
+                    </label>
                 </div>
                 <form id="text-form" action="{{ route('jurnal-harian.update', $selectedJurnal->id) }}" method="POST" class="w-full h-full pb-4">
                     @csrf
@@ -113,20 +113,29 @@
                 </form>
 
                 @if(Auth::user()->isPremium())
-                    <dialog id="analisis-emosi" class="modal">
-                        <div class="modal-box bg-color-8">
-                            <h3 class="text-lg font-bold">Analisis Emosi</h3>
-                            
+                    <input type="checkbox" id="analisis-emosi" class="modal-toggle" />
+                    <div class="modal select-none" role="dialog">
+                        <div class="modal-box bg-color-8 border border-gray-200 rounded-lg shadow-lg relative">
+                            <!-- Tombol Tutup -->
+                            <label for="analisis-emosi" class="btn btn-sm btn-circle btn-ghost absolute right-4 top-4">✕</label>
+                    
+                            <!-- Header Modal -->
+                            <div class="text-center">
+                                <h3 class="text-lg font-bold">Analisis Emosi</h3>
+                            </div>
+                    
+                            <!-- Diagram -->
+                            <div class="my-4">
                                 @include('pasien.components.diagram_emotion')
-
-                            <div class="flex justify-center">
-                                <button type="button" class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih" onclick="this.closest('dialog').close()">Kembali</button>
+                            </div>
+                    
+                            <!-- Tombol Kembali -->
+                            <div class="flex justify-center mt-6">
+                                <label for="analisis-emosi" class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih">Kembali</label>
                             </div>
                         </div>
-                        <form method="dialog" class="modal-backdrop">
-                            <button>close</button>
-                        </form>
-                    </dialog>
+                        <label class="modal-backdrop" for="analisis-emosi">Close</label>
+                    </div>                
                 @endif
             @else
                 <form id="text-form" action="{{ route('jurnal-harian.store') }}" method="POST" class="w-full h-full pb-4">
