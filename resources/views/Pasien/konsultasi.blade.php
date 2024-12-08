@@ -34,8 +34,6 @@
 @endsection
 
 @section('main')
-
-@section('main')
 <!-- daftar konsultasi tenaga ahli -->
 <div class="w-full h-full">
 

@@ -2,22 +2,22 @@
 
 @section('aside')
 
-    <div class="flex flex-col justify-center mx-auto w-full items-center h-full">
-        <img src=" {{ asset('images/main-picture.svg') }} " class="max-h-[500px] max-w-[500px]" alt="">
-        <div class="card max-w-[475px] max-h-[200px] bg-color-6 border border-color-5 text-color-9 mx-auto">
-            <div class="card-body">
-                <p class="font-bold text-2xl">Berbagi, Mendukung, Berkembang.</p>
-                <p class="text-base text-justify">Bersama, kita hadapi tantangan dan jaga kesehatan mental. Setiap langkah kecil membawa kita menuju masa depan yang lebih cerah!</p>
-            </div>
+<div class="flex flex-col px-4 mx-auto w-full h-full justify-center items-center lg:px-8 xl:px-4 xl:mb-[50px]">
+    <img src="{{ asset('images/main-picture.svg') }} " class="size-96" alt="">
+    <div class="card bg-color-6 border border-color-5 text-color-9 mx-auto rounded-3xl max-w-96 md:max-w-[29.688rem] md:min-h-[12.5rem]">
+        <div class="card-body">
+            <p class="font-bold text-xl md:text-2xl lg:text-xl xl:text-2xl">Berbagi, Mendukung, Berkembang.</p>
+            <p class="text-justify text-color-4 md:text-base lg:text-sm xl:text-base">Bersama, kita hadapi tantangan dan jaga kesehatan mental. Setiap langkah kecil membawa kita menuju masa depan yang lebih cerah!</p>
         </div>
     </div>
+</div>
 
 @endsection
 
 @section('main')
 
 <div class="flex flex-col justify-center items-center w-full">
-    <h1 class="font-bold text-6xl font-color-1 mb-3">Registrasi Akun</h1>
+    <h1 class="font-bold text-3xl lg:text-4xl font-color-1 mb-3">Registrasi Akun</h1>
     
     <form class="flex flex-col justify-center items-center w-full" action="{{ route('registration') }}" method="post">
         @csrf

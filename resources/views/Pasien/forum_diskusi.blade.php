@@ -3,7 +3,7 @@
 
 @section('aside')
 
-<div class="flex flex-col mx-auto w-full h-full pt-9 px-[50px] gap-6">
+<div class="flex flex-col mx-auto w-full h-full pt-9 px-8 xl:px-12 gap-6">
     <a href="{{ route('forum-diskusi.create') }}" class="btn flex justify-start bg-color-6 hover:bg-color-5 hover:border-color-3 text-base">
         <img src="{{ asset('icons/Plus.svg') }}" alt="Plus">
         Buat Diskusi
@@ -20,6 +20,57 @@
 
 @section('main')
 
+<!-- offcanvas -->
+<div 
+        id="hs-offcanvas-example" 
+        class="hs-overlay hidden fixed inset-y-0 left-0 transform -translate-x-full transition-all duration-500 ease-in-out z-[80] bg-white shadow-lg max-w-sm w-full lg:hidden" 
+        role="dialog" 
+        tabindex="-1" 
+        aria-labelledby="hs-offcanvas-example-label">
+        
+        <!-- Header Offcanvas -->
+        <div class="flex justify-between items-center py-3 px-4 border-b">
+            <!-- logo -->
+            <a href="{{ Auth::check() && Auth::user()->role === 'tenaga ahli' ? '/tenaga-ahli' : '/' }}" class="flex flex-row items-center">
+                <img class="size-[1.875rem] me-0.5 md:size-12 xl:size-[3.125rem] md:me-2 xl:me-[0.938rem]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
+                <span class="my-auto text-xs md:text-2xl xl:text-[2rem]">SupporT-een</span>
+            </a>
+
+            <!-- tombol close -->
+            <button 
+                type="button" 
+                class="inline-flex justify-center items-center rounded-full border bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" 
+                aria-label="Close" 
+                data-hs-overlay="#hs-offcanvas-example">
+                <span class="sr-only">Close</span>
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6 6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Content Offcanvas -->
+        <div class="p-4">
+        
+            <a href="{{ route('forum-diskusi.create') }}" class="btn flex justify-start bg-color-6 hover:bg-color-5 hover:border-color-3 text-base">
+                <img src="{{ asset('icons/Plus.svg') }}" alt="Plus">
+                Buat Diskusi
+            </a>
+            
+            <h1 class="text-2xl xl:text-4xl font-bold text-color-1 w-full mt-4">Diskusi Anda</h1>
+                
+                <div class="flex flex-col w-full h-full gap-4 mt-4 max-h-[calc(100vh-270px)] overflow-y-auto overflow-x-hidden">
+
+                    @include('pasien.components.card_list')
+
+                </div>
+
+        </div>
+        <!-- End Content Offcanvas -->
+    </div>
+    <!-- End Offcanvas -->
+
+
 <!-- konten utama forum diskusi -->
 <div class="flex flex-col items-center w-full h-full select-text">
     <div class="flex flex-col gap-4 pb-8 w-full">
@@ -35,18 +86,19 @@
             <div class="bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl w-full">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <img class="w-16 h-16 rounded-full mr-4" 
+                        <!-- profile -->
+                        <img class="size-12 rounded-full mr-4" 
                             src="{{ $selectedDiskusi->pasien->profile_picture ?? asset('storage/image/dummy.png') }}" 
                             alt="Profil " />
                         <div class="flex flex-col">
-                            <span class="text-xl text-color-1 font-semibold">{{ $selectedDiskusi->pasien ? $selectedDiskusi->pasien->user->nama : '#DeletedUser' }}</span>
-                            <span class="text-color-1">{{ $selectedDiskusi->created_at->format('d F Y, H:i:s') }}</span>
+                            <span class="text-base text-color-1 font-semibold">{{ $selectedDiskusi->pasien ? $selectedDiskusi->pasien->user->nama : '#DeletedUser' }}</span>
+                            <span class="text-color-1 text-base">{{ $selectedDiskusi->created_at->format('d F Y, H:i:s') }}</span>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col pl-20">
-                    <h1 class="text-3xl font-bold text-color-1 text-center my-4">{{ $selectedDiskusi->judul }}</h1>
-                    <p class="text-color-1 text-justify">
+                <div class="flex flex-col gap-1.5 md:gap-2">
+                    <h1 class="text-base md:text-2xl xl:text-3xl font-bold text-color-1 mt-4">{{ $selectedDiskusi->judul }}</h1>
+                    <p class="text-color-1 text-justify text-xs lg:text-base md:text-base">
                         {{ $selectedDiskusi->isi }}
                     </p>
                     <div class="grid gap-2">
@@ -57,7 +109,7 @@
                         @endforeach
                     </div>
                     <div class="divider m-0"></div>
-                    <h2 class="text-gray-400 text-xl text-center">Balasan</h2>
+                    <h2 class="text-color-1 text-xl text-center">Balasan</h2>
                     <!-- Bubble komentar -->
                     <div class="flex flex-col gap-4 mt-4">
                         @foreach ($selectedDiskusi->balasan as $balasan)
@@ -115,7 +167,7 @@
         @else
             
             <a href="/" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
-                <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
+                <img class="size-6" src="{{ asset("icons/back.svg")}}" alt="">
                 Kembali
             </a>
             
@@ -126,22 +178,22 @@
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <!-- Gambar profil pasien -->
-                                <img class="w-16 h-16 rounded-full mr-4" 
+                                <img class="size-12 rounded-full mr-4" 
                                     src="{{ $diskusi->pasien->profile_picture ?? asset('storage/image/dummy.png') }}" 
                                     alt="Profil" />
                                 <div class="flex flex-col">
                                     <!-- Nama pasien -->
-                                    <span class="text-xl text-color-1 font-semibold">{{ $diskusi->pasien ? $diskusi->pasien->user->nama : '#DeletedUser' }}</span>
+                                    <span class="text-base text-color-1 font-semibold">{{ $diskusi->pasien ? $diskusi->pasien->user->nama : '#DeletedUser' }}</span>
                                     <!-- Tanggal diskusi -->
-                                    <span class="text-color-1">{{ $diskusi->created_at->format('d F Y, H:i:s') }}</span>
+                                    <span class="text-color-1 text-base">{{ $diskusi->created_at->format('d F Y, H:i:s') }}</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col pl-20">
+                        <div class="flex flex-col gap-1.5 md:gap-2">
                             <!-- Judul diskusi -->
-                            <h1 class="text-3xl font-bold text-color-1 text-center my-4">{{ $diskusi->judul }}</h1>
+                            <h1 class="text-base md:text-2xl xl:text-3xl font-bold text-color-1 mt-4">{{ $diskusi->judul }}</h1>
                             <!-- Isi diskusi -->
-                            <p class="text-color-1 text-justify">
+                            <p class="text-color-1 text-justify text-xs lg:text-base md:text-base">
                                 {{ $diskusi->isi }}
                             </p>
                             <!-- Gambar diskusi -->
@@ -206,6 +258,27 @@
                 @endforeach            
 
             </div>
+
+            @foreach ($diskusiList as $diskusi)
+            <!-- Modal Konfirmasi Hapus Diskusi -->
+            <dialog id="delete-diskusi-modal-{{ $diskusi->id }}" class="modal">
+                <div class="modal-box bg-color-8">
+                    <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
+                    <p>Apakah Anda yakin ingin menghapus diskusi ini?</p>
+                    <div class="modal-action">
+                        <!-- Tombol Batal -->
+                        <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
+                        
+                        <form method="POST" action="{{ route('forum-diskusi.destroy', $diskusi->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </dialog>
+            @endforeach
     
             <div class="pb-3 flex justify-center">
                 <!-- Pagination container -->

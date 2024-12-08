@@ -8,7 +8,7 @@
         </div>
         <!-- Isi Diskusi -->
         <div class="flex-1">
-            <p class="text-color-1 font-semibold text-left">
+            <p class="text-color-1 font-semibold text-left text-sm xl:text-base line-clamp-2">
                 {{ $diskusi->judul }} <!-- Potong judul jika terlalu panjang -->
             </p>
         </div>
@@ -26,24 +26,6 @@
         </div>
     </button>
 
-    <!-- Modal Konfirmasi Hapus -->
-    <dialog id="delete-diskusi-modal-{{ $diskusi->id }}" class="modal">
-        <div class="modal-box bg-color-8">
-            <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
-            <p>Apakah Anda yakin ingin menghapus diskusi ini?</p>
-            <div class="modal-action">
-                <!-- Tombol Batal -->
-                <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
-                
-                <form method="POST" action="{{ route('forum-diskusi.destroy', $diskusi->id) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
-                </form>
-                
-            </div>
-        </div>
-    </dialog>
 @endforeach
 
 @if ($diskusiList->isEmpty())
