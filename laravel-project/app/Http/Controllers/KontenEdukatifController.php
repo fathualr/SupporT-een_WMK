@@ -128,7 +128,7 @@ class KontenEdukatifController extends Controller
                 $kontenData['isi_artikel'] = $request->input('isi_artikel');
             }
 
-            $kontenEdukatif->Save();
+            $kontenEdukatif->update($kontenData);
 
             if ($request->has('kata_kunci') && !empty($request->input('kata_kunci'))) {
                 $kataKunci = explode(',', $request->input('kata_kunci'));

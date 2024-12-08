@@ -1,9 +1,8 @@
 <!-- Daftar Riwayat Aktivitas -->
-<h1 class="text-4xl font-bold text-color-1">Riwayat Aktivitas</h1>
-<div class="flex flex-col w-full h-full gap-4">
+<div class="flex flex-col w-full h-full p-2 gap-4">
     
     @foreach ($riwayatAktivitas as $tanggal => $aktivitasHarian)
-        <button class="btn space-y-2 h-[80px] bg-color-8 rounded-2xl outline outline-1 outline-color-4 p-3"
+        <button class="btn space-y-2 h-20 bg-color-8 rounded-2xl outline outline-1 outline-color-4 p-3"
             onclick="document.getElementById('riwayat-aktivitas-{{ $tanggal }}').showModal()">
             <div class="flex flex-col justify-between text-left w-full h-full">
                 <p class="text-base font-semibold text-color-1">

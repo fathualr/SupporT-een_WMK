@@ -134,7 +134,7 @@
 
             // Tambahkan gambar dan label dalam bahasa Indonesia
             imgContainer.innerHTML = `
-                <img src="${category.icon}" alt="${category.name}" class="w-20 h-5 mb-2">
+                <img src="${category.icon}" alt="${category.name}" class="w-10 h-5 mb-2">
                 <span class="text-[0.75rem] text-gray-700">${category.label}</span>
             `;
 

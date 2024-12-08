@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); // Primary key, ID unik untuk setiap subscription
             $table->unsignedBigInteger('id_user'); // Relasi dengan tabel users, hapus subscription jika user dihapus
             $table->timestamp('started_at'); // Tanggal mulai subscription
-            $table->timestamp('ends_at'); // Tanggal berakhir subscription (hasil dari perhitungan)
+            $table->timestamp('ends_at')->nullable(); // Tanggal berakhir subscription (hasil dari perhitungan)
             $table->timestamps(); // Timestamps created_at dan updated_at
 
             // Definisi foreign key

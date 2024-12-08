@@ -38,11 +38,11 @@
             </button>
         </div>
 
-        <div class="grid grid-cols-3 gap-4 py-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 py-8">
             @foreach($aktivitasPositif as $aktivitas)
             <div class="flex flex-col bg-color-8 border border-color-4 rounded-3xl">
                 <div class="flex flex-col items-center p-2">
-                    <img class="w-full h-auto aspect-square rounded-2xl" src="{{ asset('storage/' . $aktivitas->gambar) }}" alt="Card Image">
+                    <img class="w-full h-auto aspect-square rounded-2xl" src="{{ $aktivitas->gambar ? asset('storage/' . $aktivitas->gambar) : asset('images/dummy.png') }}" alt="Card Image">
                     <h3 class="text-lg font-bold text-color-1">
                         {{ $aktivitas->nama }}
                     </h3>

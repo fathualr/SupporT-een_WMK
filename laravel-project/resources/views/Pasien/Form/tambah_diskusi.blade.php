@@ -20,6 +20,79 @@
 
 @section('main')
 
+<!-- offcanvas -->
+<div 
+        id="hs-offcanvas-example" 
+        class="hs-overlay hidden fixed inset-y-0 left-0 transform -translate-x-full transition-all duration-500 ease-in-out z-[80] bg-white shadow-lg max-w-sm w-full lg:hidden" 
+        role="dialog" 
+        tabindex="-1" 
+        aria-labelledby="hs-offcanvas-example-label">
+        
+        <!-- Header Offcanvas -->
+        <div class="flex justify-between items-center py-3 px-4 border-b">
+            <!-- logo -->
+            <a href="{{ Auth::check() && Auth::user()->role === 'tenaga ahli' ? '/tenaga-ahli' : '/' }}" class="flex flex-row items-center">
+                <img class="size-[1.875rem] me-0.5 md:size-12 xl:size-[3.125rem] md:me-2 xl:me-[0.938rem]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
+                <span class="my-auto text-xs md:text-2xl xl:text-[2rem]">SupporT-een</span>
+            </a>
+
+            <!-- tombol close -->
+            <button 
+                type="button" 
+                class="inline-flex justify-center items-center rounded-full border bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" 
+                aria-label="Close" 
+                data-hs-overlay="#hs-offcanvas-example">
+                <span class="sr-only">Close</span>
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6 6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Content Offcanvas -->
+        <div class="p-4">
+            
+            <!-- tombol tambah diskusi -->
+            <a href="{{ route('forum-diskusi.create') }}" class="btn flex justify-start bg-color-6 hover:bg-color-5 hover:border-color-3 text-base">
+                <img src="{{ asset('icons/Plus.svg') }}" alt="Plus">
+                Buat Diskusi
+            </a>
+
+            <h1 class="text-2xl xl:text-4xl font-bold text-color-1 w-full mt-4">Diskusi Anda</h1>
+                
+                <div class="flex flex-col w-full h-full gap-4 mt-4 max-h-[calc(100vh-270px)] overflow-y-auto overflow-x-hidden">
+
+                    @include('pasien.components.card_list')
+
+                </div>
+
+        </div>
+        <!-- End Content Offcanvas -->
+    </div>
+    <!-- End Offcanvas -->
+
+    @foreach ($diskusiList as $diskusi)
+            <!-- Modal Konfirmasi Hapus Diskusi -->
+            <dialog id="delete-diskusi-modal-{{ $diskusi->id }}" class="modal">
+                <div class="modal-box bg-color-8">
+                    <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
+                    <p>Apakah Anda yakin ingin menghapus diskusi ini?</p>
+                    <div class="modal-action">
+                        <!-- Tombol Batal -->
+                        <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
+                        
+                        <form method="POST" action="{{ route('forum-diskusi.destroy', $diskusi->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </dialog>
+            @endforeach
+
+<!-- tampilan tambah diskusi -->
 <div class="flex flex-col w-full h-full">
     <div class="bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
         <a href="/forum" class="btn btn-sm bg-color-3 text-color-putih hover:bg-opacity-75 border-0">
@@ -78,6 +151,7 @@
         </div>
     </div>
 </div>
+<!-- tampilan tambah diskusi -->
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
