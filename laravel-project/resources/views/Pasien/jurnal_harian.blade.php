@@ -2,7 +2,7 @@
 
 @section('aside')
     <!-- halaman jurnal harian -->
-    <div class="flex flex-col mx-auto w-full h-full pt-9 px-12 gap-6">
+    <div class="flex flex-col mx-auto w-full h-full pt-9 px-12 gap-6 lg:block">
 
         <!-- tombol tambah jurnal -->
         <a href="{{ route('jurnalHarian.index') }}" class="btn flex justify-start bg-color-6 hover:bg-color-5 hover:border-color-3 text-color-1">
@@ -11,7 +11,7 @@
         </a>
         <!-- tombol tambah jurnal -->
 
-        <div class="flex flex-col w-full h-full gap-4">
+        <div class="flex flex-col w-full h-full gap-4 mt-4">
 
             <!-- Looping jurnal harian -->
             @foreach ($jurnalHarianList as $jurnal)
@@ -28,22 +28,6 @@
                         </a>
                     </div>
                 </button>
-
-                <!-- Modal Konfirmasi Hapus -->
-                <dialog id="delete-modal-{{ $jurnal->id }}" class="modal">
-                    <div class="modal-box bg-color-8">
-                        <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
-                        <p>Apakah Anda yakin ingin menghapus jurnal ini?</p>
-                        <div class="modal-action">
-                            <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
-                            <form method="POST" action="{{ route('jurnal-harian.destroy', $jurnal->id) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
-                            </form>
-                        </div>
-                    </div>
-                </dialog>
             @endforeach
 
             <!-- Jika tidak ada jurnal -->
@@ -101,10 +85,11 @@
                 </a>
                 <!-- tombol tambah jurnal -->
 
-                <div class="flex flex-col w-full h-full gap-4">
+                <div class="flex flex-col w-full h-full gap-4 max-h-[calc(100vh-170px)] overflow-y-auto overflow-x-hidden">
 
                     <!-- Looping jurnal harian -->
                     @foreach ($jurnalHarianList as $jurnal)
+
                         <button type="button" onclick="window.location='{{ route('jurnal-harian.show', $jurnal->id) }}';" 
                                 class="flex flex-row items-center justify-between h-[50px] border-[1px] border-color-4 rounded-2xl p-3 gap-2 hover:bg-color-6">
                             <span class="text-color-1 font-semibold truncate">
@@ -119,21 +104,6 @@
                             </div>
                         </button>
 
-                        <!-- Modal Konfirmasi Hapus -->
-                        <dialog id="delete-modal-{{ $jurnal->id }}" class="modal">
-                            <div class="modal-box bg-color-8">
-                                <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
-                                <p>Apakah Anda yakin ingin menghapus jurnal ini?</p>
-                                <div class="modal-action">
-                                    <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
-                                    <form method="POST" action="{{ route('jurnal-harian.destroy', $jurnal->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </dialog>
                     @endforeach
 
                     <!-- Jika tidak ada jurnal -->
@@ -152,6 +122,26 @@
     </div>
     <!-- End Offcanvas -->
 
+    @foreach ($jurnalHarianList as $jurnal)
+
+<!-- Modal Konfirmasi Hapus -->
+<dialog id="delete-modal-{{ $jurnal->id }}" class="modal duration-0">
+    <div class="modal-box bg-color-8">
+        <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
+        <p>Apakah Anda yakin ingin menghapus jurnal ini?</p>
+        <div class="modal-action">
+            <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
+            <form method="POST" action="{{ route('jurnal-harian.destroy', $jurnal->id) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
+            </form>
+        </div>
+    </div>
+</dialog>
+@endforeach
+
+
     <!-- Jurnal -->
     <div class="max-w-7xl max-h-full w-full h-full mb-10">
 
@@ -161,18 +151,19 @@
         </a>
 
         @if($selectedJurnal)
-                <!-- tombol analisis emosi -->
-                <div class="flex justify-center w-full">
-                    <button class="btn btn-sm text-color-1 bg-color-7 border-0 hover:bg-color-putih w-fit" onclick="document.getElementById('analisis-emosi').showModal()">
-                        Analisis Emosi
-                    </button>
-                </div>
+        
+        <!-- tombol analisis emosi -->
+        <div class="flex justify-center w-full">
+            <button class="btn btn-sm text-white bg-color-3 border-0 hover:bg-color-3 w-fit mb-4" onclick="document.getElementById('analisis-emosi').showModal()">
+                Analisis Emosi
+            </button>
+        </div>
 
-                <!-- form jurnal harian -->
-                <form id="text-form" action="{{ route('jurnal-harian.update', $selectedJurnal->id) }}" method="POST" class="flex flex-col max-w-7xl bg-white w-full h-full gap-y-4 p-8 rounded-2xl shadow-lg relative">
-                    @csrf
-                    @method('PATCH')
-
+        <!-- form jurnal harian -->
+        <form id="text-form" action="{{ route('jurnal-harian.update', $selectedJurnal->id) }}" method="POST" class="flex flex-col max-w-7xl bg-white w-full h-full gap-y-4 p-8 rounded-2xl shadow-lg relative">
+            @csrf
+            @method('PATCH')
+            
                     <!-- Judul -->
                     <input type="text" name="judul" autocomplete="off"
                     value="{{ old('judul', $selectedJurnal->judul) }}"

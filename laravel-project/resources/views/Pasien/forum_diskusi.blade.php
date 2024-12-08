@@ -70,6 +70,27 @@
     </div>
     <!-- End Offcanvas -->
 
+    @foreach ($diskusiList as $diskusi)
+            <!-- Modal Konfirmasi Hapus Diskusi -->
+            <dialog id="delete-diskusi-modal-{{ $diskusi->id }}" class="modal">
+                <div class="modal-box bg-color-8">
+                    <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
+                    <p>Apakah Anda yakin ingin menghapus diskusi ini?</p>
+                    <div class="modal-action">
+                        <!-- Tombol Batal -->
+                        <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
+                        
+                        <form method="POST" action="{{ route('forum-diskusi.destroy', $diskusi->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </dialog>
+            @endforeach
+
 
 <!-- konten utama forum diskusi -->
 <div class="flex flex-col items-center w-full h-full select-text">
@@ -258,27 +279,6 @@
                 @endforeach            
 
             </div>
-
-            @foreach ($diskusiList as $diskusi)
-            <!-- Modal Konfirmasi Hapus Diskusi -->
-            <dialog id="delete-diskusi-modal-{{ $diskusi->id }}" class="modal">
-                <div class="modal-box bg-color-8">
-                    <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
-                    <p>Apakah Anda yakin ingin menghapus diskusi ini?</p>
-                    <div class="modal-action">
-                        <!-- Tombol Batal -->
-                        <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
-                        
-                        <form method="POST" action="{{ route('forum-diskusi.destroy', $diskusi->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
-                        </form>
-                        
-                    </div>
-                </div>
-            </dialog>
-            @endforeach
     
             <div class="pb-3 flex justify-center">
                 <!-- Pagination container -->

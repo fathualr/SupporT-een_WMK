@@ -3,7 +3,7 @@
 
 @section('aside')
 
-<div class="flex flex-col mx-auto w-full h-full pt-9 px-[50px] gap-6">
+<div class="flex flex-col mx-auto w-full h-full pt-9 px-8 xl:px-12 gap-6">
     <a href="{{ route('forum-diskusi.create') }}" class="btn flex justify-start bg-color-6 hover:bg-color-5 hover:border-color-3 text-base">
         <img src="{{ asset('icons/Plus.svg') }}" alt="Plus">
         Buat Diskusi
@@ -51,7 +51,7 @@
 
         <!-- Content Offcanvas -->
         <div class="p-4">
-            
+
             <!-- tombol tambah diskusi -->
             <a href="{{ route('forum-diskusi.create') }}" class="btn flex justify-start bg-color-6 hover:bg-color-5 hover:border-color-3 text-base">
                 <img src="{{ asset('icons/Plus.svg') }}" alt="Plus">
@@ -71,27 +71,72 @@
     </div>
     <!-- End Offcanvas -->
 
-<!-- tampilan tambah diskusi -->
+    @foreach ($diskusiList as $diskusi)
+            <!-- Modal Konfirmasi Hapus Diskusi -->
+            <dialog id="delete-diskusi-modal-{{ $diskusi->id }}" class="modal">
+                <div class="modal-box bg-color-8">
+                    <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
+                    <p>Apakah Anda yakin ingin menghapus diskusi ini?</p>
+                    <div class="modal-action">
+                        <!-- Tombol Batal -->
+                        <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
+                        
+                        <form method="POST" action="{{ route('forum-diskusi.destroy', $diskusi->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </dialog>
+            @endforeach
+
+<!-- tampilan edit diskusi -->
 <div class="flex flex-col w-full h-full">
     <div class="bg-color-8 p-8 border-[1px] border-color-4 rounded-2xl">
         <a href="/forum" class="btn btn-sm bg-color-3 text-color-putih hover:bg-opacity-75 border-0">
             <img class="w-6 h-6" src="{{ asset('icons/back.svg') }}" alt="">
             Kembali
         </a>
-        <h1 class="font-bold text-3xl text-center">Tambah Data Diskusi</h1>
+        <h1 class="font-bold text-2xl md:text-3xl text-center mt-6">Edit Data Diskusi</h1>
         <div class="p-5">
 
-            <form action="{{ route('forum-diskusi.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('forum-diskusi.update', $diskusi->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('POST')
+                @method('PATCH')
+
                 <!-- Input Judul -->
                 <label class="form-control w-full mt-5">
                     <span class="label-text font-medium text-base pb-1">Judul</span>
-                    <input type="text" name="judul" placeholder="Masukkan judul anda" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
+                    <input type="text" name="judul" value="{{ $diskusi->judul }}" placeholder="Masukkan judul anda" class="input input-bordered input-md w-full outline outline-1 outline-color-5 bg-color-6 rounded-lg" />
                     @error('judul')
                         <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </label>
+
+                @if ($diskusi->gambarDiskusi->count() > 0)
+                <!-- Gambar yang sudah ada -->
+                <div class="form-control w-full mt-5">
+                    <div class="label">
+                        <span class="label-text font-medium text-base">Gambar Tersimpan</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+
+                        @foreach ($diskusi->gambarDiskusi as $gambar)
+                            <div class="relative border border-color-5 rounded-lg">
+                                <img class="rounded-lg object-cover w-full h-40"
+                                    src="{{ asset('storage/' . $gambar->gambar) }}" alt="Gambar Diskusi">
+                                <button type="button" class="absolute top-2 right-2 bg-red-500 text-white rounded-full size-8 text-xs"
+                                    onclick="document.getElementById('delete-gambar-modal-{{ $gambar->id }}').showModal();">
+                                    ✕
+                                </button>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+                @endif
 
                 <!-- Input Gambar -->
                 <label class="form-control w-full mt-5">
@@ -100,22 +145,22 @@
                     </div>
                     <input type="file" name="gambar[]" id="gambar-input" multiple
                         accept="image/*"
-                        class="file:bg-color-3 file:text-white file:text-sm file:border-none file:h-[3rem] file:mr-4 file:px-4 file:rounded-l-lg file:font-semibold file:uppercase border border-color-5 rounded-lg w-full bg-color-6">
+                        class="file:bg-color-3 file:text-white file:text-sm file:border-none file:h-12 file:mr-4 file:px-4 file:rounded-l-lg file:font-semibold file:uppercase border border-color-5 rounded-lg w-full bg-color-6">
                     @error('gambar[]')
                         <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
-                    </label>
+                </label>
 
                 <!-- Preview Gambar -->
                 <div id="preview-container" 
-                    class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                 </div>
 
                 <!-- Input Isi -->
                 <label class="form-control w-full mt-5">
                     <span class="label-text font-medium text-base pb-1">Isi</span>
-                    <textarea name="isi" class="textarea textarea-bordered h-40 outline outline-1 outline-color-5 bg-color-6 rounded-lg" 
-                        placeholder="Isi diskusi"></textarea>
+                    <textarea name="isi" class="textarea textarea-bordered h-40 outline outline-1 outline-color-5 bg-color-6 rounded-lg"
+                        placeholder="Isi diskusi">{{ old('isi', $diskusi->isi) }}</textarea>
                     @error('isi')
                         <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
@@ -123,37 +168,57 @@
 
                 <!-- Tombol Tambah -->
                 <label class="flex justify-center items-center mt-5">
-                    <button type="submit" class="btn bg-color-3 text-white w-48">Tambah</button>
+                    <button type="submit" class="btn bg-color-3 text-white w-48">Perbarui</button>
                 </label>
             </form>
 
         </div>
     </div>
 </div>
-<!-- tampilan tambah diskusi -->
+<!-- tampilan edit diskusi -->
+
+@foreach ($diskusi->gambarDiskusi as $gambar)
+    <dialog id="delete-gambar-modal-{{ $gambar->id }}" class="modal">
+        <div class="modal-box bg-color-8">
+            <h3 class="text-lg font-bold">Konfirmasi Penghapusan</h3>
+            <p>Apakah Anda yakin ingin menghapus gambar ini?</p>
+            <div class="modal-action">
+                <button type="button" class="btn bg-color-7 hover:bg-color-8" onclick="this.closest('dialog').close()">Batal</button>
+
+                <form method="POST" action="{{ route('gambar-diskusi.destroy', $gambar->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn bg-red-500 text-white hover:bg-red-700">Hapus</button>
+                </form>
+
+            </div>
+        </div>
+    </dialog>
+@endforeach
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const gambarInput = document.getElementById('gambar-input');
         const previewContainer = document.getElementById('preview-container');
-        const flashMessagePlace = document.getElementById('flash-message-place'); // Lokasi flash message
-        const maxImagesCount = 5; // Batas maksimal gambar
+        const flashMessagePlace = document.getElementById('flash-message-place');
+
+        // Hitung gambar yang sudah ada
+        const existingImagesCount = {{ $diskusi->gambarDiskusi->count() }};
+        const maxImagesCount = 5;
 
         gambarInput.addEventListener('change', function (event) {
-            // Ambil file yang dipilih
             const files = event.target.files;
 
-            // Validasi jumlah total file (termasuk yang sudah ada di preview)
-            const currentFilesCount = document.querySelectorAll('.hidden-file-input').length;
+            // Validasi jumlah total file (termasuk yang sudah ada)
+            const currentFilesCount = document.querySelectorAll('.hidden-file-input').length + existingImagesCount;
             if (currentFilesCount + files.length > maxImagesCount) {
-                // Tambahkan pesan kesalahan ke flash message
                 flashMessagePlace.insertAdjacentHTML('beforeend', `
-                    <div class="absolute top-[100px] left-1/2 transform -translate-x-1/2 -translate-y-1 z-40">
-                        <div role="alert" id="toast" class="alert alert-error col-span-9 mb-5">
+                    <div role="alert" id="toast" class="absolute top-[100px] left-1/2 transform -translate-x-1/2 -translate-y-1 z-40">
+                        <div class="alert alert-error col-span-9 mb-5">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <span>Maksimal ${maxImagesCount} gambar dapat ditambahkan!</span>
+                            <span>Maksimal ${maxImagesCount} gambar dalam 1 diskusi!</span>
                             <button id="close-toast" class="ml-4 text-lg font-semibold text-black hover:text-gray-700 focus:outline-none">
                                 ✕
                             </button>
@@ -161,8 +226,8 @@
                     </div>
                 `);
 
-                initializeToast(); // Inisialisasi toast
-
+                initializeToast();
+                
                 gambarInput.value = ''; // Reset input file
                 return;
             }
@@ -205,7 +270,6 @@
             button.parentElement.remove();
         };
 
-        // Fungsi untuk membuat FileList baru
         function createFileList(files) {
             const dataTransfer = new DataTransfer();
             files.forEach(file => dataTransfer.items.add(file));

@@ -139,7 +139,7 @@
         </aside>
 
         <main class="flex flex-grow bg-color-8 border border-color-4 lg:border-y-0 lg:w-3/5">
-            <div class="flex flex-col bg-cover bg-brain-pattern mx-auto p-6 w-full justify-center items-center relative pb-20 max-h-[calc(100vh-80px)] overflow-y-auto">
+            <div class="flex flex-col bg-cover bg-brain-pattern mx-auto p-6 w-full justify-center items-center relative max-h-[calc(100vh-80px)] overflow-y-auto">
                 <!-- Konten main -->
                 @yield('main')
             </div>
