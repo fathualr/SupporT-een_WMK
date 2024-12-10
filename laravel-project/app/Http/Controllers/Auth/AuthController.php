@@ -52,7 +52,7 @@ class AuthController extends Controller
             }
         }
 
-        return back();
+        return back()->with('error', 'Email dan Password tidak sesuai!');
     }
 
     public function logout(Request $request): RedirectResponse

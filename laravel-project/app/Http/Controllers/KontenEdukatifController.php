@@ -37,7 +37,7 @@ class KontenEdukatifController extends Controller
 
         $selectedKonten = $id ? KontenEdukatif::with('user')->find($id) : null;
 
-        return view('pasien/konten_edukatif', [
+        return view('Pasien/konten_edukatif', [
             'title' => 'Konten Edukatif',
             'kontenList' => $kontenList,
             'selectedKonten' => $selectedKonten,
@@ -47,7 +47,7 @@ class KontenEdukatifController extends Controller
     
     public function tenagaAhliKontenEdukatif($tipe = null)
     {
-        return view('tenagaAhli/kelola_konten_edukatif', [
+        return view('TenagaAhli/kelola_konten_edukatif', [
             "title" => "Kelola Konten Edukatif",
             'tipe' => null
         ]);
@@ -55,14 +55,14 @@ class KontenEdukatifController extends Controller
         
     public function tenagaAhliKontenArtikel()
     {
-        return view('tenagaAhli/kelola_konten_artikel', [
+        return view('TenagaAhli/kelola_konten_artikel', [
             "title" => "Kelola Konten Artikel"
         ]);
     }
     
     public function tenagaAhliKontenVideo()
     {
-        return view('tenagaAhli/kelola_konten_video', [
+        return view('TenagaAhli/kelola_konten_video', [
             "title" => "Kelola Konten Video"
         ]);
     }
@@ -75,7 +75,7 @@ class KontenEdukatifController extends Controller
     public function index()
     {
         $kontenEdukatif = KontenEdukatif::with('user')->paginate(10);
-        return view('admin/data_konten_edukatif', [
+        return view('Admin/data_konten_edukatif', [
             "title" => "Kelola Konten Edukatif",
             "kontenEdukatif" => $kontenEdukatif,
         ]);
@@ -86,14 +86,14 @@ class KontenEdukatifController extends Controller
      */
     public function create()
     {
-        return view('admin/form/tambah_data_konten_edukatif', [
+        return view('Admin/Form/tambah_data_konten_edukatif', [
             "title" => "Tamabah Data Konten Edukatif"
         ]);
     }
 
     public function tenagaAhliCreate()
     {
-        return view('tenagaAhli/form/tambah_data_konten_edukatif', [
+        return view('TenagaAhli/Form/tambah_data_konten_edukatif', [
             "title" => "Tambah Konten Edukatif"
         ]);
     }
@@ -168,7 +168,7 @@ class KontenEdukatifController extends Controller
     public function show(string $id)
     {
         $kontenEdukatif = KontenEdukatif::with('user')->findOrFail($id);
-        return view('admin/template/data_konten_edukatif', [
+        return view('Admin/Template/data_konten_edukatif', [
             "title" => "Kelola Konten Edukatif",
             "kontenEdukatif" => $kontenEdukatif,
         ]);
@@ -180,7 +180,7 @@ class KontenEdukatifController extends Controller
     public function edit(string $id)
     {
         $kontenEdukatif = KontenEdukatif::with('user')->findOrFail($id);
-        return view('admin/form/edit_data_konten_edukatif', [
+        return view('Admin/Form/edit_data_konten_edukatif', [
             "title" => "Kelola Konten Edukatif",
             "kontenEdukatif" => $kontenEdukatif,
         ]);

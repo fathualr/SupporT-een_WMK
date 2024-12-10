@@ -31,7 +31,7 @@ class ForumController extends Controller
         // Diskusi yang dipilih
         $selectedDiskusi = $id ? Diskusi::with(['pasien', 'gambarDiskusi', 'balasan'])->find($id): null;
     
-        return view('pasien/forum_diskusi', [
+        return view('Pasien/forum_diskusi', [
             "title" => "Forum Diskusi Online",
             "diskusiList" => $diskusiList,
             "diskusis" => $diskusis,
@@ -49,7 +49,7 @@ class ForumController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'page_diskusiList'); // Query parameter 'page_diskusiList'
 
-        return view('pasien/form/tambah_diskusi', [
+        return view('Pasien/Form/tambah_diskusi', [
             "title" => "Tambah Diskusi",
             "diskusiList" => $diskusiList,
         ]);
@@ -100,7 +100,7 @@ class ForumController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'page_diskusiList'); // Query parameter 'page_diskusiList'
         $diskusi = Diskusi::with(['pasien', 'gambarDiskusi', 'balasan'])->findOrFail($id);
-        return view('pasien/form/edit_diskusi', [
+        return view('Pasien/Form/edit_diskusi', [
             "title" => "Edit Diskusi",
             "diskusi" => $diskusi,
             "diskusiList" => $diskusiList,

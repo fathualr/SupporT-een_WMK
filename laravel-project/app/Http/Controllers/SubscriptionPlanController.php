@@ -18,7 +18,7 @@ class SubscriptionPlanController extends Controller
         $plans = SubscriptionPlan::all();
 
         // Kirim data ke view
-        return view('admin/subscription', [
+        return view('Admin/subscription', [
             'title' => 'Daftar Subscription Plan',
             'plans' => $plans,
         ]);

@@ -3,7 +3,7 @@
 @section('aside')
 
     <!-- halaman chatbot -->
-    <div class="flex flex-col mx-auto w-full h-full pt-9 px-12 lg:block">
+    <div class="flex flex-col mx-auto w-full h-auto pt-9 px-12 lg:block">
 
         <div>
             <!-- tombol tambah percakapan -->

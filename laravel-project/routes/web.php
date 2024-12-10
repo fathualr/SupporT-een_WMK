@@ -50,7 +50,7 @@ Route::middleware([GuestOrPasienMiddleware::class, VerifiedPatientMiddleware::cl
     Route::get('/konten-edukatif/{id?}', [KontenEdukatifController::class, 'kontenEdukatif'])->name('kontenEdukatif');
 });
 // Pasien
-Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function () {
+Route::middleware([RoleMiddleware::class . ':pasien'])->group(function () {
     Route::get('/verifikasi-email', [AuthController::class, 'showVerificationNotice'])->name('verification.notice');
     Route::post('/verify-otp', [AuthController::class, 'verifyOtp'])->name('otp.verify');
     Route::post('/resend-otp', [AuthController::class, 'resendOtp'])->name('otp.resend');
@@ -66,12 +66,11 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
         Route::get('/chatbot/{id?}', [ChatbotController::class, 'chatbot'])->name('chatbot.index');
         Route::resource('/chatbot', ChatbotController::class)->except(['index', 'create', 'edit']);
         Route::get('/jurnal-harian/{id?}', [JurnalHarianController::class, 'jurnalHarian'])->name('jurnalHarian.index');
-        Route::resource('/jurnal-harian', JurnalHarianController::class)->except(['index', 'create', 'edit']);
+        Route::resource('/jurnal-harian', JurnalHarianController::class)->only(['store', 'update', 'destroy']);
         Route::get('/daftar-aktivitas-pribadi', [AktivitasPribadiController::class, 'daftarAktivitasPribadi']);
         Route::get('/daftar-aktivitas-pribadi/kustomisasi', [AktivitasPositifController::class, 'kustomisasiAktivitasPribadi']);
         Route::post('/aktivitas-pribadi/update', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
         Route::post('/aktivitas-pribadi/store', [AktivitasPribadiController::class, 'storeAktivitasPribadi'])->name('aktivitas-pribadi.store');
-        Route::post('/aktivitas-pribadi', [AktivitasPribadiController::class, 'updateAktivitasPribadi'])->name('aktivitas-pribadi.update');
         // Premium User
         Route::middleware([PremiumMiddleware::class])->group(function () {
             Route::get('/forum/{id?}', [ForumController::class, 'forum'])->name('forum.index');
@@ -95,34 +94,34 @@ Route::middleware(['auth', RoleMiddleware::class . ':pasien'])->group(function (
 // });
 
 // Admin
-Route::prefix('super-admin')->middleware(['auth', RoleMiddleware::class . ':superadmin'])->group(function () {
+Route::prefix('super-admin')->middleware([RoleMiddleware::class . ':superadmin'])->group(function () {
     Route::get('/', [MainController::class, 'superAdmin']);
     Route::resource('/user-admin', AdminController::class);
     Route::resource('/user-pasien', PasienController::class);
     Route::resource('/user-tenaga-ahli', TenagaAhliController::class);
-    Route::resource('/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikanTenagaAhliController::class);
-    Route::resource('/subscription', SubscriptionPlanController::class);
-    Route::resource('/subscription-user', SubscriptionController::class);
-    Route::resource('/subscription-transaction', TransaksiLanggananController::class);
-    Route::resource('/transaksi', TransaksiController::class);
+    Route::resource('/riwayat-pendidikan-tenaga-ahli', RiwayatPendidikanTenagaAhliController::class)->only('store', 'destroy');
+    Route::resource('/subscription', SubscriptionPlanController::class)->only('index', 'update');
+    Route::resource('/subscription-user', SubscriptionController::class)->only('index');
+    Route::resource('/subscription-transaction', TransaksiLanggananController::class)->only('index', 'show', 'destroy');
+    Route::resource('/transaksi', TransaksiController::class)->only('index');
     // Route::get('/pendapatan', [PendapatanController::class, 'adminPendapatan']);
     Route::resource('/model-chatbot', ChatbotController::class)->only('index');
     Route::post('/model-chatbot', [ChatbotController::class, 'updateChatbotLiteDataset'])->name('chatbotLite.updateDataset');
 });
 
-Route::prefix('content-admin')->middleware(['auth', RoleMiddleware::class . ':content admin'])->group(function () {
+Route::prefix('content-admin')->middleware([RoleMiddleware::class . ':content admin'])->group(function () {
     Route::get('/', [MainController::class, 'contentAdmin']);
     Route::resource('/konten-edukatif', KontenEdukatifController::class);
-    Route::resource('/kata-kunci-konten', KataKunciKontenController::class);
-    Route::resource('/diskusi',DiskusiController::class);
+    Route::resource('/kata-kunci-konten', KataKunciKontenController::class)->only('store', 'destroy');
+    Route::resource('/diskusi',DiskusiController::class)->only('index', 'show', 'destroy');
     Route::get('/diskusi/{id}/balasan', [DiskusiController::class, 'showBalasan'])->name('diskusi.showBalasan');
     Route::resource('/balasan',BalasanController::class)->only('destroy');
     Route::resource('/aktivitas-positif',AktivitasPositifController::class);
-    Route::resource('/kata-kunci-aktivitas',KataKunciAktivitasController::class);
+    Route::resource('/kata-kunci-aktivitas',KataKunciAktivitasController::class)->only('store', 'destroy');
 });
 
 Route::fallback(function () {
-    return response()->view('errors.404', [
+    return response()->view('Errors.404', [
         'user' => Auth::check() ? Auth::user() : null,
     ], 404);
 });

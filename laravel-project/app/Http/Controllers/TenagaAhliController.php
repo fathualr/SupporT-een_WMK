@@ -21,7 +21,7 @@ class TenagaAhliController extends Controller
     public function index()
     {
         $tenagaAhlis = TenagaAhli::with(['user', 'riwayatPendidikan'])->paginate(10);
-        return view('admin/data_tenaga_ahli', [
+        return view('Admin/data_tenaga_ahli', [
             "title" => "Data Tenaga Ahli",
             "tenagaAhlis" => $tenagaAhlis
         ]);
@@ -32,7 +32,7 @@ class TenagaAhliController extends Controller
      */
     public function create()
     {
-        return view('admin/form/tambah_data_tenaga_ahli', [
+        return view('Admin/Form/tambah_data_tenaga_ahli', [
             "title" => "Tambah Data Tenaga Ahli"
         ]);
     }
@@ -95,7 +95,7 @@ class TenagaAhliController extends Controller
     public function show(string $id)
     {
         $tenagaAhli = TenagaAhli::with('user', 'riwayatPendidikan')->findOrFail($id);
-        return view('admin/template/data_tenaga_ahli', [
+        return view('Admin/Template/data_tenaga_ahli', [
             "title" => "Data Tenaga Ahli",
             "tenagaAhli" => $tenagaAhli
         ]);
@@ -107,7 +107,7 @@ class TenagaAhliController extends Controller
     public function edit(string $id)
     {
         $tenagaAhli = TenagaAhli::with('user')->findOrFail($id);
-        return view('admin/form/edit_data_tenaga_ahli', [
+        return view('Admin/Form/edit_data_tenaga_ahli', [
             "title" => "Edit Data Tenaga Ahli",
             "tenagaAhli" => $tenagaAhli
         ]);

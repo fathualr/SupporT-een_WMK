@@ -134,6 +134,66 @@
     </header>
 
     <main>
+        
+        <!-- offcanvas -->
+        <div 
+        id="hs-offcanvas-example" 
+        class="hs-overlay hidden fixed inset-y-0 left-0 transform -translate-x-full transition-all duration-500 ease-in-out z-[80] bg-white shadow-lg max-w-sm w-full lg:hidden" 
+        role="dialog" 
+        tabindex="-1" 
+        aria-labelledby="hs-offcanvas-example-label">
+
+        <!-- Header Offcanvas -->
+        <div class="flex justify-between items-center py-3 px-4 border-b">
+            <!-- logo -->
+            <a href="{{ Auth::check() && Auth::user()->role === 'tenaga ahli' ? '/tenaga-ahli' : '/' }}" class="flex flex-row items-center">
+                <img class="size-[1.875rem] me-0.5 md:size-12 xl:size-[3.125rem] md:me-2 xl:me-[0.938rem]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
+                <span class="my-auto text-xs md:text-2xl xl:text-[2rem]">SupporT-een</span>
+            </a>
+
+            <!-- tombol close -->
+            <button 
+                type="button" 
+                class="inline-flex justify-center items-center rounded-full border bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" 
+                aria-label="Close" 
+                data-hs-overlay="#hs-offcanvas-example">
+                <span class="sr-only">Close</span>
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6 6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Content Offcanvas -->
+        <div class="p-4">
+            <div class="max-w-20 border-s-2 border-gray-200">
+                <nav class="-ml-0.5 flex flex-col space-y-3">
+                    <a class="py-1 ps-4 inline-flex items-center gap-2 border-s-2 border-transparent hover:border-cyan-500 focus:border-cyan-500 text-sm whitespace-nowrap text-gray-500 hover:text-color-3 focus:outline-none focus:text-color-3" 
+                    href="/chatbot">
+                    Teman Bot
+                    </a>
+                    <a class="py-1 ps-4 inline-flex items-center gap-2 border-s-2 border-transparent hover:border-cyan-500 focus:border-cyan-500 text-sm whitespace-nowrap text-gray-500 hover:text-color-3 focus:outline-none focus:text-color-3" 
+                    href="/jurnal-harian">
+                    Jurnal Harian
+                    </a>
+                    <a class="py-1 ps-4 inline-flex items-center gap-2 border-s-2 border-transparent hover:border-cyan-500 focus:border-cyan-500 text-sm whitespace-nowrap text-gray-500 hover:text-color-3 focus:outline-none focus:text-color-3" 
+                    href="/konten-edukatif">
+                    Konten Edukatif
+                    </a>
+                    <a class="py-1 ps-4 inline-flex items-center gap-2 border-s-2 border-transparent hover:border-cyan-500 focus:border-cyan-500 text-sm whitespace-nowrap text-gray-500 hover:text-color-3 focus:outline-none focus:text-color-3" 
+                    href="/daftar-aktivitas-pribadi">
+                    Daftar Aktivitas
+                    </a>
+                    <a class="py-1 ps-4 inline-flex items-center gap-2 border-s-2 border-transparent hover:border-cyan-500 focus:border-cyan-500 text-sm whitespace-nowrap text-gray-500 hover:text-color-3 focus:outline-none focus:text-color-3" 
+                    href="/forum">
+                    Forum Diskusi
+                    </a>
+                </nav>
+            </div>
+        </div>
+        <!-- End Content Offcanvas -->
+        </div>
+        <!-- End Offcanvas -->
         <div class="flex items-center justify-center w-full min-h-[calc(100vh-80px)] bg-color-8 text-color-1 py-10">
             <!-- profil -->
             <div class="md:max-w-2xl lg:max-w-4xl xl:max-w-5xl py-8 px-10 w-full bg-white border border-gray-200 rounded-3xl shadow-md">

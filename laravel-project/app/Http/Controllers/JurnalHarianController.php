@@ -44,7 +44,7 @@ class JurnalHarianController extends Controller
         }
 
         // Kembalikan data ke view dengan daftar jurnal, jurnal yang dipilih, dan data emosi
-        return view('pasien.jurnal_harian', [
+        return view('Pasien/jurnal_harian', [
             'title' => 'Jurnal Harian',
             'jurnalHarianList' => $jurnalHarianList,
             'selectedJurnal' => $selectedJurnal,

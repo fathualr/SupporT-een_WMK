@@ -3,7 +3,7 @@
 @section('aside')
 
 <div class="flex flex-col px-4 mx-auto w-full h-full justify-center items-center lg:px-8 xl:px-4 xl:mb-[50px]">
-    <img src="{{ asset('images/main-picture.svg') }} " class="size-96" alt="">
+    <img src="{{ asset('images/main-picture.svg') }} " class="size-64 lg:size-96" alt="">
     <div class="card bg-color-6 border border-color-5 text-color-9 mx-auto rounded-3xl max-w-96 md:max-w-[29.688rem] md:min-h-[12.5rem]">
         <div class="card-body">
             <p class="font-bold text-xl md:text-2xl lg:text-xl xl:text-2xl">Berbagi, Mendukung, Berkembang.</p>
@@ -79,31 +79,31 @@
 <!-- fitur -->
 <div class="flex flex-wrap gap-3 w-full md:max-w-2xl lg:max-w-none xl:max-w-5xl justify-content-center justify-center">
     <div>
-        <a href="/chatbot" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-44 xl:size-56">
+        <a href="/chatbot" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-36 sm:size-44 xl:size-56">
             <img class="size-24 xl:size-[9.375rem]" src="{{ asset('icons/chatbot.svg') }}" alt="">
             <p class="font-semibold xl:text-base">Teman Bot</p>
         </a>
     </div>
     <div>
-        <a href="/jurnal-harian" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-44 xl:size-56">
+        <a href="/jurnal-harian" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-36 sm:size-44 xl:size-56">
             <img class="size-24 xl:size-[9.375rem]" src=" {{ asset('icons/journal.svg') }} " alt="">
             <p class="font-semibold xl:text-base">Jurnal Harian</p>
         </a>
     </div>
     <div>
-        <a href="/konten-edukatif" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-44 xl:size-56">
+        <a href="/konten-edukatif" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-36 sm:size-44 xl:size-56">
             <img class="size-24 xl:size-[9.375rem]" src=" {{ asset('icons/content.svg') }} " alt="">
             <p class="font-semibold xl:text-base">Konten Edukatif</p>
         </a>
     </div>
     <div>
-        <a href="daftar-aktivitas-pribadi" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-44 xl:size-56">
+        <a href="daftar-aktivitas-pribadi" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-36 sm:size-44 xl:size-56">
             <img class="size-24 xl:size-[9.375rem]" src=" {{ asset('icons/activity.svg') }} " alt="">
             <p class="font-semibold xl:text-base">Daftar Aktivitas</p>
         </a>
     </div>
     <div>
-        <a href="forum" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-44 xl:size-56">
+        <a href="forum" class="flex flex-col justify-center items-center bg-color-8 border border-color-4 rounded-xl size-36 sm:size-44 xl:size-56">
             <img class="size-24 xl:size-[9.375rem]" src=" {{ asset('icons/forum.svg') }} " alt="">
             <p class="font-semibold xl:text-base">Forum Diskusi</p>
         </a>

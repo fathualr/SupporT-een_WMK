@@ -161,7 +161,7 @@ class SubscriptionController extends Controller
             $subscription->remaining_time = $subscription->remainingPremiumTime();
         }
     
-        return view('admin/data_subscription', [
+        return view('Admin/data_subscription', [
             "title" => "Data Subscription Aktif",
             "subscriptions" => $subscriptions,
         ]);

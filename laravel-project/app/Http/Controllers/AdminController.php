@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function index()
     {
         $admins = Admin::with('user')->paginate(10);
-        return view('admin/data_administrator', [
+        return view('Admin/data_administrator', [
             "title" => "Data Admin",
             "admins" => $admins
         ]);
@@ -31,7 +31,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin/form/tambah_data_administrator', [
+        return view('Admin/Form/tambah_data_administrator', [
             "title" => "Tambah Data Admin"
         ]);
     }
@@ -83,7 +83,7 @@ class AdminController extends Controller
     public function show(string $id)
     {
         $admin = Admin::with('user')->findOrFail($id);
-        return view('admin/template/data_administrator', [
+        return view('Admin/Template/data_administrator', [
             "title" => "Data Admin",
             "admin" => $admin
         ]);
@@ -95,7 +95,7 @@ class AdminController extends Controller
     public function edit(string $id)
     {
         $admin = Admin::with('user')->findOrFail($id);
-        return view('admin/form/edit_data_administrator', [
+        return view('Admin/Form/edit_data_administrator', [
             "title" => "Tambah Data Admin",
             "admin" => $admin
         ]);

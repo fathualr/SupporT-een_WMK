@@ -16,7 +16,7 @@
 
 @section('main')
 
-<div class="flex flex-col justify-center items-center w-full">
+<div class="flex flex-col justify-center items-center w-full h-auto">
     <h1 class="font-bold text-3xl lg:text-4xl font-color-1 mb-3">Registrasi Akun</h1>
     
     <form class="flex flex-col justify-center items-center w-full" action="{{ route('registration') }}" method="post">

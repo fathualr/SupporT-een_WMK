@@ -49,7 +49,7 @@ class ChatbotController extends Controller
             }
         }
         
-        return view('pasien/chatbot', [
+        return view('Pasien/chatbot', [
             'title' => 'Chatbot',
             'percakapanList' => $percakapanList,
             'selectedPercakapan' => $selectedPercakapan,
@@ -95,7 +95,7 @@ class ChatbotController extends Controller
      */
     public function index()
     {
-        return view('admin/chatbot', [
+        return view('Admin/chatbot', [
             'title' => 'Model Chatbot'
         ]);
     }

@@ -58,7 +58,7 @@ class PasienController extends Controller
     public function index()
     {
         $pasiens = Pasien::with('user')->paginate(10);
-        return view('admin/data_pasien', [
+        return view('Admin/data_pasien', [
             "title" => "Data Pasien",
             "pasiens" => $pasiens
         ]);
@@ -69,7 +69,7 @@ class PasienController extends Controller
      */
     public function create()
     {
-        return view('admin/form/tambah_data_pasien', [
+        return view('Admin/Form/tambah_data_pasien', [
             "title" => "Tambah Data Pasien"
         ]);
     }
@@ -121,7 +121,7 @@ class PasienController extends Controller
     public function show(string $id)
     {
         $pasien = Pasien::with('user')->findOrFail($id);
-        return view('admin/template/data_pasien', [
+        return view('Admin/Template/data_pasien', [
             "title" => "Data Pasien",
             "pasien" => $pasien
         ]);
@@ -133,7 +133,7 @@ class PasienController extends Controller
     public function edit(string $id)
     {
         $pasien = Pasien::with('user')->findOrFail($id);
-        return view('admin/form/edit_data_pasien', [
+        return view('Admin/Form/edit_data_pasien', [
             "title" => "Edit Data Pasien",
             "pasien" => $pasien
         ]);

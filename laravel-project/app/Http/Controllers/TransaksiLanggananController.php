@@ -13,7 +13,7 @@ class TransaksiLanggananController extends Controller
     public function index()
     {
         $transaksi = TransaksiLangganan::with('user')->orderBy('created_at', 'desc')->paginate(10);
-        return view('admin/data_transaksi_langganan', [
+        return view('Admin/data_transaksi_langganan', [
             "title" => "Data Transaksi Langganan",
             "transaksi" => $transaksi
         ]);
@@ -41,7 +41,7 @@ class TransaksiLanggananController extends Controller
     public function show(string $id)
     {
         $transaksi = TransaksiLangganan::with('user')->findOrFail($id);
-        return view('admin/template/data_transaksi_langganan', [
+        return view('Admin/Template/data_transaksi_langganan', [
             "title" => "Data Forum Diskusi",
             "transaksi" => $transaksi
         ]);

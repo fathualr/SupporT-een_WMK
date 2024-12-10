@@ -20,7 +20,7 @@
         <div class="flex flex-row items-center justify-between h-12 px-1 md:h-20 xl:py-[0.938rem] xl:px-[3.125rem] bg-color-8 border-b border-color-4">
             <div class="flex items-center">
                 <!-- Tombol Menu Burger -->
-                <div class="lg:hidden">
+                <div class="lg:hidden {{ in_array($title, ['Login', 'Registrasi']) ? 'hidden' : '' }}">
                     <button 
                         type="button" 
                         class="py-3 px-1 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent text-black disabled:opacity-50 disabled:pointer-events-none" 
@@ -44,7 +44,7 @@
             <div class="flex items-center justify-center select-none" id="flash-message-place">
                 @include('Components.flash-message')
                 @auth
-                    @if(Auth::user()->role === 'pasien' && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->premiumEndingSoon())
+                    @if(Auth::user()->role === 'pasien' && Auth::user()->hasVerifiedEmail() && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->hasVerifiedEmail() && Auth::user()->premiumEndingSoon())
                         <div id="card" class="absolute -top-[17.375rem] md:-top-[317px] lg:-top-[332px] xl:-top-[320px] left-1/2 transform -translate-x-1/2 -translate-y-1 bg-color-1 shadow-lg rounded-lg p-3 w-full max-w-sm md:max-w-[31.25rem] text-center transition-all duration-300 text-color-putih hover:translate-y-80  md:hover:translate-y-[390px] z-20">
                             <!-- Konten Card -->
                             <!-- Badge atau Tagline -->
@@ -141,7 +141,7 @@
         </aside>
 
         <main class="flex flex-grow bg-color-8 border border-color-4 lg:border-y-0 lg:w-3/5">
-            <div class="flex flex-col bg-cover bg-brain-pattern mx-auto p-6 w-full justify-center items-center relative max-h-[calc(100vh-80px)] h-full overflow-y-auto">
+            <div class="flex flex-col bg-cover bg-brain-pattern mx-auto p-6 w-full justify-center items-center relative h-full overflow-y-auto">
                 <!-- Konten main -->
                 @yield('main')
             </div>
@@ -208,10 +208,7 @@
     </div>
     </footer>
 
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./node_modules/lodash/lodash.min.js"></script>
-    <script src="./node_modules/dropzone/dist/dropzone-min.js"></script>
 
     @auth
         @if(Auth::user()->role === 'pasien' && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->premiumEndingSoon())

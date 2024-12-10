@@ -27,7 +27,7 @@ class AktivitasPribadiController extends Controller
                 return \Carbon\Carbon::parse($item->created_at)->format('Y-m-d');
             });
     
-        return view('pasien/daftar_aktivitas_pribadi', [
+        return view('Pasien/daftar_aktivitas_pribadi', [
             "title" => "Daftar Aktivitas Pribadi",
             "aktivitasPribadi" => $aktivitasPribadi,
             "riwayatAktivitas" => $riwayatAktivitas

@@ -34,7 +34,7 @@ class AktivitasPositifController extends Controller
                 return \Carbon\Carbon::parse($item->created_at)->format('Y-m-d');
             });
     
-        return view('pasien/daftar_kustomisasi_aktivitas', [
+        return view('Pasien/daftar_kustomisasi_aktivitas', [
             "title" => "Kustomisasi Aktivitas",
             "aktivitasPositif" => $aktivitasPositif,
             "riwayatAktivitas" => $riwayatAktivitas
@@ -48,7 +48,7 @@ class AktivitasPositifController extends Controller
     public function index()
     {
         $aktivitasPositif = AktivitasPositif::with('kataKunci')->paginate(10);
-        return view('admin/data_aktivitas_positif', [
+        return view('Admin/data_aktivitas_positif', [
             "title" => "Data Aktivitas Positif",
             "aktivitasPositif" => $aktivitasPositif
         ]);
@@ -59,7 +59,7 @@ class AktivitasPositifController extends Controller
      */
     public function create()
     {
-        return view('admin/form/tambah_data_aktivitas_positif', [
+        return view('Admin/Form/tambah_data_aktivitas_positif', [
             "title" => "Tambah Data Aktivitas Positif"
         ]);
     }
@@ -125,7 +125,7 @@ class AktivitasPositifController extends Controller
     public function show(string $id)
     {
         $aktivitasPositif = AktivitasPositif::with('kataKunci')->findOrFail($id);
-        return view('admin/template/data_daftar_aktivitas_positif', [
+        return view('Admin/Template/data_daftar_aktivitas_positif', [
             "title" => "Data Aktivitas Positif",
             "aktivitasPositif" => $aktivitasPositif
         ]);
@@ -137,7 +137,7 @@ class AktivitasPositifController extends Controller
     public function edit(string $id)
     {
         $aktivitasPositif = AktivitasPositif::with('kataKunci')->findOrFail($id);
-        return view('admin/form/edit_data_aktivitas', [
+        return view('Admin/Form/edit_data_aktivitas', [
             "title" => "Data Aktivitas Positif",
             "aktivitasPositif" => $aktivitasPositif
         ]);

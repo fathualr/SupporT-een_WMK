@@ -29,7 +29,7 @@ class KonsultasiController extends Controller
                 return redirect()->back()->with('error','Tenaga ahli tidak dapat ditemukan.');
             }
         }
-        return view('pasien/konsultasi', [
+        return view('Pasien/konsultasi', [
             "title" => "Konsultasi Online",
             "tenagaAhli" => $tenagaAhli,
             "selectedTenagaAhli" => $selectedTenagaAhli,
@@ -38,7 +38,7 @@ class KonsultasiController extends Controller
     
     public function tenagaAhliKonsultasi()
     {
-        return view('tenagaAhli/percakapan_konsultasi', [
+        return view('TenagaAhli/percakapan_konsultasi', [
             "title" => "Percakapan"
         ]);
     }

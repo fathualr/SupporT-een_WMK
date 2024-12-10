@@ -14,7 +14,7 @@ class DiskusiController extends Controller
     public function index()
     {
         $diskusis = Diskusi::with(['pasien', 'gambarDiskusi'])->paginate(10);
-        return view('admin/data_forum_diskusi', [
+        return view('Admin/data_forum_diskusi', [
             "title" => "Data Forum Diskusi",
             "diskusis" => $diskusis
         ]);
@@ -23,7 +23,7 @@ class DiskusiController extends Controller
     public function show(string $id)
     {
         $diskusi = Diskusi::with(['pasien', 'gambarDiskusi'])->findOrFail($id);
-        return view('admin/template/data_diskusi', [
+        return view('Admin/Template/data_diskusi', [
             "title" => "Data Forum Diskusi",
             "diskusi" => $diskusi
         ]);
@@ -39,7 +39,7 @@ class DiskusiController extends Controller
         // Paginate data `balasan` saja
         $balasan = $diskusi->balasan()->with('pasien.user')->paginate(10);
     
-        return view('admin.template.data_balasan_diskusi', [
+        return view('Admin/Template/data_balasan_diskusi', [
             "title" => "Data Balasan Diskusi",
             "balasan" => $balasan,
             "diskusi" => $diskusi,

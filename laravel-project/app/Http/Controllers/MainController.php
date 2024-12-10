@@ -20,7 +20,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        return view('pasien/homepage', [
+        return view('Pasien/homepage', [
             "title" => "SupporT-een"
         ]);
     }
@@ -30,7 +30,7 @@ class MainController extends Controller
         $userId = Auth::id(); // Ambil ID pengguna yang sedang login
         $user = User::find($userId); // Ambil data pengguna menggunakan model User
     
-        return view('pasien/profile', [
+        return view('Pasien/profile', [
             "title" => "Profile",
             "user" => $user,
             "remainingTime" => $user->userRemainingPremiumTime(), // Panggil fungsi langsung dari model
@@ -39,7 +39,7 @@ class MainController extends Controller
 
     public function tenagaAhli()
     {
-        return view('tenagaAhli/homepage', [
+        return view('TenagaAhli/homepage', [
             "title" => "SupporT-een"
         ]);
     }
@@ -55,7 +55,7 @@ class MainController extends Controller
         ;
         $totalAmountPaid = TransaksiLangganan::where('status', 'paid')->sum('amount');
 
-        return view('admin/dashboard_super', [
+        return view('Admin/dashboard_super', [
             "title" => "Dashboard Super Admin",
             "totalPasien" => $totalPasien,
             "totalAdmin" => $totalAdmin,
@@ -74,7 +74,7 @@ class MainController extends Controller
         $totalDiskusi = Diskusi::count();
         $totalAktivitasPositif = AktivitasPositif::count();
 
-        return view('admin/dashboard_content', [
+        return view('Admin/dashboard_content', [
             "title" => "Dashboard Content Admin",
             "totalArtikel" => $totalArtikel,
             "totalVideo" => $totalVideo,
