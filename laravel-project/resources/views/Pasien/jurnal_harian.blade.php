@@ -47,7 +47,7 @@
     <!-- offcanvas -->
     <div 
         id="hs-offcanvas-example" 
-        class="hs-overlay hidden fixed inset-y-0 left-0 transform -translate-x-full transition-all duration-500 ease-in-out z-[80] min-h-screen bg-white shadow-lg max-w-xs w-full" 
+        class="hs-overlay hidden fixed inset-y-0 left-0 transform -translate-x-full transition-all duration-500 ease-in-out z-[80] min-h-screen bg-white shadow-lg max-w-sm w-full" 
         role="dialog" 
         tabindex="-1" 
         aria-labelledby="hs-offcanvas-example-label">
@@ -141,13 +141,13 @@
 </dialog>
 @endforeach
 
-<div class="w-full h-full">
+<div class="w-full h-full pb-12">
     <a href="/" class="btn btn-sm mb-3 bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">
         <img class="w-6 h-6" src="{{ asset("icons/back.svg")}}" alt="">
         Kembali
     </a>
     <!-- Jurnal -->
-    <div class=" bg-white max-w-7xl rounded-2xl max-h-full w-full h-full py-4 mb-10">
+    <div class="bg-white max-w-7xl rounded-2xl w-full h-full mb-10">
 
         @if($selectedJurnal)
         

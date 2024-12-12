@@ -87,7 +87,7 @@ class KontenEdukatifController extends Controller
     public function create()
     {
         return view('Admin/Form/tambah_data_konten_edukatif', [
-            "title" => "Tamabah Data Konten Edukatif"
+            "title" => "Tambah Data Konten Edukatif"
         ]);
     }
 

@@ -17,7 +17,7 @@ class PremiumMiddleware
 
         // Gunakan metode isPremium pada model User untuk mengecek status premium
         if (!$user->isPremium()) {
-            return redirect()->back()->with('error', 'Halaman ini hanya untuk pengguna premium. Silakan berlangganan untuk mendapatkan akses.');
+            return redirect()->back()->with('error', 'Silakan berlangganan untuk mendapatkan akses.');
         }
 
         // Lanjutkan permintaan jika pengguna premium

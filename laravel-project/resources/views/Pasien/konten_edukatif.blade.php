@@ -228,7 +228,7 @@
     <!-- End Offcanvas -->
 
     <!-- view konten edukatif -->
-    <div class="flex flex-col w-full h-full">
+    <div class="w-full h-full pb-12">
         @if ($selectedKonten)
 
             @if ($selectedKonten->tipe === 'artikel')

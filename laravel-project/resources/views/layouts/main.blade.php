@@ -84,44 +84,47 @@
                         <span class="font-medium text-base md:text-xl text-blue">Masuk</span>
                     </a>
                 @else
+                
+                <div class="dropdown dropdown-end">
+
                 <!-- profile -->
-                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" xmlns="http://www.w3.org/2000/svg" class="btn btn-sm md:btn-md flex-col justify-center place-content-start justify w-full max-w-40 md:max-w-40 lg:max-w-[15.625rem] lg:px-[10px] text-color-1 bg-color-6 border border-color-6 hover:bg-color-6  hover:border hover:border-color-5 relative">
-                        <div class="avatar self-center">
-                            <div class="w-6 md:w-8 rounded-full">
-                                <img src="{{ Auth::user()->foto_profil ? asset('storage/' . Auth::user()->foto_profil) : asset('images/dummy.png') }}" />
-                            </div>
+                <div tabindex="0" role="button" class="btn btn-sm md:btn-md min-w-36 lg:min-w-56 m-1 bg-color-6 border-color-5">
+                    <div class="avatar self-center">
+                        <div class="w-6 md:w-9 rounded-full">
+                            <img src="{{ Auth::user()->foto_profil ? asset('storage/' . Auth::user()->foto_profil) : asset('images/dummy.png') }}" />
                         </div>
-                        <div class="flex flex-col justify-around me-auto h-full grow text-left text-xs lg:text-base max-w-14 md:max-w-20 lg:max-w-40">
-                            <p class="truncate text-ellipsis overflow-hidden whitespace-nowrap">
-                                {{ Auth::user()->nama }}
-                            </p>
-                            <div class="flex justify-between items-center">
-                                <span class="text-color-3">Online</span>
-                                {!! Auth::user()->isPremium() ?'<span class="text-color-putih bg-color-3 px-2 rounded-lg">Premium</span>' : ''!!}
-                            </div>
-                        </div>
-                    </button>
-                    
-                    <!-- Dropdown menu -->
-                    <div id="dropdown" class="z-10 hidden bg-color-6 divide-y divide-gray-100 border border-color-6 rounded-lg shadow w-full max-w-28 md:max-w-40 lg:max-w-[15.625rem]">
-                        <ul class="text-sm text-gray-700 font-medium" aria-labelledby="dropdownDefaultButton">
-                            <li>
-                                <!-- button profile -->
-                                <a href="/profile" class="block px-4 py-2  hover:bg-gray-100 hover:rounded-lg w-full text-center">
-                                    Profile
-                                </a>
-                            </li>
-                            <li>
-                                <!-- button logout -->
-                                <form class="" action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="block px-4 py-2  hover:bg-gray-100 hover:rounded-lg w-full text-center">
-                                        Logout
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
                     </div>
+                    <div class="flex flex-col justify-around me-auto h-full grow text-left text-xs lg:text-base md:max-w-20 lg:max-w-40">
+                        <p class="truncate text-ellipsis overflow-hidden whitespace-nowrap">
+                            {{ Auth::user()->nama }}
+                        </p>
+                        <div class="flex justify-between items-center gap-2">
+                            <span class="text-color-3">Online</span>
+                            {!! Auth::user()->isPremium() ?'<span class="text-color-putih bg-color-3 px-2 rounded-lg">Premium</span>' : ''!!}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- dropdown menu -->
+                <ul tabindex="0" class="dropdown-content menu bg-color-6 border-color-5 rounded-box z-[1] min-w-48 lg:min-w-56 mr-1 shadow">
+                    <li>
+                        <!-- button profile -->
+                        <a href="/profile" class="#">
+                            Profile
+                        </a>
+                    </li>
+                    <li>
+                        <!-- button logout -->
+                        <form class="" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="#">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+
+    </div>
     
                 @endguest
             @else
@@ -141,7 +144,7 @@
         </aside>
 
         <main class="flex flex-grow bg-color-8 border border-color-4 lg:border-y-0 lg:w-3/5">
-            <div class="flex flex-col bg-cover bg-brain-pattern mx-auto p-6 w-full justify-center items-center relative h-full overflow-y-auto">
+            <div class="flex flex-col bg-cover bg-brain-pattern mx-auto p-6 w-full justify-center items-center relative h-full max-h-[calc(100vh-80px)] lg:max-h-full overflow-y-auto">
                 <!-- Konten main -->
                 @yield('main')
             </div>

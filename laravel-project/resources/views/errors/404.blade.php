@@ -13,8 +13,8 @@
 </head>
 <body class="font-poppins text-color-1">
 
-    <header class="sticky top-0 z-[999]">
-        <div class="flex flex-row justify-between h-20 py-[15px] px-[50px] bg-color-8  border-b border-color-4 ">
+    <header class="sticky top-0 z-[70]">
+        <div class="flex flex-row items-center justify-between h-12 px-1 md:h-20 xl:py-[0.938rem] xl:px-[3.125rem] bg-color-8 border-b border-color-4">
             <a href="
             @auth
                 @if (Auth::user()->role === 'admin' && Auth::user()->admin->admin_role === 'superadmin')
@@ -29,16 +29,16 @@
             @else
                 /
             @endauth
-            " class="flex flex-row">
-                <img class="h-[50px] w-[50px] me-[15px]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
-                <span class="my-auto text-[2rem]">SupporT-een</span>
+            " class="flex flex-row items-center">
+                <img class="size-[1.875rem] me-0.5 md:size-12 xl:size-[3.125rem] md:me-2 xl:me-[0.938rem]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
+                <span class="my-auto text-xs md:text-2xl xl:text-[2rem]">SupporT-een</span>
             </a>
-
+            
             <div class="flex items-center justify-center select-none" id="flash-message-place">
                 @include('Components.flash-message')
                 @auth
-                    @if(Auth::user()->role === 'pasien' && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->premiumEndingSoon())
-                        <div id="card" class="absolute -top-[310px] left-1/2 transform -translate-x-1/2 -translate-y-1 bg-color-1 shadow-lg rounded-lg p-3 max-w-[500px] text-center transition-all duration-300 text-color-putih hover:translate-y-80">
+                    @if(Auth::user()->role === 'pasien' && Auth::user()->hasVerifiedEmail() && !Auth::user()->isPremium() || Auth::user()->isPremium() && Auth::user()->hasVerifiedEmail() && Auth::user()->premiumEndingSoon())
+                        <div id="card" class="absolute -top-[17.375rem] md:-top-[317px] lg:-top-[332px] xl:-top-[320px] left-1/2 transform -translate-x-1/2 -translate-y-1 bg-color-1 shadow-lg rounded-lg p-3 w-full max-w-sm md:max-w-[31.25rem] text-center transition-all duration-300 text-color-putih hover:translate-y-80  md:hover:translate-y-[390px] z-20">
                             <!-- Konten Card -->
                             <!-- Badge atau Tagline -->
                             <div class="flex justify-center mb-4">
@@ -46,22 +46,22 @@
                                     Spesial Premium
                                 </span>
                             </div>
-                            <p class="mb-4">
+                            <p class="mb-4 text-xs md:text-base xl:text">
                                 Nikmati fitur eksklusif kami dengan berlangganan. Dapatkan akses premium hari ini dan tingkatkan pengalaman Anda!
                             </p>
                             <div class="flex justify-center mb-6">
-                                <svg class="flex-shrink-0 w-20 h-20 text-color-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="flex-shrink-0 size-12 md:size-16 lg:size-20 text-color-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                 </svg>
                             </div>
-                            <label for="membership" class="btn w-full py-2 px-4 text-2xl font-bold text-color-1 rounded-lg bg-color-6 hover:bg-color-5 transition duration-300">
+                            <label for="membership" class="btn w-full py-2 px-4 text-sm md:text-base lg:text-xl xl:text-2xl font-bold text-color-1 rounded-lg bg-color-6 hover:bg-color-5 transition duration-300">
                                 Berlangganan Sekarang!
                             </label>
                             <div class="divider mb-0"></div>
-                            <div class="flex absolute bg-color-1 -bottom-10 left-1/2 transform -translate-x-1/2 px-3 pt-0 pb-1 rounded-lg shadow-lg">
-                                <p class="flex font-medium text-3xl items-center">PREM</p>
-                                <img class="h-[50px] w-[50px]" src="{{ asset('icons/Guarantee.svg') }}">
-                                <p class="flex font-medium text-3xl items-center">UM</p>
+                            <div class="flex absolute bg-color-1 -bottom-7 md:-bottom-10  lg:-bottom-12 left-1/2 transform -translate-x-1/2 px-3 pt-3 md:px-5 md:py-2 lg:pt-3 pb-1 rounded-lg shadow-lg">
+                                <p class="flex font-medium text-sm md:text-xl lg:text-3xl items-center">PREM</p>
+                                <img class="size-6 lg:size-10 xl:size-[3.125rem]" src="{{ asset('icons/Guarantee.svg') }}">
+                                <p class="flex font-medium text-sm md:text-xl lg:text-3xl items-center">UM</p>
                             </div>
                         </div>
                         
@@ -73,15 +73,15 @@
         </div>
     </header>
 
-    <div class="min-h-[calc(100vh-80px)] flex w-full bg-color-8">
-        <aside class="w-2/5 flex flex-col justify-center items-center">
+    <div class="h-screen flex flex-col lg:flex-row xl:flex-row w-full bg-color-8">
+        <aside class="w-full h-96 lg:h-full lg:w-2/5 flex flex-col justify-center items-center">
             <!-- Konten aside -->
 
-            <h1 class="text-[10rem] p-0 font-semibold border-b-4 border-opacity border-color-1 rounded">404</h1>
+            <h1 class="text-8xl lg:text-[10rem] p-0 font-semibold border-b-4 border-opacity border-color-1 rounded">404</h1>
 
         </aside>
-        <main class="w-3/5 bg-color-8 border-l border-color-4">
-            <div class="bg-cover bg-brain-pattern flex flex-col mx-auto p-6 w-full justify-center items-center h-full relative overflow-auto">
+        <main class="flex flex-grow bg-color-8 border border-color-4 lg:border-y-0 lg:w-3/5"">
+            <div class="flex flex-col bg-cover bg-brain-pattern mx-auto p-6 w-full justify-center items-center relative h-full max-h-screen overflow-y-auto">
                 <!-- Konten main -->
 
                 <div class="flex flex-col gap-5 px-10 w-full text-left text-color-1">
@@ -113,11 +113,13 @@
     </div>
 
     <footer class="text-color-8">
-        <div class="grid grid-cols-4 bg-color-1 h-fit px-[150px]">
+        <div class="w-full bg-color-1 px-6 gap-6">
 
-            <div class="col-span-4  w-full mx-auto text-center mt-auto">
-                <span class="text-xs">&copy; <?php echo date("Y"); ?> SupporT-een</span>
-            </div>
+        <!-- Copyright -->
+        <div class="w-full text-center">
+            <span class="text-xs">&copy; {{ date('Y') }} SupporT-een</span>
+        </div>
+        
         </div>
     </footer>
 

@@ -14,6 +14,59 @@
 
 @section('main')
 
+<!-- offcanvas -->
+<div 
+        id="hs-offcanvas-example" 
+        class="hs-overlay hidden fixed inset-y-0 left-0 transform -translate-x-full transition-all duration-500 ease-in-out z-[80] bg-white shadow-lg max-w-sm w-full lg:hidden" 
+        role="dialog" 
+        tabindex="-1" 
+        aria-labelledby="hs-offcanvas-example-label">
+        
+        <!-- Header Offcanvas -->
+        <div class="flex justify-between items-center py-3 px-4 border-b">
+            <!-- logo -->
+            <a href="{{ Auth::check() && Auth::user()->role === 'tenaga ahli' ? '/tenaga-ahli' : '/' }}" class="flex flex-row items-center">
+                <img class="size-[1.875rem] me-0.5 md:size-12 xl:size-[3.125rem] md:me-2 xl:me-[0.938rem]" src=" {{ asset('images/logo-dark-blue.svg') }} " alt="SupporT-een Logo">
+                <span class="my-auto text-xs md:text-2xl xl:text-[2rem]">SupporT-een</span>
+            </a>
+
+            <!-- tombol close -->
+            <button 
+                type="button" 
+                class="inline-flex justify-center items-center rounded-full border bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200" 
+                aria-label="Close" 
+                data-hs-overlay="#hs-offcanvas-example">
+                <span class="sr-only">Close</span>
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6 6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Content Offcanvas -->
+        <div class="p-4">
+
+        <div class="flex flex-col w-full h-full gap-6">
+
+            <!-- tombol kustomisasi aktivitas -->
+            <a href="/daftar-aktivitas-pribadi/kustomisasi" class="btn flex justify-start bg-color-6 hover:bg-color-5 hover:border-color-3 text-base">
+                <img src="{{ asset('icons/Plus.svg') }}" alt="Plus">
+                Kustomisasi Aktivitas
+            </a>
+            <!-- tombol kustomisasi aktivitas -->
+
+            <h1 class="text-2xl xl:text-4xl font-bold text-color-1">Riwayat Aktivitas</h1>
+
+            <div class="w-full h-full max-h-[calc(100vh-220px)] overflow-y-auto overflow-x-hidden">
+                @include('pasien.Components.riwayat_aktivitas')
+            </div>
+
+</div>
+        </div>
+        <!-- End Content Offcanvas -->
+    </div>
+    <!-- End Offcanvas -->
+
 <div class="w-full h-full">
 
     <a href="/daftar-aktivitas-pribadi" class="btn btn-sm  bg-color-4 text-color-putih hover:bg-color-2 border-0 w-fit">

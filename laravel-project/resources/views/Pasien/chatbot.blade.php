@@ -249,24 +249,25 @@
         <form id="chat-form"  method="POST" action="{{ route('chatbot.store') }}">
             @csrf
             <input type="hidden" id="id-percakapan" name="id_percakapan" value="{{ $selectedPercakapan->id ?? '' }}">
-            <div class="relative">
+            <div class="w-full inline-block relative">
                 <!-- Input teks -->
                 <input type="text" id="text-input" autofocus name="pesan" class="h-[50px] flex items-center py-4 px-4 w-full rounded-full text-sm bg-color-6 border border-color-1 focus-visible:outline focus-visible:outline-color-1" 
                     placeholder="Masukkan pesan anda disini" aria-describedby="hs-validation-name-error-helper" autocomplete="off">
         
                 <!-- Tombol kirim -->
-                <button type="submit" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-0 rounded-r-full px-2 border-x-0 outline-none">
+                <button type="submit" class="absolute top-1/2 right-2 -translate-y-1/2 size-10 p-2 hover:bg-cyan-50 active:bg-cyan-50 transition delay-150 duration-300 ease-in-out active:scale-50 rounded-full">
                     <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
                 </button>
                 
                 <!-- Tombol mikrofon -->
-                <button type="button" id="voice-button" class="btn bg-color-6 hover:bg-color-5 h-[50px] absolute inset-y-0 right-11 rounded-r-none rounded-l-none px-1 border-x-0 outline-none">
+                <button type="button" id="voice-button" class="absolute top-1/2 right-12 -translate-y-1/2 size-10 p-2 hover:bg-cyan-50 active:bg-cyan-50 transition delay-150 duration-300 ease-in-out active:scale-50 rounded-full">
                     <img src="{{ asset('icons/Microphone.svg') }}" alt="Microphone">
                 </button>
         
             </div>
         </form>
 
+        
     </div>
     <!-- section percakapan -->
 
