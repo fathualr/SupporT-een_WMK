@@ -255,12 +255,12 @@
                     placeholder="Masukkan pesan anda disini" aria-describedby="hs-validation-name-error-helper" autocomplete="off">
         
                 <!-- Tombol kirim -->
-                <button type="submit" class="absolute top-1/2 right-2 -translate-y-1/2 size-10 p-2 hover:bg-cyan-50 active:bg-cyan-50 transition delay-150 duration-300 ease-in-out active:scale-50 rounded-full">
+                <button type="submit" class="absolute top-1/2 right-2 -translate-y-1/2 size-10 p-2 hover:bg-cyan-50 active:bg-cyan-50 transition delay-150 duration-300 ease-in-out active:scale-75 rounded-full">
                     <img src="{{ asset('icons/Sent.svg') }}" alt="Sent">
                 </button>
                 
                 <!-- Tombol mikrofon -->
-                <button type="button" id="voice-button" class="absolute top-1/2 right-12 -translate-y-1/2 size-10 p-2 hover:bg-cyan-50 active:bg-cyan-50 transition delay-150 duration-300 ease-in-out active:scale-50 rounded-full">
+                <button type="button" id="voice-button" class="absolute top-1/2 right-12 -translate-y-1/2 size-10 p-2 hover:bg-cyan-50 active:bg-cyan-50 transition delay-150 duration-300 ease-in-out active:scale-75 rounded-full">
                     <img src="{{ asset('icons/Microphone.svg') }}" alt="Microphone">
                 </button>
         
